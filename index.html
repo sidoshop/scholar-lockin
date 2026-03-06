@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholar Lock-In — Thème 1 SDGN</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background: #f0ede6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.page { width: 100%; max-width: 960px; }
+
+/* Hero */
+.hero { text-align: center; margin-bottom: 44px; }
+.hero-badge {
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  background: #1e1c18; color: #f5c842;
+  padding: 5px 16px; border-radius: 20px;
+  display: inline-block; margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 48px; font-weight: 900; color: #1e1c18;
+  line-height: 1.1; margin-bottom: 10px;
+}
+.hero h1 span { color: #b5415a; }
+.hero-sub { font-size: 14px; color: #7a6a58; font-weight: 600; }
+
+/* Grille principale : 2 grandes tuiles */
+.top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* Rangée 3 petites tuiles */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+/* Carte générique */
+.card {
+  border-radius: 16px;
+  padding: 26px 22px;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.14); }
+.card.off { opacity: 0.6; pointer-events: none; cursor: default; }
+.card.off:hover { transform: none; box-shadow: none; }
+
+.tag {
+  font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px;
+  display: inline-block; margin-bottom: 12px;
+}
+.card-icon { font-size: 34px; margin-bottom: 10px; display: block; }
+.card-title { font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+.card-desc { font-size: 12px; font-weight: 600; line-height: 1.55; }
+
+/* Tuile 1 — Vue d'ensemble (dark) */
+.tile-overview { background: #1e1c18; }
+.tile-overview .tag { background: #f5c842; color: #1e1c18; }
+.tile-overview .card-title { color: #fffdf8; }
+.tile-overview .card-desc { color: #a09880; }
+
+/* Tuile 2 — Chapitres (gradient tri-couleur) */
+.tile-chap { background: linear-gradient(135deg, #fdeef2 0%, #e8f3ff 55%, #fef8e2 100%); border: 1.5px solid #e0dbd2; }
+.tile-chap .tag { background: #1e1c18; color: #fffdf8; }
+.tile-chap .card-title { color: #1e1c18; }
+.tile-chap .card-desc { color: #5a5448; }
+
+/* Pills chapitres */
+.chap-pills { display: flex; gap: 5px; margin-top: 12px; flex-wrap: wrap; }
+.pill { font-size: 9px; font-weight: 800; padding: 2px 9px; border-radius: 10px; }
+.pr { background: #f9d0d9; color: #b5415a; }
+.pb { background: #cce2f8; color: #2a69a8; }
+.pj { background: #fde8a0; color: #946e00; }
+
+/* Tuile 3 — Flash cards */
+.tile-flash { background: #fdeef2; border: 1.5px solid #f9d0d9; }
+.tile-flash .tag { background: rgba(181,65,90,.15); color: #b5415a; }
+.tile-flash .card-title { color: #b5415a; }
+.tile-flash .card-desc { color: #7a2038; }
+
+/* Tuile 4 — Méthode */
+.tile-methode { background: #fef8e2; border: 1.5px solid #fde8a0; }
+.tile-methode .tag { background: rgba(148,110,0,.15); color: #946e00; }
+.tile-methode .card-title { color: #946e00; }
+.tile-methode .card-desc { color: #7a5800; }
+
+/* Tuile 5 — Annales */
+.tile-annales { background: #e8f3ff; border: 1.5px solid #cce2f8; }
+.tile-annales .tag { background: rgba(42,105,168,.15); color: #2a69a8; }
+.tile-annales .card-title { color: #2a69a8; }
+.tile-annales .card-desc { color: #1a4f82; }
+
+/* Footer */
+.footer { text-align: center; margin-top: 36px; font-size: 11px; color: #a09880; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-badge">SDGN · Terminale STMG · Thème 1</div>
+    <h1>Scholar <span>Lock-In</span></h1>
+    <div class="hero-sub">Ton kit de révision de dernière minute · 5 outils · 45 notions</div>
+  </div>
+
+  <div class="top-grid">
+
+    <!-- Outil 1 — Vue d'ensemble -->
+    <a href="Contenu/SLI_Infographie_Theme1_Global.html" class="card tile-overview">
+      <div class="tag">✅ Disponible</div>
+      <span class="card-icon">🗺️</span>
+      <div class="card-title">Vue d'ensemble Thème 1</div>
+      <div class="card-desc">Les 6 chapitres sur une seule page. Parfait pour avoir la vision globale avant de plonger dans les détails.</div>
+    </a>
+
+    <!-- Outil 2 — Chapitres -->
+    <a href="Contenu/SLI_Infographie_Chap1.html" class="card tile-chap">
+      <div class="tag">✅ Disponible</div>
+      <span class="card-icon">📖</span>
+      <div class="card-title">Réviser par chapitre</div>
+      <div class="card-desc">Notions clés, définitions, comparatifs visuels et points de vigilance pour le bac — chapitre par chapitre.</div>
+      <div class="chap-pills">
+        <span class="pill pr">🩷 Chap 1</span>
+        <span class="pill pb">🔵 Chap 2</span>
+        <span class="pill pb">🔵 Chap 3&4</span>
+        <span class="pill pb">🔵 Chap 5</span>
+        <span class="pill pj">🟡 Chap 6</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="bottom-row">
+
+    <!-- Outil 3 — Flash cards -->
+    <div class="card tile-flash off">
+      <div class="tag">🔜 Bientôt</div>
+      <span class="card-icon">🃏</span>
+      <div class="card-title">Flash cards</div>
+      <div class="card-desc">45 notions en cartes recto/verso. Filtre par chapitre, mode aléatoire, compteur de maîtrise.</div>
+    </div>
+
+    <!-- Outil 4 — Méthode -->
+    <div class="card tile-methode off">
+      <div class="tag">🔜 Bientôt</div>
+      <span class="card-icon">✅</span>
+      <div class="card-title">Méthode J-day</div>
+      <div class="card-desc">Quoi faire en premier, le code des verbes directeurs, comment lier une question à un document.</div>
+    </div>
+
+    <!-- Outil 5 — Annales -->
+    <div class="card tile-annales off">
+      <div class="tag">🔜 Bientôt</div>
+      <span class="card-icon">🎯</span>
+      <div class="card-title">Entraînement annales</div>
+      <div class="card-desc">Questions des 7 annales 2021–2025. Timer, auto-évaluation, tableau de bord de progression.</div>
+    </div>
+
+  </div>
+
+  <div class="footer">Scholar Lock-In · SDGN Terminale STMG · Thème 1 · Les organisations et l'activité de production</div>
+
+</div>
+</body>
+</html>
