@@ -84,12 +84,39 @@ body {
 .tile-chap .card-title { color: #1e1c18; }
 .tile-chap .card-desc { color: #5a5448; }
 
-/* Pills chapitres */
-.chap-pills { display: flex; gap: 5px; margin-top: 12px; flex-wrap: wrap; }
-.pill { font-size: 9px; font-weight: 800; padding: 2px 9px; border-radius: 10px; }
-.pr { background: #f9d0d9; color: #b5415a; }
-.pb { background: #cce2f8; color: #2a69a8; }
-.pj { background: #fde8a0; color: #946e00; }
+/* Thème 1 label dans le hero */
+.hero-theme {
+  font-size: 13px; font-weight: 700; color: #5a5448;
+  background: rgba(30,28,24,.07); border-radius: 10px;
+  padding: 7px 18px; display: inline-block; margin-bottom: 10px;
+  font-style: italic;
+}
+
+/* Liste des chapitres dans la tuile */
+.chap-list { display: flex; flex-direction: column; gap: 5px; margin-top: 12px; }
+.chap-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; border-radius: 10px;
+  text-decoration: none; transition: transform 0.12s, opacity 0.12s;
+}
+.chap-item:hover { transform: translateX(4px); opacity: 0.85; }
+.chap-num {
+  font-family: 'Nunito', sans-serif; font-size: 10px; font-weight: 900;
+  white-space: nowrap; min-width: 90px; flex-shrink: 0;
+}
+.chap-label { font-size: 12px; font-weight: 700; line-height: 1.3; }
+
+.chap-r { background: #f9d0d9; }
+.chap-r .chap-num { color: #b5415a; }
+.chap-r .chap-label { color: #7a2038; }
+
+.chap-b { background: #cce2f8; }
+.chap-b .chap-num { color: #2a69a8; }
+.chap-b .chap-label { color: #1a4f82; }
+
+.chap-j { background: #fde8a0; }
+.chap-j .chap-num { color: #946e00; }
+.chap-j .chap-label { color: #7a5800; }
 
 /* Tuile 3 — Flash cards */
 .tile-flash { background: #fdeef2; border: 1.5px solid #f9d0d9; }
@@ -119,6 +146,7 @@ body {
   <div class="hero">
     <div class="hero-badge">SDGN · Terminale STMG · Thème 1</div>
     <h1>Scholar <span>Lock-In</span></h1>
+    <div class="hero-theme">Thème 1 — Les organisations et l'activité de production de biens et de services</div>
     <div class="hero-sub">Ton kit de révision de dernière minute · 5 outils · 45 notions</div>
   </div>
 
@@ -133,19 +161,37 @@ body {
     </a>
 
     <!-- Outil 2 — Chapitres -->
-    <a href="Contenu/SLI_Infographie_Chap1.html" class="card tile-chap">
+    <div class="card tile-chap" style="cursor:default;">
       <div class="tag">✅ Disponible</div>
       <span class="card-icon">📖</span>
       <div class="card-title">Réviser par chapitre</div>
-      <div class="card-desc">Notions clés, définitions, comparatifs visuels et points de vigilance pour le bac — chapitre par chapitre.</div>
-      <div class="chap-pills">
-        <span class="pill pr">🩷 Chap 1</span>
-        <span class="pill pb">🔵 Chap 2</span>
-        <span class="pill pb">🔵 Chap 3&4</span>
-        <span class="pill pb">🔵 Chap 5</span>
-        <span class="pill pj">🟡 Chap 6</span>
+      <div class="chap-list">
+        <a href="Contenu/SLI_Infographie_Chap1.html" class="chap-item chap-r">
+          <span class="chap-num">🩷 Chapitre 1</span>
+          <span class="chap-label">Quels produits ou services pour quels besoins ?</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap2.html" class="chap-item chap-j">
+          <span class="chap-num">🟡 Chapitre 2 RH</span>
+          <span class="chap-label">Quelles ressources pour produire ? — partie RH</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap2.html" class="chap-item chap-b">
+          <span class="chap-num">🔵 Chapitre 2 Finance</span>
+          <span class="chap-label">Quelles ressources pour produire ? — partie financière</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap3et4.html" class="chap-item chap-b">
+          <span class="chap-num">🔵 Chapitres 3 &amp; 4</span>
+          <span class="chap-label">Organisation de la production, flux, qualité, coûts</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap5.html" class="chap-item chap-b">
+          <span class="chap-num">🔵 Chapitre 5</span>
+          <span class="chap-label">Les transformations numériques</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap6.html" class="chap-item chap-j">
+          <span class="chap-num">🟡 Chapitre 6</span>
+          <span class="chap-label">Fonctionnement cohérent des organisations</span>
+        </a>
       </div>
-    </a>
+    </div>
 
   </div>
 
