@@ -43,10 +43,15 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .tag-g { background: #1a7a3c; color: #fff; }
 .tag-b { background: #2a69a8; color: #fff; }
 .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-bottom: 7px; }
+.g3-item { border-radius: 9px; padding: 9px 8px; text-align: center; }
 .piege { background: #1e1c18; border-radius: 10px; padding: 10px 13px; display: flex; gap: 9px; align-items: flex-start; margin-top: 12px; }
 .piege-t { font-size: 9.5px; font-weight: 700; color: #fffdf8; line-height: 1.6; }
 .piege-t strong { color: #f5c842; }
-.bm-row { background: #fff3cc; border-radius: 9px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.formula-box { background: #fde8a0; border-radius: 9px; padding: 9px 12px; margin: 8px 0; text-align: center; }
+.formula-txt { font-family: monospace; font-size: 11px; font-weight: 900; color: #7a5800; }
+.formula-sub { font-size: 8.5px; color: #946e00; font-weight: 600; margin-top: 3px; }
+.bm-row { background: #fff3cc; border-radius: 9px; padding: 8px 12px; display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
 .bm-row:last-child { margin-bottom: 0; }
 .bm-name { font-size: 10.5px; font-weight: 800; color: #1e1c18; }
 .bm-desc { font-size: 9px; color: #7a5800; font-weight: 600; margin-top: 1px; }
@@ -81,13 +86,13 @@ body{padding-top:72px!important}
 <nav class="sli-nav">
   <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
-    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
-    <a href="SLI_Infographie_Chap1.html" class="sli-nl on">📖 Chapitres</a>
-    <a class="sli-nl soon">🃏 Flash cards</a>
-    <a class="sli-nl soon">✅ Méthode</a>
-    <a class="sli-nl soon">🎯 Annales</a>
+    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">Vue d'ensemble</a>
+    <a href="SLI_Infographie_Chap1.html" class="sli-nl on">Chapitres</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">Methode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">Annales</a>
   </div>
-  <a href="../index.html" class="sli-nl">← Accueil</a>
+  <a href="../sdgm.html" class="sli-nl">← Accueil</a>
 </nav>
 <div class="page">
 
@@ -106,178 +111,185 @@ body{padding-top:72px!important}
 <div class="hd" style="background:#b5415a;">
   <div class="hd-badge">Scholar Lock-In · SDGN Terminale STMG · Chapitre 1</div>
   <h1>Chapitre 1 — Quels produits ou services pour <em>quels besoins ?</em></h1>
-  <div class="hd-sub">Démarche marketing, approches, innovation et modèle économique — ce qui revient au bac 2 sessions sur 3.</div>
+  <div class="hd-sub">Démarche marketing · Segmentation · Ciblage · Positionnement · Étude de marché · Valeur ajoutée · Innovation produit · Business model</div>
 </div>
 
 <div class="body">
 
-<!-- COL 1 — Démarche + 4 approches -->
+<!-- COL 1 — Démarche + SCP -->
 <div class="col col-r">
-  <div class="col-lbl">① Démarche Marketing</div>
+  <div class="col-lbl">① Démarche &amp; Segmentation</div>
 
   <div class="card c-r">
     <div class="ci">🧭</div>
     <div>
       <div class="cn">Démarche marketing</div>
-      <div class="cd">Partir du <strong>besoin client</strong> pour construire l'offre.<br>≠ approche ingénierie = produit d'abord, marché ensuite.</div>
+      <div class="cd">On part des <strong>besoins du client</strong> pour créer le produit. L'entreprise étudie d'abord le marché, puis conçoit son offre en réponse.</div>
     </div>
   </div>
 
-  <div class="sec-t">Les 4 approches marketing</div>
+  <div class="card c-o">
+    <div class="ci">⚙️</div>
+    <div>
+      <div class="cn">Démarche ingénieriste</div>
+      <div class="cd">On part d'une <strong>innovation technique</strong> pour ensuite trouver des clients. L'entreprise crée d'abord un produit, puis cherche à qui le vendre.</div>
+    </div>
+  </div>
+
+  <div class="piege" style="margin-bottom:13px;">
+    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
+    <div class="piege-t"><strong>Distinction clé :</strong> Marketing = marché → produit. Ingénieriste = produit → marché. L'ordre est <strong>inversé</strong>.</div>
+  </div>
+
+  <div class="sec-t">Segmentation → Ciblage → Positionnement</div>
 
   <div class="card c-r">
-    <div class="ci" style="font-size:17px;">🔍</div>
+    <div class="ci" style="font-size:17px;">🔀</div>
     <div>
-      <span class="tag tag-r">Besoin existant</span>
-      <div class="cn" style="font-size:11px;">Réactive</div>
-      <div class="cd">Le besoin existe → l'entreprise y répond. Peu risqué mais concurrence déjà présente.</div>
-    </div>
-  </div>
-  <div class="card c-o">
-    <div class="ci" style="font-size:17px;">🔭</div>
-    <div>
-      <span class="tag tag-j">Besoin latent</span>
-      <div class="cn" style="font-size:11px;">Anticipatrice</div>
-      <div class="cd">Besoin non encore perçu → on l'anticipe avant les concurrents.</div>
-    </div>
-  </div>
-  <div class="card c-g">
-    <div class="ci" style="font-size:17px;">💡</div>
-    <div>
-      <span class="tag tag-g">Besoin créé</span>
-      <div class="cn" style="font-size:11px;">Créative</div>
-      <div class="cd">L'entreprise crée un besoin nouveau et crée son propre marché.</div>
-    </div>
-  </div>
-  <div class="card c-d">
-    <div class="ci" style="font-size:17px;">🤝</div>
-    <div>
-      <span class="tag tag-b">Client partenaire</span>
-      <div class="cn" style="font-size:11px;">Cocréation (médiatrice)</div>
-      <div class="cd">Le consommateur co-construit le produit avec l'entreprise.</div>
+      <div class="cn">Segmentation</div>
+      <div class="cd">Découpage du marché en <strong>groupes homogènes</strong> de clients selon des critères : géographiques, socio-démographiques, comportementaux, psychographiques.</div>
+      <div class="cx">C'est l'étape qui précède toute stratégie marketing.</div>
     </div>
   </div>
 
-  <div class="sec-t">Étude de marché vs Veille</div>
-  <div class="g2">
-    <div class="card c-r" style="margin:0; flex-direction:column; align-items:flex-start; gap:5px;">
-      <div style="font-size:20px;">🔬</div>
-      <div>
-        <div class="cn" style="font-size:10.5px;">Étude de marché</div>
-        <span class="tag tag-r" style="font-size:7.5px;">Ponctuelle</span>
-        <div class="cd">Pour une décision précise. Quantitative ou qualitative.</div>
-      </div>
+  <div class="card c-r">
+    <div class="ci" style="font-size:17px;">🎯</div>
+    <div>
+      <div class="cn">Ciblage</div>
+      <div class="cd">Choix du ou des <strong>segments</strong> que l'entreprise décide d'adresser. Détermine la stratégie : masse, différenciée ou concentrée.</div>
     </div>
-    <div class="card c-o" style="margin:0; flex-direction:column; align-items:flex-start; gap:5px;">
-      <div style="font-size:20px;">📡</div>
-      <div>
-        <div class="cn" style="font-size:10.5px;">Veille marketing</div>
-        <span class="tag tag-j" style="font-size:7.5px;">Continue</span>
-        <div class="cd">Surveillance permanente de l'environnement.</div>
-      </div>
+  </div>
+
+  <div class="card c-r">
+    <div class="ci" style="font-size:17px;">📍</div>
+    <div>
+      <div class="cn">Positionnement</div>
+      <div class="cd">Place qu'occupe l'offre dans <strong>l'esprit des consommateurs</strong> par rapport à la concurrence.</div>
+      <div class="cx">Ex : Réo = fromage AOP artisanal normand haut de gamme.</div>
+    </div>
+  </div>
+</div>
+
+<!-- COL 2 — Marketing + Étude + Veille -->
+<div class="col col-w">
+  <div class="col-lbl lbl-w">② Stratégie marché &amp; Connaissance clients</div>
+
+  <div class="sec-t" style="margin-top:0;">Les 3 stratégies de ciblage</div>
+
+  <div class="g3">
+    <div class="g3-item" style="background:#f9d0d9;">
+      <div style="font-size:18px; margin-bottom:4px;">🌊</div>
+      <div style="font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;color:#b5415a;">Marketing de masse</div>
+      <div style="font-size:8.5px;color:#7a2038;font-weight:600;margin-top:3px;line-height:1.4;">1 offre pour tous. Ex : Coca-Cola Classic.</div>
+    </div>
+    <div class="g3-item" style="background:#fce0b0;">
+      <div style="font-size:18px; margin-bottom:4px;">🎨</div>
+      <div style="font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;color:#c47800;">Marketing différencié</div>
+      <div style="font-size:8.5px;color:#7a5800;font-weight:600;margin-top:3px;line-height:1.4;">Plusieurs offres pour plusieurs segments. Ex : Renault.</div>
+    </div>
+    <div class="g3-item" style="background:#bce8cd;">
+      <div style="font-size:18px; margin-bottom:4px;">🔬</div>
+      <div style="font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;color:#1a7a3c;">Marketing concentré</div>
+      <div style="font-size:8.5px;color:#1a5c35;font-weight:600;margin-top:3px;line-height:1.4;">1 offre sur 1 segment précis (niche). Ex : Fromagerie Réo.</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Étude de marché</div>
+  <div class="card c-b">
+    <div class="ci">🔬</div>
+    <div>
+      <div class="cn">Étude de marché</div>
+      <div class="cd">Collecte et analyse d'informations sur les clients, concurrents et tendances pour orienter les décisions.</div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:7px;">
+    <div class="card c-b" style="margin:0; flex-direction:column; align-items:flex-start; gap:4px;">
+      <span class="tag tag-b">Données primaires</span>
+      <div class="cd">Collectées directement par l'entreprise : sondages, interviews, observations.</div>
+    </div>
+    <div class="card c-d" style="margin:0; flex-direction:column; align-items:flex-start; gap:4px;">
+      <span class="tag tag-b">Données secondaires</span>
+      <div class="cd">Déjà existantes et réutilisées : rapports INSEE, études sectorielles, statistiques.</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Veille marketing et commerciale</div>
+  <div class="card c-o">
+    <div class="ci">📡</div>
+    <div>
+      <div class="cn">Veille marketing</div>
+      <div class="cd">Surveillance <strong>continue</strong> de l'environnement (concurrents, tendances, réglementation) pour anticiper les évolutions et adapter l'offre.</div>
     </div>
   </div>
 
   <div class="piege">
     <div style="font-size:16px; flex-shrink:0;">⚠️</div>
-    <div class="piege-t"><strong>Piège bac :</strong> Étude = ponctuelle pour une décision. Veille = continue pour surveiller. Distinction testée en question courte.</div>
+    <div class="piege-t"><strong>Étude ≠ Veille :</strong> Étude = ponctuelle pour une décision. Veille = continue pour surveiller l'environnement.</div>
   </div>
 </div>
 
-<!-- COL 2 — Innovation + 4P + Valeur -->
-<div class="col col-w">
-  <div class="col-lbl lbl-w">② Innovation &amp; Plan de marchéage</div>
+<!-- COL 3 — Valeur ajoutée + Innovation + Business model -->
+<div class="col col-j">
+  <div class="col-lbl lbl-j">③ Valeur &amp; Modèle économique</div>
 
+  <div class="sec-t" style="margin-top:0;">Valeur ajoutée</div>
+  <div class="card c-j">
+    <div class="ci">💰</div>
+    <div>
+      <div class="cn">Valeur ajoutée (VA)</div>
+      <div class="cd">Richesse créée par l'organisation dans son processus de production.</div>
+    </div>
+  </div>
+  <div class="formula-box">
+    <div class="formula-txt">VA = Chiffre d'affaires − Consommations intermédiaires</div>
+  </div>
+
+  <div class="sec-t">Innovation produit</div>
   <div class="card c-o">
     <div class="ci">🚀</div>
     <div>
-      <div class="cn">Innovation produit ≠ procédés</div>
-      <div class="cd"><strong>Produit</strong> = ce qu'on vend (Ch.1).<br><strong>Procédés</strong> = comment on fabrique (Ch.3&amp;4).</div>
+      <div class="cn">Innovation produit</div>
+      <div class="cd">Création d'un produit <strong>nouveau</strong> ou amélioration significative d'un produit existant destiné au marché.</div>
+      <div class="cx">≠ innovation de procédé qui porte sur la façon de produire (Chap 3-4).</div>
     </div>
   </div>
 
-  <div class="g2" style="margin-top:7px;">
-    <div class="card c-r" style="margin:0; flex-direction:column; gap:5px;">
-      <div style="font-size:22px;">💥</div>
-      <div class="cn" style="font-size:11px;">Rupture</div>
-      <div class="cd">Crée un marché radicalement nouveau. Remplace la techno dominante.</div>
-      <div class="cx">Ex : streaming → DVD</div>
-    </div>
-    <div class="card c-b" style="margin:0; flex-direction:column; gap:5px;">
-      <div style="font-size:22px;">📈</div>
-      <div class="cn" style="font-size:11px;">Incrémentale</div>
-      <div class="cd">Amélioration progressive d'un produit existant.</div>
-      <div class="cx">Ex : nouvelle version d'un smartphone</div>
-    </div>
-  </div>
-
-  <div class="sec-t">Plan de marchéage — 4P</div>
-  <div class="g2" style="margin-bottom:12px;">
-    <div class="card c-r" style="margin:0;"><div class="ci" style="font-size:17px;">📦</div><div><div class="cn" style="font-size:10.5px;">Produit</div><div class="cd">Caractéristiques, marque, design, gamme</div></div></div>
-    <div class="card c-o" style="margin:0;"><div class="ci" style="font-size:17px;">💶</div><div><div class="cn" style="font-size:10.5px;">Prix</div><div class="cd">Écrémage, pénétration, alignement, freemium</div></div></div>
-    <div class="card c-g" style="margin:0;"><div class="ci" style="font-size:17px;">🏪</div><div><div class="cn" style="font-size:10.5px;">Distribution</div><div class="cd">Intensive, sélective, exclusive</div></div></div>
-    <div class="card c-d" style="margin:0;"><div class="ci" style="font-size:17px;">📣</div><div><div class="cn" style="font-size:10.5px;">Communication</div><div class="cd">Médias / hors-médias, réseaux sociaux</div></div></div>
-  </div>
-
-  <div class="card c-p">
-    <div class="ci">⚖️</div>
-    <div>
-      <div class="cn">Valeur perçue &amp; Satisfaction</div>
-      <div class="cd">Valeur perçue ≥ valeur attendue = <strong>satisfaction</strong>.<br>Si inférieure → insatisfaction → perte du client.</div>
-    </div>
-  </div>
-
-  <div class="piege">
-    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
-    <div class="piege-t"><strong>Piège :</strong> Approches SDGN (réactive / anticipatrice / créative / cocréation) ≠ stratégies Mercatique spé (masse / différencié / concentré). Ne pas mélanger.</div>
-  </div>
-</div>
-
-<!-- COL 3 — Business model -->
-<div class="col col-j">
-  <div class="col-lbl lbl-j">③ Modèle économique ⭐ priorité bac</div>
-
+  <div class="sec-t">Modèle économique (business model)</div>
   <div class="card c-j">
     <div class="ci">💡</div>
     <div>
       <div class="cn">Business model</div>
-      <div class="cd">Comment l'organisation <strong>crée</strong>, <strong>délivre</strong> et <strong>capte</strong> de la valeur — sa façon de générer ses revenus.</div>
+      <div class="cd">Description de la façon dont une organisation <strong>crée, délivre et capture</strong> de la valeur.</div>
     </div>
   </div>
 
-  <div class="sec-t">Les 6 types à connaître</div>
-
-  <div class="bm-row"><span style="font-size:18px;">💰</span><div><div class="bm-name">Vente directe</div><div class="bm-desc">Produit vendu une fois. Ex : H&M, Renault</div></div></div>
-  <div class="bm-row"><span style="font-size:18px;">📦</span><div><div class="bm-name">Abonnement</div><div class="bm-desc">Revenu récurrent. Ex : Netflix, presse en ligne</div></div></div>
-  <div class="bm-row"><span style="font-size:18px;">🆓</span><div><div class="bm-name">Freemium</div><div class="bm-desc">Gratuit de base, payant pour les +. Ex : Spotify, Duolingo</div></div></div>
-  <div class="bm-row"><span style="font-size:18px;">🤝</span><div><div class="bm-name">Commission / Marketplace</div><div class="bm-desc">% sur chaque transaction. Ex : Airbnb, Vinted, Amazon</div></div></div>
-  <div class="bm-row"><span style="font-size:18px;">📣</span><div><div class="bm-name">Publicité</div><div class="bm-desc">Service gratuit financé par la pub. Ex : Google, TF1</div></div></div>
-  <div class="bm-row"><span style="font-size:18px;">⚙️</span><div><div class="bm-name">Éco. de la fonctionnalité</div><div class="bm-desc">On vend l'usage, pas le produit. Ex : leasing, Vélib'</div></div></div>
-
-  <div class="piege" style="margin-top:14px;">
-    <div style="font-size:16px; flex-shrink:0;">⭐</div>
-    <div class="piege-t"><strong>Question rédigée :</strong> Toujours nommer le type de modèle + citer un exemple hors-cas. Préparez : Airbnb (commission), Spotify (freemium), Netflix (abonnement).</div>
-  </div>
+  <div class="sec-t" style="margin-top:8px;">Les 5 composantes</div>
+  <div class="bm-row"><span style="font-size:15px;">🎁</span><div><div class="bm-name">Proposition de valeur</div><div class="bm-desc">Ce qu'on offre aux clients</div></div></div>
+  <div class="bm-row"><span style="font-size:15px;">👥</span><div><div class="bm-name">Segments clients ciblés</div><div class="bm-desc">À qui s'adresse l'offre</div></div></div>
+  <div class="bm-row"><span style="font-size:15px;">🚚</span><div><div class="bm-name">Canaux de distribution</div><div class="bm-desc">Comment l'offre est délivrée</div></div></div>
+  <div class="bm-row"><span style="font-size:15px;">💶</span><div><div class="bm-name">Sources de revenus</div><div class="bm-desc">Comment l'organisation est rémunérée</div></div></div>
+  <div class="bm-row"><span style="font-size:15px;">⚙️</span><div><div class="bm-name">Structure de coûts</div><div class="bm-desc">Principales charges pour délivrer la valeur</div></div></div>
 </div>
 
 </div><!-- /body -->
 
 <div class="bac-s">
-  <div class="bac-h">📋 Points de vigilance pour l'épreuve du Bac</div>
+  <div class="bac-h">Points de vigilance pour l'épreuve du Bac</div>
   <table class="bt">
     <thead><tr><th style="width:22%">Notion clé</th><th style="width:17%">Importance au Bac</th><th>Conseil correcteur</th></tr></thead>
     <tbody>
-      <tr><td>💡 Modèle économique</td><td><span class="st">★★★★</span><span class="se">★</span></td><td><span class="lt">Question rédigée</span> Nommer le type + illustrer hors-cas + expliquer comment l'entreprise crée de la valeur. Tombe 2/3 sessions.</td></tr>
-      <tr><td>🧭 Démarche marketing</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Contextualisation</span> Identifier dans le cas quelle approche est utilisée (réactive / anticipatrice / créative / cocréation). Ne jamais écrire "approche de masse".</td></tr>
-      <tr><td>🔬 Étude ≠ Veille</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Q courte 3-4 pts</span> Distinction fréquente. Mémoriser : étude = ponctuelle + décision / veille = continue + surveillance.</td></tr>
-      <tr><td>🚀 Innovation produit ≠ procédés</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">≠ Chap.3&amp;4</span> Produit = ce qu'on vend. Procédés = comment on fabrique. Ajouter rupture vs incrémentale pour enrichir la réponse.</td></tr>
+      <tr><td>Segmentation / Ciblage / Positionnement</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Justifier</span> Souvent demandé : "Justifiez le positionnement de [entreprise] sur son marché." Nommer les 3 étapes dans l'ordre et les appliquer au cas.</td></tr>
+      <tr><td>Business model — composantes</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Identifier sur doc</span> Savoir repérer les 5 composantes dans un document d'entreprise. Tombe 2/3 sessions.</td></tr>
+      <tr><td>Démarche marketing ≠ ingénieriste</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Q courte</span> L'ordre est l'essentiel : marketing = marché d'abord. Ingénieriste = produit d'abord. Ne pas confondre dans une question sur la stratégie commerciale.</td></tr>
+      <tr><td>Valeur ajoutée — formule</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Calcul + sens</span> VA = CA − Consommations intermédiaires. Interpréter : richesse créée par l'organisation. Tombée en 2021 (Titi Floris).</td></tr>
     </tbody>
   </table>
 </div>
 
 <div class="ft">
   <div class="ft-brand">Scholar Lock-In · SDGN Terminale STMG · Chapitre 1</div>
-  <div class="ft-note">🩷 Rose = Marché &amp; Offre</div>
+  <div class="ft-note">Rose = Marché &amp; Offre</div>
 </div>
 
 <div class="sli-chapnav" style="background:#f0ede6;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e0dbd2;">
@@ -305,100 +317,46 @@ body{padding-top:72px!important}
 <!-- OVERLAY -->
 <div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
   style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
-
   <div style="background:#fffdf8; border-radius:20px; width:700px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
-
-    <!-- Header mémo -->
     <div style="background:#b5415a; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
       <div>
         <div style="font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitre 1</div>
-        <div style="font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#fff;">🧠 Carte de mémorisation</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#fff;">Carte de memorisation</div>
       </div>
       <button onclick="document.getElementById('memo-overlay').style.display='none'"
-        style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
+        style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">x</button>
     </div>
+    <div style="padding:20px; display:flex; flex-direction:column; gap:12px;">
 
-    <!-- Corps mémo -->
-    <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
-
-      <!-- Notion centrale + définition -->
-      <div style="background:#f9d0d9; border-radius:14px; padding:16px 20px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
-          <div style="font-size:36px; flex-shrink:0;">🧭</div>
-          <div>
-            <div style="font-family:'Nunito',sans-serif; font-size:17px; font-weight:900; color:#1e1c18; margin-bottom:4px;">Démarche Marketing</div>
-            <div style="font-size:12px; font-weight:700; color:#7a2038; line-height:1.5; font-style:italic;">« Identifier les besoins des consommateurs pour y adapter une offre de produits ou services, plutôt que de chercher à vendre ce qu'on sait produire. »</div>
-          </div>
-        </div>
-        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:11px; font-weight:800; color:#b5415a;">
-          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">Besoin client</span>
-          <span style="color:#b5415a;">→</span>
-          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">Étude</span>
-          <span style="color:#b5415a;">→</span>
-          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">Segmentation</span>
-          <span style="color:#b5415a;">→</span>
-          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">Positionnement</span>
-          <span style="color:#b5415a;">→</span>
-          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">4P</span>
+      <div style="background:#f9d0d9; border-radius:12px; padding:13px 16px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#b5415a; margin-bottom:8px;">Demarche marketing vs Ingénieriste</div>
+        <div style="display:flex; gap:8px;">
+          <div style="flex:1; background:#fffdf8; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1e1c18;"><strong>Marketing</strong><br>Marche → Besoins → Produit</div>
+          <div style="flex:1; background:#fce0b0; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1e1c18;"><strong>Ingénieriste</strong><br>Produit → Marche → Clients</div>
         </div>
       </div>
 
-      <!-- 4 approches -->
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px;">
-        <div style="background:#f9d0d9; border-radius:10px; padding:12px 8px; text-align:center;">
-          <div style="font-size:24px; margin-bottom:5px;">🔍</div>
-          <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#b5415a;">Réactive</div>
-          <div style="font-size:10px; color:#7a2038; font-weight:700; margin-top:3px;">Besoin existant</div>
-        </div>
-        <div style="background:#fce0b0; border-radius:10px; padding:12px 8px; text-align:center;">
-          <div style="font-size:24px; margin-bottom:5px;">🔭</div>
-          <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#c47800;">Anticipatrice</div>
-          <div style="font-size:10px; color:#7a5800; font-weight:700; margin-top:3px;">Besoin latent</div>
-        </div>
-        <div style="background:#bce8cd; border-radius:10px; padding:12px 8px; text-align:center;">
-          <div style="font-size:24px; margin-bottom:5px;">💡</div>
-          <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a7a3c;">Créative</div>
-          <div style="font-size:10px; color:#1a5c35; font-weight:700; margin-top:3px;">Besoin créé</div>
-        </div>
-        <div style="background:#dce8fc; border-radius:10px; padding:12px 8px; text-align:center;">
-          <div style="font-size:24px; margin-bottom:5px;">🤝</div>
-          <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#2a69a8;">Cocréation</div>
-          <div style="font-size:10px; color:#1a4f82; font-weight:700; margin-top:3px;">Client partenaire</div>
+      <div style="background:#fdeef2; border-radius:12px; padding:13px 16px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#b5415a; margin-bottom:8px;">Segmentation → Ciblage → Positionnement</div>
+        <div style="display:flex; gap:6px; align-items:center; font-size:9px; font-weight:700; color:#1e1c18; flex-wrap:wrap;">
+          <div style="background:#f9d0d9; border-radius:7px; padding:6px 10px;">Segmentation : decouper le marche</div>
+          <div style="color:#b5415a; font-size:14px;">→</div>
+          <div style="background:#f9d0d9; border-radius:7px; padding:6px 10px;">Ciblage : choisir le(s) segment(s)</div>
+          <div style="color:#b5415a; font-size:14px;">→</div>
+          <div style="background:#f9d0d9; border-radius:7px; padding:6px 10px;">Positionnement : place dans l'esprit</div>
         </div>
       </div>
 
-      <!-- Étude vs Veille + Business model -->
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-        <div style="background:#fdeef2; border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:8px;">
-          <div style="font-family:'Nunito',sans-serif; font-size:12.5px; font-weight:900; color:#1e1c18;">🔬 Étude ≠ 📡 Veille</div>
-          <div style="display:flex; gap:7px;">
-            <div style="flex:1; background:#f9d0d9; border-radius:8px; padding:8px; text-align:center;">
-              <div style="font-size:11px; font-weight:800; color:#b5415a;">Étude</div>
-              <div style="font-size:10px; color:#7a2038; font-weight:700; margin-top:2px;">Ponctuelle · Décision</div>
-            </div>
-            <div style="flex:1; background:#fce0b0; border-radius:8px; padding:8px; text-align:center;">
-              <div style="font-size:11px; font-weight:800; color:#c47800;">Veille</div>
-              <div style="font-size:10px; color:#7a5800; font-weight:700; margin-top:2px;">Continue · Surveillance</div>
-            </div>
-          </div>
+        <div style="background:#fde8a0; border-radius:12px; padding:12px;">
+          <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#946e00; margin-bottom:6px;">Valeur ajoutee</div>
+          <div style="font-family:monospace; font-size:11px; font-weight:900; color:#1e1c18; text-align:center; background:rgba(255,255,255,.6); border-radius:6px; padding:5px;">VA = CA − CI</div>
+          <div style="font-size:8.5px; color:#7a5800; font-weight:600; margin-top:4px; text-align:center;">Richesse creee par l'organisation</div>
         </div>
-        <div style="background:#fff3cc; border-radius:12px; padding:14px;">
-          <div style="font-family:'Nunito',sans-serif; font-size:12.5px; font-weight:900; color:#1e1c18; margin-bottom:8px;">💡 Business Model</div>
-          <div style="display:flex; flex-wrap:wrap; gap:5px;">
-            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:10px; font-weight:700; color:#7a5800;">💰 Vente directe</div>
-            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:10px; font-weight:700; color:#7a5800;">📦 Abonnement</div>
-            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:10px; font-weight:700; color:#7a5800;">🆓 Freemium</div>
-            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:10px; font-weight:700; color:#7a5800;">🤝 Commission</div>
-            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:10px; font-weight:700; color:#7a5800;">📣 Publicité</div>
-            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:10px; font-weight:700; color:#7a5800;">⚙️ Fonctionnalité</div>
-          </div>
+        <div style="background:#fff3cc; border-radius:12px; padding:12px;">
+          <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#946e00; margin-bottom:6px;">Business model — 5 composantes</div>
+          <div style="font-size:8.5px; font-weight:700; color:#7a5800; line-height:1.6;">Proposition de valeur · Segments clients · Canaux · Sources de revenus · Structure de couts</div>
         </div>
-      </div>
-
-      <!-- Barre exemples bac -->
-      <div style="background:#1e1c18; border-radius:10px; padding:11px 16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-        <div style="font-size:11px; font-weight:800; color:#f5c842; flex-shrink:0;">⭐ Exemples bac :</div>
-        <div style="font-size:11px; font-weight:700; color:#fffdf8;">Airbnb (commission) · Spotify (freemium) · Netflix (abonnement) · Vinted (commission)</div>
       </div>
 
     </div>

@@ -49,6 +49,7 @@ body {
 .sec-bleu   { background:#e8f3ff; }
 .sec-violet { background:#f5eeff; }
 .sec-jaune  { background:#fef8e2; }
+.sec-green  { background:#eaf8ef; }
 .sec-white  { background:#fffdf8; }
 
 .section-label { font-size:9.5px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
@@ -56,6 +57,7 @@ body {
 .sec-bleu   .section-label { color:#2a69a8; }
 .sec-violet .section-label { color:#7030a0; }
 .sec-jaune  .section-label { color:#946e00; }
+.sec-green  .section-label { color:#1a7a3c; }
 
 .section-title { font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#1e1c18; margin-bottom:13px; line-height:1.3; }
 
@@ -127,7 +129,7 @@ body {
 .cb2 { background:#aaceee; color:#1a4f82; }
 .cbr { background:#1a4f82; color:white; }
 .cout-op { color:#7a7160; font-size:16px; flex-shrink:0; }
-.formule-marge { background:#fde8a0; border-radius:7px; padding:6px 10px; font-size:10px; font-weight:700; color:#7a5800; text-align:center; margin-bottom:6px; }
+.formule-marge { background:#fde8a0; border-radius:7px; padding:6px 10px; font-size:10px; font-weight:700; color:#7a5800; text-align:center; margin-bottom:6px; font-family:monospace; }
 
 /* Alert */
 .alert { display:flex; align-items:flex-start; gap:6px; border-radius:8px; padding:7px 9px; margin-top:8px; font-size:9.5px; font-weight:700; line-height:1.4; }
@@ -135,6 +137,7 @@ body {
 .ar { background:#f9d0d9; color:#7a2038; }
 .ab { background:#cce2f8; color:#1a4f82; }
 .aj { background:#fde8a0; color:#7a5800; }
+.ag { background:#bce8cd; color:#1a5c35; }
 
 /* Chap2 split dans même colonne */
 .chap2 { display:flex; flex-direction:column; padding:0; background:transparent; border-right:1px solid rgba(0,0,0,0.07); }
@@ -169,7 +172,6 @@ body{padding-top:72px!important}
 .sli-nl{font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap}
 .sli-nl:hover{background:rgba(255,255,255,.1);color:#fffdf8}
 .sli-nl.on{background:rgba(255,255,255,.1);color:#fffdf8}
-.sli-nl.soon{opacity:.4;pointer-events:none}
 @media print{.sli-nav{display:none!important}body{padding-top:24px!important}}
 .section-label{font-size:11px!important}
 .section-title{font-size:16px!important}
@@ -192,15 +194,15 @@ body{padding-top:72px!important}
 .formula{font-size:10.5px!important}
 </style>
 <nav class="sli-nav">
-  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <a href="../sdgm.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
     <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl on">🗺️ Vue d'ensemble</a>
-    <a href="SLI_CarteMemo_Chap1.html" class="sli-nl">📖 Chapitres</a>
+    <a href="SLI_Infographie_Chap1.html" class="sli-nl">📖 Chapitres</a>
     <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
     <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
     <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
   </div>
-  <a href="../index.html" class="sli-nl">← Accueil</a>
+  <a href="../sdgm.html" class="sli-nl">← Accueil</a>
 </nav>
 <div class="page">
 
@@ -219,23 +221,23 @@ body{padding-top:72px!important}
 <!-- FIL CONDUCTEUR -->
 <div class="fil">
   <div class="fil-title">🔗 Fil conducteur</div>
-  <div class="fil-step" style="background:#f9d0d9;"><div class="fn" style="color:#b5415a;">Ch. 1</div><div class="fi">📣</div><div class="fl" style="color:#7a2038;">Identifier le besoin</div><div class="fs" style="color:#b5415a;">Démarche marketing</div></div>
+  <div class="fil-step" style="background:#f9d0d9;"><div class="fn" style="color:#b5415a;">Ch. 1</div><div class="fi">📣</div><div class="fl" style="color:#7a2038;">Quoi vendre ?</div><div class="fs" style="color:#b5415a;">Démarche marketing · SCP</div></div>
   <div class="fil-arr">→</div>
-  <div class="fil-step" style="background:#ead8f5;"><div class="fn" style="color:#7030a0;">Ch. 2</div><div class="fi">👥💰</div><div class="fl" style="color:#4a1a7a;">Mobiliser les ressources</div><div class="fs" style="color:#7030a0;">RH + Finance</div></div>
+  <div class="fil-step" style="background:#fde8a0;"><div class="fn" style="color:#946e00;">Ch. 2</div><div class="fi">👥💰</div><div class="fl" style="color:#7a5800;">Avec quoi produire ?</div><div class="fs" style="color:#946e00;">RH + Finance + FRNG</div></div>
   <div class="fil-arr">→</div>
-  <div class="fil-step" style="background:#cce2f8;"><div class="fn" style="color:#2a69a8;">Ch. 3 &amp; 4</div><div class="fi">⚙️</div><div class="fl" style="color:#1a4f82;">Organiser la production</div><div class="fs" style="color:#2a69a8;">Processus · Coûts · RSE</div></div>
+  <div class="fil-step" style="background:#cce2f8;"><div class="fn" style="color:#2a69a8;">Ch. 3 &amp; 4</div><div class="fi">⚙️</div><div class="fl" style="color:#1a4f82;">Comment produire ?</div><div class="fs" style="color:#2a69a8;">Processus · Flux · Qualité · Coûts</div></div>
   <div class="fil-arr">→</div>
-  <div class="fil-step" style="background:#cce2f8;"><div class="fn" style="color:#2a69a8;">Ch. 5</div><div class="fi">💻</div><div class="fl" style="color:#1a4f82;">Numériser</div><div class="fs" style="color:#2a69a8;">Transformation numérique</div></div>
+  <div class="fil-step" style="background:#cce2f8;"><div class="fn" style="color:#2a69a8;">Ch. 5</div><div class="fi">💻</div><div class="fl" style="color:#1a4f82;">Numérique ?</div><div class="fs" style="color:#2a69a8;">SI · Automatisation · IoT</div></div>
   <div class="fil-arr">→</div>
-  <div class="fil-step" style="background:#fde8a0;"><div class="fn" style="color:#946e00;">Ch. 6</div><div class="fi">🏗️</div><div class="fl" style="color:#7a5800;">Structurer l'équipe</div><div class="fs" style="color:#946e00;">Organisation · Coordination</div></div>
+  <div class="fil-step" style="background:#fde8a0;"><div class="fn" style="color:#946e00;">Ch. 6</div><div class="fi">🏗️</div><div class="fl" style="color:#7a5800;">Comment s'organiser ?</div><div class="fs" style="color:#946e00;">Coordination · Lean · Structure</div></div>
 </div>
 
 <!-- LÉGENDE -->
 <div class="legend-bar">
   <div class="legend-item"><div class="legend-dot" style="background:#e8526b"></div>🩷 Marché &amp; Offre — Chapitre 1</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#9055b8"></div>🟣 Finance — Chap. 2 (finance)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#c49a00"></div>🟡 Ressources — Chap. 2 (RH + Finance)</div>
   <div class="legend-item"><div class="legend-dot" style="background:#3a82c8"></div>🔵 Production &amp; Numérique — Chap. 3&amp;4 · 5</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#c49a00"></div>🟡 Humains &amp; Organisation — Chap. 2 (RH) · 6</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1a7a3c"></div>🟢 Organisation — Chap. 6</div>
 </div>
 
 <!-- BODY -->
@@ -246,34 +248,34 @@ body{padding-top:72px!important}
     <div class="section-label">🩷 Chapitre 1 · Marché &amp; Offre</div>
     <div class="section-title">Quels produits ou services<br>pour quels besoins ?</div>
     <div style="display:flex;gap:6px;margin-bottom:12px;">
-      <a href="SLI_CarteMemo_Chap1.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#b5415a;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-      <a href="SLI_CarteMemo_Chap1.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#f9d0d9;color:#b5415a;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+      <a href="SLI_Infographie_Chap1.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#b5415a;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Chapitre 1</a>
+      <a href="SLI_Infographie_Chap1.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#f9d0d9;color:#b5415a;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
     </div>
 
     <div class="flow">
       <div class="step">
         <div class="step-num">1</div>
-        <div><div class="step-label">Identifier le besoin</div><div class="step-sub">Étude de marché · Segmentation</div></div>
+        <div><div class="step-label">Identifier le besoin</div><div class="step-sub">Étude de marché · Données primaires / secondaires</div></div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <div><div class="step-label">Analyser &amp; décider</div><div class="step-sub">Veille marketing · Ciblage · Positionnement</div></div>
+        <div><div class="step-label">Segmenter, Cibler, Positionner</div><div class="step-sub">Segmentation → Ciblage → Positionnement (SCP)</div></div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <div><div class="step-label">Construire l'offre</div><div class="step-sub">Innovation produit · Modèle économique</div></div>
+        <div><div class="step-label">Construire l'offre</div><div class="step-sub">Innovation produit · Modèle économique (BM)</div></div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
-        <div><div class="step-label">Créer de la valeur</div><div class="step-sub">Valeur perçue · Satisfaction client</div></div>
+        <div><div class="step-label">Créer de la valeur</div><div class="step-sub">Valeur ajoutée — VA = CA − CI</div></div>
       </div>
     </div>
 
     <div class="nb nb-rose">
       <i>💡</i>
       <div>
-        <div class="nb-title">Modèle économique (Business model)</div>
-        <div class="nb-desc">Comment l'organisation crée de la valeur et génère des revenus. Ex : freemium, abonnement, commission, vente directe.</div>
+        <div class="nb-title">Modèle économique (BM)</div>
+        <div class="nb-desc">5 composantes : proposition de valeur · segments clients · canaux de distribution · sources de revenus · structure de coûts.</div>
       </div>
     </div>
     <div class="nb nb-rose">
@@ -286,7 +288,7 @@ body{padding-top:72px!important}
 
     <div class="alert ar">
       <span class="alert-icon">⚠️</span>
-      <span><strong>Piège bac :</strong> Démarche marketing = partir du besoin → construire le produit. Approche ingénierie = l'inverse. Cette distinction tombe en Q1.</span>
+      <span><strong>Piège bac :</strong> Démarche marketing = partir du besoin → construire le produit. Démarche ingénieriste = l'inverse (on part du produit). Cette distinction tombe fréquemment.</span>
     </div>
   </div>
 
@@ -297,61 +299,61 @@ body{padding-top:72px!important}
       <div class="section-label">🟡 Chapitre 2 · Ressources humaines</div>
       <div class="section-title" style="font-size:13px;margin-bottom:8px;">Les ressources humaines</div>
       <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <a href="SLI_CarteMemo_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_CarteMemo_Chap2.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#fde8a0;color:#946e00;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_Infographie_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Chapitre 2</a>
+        <a href="SLI_Infographie_Chap2.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#fde8a0;color:#946e00;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <div class="nb nb-jaune" style="margin-bottom:5px;">
-        <i>🎯</i>
+        <i>🌟</i>
         <div>
-          <div class="nb-title">Recrutement</div>
-          <div class="nb-desc">Interne (promotion) ou externe. Selon les compétences requises.</div>
+          <div class="nb-title">Compétences distinctives</div>
+          <div class="nb-desc">Ce qu'une organisation sait faire mieux que ses concurrents → avantage durable.</div>
         </div>
       </div>
       <div class="nb nb-jaune" style="margin-bottom:5px;">
-        <i>📚</i>
+        <i>🗓️</i>
         <div>
-          <div class="nb-title">Formation</div>
-          <div class="nb-desc">Développer savoir, savoir-faire, savoir-être (les 3 dimensions des compétences).</div>
+          <div class="nb-title">GPEC</div>
+          <div class="nb-desc">Anticiper les besoins RH à 3-5 ans : recrutements, formations, reconversions.</div>
         </div>
       </div>
       <div class="nb nb-jaune">
-        <i>😊</i>
+        <i>📚</i>
         <div>
-          <div class="nb-title">QVT &amp; Motivation</div>
-          <div class="nb-desc">Qualité de Vie au Travail → engagement → performance. Lié à l'organisation souple.</div>
+          <div class="nb-title">Recrutement &amp; Formation</div>
+          <div class="nb-desc">Interne ou externe · Savoir · Savoir-faire · Savoir-être.</div>
         </div>
       </div>
 
       <div class="alert aj" style="margin-top:7px;">
         <span class="alert-icon">🔁</span>
-        <span><strong>Tombe 3/3 sessions.</strong> Toujours présent sous une forme ou une autre.</span>
+        <span><strong>Systématique au bac.</strong> Toujours relier les outils RH à la performance de l'organisation.</span>
       </div>
     </div>
 
-    <div class="c2half sec-violet">
-      <div class="section-label">🟣 Chapitre 2 · Ressources financières</div>
+    <div class="c2half sec-bleu">
+      <div class="section-label">🔵 Chapitre 2 · Ressources financières</div>
       <div class="section-title" style="font-size:13px;margin-bottom:8px;">Bilan fonctionnel</div>
       <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <a href="SLI_CarteMemo_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#7030a0;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_CarteMemo_Chap2.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#ead8f5;color:#7030a0;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_Infographie_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2d6ea8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Chapitre 2</a>
+        <a href="SLI_Infographie_Chap2.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2d6ea8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <table class="btable">
         <thead><tr><th>Indicateur</th><th>Formule</th><th>Si positif</th></tr></thead>
         <tbody>
           <tr>
-            <td><strong>FRNG</strong><br><span style="font-size:8.5px;color:#5a5448;">Fonds de Roulement Net Global</span></td>
+            <td><strong>FRNG</strong></td>
             <td><span class="formula">Ressources stables − Emplois stables</span></td>
             <td class="ok">✔ Sécurité</td>
           </tr>
           <tr>
-            <td><strong>BFR</strong><br><span style="font-size:8.5px;color:#5a5448;">Besoin en Fonds de Roulement</span></td>
+            <td><strong>BFR</strong></td>
             <td><span class="formula">Actif circulant − Passif circulant</span></td>
             <td class="bad">↑ À financer</td>
           </tr>
           <tr>
-            <td><strong>Trésorerie</strong></td>
+            <td><strong>TN</strong></td>
             <td><span class="formula">FRNG − BFR</span></td>
             <td class="ok">✔ Liquidités</td>
           </tr>
@@ -361,14 +363,21 @@ body{padding-top:72px!important}
       <div class="nb nb-bleu" style="margin-top:7px;">
         <i>💰</i>
         <div>
-          <div class="nb-title">Financement</div>
-          <div class="nb-desc">Autofinancement (CAF) · Emprunt · Augmentation de capital · Crédit-bail · Subventions</div>
+          <div class="nb-title">Financement externe</div>
+          <div class="nb-desc">Emprunts · Capital-risque · Crowdfunding · Introduction en bourse</div>
+        </div>
+      </div>
+      <div class="nb nb-green" style="margin-top:5px;">
+        <i>📊</i>
+        <div>
+          <div class="nb-title">CAF — Capacité d'Autofinancement</div>
+          <div class="nb-desc">Ressource interne générée par l'activité. Une CAF élevée = capacité à investir sans recours externe.</div>
         </div>
       </div>
 
       <div class="alert ab">
         <span class="alert-icon">⭐</span>
-        <span><strong>Priorité #1 bac.</strong> Calcul + interprétation. Tombe 2/3 sessions. Apprenez les 3 formules par cœur.</span>
+        <span><strong>Priorité #1 bac.</strong> Calcul + interprétation. 100 % des sujets récents. Les 3 formules par cœur.</span>
       </div>
     </div>
 
@@ -379,11 +388,11 @@ body{padding-top:72px!important}
 
     <!-- Chap 3 & 4 -->
     <div class="section sec-bleu" style="border-right:none;">
-      <div class="section-label">🔵 Chapitres 3 &amp; 4 · Processus de production</div>
-      <div class="section-title">Comment produire ?<br>Processus, coûts &amp; RSE</div>
+      <div class="section-label">🔵 Chapitres 3 &amp; 4 · Organisation de la production</div>
+      <div class="section-title">Comment produire ?<br>Processus, flux &amp; qualité</div>
       <div style="display:flex;gap:6px;margin-bottom:12px;">
-        <a href="SLI_CarteMemo_Chap3et4.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_CarteMemo_Chap3et4.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_Infographie_Chap3et4.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Chapitres 3 &amp; 4</a>
+        <a href="SLI_Infographie_Chap3et4.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <div class="flux">
@@ -393,10 +402,10 @@ body{padding-top:72px!important}
       </div>
 
       <div class="nb nb-bleu" style="margin-bottom:6px;">
-        <i>⚡</i>
+        <i>🔗</i>
         <div>
-          <div class="nb-title">Lean Management</div>
-          <div class="nb-desc">Éliminer tout gaspillage pour maximiser la valeur avec un minimum de ressources.</div>
+          <div class="nb-title">Supply chain · Qualité · PDCA</div>
+          <div class="nb-desc">Supply chain = acteurs + flux de la prod au client. Kaizen = amélioration continue. PDCA : Plan → Do → Check → Act.</div>
         </div>
       </div>
 
@@ -405,35 +414,27 @@ body{padding-top:72px!important}
         <div class="cout-op">+</div>
         <div class="cout-box cb2">Charges<br>indirectes</div>
         <div class="cout-op">=</div>
-        <div class="cout-box cbr">Coût de<br>revient</div>
+        <div class="cout-box cbr">Coût<br>complet</div>
       </div>
-      <div class="formule-marge">Taux de marge = (PV − CR) / CR × 100</div>
-
-      <div class="nb nb-green">
-        <i>🌱</i>
-        <div>
-          <div class="nb-title">RSE</div>
-          <div class="nb-desc">Intégrer impacts sociaux &amp; environnementaux dans la stratégie. Tombe 2/3 sessions.</div>
-        </div>
-      </div>
+      <div class="formule-marge">Seuil de rentabilité = CF ÷ Taux de marge sur CV</div>
     </div>
 
     <!-- Chap 5 -->
     <div class="section sec-bleu" style="border-right:none;border-top:1px solid rgba(0,0,0,0.07);">
-      <div class="section-label">🔵 Chapitre 5 · Transformation numérique</div>
-      <div class="section-title" style="font-size:13px;margin-bottom:8px;">Le numérique dans la production</div>
+      <div class="section-label">🔵 Chapitre 5 · Transformations numériques</div>
+      <div class="section-title" style="font-size:13px;margin-bottom:8px;">Le numérique au service de la production</div>
       <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <a href="SLI_CarteMemo_Chap5.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_CarteMemo_Chap5.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_Infographie_Chap5.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Chapitre 5</a>
+        <a href="SLI_Infographie_Chap5.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <div class="num-grid">
+        <div class="num-item"><div class="ni">🖥️</div><div><div class="nl">SI (notion-mère)</div><div class="ns">Collecte, traite, diffuse l'info</div></div></div>
         <div class="num-item"><div class="ni">🤖</div><div><div class="nl">Automatisation</div><div class="ns">Remplace les tâches répétitives</div></div></div>
-        <div class="num-item"><div class="ni">☁️</div><div><div class="nl">Cloud computing</div><div class="ns">Données à distance</div></div></div>
-        <div class="num-item"><div class="ni">📊</div><div><div class="nl">Big Data</div><div class="ns">Exploiter les données clients</div></div></div>
-        <div class="num-item"><div class="ni">🧠</div><div><div class="nl">Intelligence artificielle</div><div class="ns">Prévisions, recommandations</div></div></div>
-        <div class="num-item"><div class="ni">💬</div><div><div class="nl">Relation client numérique</div><div class="ns">CRM, chatbots, réseaux</div></div></div>
-        <div class="num-item"><div class="ni">🗺️</div><div><div class="nl">Diagramme de flux</div><div class="ns">Représenter un processus</div></div></div>
+        <div class="num-item"><div class="ni">🔗</div><div><div class="nl">PGI / ERP</div><div class="ns">Intègre toutes les fonctions</div></div></div>
+        <div class="num-item"><div class="ni">☁️</div><div><div class="nl">Cloud computing</div><div class="ns">Ressources via internet</div></div></div>
+        <div class="num-item"><div class="ni">📡</div><div><div class="nl">IoT · IA · Open data</div><div class="ns">Objets connectés · Données ouvertes</div></div></div>
+        <div class="num-item"><div class="ni">⭐</div><div><div class="nl">E-réputation</div><div class="ns">Image perçue en ligne</div></div></div>
       </div>
     </div>
 
@@ -442,8 +443,8 @@ body{padding-top:72px!important}
       <div class="section-label">🟡 Chapitre 6 · Organisation &amp; Structure</div>
       <div class="section-title" style="font-size:13px;margin-bottom:8px;">Fonctionnement cohérent des organisations</div>
       <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <a href="SLI_CarteMemo_Chap6.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_CarteMemo_Chap6.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#fde8a0;color:#946e00;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_Infographie_Chap6.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Chapitre 6</a>
+        <a href="SLI_Infographie_Chap6.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#fde8a0;color:#946e00;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <div class="org">
@@ -472,18 +473,20 @@ body{padding-top:72px!important}
         </div>
       </div>
 
-      <div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#946e00;margin:8px 0 4px;">Mécanismes de coordination</div>
+      <div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#946e00;margin:8px 0 4px;">5 mécanismes de coordination</div>
       <div class="pills">
         <div class="pill">👀 Supervision directe</div>
-        <div class="pill">📋 Standardisation</div>
-        <div class="pill">🤝 Ajustement mutuel</div>
+        <div class="pill">📋 Standardisation procédés</div>
+        <div class="pill">🎯 Standardisation résultats</div>
+        <div class="pill">🎓 Standardisation compétences</div>
+        <div class="pill">💬 Ajustement mutuel</div>
       </div>
 
-      <div class="nb nb-jaune" style="margin-top:4px;">
-        <i>📐</i>
+      <div class="nb nb-jaune" style="margin-top:6px;">
+        <i>⚡</i>
         <div>
-          <div class="nb-title">Ligne hiérarchique</div>
-          <div class="nb-desc">Chaîne d'autorité verticale. Définit qui reporte à qui.</div>
+          <div class="nb-title">Lean management · Entreprise libérée</div>
+          <div class="nb-desc">Lean = éliminer les gaspillages. Entreprise libérée = autonomie maximale des salariés, hiérarchie aplatie.</div>
         </div>
       </div>
     </div>

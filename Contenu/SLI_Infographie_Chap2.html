@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ch.2 — Scholar Lock-In</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -43,15 +44,15 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .formula { background: #fde8a0; font-family: monospace; font-size: 9.5px; font-weight: 700; padding: 3px 7px; border-radius: 5px; display: inline-block; margin-top: 3px; }
 .ok  { color: #1a7a3c; font-weight: 800; }
 .bad { color: #b5415a; font-weight: 800; }
-.taux-box { background: #fde8a0; border-radius: 10px; padding: 12px 14px; margin-top: 10px; text-align: center; }
-.taux-formula { font-family: monospace; font-size: 13px; font-weight: 900; color: #1e1c18; margin-bottom: 5px; }
-.taux-sub { font-size: 9px; color: #7a5800; font-weight: 600; }
 .interp { background: #e8f3ff; border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
 .interp-t { font-size: 10px; font-weight: 800; color: #1a4f82; margin-bottom: 8px; }
 .interp-item { font-size: 9.5px; font-weight: 700; color: #1e1c18; line-height: 1.6; margin-bottom: 3px; }
 .fin-row { background: #cce2f8; border-radius: 9px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
 .fin-name { font-size: 10.5px; font-weight: 800; color: #1e1c18; }
 .fin-desc { font-size: 9px; color: #1a4f82; font-weight: 600; margin-top: 1px; }
+.caf-box { background: #bce8cd; border-radius: 10px; padding: 11px 14px; margin: 10px 0; }
+.caf-t { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; color: #1a5c35; margin-bottom: 5px; }
+.caf-d { font-size: 9px; font-weight: 600; color: #1a5c35; line-height: 1.55; }
 .bac-s { background: #2c2920; padding: 16px 24px; }
 .bac-h { font-family: 'Nunito', sans-serif; font-size: 10.5px; font-weight: 900; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
 .bt { width: 100%; border-collapse: collapse; }
@@ -77,19 +78,18 @@ body{padding-top:72px!important}
 .sli-nl{font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap}
 .sli-nl:hover{background:rgba(255,255,255,.1);color:#fffdf8}
 .sli-nl.on{background:rgba(255,255,255,.1);color:#fffdf8}
-.sli-nl.soon{opacity:.4;pointer-events:none}
 @media print{.sli-nav,.sli-chapnav{display:none!important}body{padding-top:24px!important}}
 </style>
 <nav class="sli-nav">
-  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <a href="../sdgm.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
     <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
     <a href="SLI_Infographie_Chap1.html" class="sli-nl on">📖 Chapitres</a>
-    <a class="sli-nl soon">🃏 Flash cards</a>
-    <a class="sli-nl soon">✅ Méthode</a>
-    <a class="sli-nl soon">🎯 Annales</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
   </div>
-  <a href="../index.html" class="sli-nl">← Accueil</a>
+  <a href="../sdgm.html" class="sli-nl">← Accueil</a>
 </nav>
 <div class="page">
 
@@ -108,12 +108,12 @@ body{padding-top:72px!important}
 <div class="hd" style="background:#2d6ea8;">
   <div class="hd-badge">Scholar Lock-In · SDGN Terminale STMG · Chapitre 2</div>
   <h1>Chapitre 2 — Quelles <em>ressources</em> pour produire ?</h1>
-  <div class="hd-sub">Bilan fonctionnel = priorité absolue (2/3 sessions avec calcul). Ressources RH = systématique (3/3 sessions). Tangibles / intangibles = contexte fréquent.</div>
+  <div class="hd-sub">Bilan fonctionnel = priorité absolue (100 % des sujets récents). Ressources et compétences distinctives = très fréquent. CAF : indicateur complémentaire qui monte en puissance.</div>
 </div>
 
 <div class="body">
 
-<!-- COL 1 — Ressources tangibles / intangibles + financement -->
+<!-- COL 1 — Ressources tangibles / intangibles / Compétences distinctives -->
 <div class="col col-b">
   <div class="col-lbl">① Ressources de l'organisation</div>
 
@@ -121,49 +121,94 @@ body{padding-top:72px!important}
     <div class="ci">🏭</div>
     <div>
       <div class="cn">Ressources tangibles</div>
-      <div class="cd">Actifs <strong>physiques et financiers</strong> : machines, bâtiments, stocks, trésorerie. Directement comptabilisables.</div>
+      <div class="cd">Actifs <strong>physiques et financiers</strong> mesurables et quantifiables : machines, bâtiments, stocks, trésorerie. Apparaissent au bilan.</div>
       <div class="cx">Ex : usines, flotte de véhicules, matières premières en stock</div>
     </div>
   </div>
+
   <div class="card c-p">
     <div class="ci">🧠</div>
     <div>
       <div class="cn">Ressources intangibles</div>
-      <div class="cd">Actifs <strong>immatériels</strong> : marque, brevets, savoir-faire, algorithmes, réputation. Difficiles à copier → avantage concurrentiel durable.</div>
-      <div class="cx">Ex : marque Apple, algorithme Google, secret Michelin</div>
+      <div class="cd">Actifs <strong>immatériels</strong> difficiles à imiter, source d'avantage durable : brevets, marques, réputation, savoir-faire, données, licences.</div>
+      <div class="cx">Ex : savoir-faire fromager ancestral de la Fromagerie Réo</div>
     </div>
   </div>
 
-  <div class="sec-t">Sources de financement</div>
-  <div class="fin-row"><span style="font-size:18px;">💼</span><div><div class="fin-name">Autofinancement (CAF)</div><div class="fin-desc">Financement interne — bénéfices réinvestis. Pas de dette, ressources limitées.</div></div></div>
-  <div class="fin-row"><span style="font-size:18px;">🏦</span><div><div class="fin-name">Emprunt bancaire</div><div class="fin-desc">Dette à rembourser avec intérêts. Levier si rentabilité &gt; taux d'intérêt.</div></div></div>
-  <div class="fin-row"><span style="font-size:18px;">📈</span><div><div class="fin-name">Augmentation de capital</div><div class="fin-desc">Nouveaux actionnaires → dilution du pouvoir. Pour les SA.</div></div></div>
-  <div class="fin-row" style="margin-bottom:0;"><span style="font-size:18px;">🔑</span><div><div class="fin-name">Crédit-bail (leasing)</div><div class="fin-desc">Louer avec option d'achat. Préserve la trésorerie.</div></div></div>
+  <div class="card c-g">
+    <div class="ci">⭐</div>
+    <div>
+      <div class="cn">Compétences distinctives</div>
+      <div class="cd">Ce qu'une organisation <strong>sait faire mieux que ses concurrents</strong> et qui lui confère un avantage concurrentiel durable. S'appuient souvent sur des ressources intangibles.</div>
+      <div class="cx">Ex : capacité d'Ankama à créer des univers transmédias cohérents</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Financement de l'investissement</div>
+
+  <div class="fin-row">
+    <span style="font-size:18px;">💼</span>
+    <div>
+      <div class="fin-name">Financement interne — Autofinancement</div>
+      <div class="fin-desc">L'entreprise investit par ses propres bénéfices mis en réserve. Avantage : indépendance financière. Limite : capacité limitée.</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Financement externe</div>
+
+  <div class="fin-row">
+    <span style="font-size:18px;">🏦</span>
+    <div>
+      <div class="fin-name">Emprunt bancaire</div>
+      <div class="fin-desc">Dette à rembourser avec intérêts.</div>
+    </div>
+  </div>
+  <div class="fin-row">
+    <span style="font-size:18px;">🚀</span>
+    <div>
+      <div class="fin-name">Capital-risque</div>
+      <div class="fin-desc">Investisseurs prennent une part du capital en échange de fonds.</div>
+    </div>
+  </div>
+  <div class="fin-row">
+    <span style="font-size:18px;">🌐</span>
+    <div>
+      <div class="fin-name">Crowdfunding (financement participatif)</div>
+      <div class="fin-desc">Appel au grand public via des plateformes en ligne.</div>
+    </div>
+  </div>
+  <div class="fin-row" style="margin-bottom:0;">
+    <span style="font-size:18px;">📈</span>
+    <div>
+      <div class="fin-name">Introduction en bourse</div>
+      <div class="fin-desc">Appel public à l'épargne — ouverture du capital aux marchés financiers.</div>
+    </div>
+  </div>
 </div>
 
-<!-- COL 2 — Bilan fonctionnel -->
+<!-- COL 2 — Bilan fonctionnel + CAF -->
 <div class="col col-w">
   <div class="col-lbl" style="color:#2a69a8; border-color:#aaceee;">② Bilan fonctionnel ⭐ priorité #1 bac</div>
 
   <table class="btable">
     <thead>
-      <tr><th>Indicateur</th><th>Formule</th><th>Signe</th></tr>
+      <tr><th>Indicateur</th><th>Formule</th><th>Signe &gt; 0</th></tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>FRNG</strong><br><span style="font-size:8px; color:#5a5448;">Fonds de Roulement Net Global</span></td>
         <td><span class="formula">Ressources stables − Emplois stables</span></td>
-        <td class="ok">✔ Sécurité</td>
+        <td class="ok">Sécurité LT ✓</td>
       </tr>
       <tr>
         <td><strong>BFR</strong><br><span style="font-size:8px; color:#5a5448;">Besoin en Fonds de Roulement</span></td>
         <td><span class="formula">Actif circulant − Passif circulant</span></td>
-        <td class="bad">↑ À financer</td>
+        <td class="bad">Besoin à financer</td>
       </tr>
       <tr>
-        <td><strong>Trésorerie</strong></td>
+        <td><strong>TN</strong><br><span style="font-size:8px; color:#5a5448;">Trésorerie Nette</span></td>
         <td><span class="formula">FRNG − BFR</span><br><span class="formula" style="margin-top:4px;">Tréso active − Tréso passive</span></td>
-        <td class="ok">✔ Liquidités</td>
+        <td class="ok">Liquidités ✓</td>
       </tr>
     </tbody>
   </table>
@@ -175,61 +220,50 @@ body{padding-top:72px!important}
     <div class="interp-item">⚠️ BFR élevé = l'entreprise avance de l'argent avant d'être payée (stocks importants, délais clients longs).</div>
   </div>
 
-  <div class="taux-box">
-    <div style="font-size:10px; font-weight:800; color:#946e00; margin-bottom:6px;">Taux d'évolution — 3/3 sessions ⭐</div>
-    <div class="taux-formula">(VF − VI) / VI × 100</div>
-    <div class="taux-sub">Résultat en %. Positif = hausse. Négatif = baisse. Automatisme à avoir absolument.</div>
+  <div class="caf-box">
+    <div class="caf-t">📊 CAF — Capacité d'Autofinancement</div>
+    <div class="caf-d">Ressource financière <strong>interne</strong> générée par l'activité sur une période. Mesure la capacité à se financer sans recourir à l'extérieur.<br><br>Une CAF élevée = l'entreprise dégage assez de résultat pour investir et rembourser ses dettes sans aide extérieure.<br><br><em>Apparaît dans les sujets récents (Aventure XXL 2025).</em></div>
   </div>
 
   <div class="piege">
     <div style="font-size:16px; flex-shrink:0;">⚠️</div>
-    <div class="piege-t"><strong>Piège classique :</strong> Ressources stables = capitaux propres + dettes LT. Emplois stables = actif immobilisé. Ne pas inverser emplois et ressources dans les formules.</div>
+    <div class="piege-t"><strong>Piège classique :</strong> Ressources stables = capitaux propres + dettes LT. Emplois stables = actif immobilisé. Ne pas inverser emplois et ressources dans les formules.<br><strong>TN = FRNG − BFR</strong> (soustraction, pas addition). Un calcul sans commentaire = points perdus.</div>
   </div>
 </div>
 
-<!-- COL 3 — RH -->
+<!-- COL 3 — Ressources humaines -->
 <div class="col col-j">
-  <div class="col-lbl lbl-j">③ Ressources humaines — 3/3 sessions ⭐</div>
+  <div class="col-lbl lbl-j">③ Ressources humaines</div>
+
+  <div class="card c-j">
+    <div class="ci">🗓️</div>
+    <div>
+      <div class="cn">GPEC</div>
+      <div class="cd"><strong>Gestion Prévisionnelle des Emplois et des Compétences.</strong> Anticiper les besoins en RH à moyen terme (3-5 ans) pour adapter effectifs et compétences aux évolutions stratégiques.</div>
+      <div class="cx">Comprend : recrutements prévus, formations à planifier, reconversions</div>
+    </div>
+  </div>
 
   <div class="card c-j">
     <div class="ci">🎯</div>
     <div>
       <div class="cn">Recrutement</div>
-      <div class="cd"><strong>Interne</strong> (promotion, mobilité) : rapide, motivant mais possibilités limitées.<br><strong>Externe</strong> (annonce, cabinet, cooptation) : sang neuf mais long et coûteux.</div>
+      <div class="cd">Processus d'identification et de sélection de candidats pour pourvoir un poste.<br><strong>Étapes :</strong> définition du poste → sourcing → sélection → intégration.</div>
     </div>
   </div>
+
   <div class="card c-j">
     <div class="ci">📚</div>
     <div>
-      <div class="cn">Formation — 3 dimensions</div>
-      <div class="cd">• <strong>Savoir</strong> — connaissances théoriques<br>• <strong>Savoir-faire</strong> — compétences pratiques<br>• <strong>Savoir-être</strong> — comportements, soft skills</div>
-    </div>
-  </div>
-  <div class="card c-j">
-    <div class="ci">😊</div>
-    <div>
-      <div class="cn">QVT — Qualité de Vie au Travail</div>
-      <div class="cd">Conditions de travail, bien-être, équilibre vie pro/perso → engagement → performance.<br>Lien fort avec organisation souple (Ch.6).</div>
-    </div>
-  </div>
-  <div class="card c-j">
-    <div class="ci">🔥</div>
-    <div>
-      <div class="cn">Motivation</div>
-      <div class="cd"><strong>Maslow :</strong> hiérarchie des besoins (physiologiques → accomplissement).<br><strong>Herzberg :</strong> facteurs d'hygiène (évitent l'insatisfaction) vs facteurs de motivation.</div>
-    </div>
-  </div>
-  <div class="card c-g">
-    <div class="ci">🌟</div>
-    <div>
-      <div class="cn">Marque employeur</div>
-      <div class="cd">Image de l'entreprise auprès des candidats. Attirer et fidéliser les talents grâce à la QVT et aux valeurs de l'organisation.</div>
+      <div class="cn">Formation professionnelle</div>
+      <div class="cd">Développement des compétences des salariés en poste. Outil de <strong>fidélisation</strong> et d'adaptation aux évolutions technologiques.</div>
+      <div class="cx">Savoir (connaissances) · Savoir-faire (compétences pratiques) · Savoir-être (comportements)</div>
     </div>
   </div>
 
   <div class="piege">
     <div style="font-size:16px; flex-shrink:0;">⭐</div>
-    <div class="piege-t"><strong>Tombe 3/3 sessions</strong> sous une forme différente à chaque fois. Préparez un exemple d'entreprise pour : politique de formation, démarche QVT, recrutement innovant.</div>
+    <div class="piege-t"><strong>BAC 2021 (Titi Floris) :</strong> Compétences distinctives + GPEC + Valeur ajoutée dans un même sujet. Savoir relier les ressources humaines à la performance globale de l'organisation.</div>
   </div>
 </div>
 
@@ -240,17 +274,17 @@ body{padding-top:72px!important}
   <table class="bt">
     <thead><tr><th style="width:22%">Notion clé</th><th style="width:17%">Importance au Bac</th><th>Conseil correcteur</th></tr></thead>
     <tbody>
-      <tr><td>📊 FRNG / BFR / Trésorerie</td><td><span class="st">★★★★★</span></td><td><span class="lt">Calcul + interprétation</span> Les 3 formules par cœur + commenter : équilibre sain ou non, causes, conséquences. Tombe 2/3 sessions. La qualité du commentaire fait la différence.</td></tr>
-      <tr><td>📐 Taux d'évolution</td><td><span class="st">★★★★★</span></td><td><span class="lt">Calcul systématique</span> (VF − VI) / VI × 100. Présent 3/3 sessions. Automatisme à avoir.</td></tr>
-      <tr><td>👥 RH : recrutement / formation / QVT</td><td><span class="st">★★★★</span><span class="se">★</span></td><td><span class="lt">Systématique 3/3</span> Toujours présent. Savoir distinguer recrutement interne/externe, 3 types de compétences, lier QVT à la performance de l'organisation.</td></tr>
-      <tr><td>🧠 Tangibles vs Intangibles</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Contexte + classement</span> Souvent demandé pour classer les ressources du cas. Les exemples immatériels clés : marque, brevet, algorithme, réputation, savoir-faire.</td></tr>
+      <tr><td>📊 FRNG / BFR / Trésorerie Nette</td><td><span class="st">★★★★★</span></td><td><span class="lt">Calcul + interprétation</span> Les 3 formules par cœur + commenter : équilibre sain ou non, causes, conséquences. Présent dans 100 % des sujets récents. La qualité du commentaire fait la différence.</td></tr>
+      <tr><td>🧠 Ressources et compétences distinctives</td><td><span class="st">★★★★</span><span class="se">★</span></td><td><span class="lt">Repérer + classer + justifier</span> Toujours présent. Savoir distinguer tangibles/intangibles et identifier les compétences distinctives sur un document de cas.</td></tr>
+      <tr><td>👥 GPEC / Recrutement / Formation</td><td><span class="st">★★★★</span><span class="se">★</span></td><td><span class="lt">Systématique</span> Toujours présent sous une forme ou l'autre. Relier les outils RH à la stratégie et à la performance. Savoir définir la GPEC et son utilité.</td></tr>
+      <tr><td>📈 CAF — Capacité d'Autofinancement</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Indicateur complémentaire</span> Apparaît en complément du bilan fonctionnel. Savoir l'interpréter : CAF élevée = capacité à financer les investissements sans recours externe.</td></tr>
     </tbody>
   </table>
 </div>
 
 <div class="ft">
   <div class="ft-brand">Scholar Lock-In · SDGN Terminale STMG · Chapitre 2</div>
-  <div class="ft-note">🔵 Bleu (Finance) &amp; 🟡 Jaune (RH)</div>
+  <div class="ft-note">🔵 Bleu — Ressources pour produire</div>
 </div>
 
 <div class="sli-chapnav" style="background:#f0ede6;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e0dbd2;">
@@ -278,9 +312,7 @@ body{padding-top:72px!important}
 <!-- OVERLAY -->
 <div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
   style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
-
-  <div style="background:#fffdf8; border-radius:20px; width:700px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
-
+  <div style="background:#fffdf8; border-radius:20px; width:700px; max-width:95vw; max-height:90vh; overflow-y:auto; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
     <div style="background:#2d6ea8; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
       <div>
         <div style="font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitre 2</div>
@@ -289,13 +321,12 @@ body{padding-top:72px!important}
       <button onclick="document.getElementById('memo-overlay').style.display='none'"
         style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
     </div>
-
     <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
 
       <!-- Bilan fonctionnel -->
       <div style="background:#e8f3ff; border-radius:14px; padding:14px 18px;">
         <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#1a4f82; margin-bottom:10px;">📊 Bilan fonctionnel — ⭐ Priorité absolue</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:8px;">
           <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;">
             <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a4f82; margin-bottom:4px;">FRNG</div>
             <div style="font-family:monospace; font-size:8.5px; font-weight:700; color:#2a4060; background:rgba(255,255,255,.6); border-radius:5px; padding:3px 5px;">Ress. stables − Emplois stables</div>
@@ -305,54 +336,39 @@ body{padding-top:72px!important}
             <div style="font-family:monospace; font-size:8.5px; font-weight:700; color:#2a4060; background:rgba(255,255,255,.6); border-radius:5px; padding:3px 5px;">Actif circulant − Passif circ.</div>
           </div>
           <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;">
-            <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a4f82; margin-bottom:4px;">Trésorerie</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a4f82; margin-bottom:4px;">TN</div>
             <div style="font-family:monospace; font-size:8.5px; font-weight:700; color:#2a4060; background:rgba(255,255,255,.6); border-radius:5px; padding:3px 5px;">FRNG − BFR</div>
           </div>
         </div>
-        <div style="margin-top:8px; display:flex; gap:8px;">
+        <div style="display:flex; gap:8px;">
           <div style="flex:1; background:#bce8cd; border-radius:8px; padding:7px 10px; font-size:9px; font-weight:700; color:#1a5c35;">🟢 FRNG &gt; BFR → TN positive → équilibre sain</div>
           <div style="flex:1; background:#f9d0d9; border-radius:8px; padding:7px 10px; font-size:9px; font-weight:700; color:#b5415a;">🔴 FRNG &lt; BFR → TN négative → risque</div>
         </div>
       </div>
 
-      <!-- Taux évolution -->
-      <div style="background:#fde8a0; border-radius:12px; padding:13px 18px; text-align:center;">
-        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#946e00; margin-bottom:5px;">📐 Taux d'évolution — 3/3 sessions</div>
-        <div style="font-family:monospace; font-size:15px; font-weight:900; color:#1e1c18;">(VF − VI) / VI × 100</div>
-        <div style="font-size:9px; color:#7a5800; font-weight:600; margin-top:4px;">Résultat en %. Positif = hausse · Négatif = baisse.</div>
+      <!-- CAF -->
+      <div style="background:#bce8cd; border-radius:12px; padding:13px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a5c35; margin-bottom:5px;">📊 CAF — Capacité d'Autofinancement</div>
+        <div style="font-size:9.5px; font-weight:600; color:#1a4028; line-height:1.6;">Ressource financière interne générée par l'activité. Une CAF élevée = l'entreprise peut investir et rembourser ses dettes sans recours extérieur.</div>
+      </div>
+
+      <!-- Ressources -->
+      <div style="background:#fef8e2; border-radius:12px; padding:13px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#946e00; margin-bottom:8px;">🏭 Ressources &amp; Compétences</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px;">
+          <div style="background:#cce2f8; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">🏭</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Tangibles</div><div style="font-size:8px; color:#1a4f82; font-weight:600; margin-top:2px;">Machines, locaux, trésorerie</div></div>
+          <div style="background:#ead8f5; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">🧠</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Intangibles</div><div style="font-size:8px; color:#5030a0; font-weight:600; margin-top:2px;">Marque, brevet, savoir-faire</div></div>
+          <div style="background:#bce8cd; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">⭐</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Distinctives</div><div style="font-size:8px; color:#1a5c35; font-weight:600; margin-top:2px;">Mieux que les concurrents</div></div>
+        </div>
       </div>
 
       <!-- RH -->
       <div style="background:#fef8e2; border-radius:12px; padding:13px 18px;">
-        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#946e00; margin-bottom:8px;">👥 Ressources humaines — 3/3 sessions ⭐</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#946e00; margin-bottom:8px;">👥 Ressources humaines</div>
         <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px;">
-          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;">
-            <div style="font-size:18px; margin-bottom:3px;">🎯</div>
-            <div style="font-family:'Nunito',sans-serif; font-size:10px; font-weight:900; color:#1e1c18;">Recrutement</div>
-            <div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Interne ↔ Externe</div>
-          </div>
-          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;">
-            <div style="font-size:18px; margin-bottom:3px;">📚</div>
-            <div style="font-family:'Nunito',sans-serif; font-size:10px; font-weight:900; color:#1e1c18;">Formation</div>
-            <div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Savoir · Savoir-faire · Savoir-être</div>
-          </div>
-          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;">
-            <div style="font-size:18px; margin-bottom:3px;">😊</div>
-            <div style="font-family:'Nunito',sans-serif; font-size:10px; font-weight:900; color:#1e1c18;">QVT</div>
-            <div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Bien-être → Performance</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tangibles/Intangibles mini -->
-      <div style="display:flex; gap:8px;">
-        <div style="flex:1; background:#cce2f8; border-radius:10px; padding:10px 12px; display:flex; gap:9px; align-items:center;">
-          <span style="font-size:20px;">🏭</span>
-          <div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Ressources tangibles</div><div style="font-size:8.5px; color:#1a4f82; font-weight:600;">Physiques et financières — machines, stocks, trésorerie</div></div>
-        </div>
-        <div style="flex:1; background:#ead8f5; border-radius:10px; padding:10px 12px; display:flex; gap:9px; align-items:center;">
-          <span style="font-size:20px;">🧠</span>
-          <div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Ressources intangibles</div><div style="font-size:8.5px; color:#5030a0; font-weight:600;">Immatérielles — marque, brevet, savoir-faire, réputation</div></div>
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">🗓️</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">GPEC</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Anticiper besoins RH 3-5 ans</div></div>
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">🎯</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Recrutement</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Interne ↔ Externe</div></div>
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">📚</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Formation</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Savoir · Savoir-faire · Savoir-être</div></div>
         </div>
       </div>
 

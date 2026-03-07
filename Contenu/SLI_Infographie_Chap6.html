@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ch.6 — Scholar Lock-In</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -18,15 +19,17 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .col:last-child { border-right: none; }
 .col-j { background: #fef8e2; }
 .col-w { background: #fffdf8; }
+.col-g { background: #eaf8ef; }
 .col-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 13px; padding-bottom: 8px; border-bottom: 2px solid #f5dc8a; color: #946e00; }
 .lbl-w { color: #5a5448; border-color: #e0dbd2; }
+.lbl-g { color: #1a7a3c; border-color: #8ad8a8; }
 .sec-t { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #1e1c18; margin: 13px 0 8px; }
 .card { border-radius: 10px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; }
-.c-j  { background: #fde8a0; }
-.c-g  { background: #bce8cd; }
-.c-r  { background: #f9d0d9; }
-.c-b  { background: #cce2f8; }
-.c-o  { background: #fce0b0; }
+.c-j { background: #fde8a0; }
+.c-g { background: #bce8cd; }
+.c-r { background: #f9d0d9; }
+.c-b { background: #cce2f8; }
+.c-o { background: #fce0b0; }
 .ci { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
 .cn { font-family: 'Nunito', sans-serif; font-size: 11.5px; font-weight: 900; color: #1e1c18; margin-bottom: 3px; }
 .cd { font-size: 9.5px; color: #5a5448; line-height: 1.55; font-weight: 600; }
@@ -35,11 +38,11 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .piege-t { font-size: 9.5px; font-weight: 700; color: #fffdf8; line-height: 1.6; }
 .piege-t strong { color: #f5c842; }
 .org-split { display: flex; gap: 0; border-radius: 10px; overflow: hidden; margin: 10px 0; }
-.org-box { flex: 1; padding: 13px; }
-.org-icon { font-size: 28px; margin-bottom: 6px; text-align: center; }
-.org-name { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; margin-bottom: 7px; text-align: center; }
-.org-list { font-size: 9.5px; font-weight: 700; line-height: 1.65; }
-.org-ex { font-size: 9px; font-style: italic; margin-top: 5px; }
+.org-box { flex: 1; padding: 12px; }
+.org-icon { font-size: 24px; margin-bottom: 5px; text-align: center; }
+.org-name { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; margin-bottom: 6px; text-align: center; }
+.org-list { font-size: 9px; font-weight: 700; line-height: 1.65; }
+.org-ex { font-size: 8.5px; font-style: italic; margin-top: 4px; }
 .coord-row { background: #fde8a0; border-radius: 9px; padding: 9px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
 .coord-name { font-size: 10.5px; font-weight: 800; color: #1e1c18; }
 .coord-desc { font-size: 9px; color: #7a5800; font-weight: 600; margin-top: 2px; line-height: 1.4; }
@@ -48,15 +51,6 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .power-icon { font-size: 24px; margin-bottom: 5px; }
 .power-name { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; color: #1e1c18; margin-bottom: 5px; }
 .power-desc { font-size: 9px; color: #5a5448; font-weight: 600; line-height: 1.4; }
-.link-row { background: #fffdf8; border-radius: 9px; padding: 10px 13px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; border: 1px solid rgba(0,0,0,.08); }
-.link-ch { background: #fde8a0; border-radius: 6px; padding: 3px 8px; font-size: 9px; font-weight: 800; color: #946e00; flex-shrink: 0; white-space: nowrap; }
-.link-ch-b { background: #cce2f8; color: #1a4f82; }
-.link-desc { font-size: 9.5px; font-weight: 600; color: #1e1c18; line-height: 1.45; }
-.qtype { background: #fef8e2; border-radius: 9px; padding: 12px 14px; border: 1px solid #f5dc8a; }
-.qt-label { font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #946e00; margin-bottom: 7px; }
-.qt-q { font-size: 9.5px; font-style: italic; color: #946e00; font-weight: 700; margin-bottom: 8px; line-height: 1.5; }
-.qt-step { display: flex; gap: 8px; font-size: 9.5px; font-weight: 700; color: #1e1c18; line-height: 1.5; margin-bottom: 4px; }
-.qt-num { width: 18px; height: 18px; border-radius: 50%; background: #946e00; color: #fff; font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Nunito', sans-serif; }
 .bac-s { background: #2c2920; padding: 16px 24px; }
 .bac-h { font-family: 'Nunito', sans-serif; font-size: 10.5px; font-weight: 900; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
 .bt { width: 100%; border-collapse: collapse; }
@@ -82,19 +76,18 @@ body{padding-top:72px!important}
 .sli-nl{font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap}
 .sli-nl:hover{background:rgba(255,255,255,.1);color:#fffdf8}
 .sli-nl.on{background:rgba(255,255,255,.1);color:#fffdf8}
-.sli-nl.soon{opacity:.4;pointer-events:none}
 @media print{.sli-nav,.sli-chapnav{display:none!important}body{padding-top:24px!important}}
 </style>
 <nav class="sli-nav">
-  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <a href="../sdgm.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
     <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
     <a href="SLI_Infographie_Chap1.html" class="sli-nl on">📖 Chapitres</a>
-    <a class="sli-nl soon">🃏 Flash cards</a>
-    <a class="sli-nl soon">✅ Méthode</a>
-    <a class="sli-nl soon">🎯 Annales</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
   </div>
-  <a href="../index.html" class="sli-nl">← Accueil</a>
+  <a href="../sdgm.html" class="sli-nl">← Accueil</a>
 </nav>
 <div class="page">
 
@@ -112,39 +105,153 @@ body{padding-top:72px!important}
 
 <div class="hd" style="background:#946e00;">
   <div class="hd-badge">Scholar Lock-In · SDGN Terminale STMG · Chapitre 6</div>
-  <h1>Chapitre 6 — Comment assurer un fonctionnement <em>cohérent</em> ?</h1>
-  <div class="hd-sub">Organisation souple / rigide — pont fort avec Ch.2 RH (QVT, motivation). Mécanismes de coordination à nommer précisément. Entreprise libérée = notion émergente au bac.</div>
+  <h1>Chapitre 6 — Comment assurer un fonctionnement <em>cohérent</em> des organisations ?</h1>
+  <div class="hd-sub">5 mécanismes de coordination à nommer précisément. Organisation souple / rigide = pont fort avec le reste du thème. Lean management et entreprise libérée en hausse dans les sujets récents.</div>
 </div>
 
 <div class="body">
 
-<!-- COL 1 — Souple vs Rigide -->
+<!-- COL 1 — Organisation du travail -->
 <div class="col col-j">
-  <div class="col-lbl">① Modes d'organisation</div>
+  <div class="col-lbl">① Organisation du travail</div>
 
   <div class="org-split">
     <div class="org-box" style="background:#bce8cd;">
       <div class="org-icon">🌿</div>
       <div class="org-name" style="color:#1a5c35;">Organisation Souple</div>
       <div class="org-list" style="color:#1a4028;">
+        ✔ Flexibilité et réactivité<br>
         ✔ Polyvalence des salariés<br>
         ✔ Autonomie et initiative<br>
-        ✔ Adaptation rapide au marché<br>
-        ✔ Favorise QVT et engagement
+        ✔ Adapté aux environnements changeants
       </div>
-      <div class="org-ex" style="color:#2d7a4f;">→ Start-up, entreprise libérée</div>
+      <div class="org-ex" style="color:#2d7a4f;">Ex : startup, agence créative</div>
     </div>
     <div style="width:2px; background:#fef8e2;"></div>
     <div class="org-box" style="background:#f9d0d9;">
       <div class="org-icon">🏛️</div>
       <div class="org-name" style="color:#7a2038;">Organisation Rigide</div>
       <div class="org-list" style="color:#5a1020;">
-        ✔ Spécialisation des tâches<br>
-        ✔ Efficacité en env. stable<br>
+        ✔ Spécialisation stricte (taylorisme)<br>
+        ✔ Efficace pour production de masse<br>
         ✘ Peu adaptable aux changements<br>
         ✘ Risque de démotivation
       </div>
-      <div class="org-ex" style="color:#b5415a;">→ Taylorisme, chaîne de montage</div>
+      <div class="org-ex" style="color:#b5415a;">Ex : chaîne d'assemblage automobile traditionnelle</div>
+    </div>
+  </div>
+
+  <div class="card c-j">
+    <div class="ci">🔩</div>
+    <div>
+      <div class="cn">Spécialisation</div>
+      <div class="cd">Chaque salarié se concentre sur une <strong>tâche ou un domaine précis</strong>. Avantage : efficacité et expertise. Limite : monotonie, rigidité.</div>
+    </div>
+  </div>
+
+  <div class="card c-j">
+    <div class="ci">🔀</div>
+    <div>
+      <div class="cn">Polyvalence</div>
+      <div class="cd">Un salarié maîtrise <strong>plusieurs tâches différentes</strong>. Avantage : flexibilité, remplacement facilité. Limite : formation plus longue.</div>
+    </div>
+  </div>
+
+  <div class="card c-j">
+    <div class="ci">⚡</div>
+    <div>
+      <div class="cn">Flexibilité</div>
+      <div class="cd">Capacité de l'organisation à s'adapter rapidement aux <strong>variations d'activité</strong> (volume ou nature des commandes).</div>
+    </div>
+  </div>
+
+  <div class="piege">
+    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
+    <div class="piege-t"><strong>Nuance :</strong> Organisation souple n'est pas toujours supérieure. Dans un environnement stable avec des tâches répétitives, la structure rigide est plus <strong>efficace</strong>. Adapter la réponse au contexte du cas.</div>
+  </div>
+</div>
+
+<!-- COL 2 — Structure et coordination -->
+<div class="col col-w">
+  <div class="col-lbl lbl-w">② Structure et mécanismes de coordination</div>
+
+  <div class="sec-t" style="margin-top:0;">Les 5 mécanismes de coordination</div>
+
+  <div class="coord-row">
+    <span style="font-size:20px;">👀</span>
+    <div>
+      <div class="coord-name">Supervision directe</div>
+      <div class="coord-desc">Un responsable donne des instructions et contrôle directement l'exécution. Adapté aux petites structures.</div>
+    </div>
+  </div>
+  <div class="coord-row">
+    <span style="font-size:20px;">📋</span>
+    <div>
+      <div class="coord-name">Standardisation des procédés</div>
+      <div class="coord-desc">Les méthodes de travail sont formalisées (procédures, modes opératoires). Réduit le besoin de supervision.</div>
+    </div>
+  </div>
+  <div class="coord-row">
+    <span style="font-size:20px;">🎯</span>
+    <div>
+      <div class="coord-name">Standardisation des résultats</div>
+      <div class="coord-desc">On fixe des objectifs ; chacun est libre de choisir sa méthode pour les atteindre.</div>
+    </div>
+  </div>
+  <div class="coord-row">
+    <span style="font-size:20px;">🎓</span>
+    <div>
+      <div class="coord-name">Standardisation des compétences</div>
+      <div class="coord-desc">Les salariés ont une formation commune qui garantit la cohérence du travail (ex : corps médical, ingénieurs).</div>
+    </div>
+  </div>
+  <div class="coord-row" style="margin-bottom:0;">
+    <span style="font-size:20px;">💬</span>
+    <div>
+      <div class="coord-name">Ajustement mutuel</div>
+      <div class="coord-desc">Coordination informelle entre collègues par communication directe. Adapté aux petites équipes et tâches créatives.</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Structures de pouvoir</div>
+
+  <div class="power-split">
+    <div class="power-box" style="background:#fde8a0;">
+      <div class="power-icon">▲</div>
+      <div class="power-name">Centralisation</div>
+      <div class="power-desc">Pouvoir concentré au sommet de la hiérarchie. Cohérence forte mais réactivité faible.</div>
+    </div>
+    <div class="power-box" style="background:#f5f0d8; border:1px dashed #d4b800;">
+      <div class="power-icon" style="font-size:18px;">⬛⬛⬛</div>
+      <div class="power-name">Décentralisation</div>
+      <div class="power-desc">Pouvoir délégué aux niveaux inférieurs. Réactivité accrue mais risque d'incohérence.</div>
+    </div>
+  </div>
+
+  <div class="card c-j">
+    <div class="ci">📐</div>
+    <div>
+      <div class="cn">Ligne hiérarchique</div>
+      <div class="cd">Chaîne d'autorité verticale qui relie le dirigeant aux opérateurs. Définit qui rend compte à qui.</div>
+    </div>
+  </div>
+
+  <div class="piege">
+    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
+    <div class="piege-t"><strong>Piège bac :</strong> "Les managers coordonnent" = réponse insuffisante. Nommer le mécanisme précis : supervision directe, standardisation des procédés/résultats/compétences ou ajustement mutuel. Le nom exact compte dans le barème.</div>
+  </div>
+</div>
+
+<!-- COL 3 — Modes d'organisation modernes -->
+<div class="col col-g">
+  <div class="col-lbl lbl-g">③ Modes d'organisation modernes</div>
+
+  <div class="card c-g">
+    <div class="ci">⚡</div>
+    <div>
+      <div class="cn">Lean management</div>
+      <div class="cd">Méthode de gestion qui vise à <strong>éliminer tous les gaspillages</strong> (surproduction, délais, stocks inutiles, défauts) pour maximiser la valeur créée avec le minimum de ressources.</div>
+      <div class="cx">Issu du Toyota Production System. Lié aux flux tendus (Ch 3-4).</div>
     </div>
   </div>
 
@@ -152,105 +259,35 @@ body{padding-top:72px!important}
     <div class="ci">🚀</div>
     <div>
       <div class="cn">Entreprise libérée</div>
-      <div class="cd">Forme extrême de l'organisation souple : autonomie totale des salariés, management horizontal. Très lié à QVT et motivation intrinsèque.</div>
-      <div class="cx">Ex : Favi, Poult, Michelin (expérimentations)</div>
+      <div class="cd">Modèle d'organisation dans lequel les salariés disposent d'une <strong>autonomie maximale</strong> : pas de management intermédiaire traditionnel, décisions prises par ceux qui font le travail, hiérarchie très aplatie.</div>
+      <div class="cx">Avantage : engagement fort, créativité. Risque : difficile à mettre en place dans les grandes structures.</div>
     </div>
   </div>
 
-  <div class="card c-j">
-    <div class="ci">🔄</div>
+  <div class="card c-g">
+    <div class="ci">🏢</div>
     <div>
-      <div class="cn">Flexibilité &amp; Lean</div>
-      <div class="cd">Organisation souple = condition pour la flexibilité de production. Lien direct avec flux tendus (Ch.3&amp;4) et lean management.</div>
+      <div class="cn">Ex. au Bac — Agesys (2022 Remplacement)</div>
+      <div class="cd">Entreprise de services numériques ayant adopté des pratiques d'entreprise libérée. Question sur le style de management participatif et la performance en période de crise.</div>
+    </div>
+  </div>
+
+  <div style="background:#fffdf8; border-radius:12px; padding:14px; margin-top:10px; border:1.5px solid #8ad8a8;">
+    <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1a7a3c; margin-bottom:10px;">⭐ La chaîne à retenir pour le bac</div>
+    <div style="display:flex; flex-direction:column; gap:5px;">
+      <div style="background:#bce8cd; border-radius:7px; padding:6px 10px; font-size:9.5px; font-weight:800; color:#1a5c35; text-align:center;">🌿 Organisation souple</div>
+      <div style="text-align:center; font-size:14px; color:#1a7a3c; font-weight:900;">↓</div>
+      <div style="background:#bce8cd; border-radius:7px; padding:6px 10px; font-size:9.5px; font-weight:800; color:#1a5c35; text-align:center;">🔀 Polyvalence + Autonomie</div>
+      <div style="text-align:center; font-size:14px; color:#1a7a3c; font-weight:900;">↓</div>
+      <div style="background:#bce8cd; border-radius:7px; padding:6px 10px; font-size:9.5px; font-weight:800; color:#1a5c35; text-align:center;">😊 Engagement des salariés</div>
+      <div style="text-align:center; font-size:14px; color:#1a7a3c; font-weight:900;">↓</div>
+      <div style="background:#1a7a3c; border-radius:7px; padding:6px 10px; font-size:9.5px; font-weight:800; color:#fff; text-align:center;">📈 Performance de l'organisation</div>
     </div>
   </div>
 
   <div class="piege">
     <div style="font-size:16px; flex-shrink:0;">⭐</div>
-    <div class="piege-t"><strong>Lien fort au bac :</strong> Organisation souple ↔ QVT ↔ motivation ↔ performance. Ces 4 notions sont souvent mobilisées ensemble dans une même question.</div>
-  </div>
-</div>
-
-<!-- COL 2 — Centralisation + Coordination -->
-<div class="col col-w">
-  <div class="col-lbl lbl-w">② Structure &amp; Coordination</div>
-
-  <div class="power-split">
-    <div class="power-box" style="background:#fde8a0;">
-      <div class="power-icon">▲</div>
-      <div class="power-name">Centralisation</div>
-      <div class="power-desc">Pouvoir concentré au sommet. Cohérence forte mais réactivité faible. Décisions prises par la direction.</div>
-    </div>
-    <div class="power-box" style="background:#f5f0d8; border: 1px dashed #d4b800;">
-      <div class="power-icon" style="font-size:18px;">⬛⬛⬛</div>
-      <div class="power-name">Décentralisation</div>
-      <div class="power-desc">Pouvoir délégué aux niveaux inférieurs. Plus de réactivité mais risque d'incohérence.</div>
-    </div>
-  </div>
-
-  <div class="sec-t">Les 3 mécanismes de coordination</div>
-  <div class="coord-row">
-    <span style="font-size:20px;">👀</span>
-    <div>
-      <div class="coord-name">Supervision directe</div>
-      <div class="coord-desc">Le responsable contrôle et coordonne directement le travail de ses équipes. Adapté aux petites structures.</div>
-    </div>
-  </div>
-  <div class="coord-row">
-    <span style="font-size:20px;">📋</span>
-    <div>
-      <div class="coord-name">Standardisation</div>
-      <div class="coord-desc">Coordination par des règles, procédures et normes préétablies. Réduit le besoin de supervision. Adapté aux grandes structures.</div>
-    </div>
-  </div>
-  <div class="coord-row" style="margin-bottom:0;">
-    <span style="font-size:20px;">🤝</span>
-    <div>
-      <div class="coord-name">Ajustement mutuel</div>
-      <div class="coord-desc">Coordination informelle par communication directe entre collègues. Adapté aux petites équipes et tâches créatives.</div>
-    </div>
-  </div>
-
-  <div class="sec-t">Ligne hiérarchique</div>
-  <div class="card c-j">
-    <div class="ci" style="font-size:18px;">📐</div>
-    <div>
-      <div class="cn">Chaîne d'autorité verticale</div>
-      <div class="cd">Relie le sommet à la base. Définit qui reporte à qui, qui décide de quoi. Plus la ligne est longue, plus la structure est hiérarchisée.</div>
-    </div>
-  </div>
-</div>
-
-<!-- COL 3 — Liens + Question type bac -->
-<div class="col col-j">
-  <div class="col-lbl">③ Liens inter-chapitres &amp; bac</div>
-
-  <div class="sec-t" style="margin-top:0;">Chapitre 6 ↔ les autres chapitres</div>
-  <div class="link-row">
-    <div class="link-ch">Ch.2 RH</div>
-    <div class="link-desc">Organisation souple → favorise QVT et motivation → engagement → performance accrue.</div>
-  </div>
-  <div class="link-row">
-    <div class="link-ch link-ch-b">Ch.3&amp;4</div>
-    <div class="link-desc">Organisation souple ↔ flexibilité de la production ↔ flux tendus ↔ lean management.</div>
-  </div>
-  <div class="link-row" style="margin-bottom:12px;">
-    <div class="link-ch link-ch-b">Ch.5</div>
-    <div class="link-desc">Le numérique facilite la décentralisation (accès à l'info partagée) et de nouvelles formes de coordination (outils collaboratifs).</div>
-  </div>
-
-  <div class="qtype">
-    <div class="qt-label">Question type au bac</div>
-    <div class="qt-q">"En quoi le choix d'une organisation souple peut-il améliorer la performance de l'entreprise ?"</div>
-    <div class="qt-step"><div class="qt-num">1</div><div>Définir organisation souple (polyvalence, autonomie)</div></div>
-    <div class="qt-step"><div class="qt-num">2</div><div>Lien QVT → motivation → engagement (Ch.2)</div></div>
-    <div class="qt-step"><div class="qt-num">3</div><div>Lien flexibilité de production (Ch.3&amp;4)</div></div>
-    <div class="qt-step"><div class="qt-num">4</div><div>Exemple hors-cas (Favi, Poult, start-up…)</div></div>
-  </div>
-
-  <div class="piege">
-    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
-    <div class="piege-t"><strong>Piège :</strong> Organisation souple n'est pas toujours supérieure. Dans un environnement stable avec des tâches répétitives, la structure rigide est plus <strong>efficace</strong>. Nuancer la réponse.</div>
+    <div class="piege-t"><strong>Le Chapitre 6 est le pont entre Thème 1 et Thème 2.</strong> Les questions sur l'entreprise libérée, la coordination et la structure croisent souvent les deux thèmes. Toujours relier à des éléments concrets du cas étudié.</div>
   </div>
 </div>
 
@@ -261,17 +298,17 @@ body{padding-top:72px!important}
   <table class="bt">
     <thead><tr><th style="width:22%">Notion clé</th><th style="width:17%">Importance au Bac</th><th>Conseil correcteur</th></tr></thead>
     <tbody>
-      <tr><td>🌿 Organisation souple</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Lien QVT + Ch.2</span> Souvent demandé en lien avec les RH. Toujours montrer la chaîne : souple → QVT → motivation → performance. Éviter "souple = mieux" sans nuance.</td></tr>
-      <tr><td>⬛ Centralisation ≠ décentralisation</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Contexte du cas</span> Identifier dans le cas quel type de structure est utilisé et pourquoi. Relier au style de management et à la réactivité de l'organisation.</td></tr>
-      <tr><td>🤝 Mécanismes de coordination</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Nommer précisément</span> Supervision directe / standardisation / ajustement mutuel. Ne pas rester vague sur "les managers coordonnent". Le nom exact compte dans le barème.</td></tr>
-      <tr><td>🚀 Entreprise libérée</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Notion émergente</span> En hausse dans les sujets récents. Lier à : organisation souple + QVT + motivation intrinsèque + performance. Avoir un exemple prêt (Favi, Poult).</td></tr>
+      <tr><td>🏢 Organisation souple ≠ rigide</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Caractériser + justifier</span> Toujours caractériser la structure de l'entreprise du cas (souple ou rigide) et justifier à partir des documents. Nuancer : souple n'est pas toujours meilleur.</td></tr>
+      <tr><td>💬 5 mécanismes de coordination</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Nommer précisément</span> Les 5 mécanismes (supervision directe / standardisation des procédés, résultats, compétences / ajustement mutuel). Le nom exact compte dans le barème. Ne pas rester vague.</td></tr>
+      <tr><td>⚡ Lean management</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Principe + lien production</span> Éliminer les gaspillages pour maximiser la valeur. Relier aux flux tendus (Ch 3-4). Avoir un exemple concret (Toyota Production System).</td></tr>
+      <tr><td>🚀 Entreprise libérée</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Notion émergente</span> En hausse dans les sujets. Avantages (engagement, créativité) et limites (difficile à mettre en place). Exemple au Bac : Agesys 2022 Remplacement.</td></tr>
     </tbody>
   </table>
 </div>
 
 <div class="ft">
   <div class="ft-brand">Scholar Lock-In · SDGN Terminale STMG · Chapitre 6</div>
-  <div class="ft-note">🟡 Jaune = Humains &amp; Organisation</div>
+  <div class="ft-note">🟡 Or — Organisation et fonctionnement cohérent</div>
 </div>
 
 <div class="sli-chapnav" style="background:#f0ede6;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e0dbd2;">
@@ -299,9 +336,7 @@ body{padding-top:72px!important}
 <!-- OVERLAY -->
 <div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
   style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
-
   <div style="background:#fffdf8; border-radius:20px; width:700px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
-
     <div style="background:#946e00; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
       <div>
         <div style="font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitre 6</div>
@@ -310,62 +345,47 @@ body{padding-top:72px!important}
       <button onclick="document.getElementById('memo-overlay').style.display='none'"
         style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
     </div>
-
     <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
 
       <!-- Souple vs Rigide -->
       <div>
-        <div style="font-family:'Nunito',sans-serif; font-size:11.5px; font-weight:900; color:#1e1c18; margin-bottom:8px;">🏢 Organisation souple ↔ rigide</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1e1c18; margin-bottom:8px;">🏢 Organisation souple ↔ rigide</div>
         <div style="display:flex; gap:0; border-radius:12px; overflow:hidden;">
-          <div style="flex:1; background:#bce8cd; padding:14px; text-align:center;">
-            <div style="font-size:26px; margin-bottom:5px;">🌿</div>
-            <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a5c35; margin-bottom:5px;">Souple</div>
-            <div style="font-size:9px; color:#1a4028; font-weight:700; line-height:1.6; text-align:left;">✔ Polyvalence<br>✔ Autonomie<br>✔ Adaptabilité<br>✔ QVT ↑</div>
+          <div style="flex:1; background:#bce8cd; padding:13px; text-align:center;">
+            <div style="font-size:22px; margin-bottom:4px;">🌿</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1a5c35; margin-bottom:4px;">Souple</div>
+            <div style="font-size:9px; color:#1a4028; font-weight:700; line-height:1.6; text-align:left;">✔ Polyvalence<br>✔ Autonomie<br>✔ Adaptabilité<br>→ Start-up, entreprise libérée</div>
           </div>
           <div style="width:3px; background:#fffdf8;"></div>
-          <div style="flex:1; background:#f9d0d9; padding:14px; text-align:center;">
-            <div style="font-size:26px; margin-bottom:5px;">🏛️</div>
-            <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#b5415a; margin-bottom:5px;">Rigide</div>
-            <div style="font-size:9px; color:#7a2038; font-weight:700; line-height:1.6; text-align:left;">✔ Spécialisation<br>✔ Efficacité stable<br>✘ Peu adaptable<br>✘ Démotivation</div>
+          <div style="flex:1; background:#f9d0d9; padding:13px; text-align:center;">
+            <div style="font-size:22px; margin-bottom:4px;">🏛️</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#b5415a; margin-bottom:4px;">Rigide</div>
+            <div style="font-size:9px; color:#7a2038; font-weight:700; line-height:1.6; text-align:left;">✔ Spécialisation<br>✔ Efficacité en env. stable<br>✘ Peu adaptable<br>→ Taylorisme, chaîne montage</div>
           </div>
         </div>
       </div>
 
-      <!-- Centralisation / Décentralisation -->
+      <!-- 5 mécanismes -->
+      <div style="background:#fef8e2; border-radius:12px; padding:13px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#946e00; margin-bottom:8px;">🤝 Les 5 mécanismes de coordination</div>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <div style="background:#fde8a0; border-radius:8px; padding:7px 11px; display:flex; gap:8px; align-items:center;"><span style="font-size:16px;">👀</span><div><span style="font-size:10px; font-weight:800; color:#1e1c18;">Supervision directe</span> <span style="font-size:9px; color:#7a5800; font-weight:600;">— Le responsable contrôle directement</span></div></div>
+          <div style="background:#fde8a0; border-radius:8px; padding:7px 11px; display:flex; gap:8px; align-items:center;"><span style="font-size:16px;">📋</span><div><span style="font-size:10px; font-weight:800; color:#1e1c18;">Standardisation des procédés</span> <span style="font-size:9px; color:#7a5800; font-weight:600;">— Méthodes formalisées</span></div></div>
+          <div style="background:#fde8a0; border-radius:8px; padding:7px 11px; display:flex; gap:8px; align-items:center;"><span style="font-size:16px;">🎯</span><div><span style="font-size:10px; font-weight:800; color:#1e1c18;">Standardisation des résultats</span> <span style="font-size:9px; color:#7a5800; font-weight:600;">— Objectifs fixés, méthode libre</span></div></div>
+          <div style="background:#fde8a0; border-radius:8px; padding:7px 11px; display:flex; gap:8px; align-items:center;"><span style="font-size:16px;">🎓</span><div><span style="font-size:10px; font-weight:800; color:#1e1c18;">Standardisation des compétences</span> <span style="font-size:9px; color:#7a5800; font-weight:600;">— Formation commune</span></div></div>
+          <div style="background:#fde8a0; border-radius:8px; padding:7px 11px; display:flex; gap:8px; align-items:center;"><span style="font-size:16px;">💬</span><div><span style="font-size:10px; font-weight:800; color:#1e1c18;">Ajustement mutuel</span> <span style="font-size:9px; color:#7a5800; font-weight:600;">— Communication informelle directe</span></div></div>
+        </div>
+      </div>
+
+      <!-- Lean + Entreprise libérée -->
       <div style="display:flex; gap:8px;">
-        <div style="flex:1; background:#fde8a0; border-radius:10px; padding:11px; text-align:center;">
-          <div style="font-size:24px; margin-bottom:4px;">▲</div>
-          <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1e1c18; margin-bottom:3px;">Centralisation</div>
-          <div style="font-size:8.5px; color:#7a5800; font-weight:600;">Pouvoir au sommet · Cohérence forte · Réactivité faible</div>
+        <div style="flex:1; background:#c8f0ec; border-radius:10px; padding:12px;">
+          <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1e1c18; margin-bottom:4px;">⚡ Lean management</div>
+          <div style="font-size:8.5px; color:#1a5c5a; font-weight:600; line-height:1.5;">Éliminer tous les gaspillages pour maximiser la valeur avec un minimum de ressources. Issu du Toyota Production System.</div>
         </div>
-        <div style="flex:1; background:#f5f0d8; border-radius:10px; padding:11px; text-align:center; border:1px dashed #d4b800;">
-          <div style="font-size:18px; margin-bottom:4px;">⬛⬛⬛</div>
-          <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1e1c18; margin-bottom:3px;">Décentralisation</div>
-          <div style="font-size:8.5px; color:#7a5800; font-weight:600;">Pouvoir délégué · Réactivité · Risque incohérence</div>
-        </div>
-      </div>
-
-      <!-- 3 mécanismes coordination -->
-      <div style="background:#fef8e2; border-radius:12px; padding:13px 16px;">
-        <div style="font-family:'Nunito',sans-serif; font-size:11.5px; font-weight:900; color:#946e00; margin-bottom:8px;">🤝 Les 3 mécanismes de coordination</div>
-        <div style="display:flex; gap:7px;">
-          <div style="flex:1; background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">👀</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Supervision directe</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Manager contrôle directement</div></div>
-          <div style="flex:1; background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">📋</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Standardisation</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Règles et procédures préétablies</div></div>
-          <div style="flex:1; background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px; margin-bottom:3px;">💬</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Ajustement mutuel</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Communication informelle directe</div></div>
-        </div>
-      </div>
-
-      <!-- Chaîne de liens -->
-      <div style="background:#1e1c18; border-radius:10px; padding:11px 14px;">
-        <div style="font-size:10px; font-weight:800; color:#f5c842; margin-bottom:6px;">⭐ La chaîne à retenir pour le bac</div>
-        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-          <div style="background:#bce8cd; border-radius:7px; padding:5px 10px; font-size:9.5px; font-weight:800; color:#1a5c35;">🌿 Organisation souple</div>
-          <div style="color:#f5c842; font-size:14px; font-weight:900;">→</div>
-          <div style="background:#fde8a0; border-radius:7px; padding:5px 10px; font-size:9.5px; font-weight:800; color:#946e00;">😊 QVT</div>
-          <div style="color:#f5c842; font-size:14px; font-weight:900;">→</div>
-          <div style="background:#fce0b0; border-radius:7px; padding:5px 10px; font-size:9.5px; font-weight:800; color:#c47800;">🔥 Motivation</div>
-          <div style="color:#f5c842; font-size:14px; font-weight:900;">→</div>
-          <div style="background:#bce8cd; border-radius:7px; padding:5px 10px; font-size:9.5px; font-weight:800; color:#1a5c35;">📈 Performance</div>
+        <div style="flex:1; background:#bce8cd; border-radius:10px; padding:12px;">
+          <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1e1c18; margin-bottom:4px;">🚀 Entreprise libérée</div>
+          <div style="font-size:8.5px; color:#1a5c35; font-weight:600; line-height:1.5;">Autonomie maximale des salariés, hiérarchie aplatie. Ex. Bac : Agesys 2022 Remplacement.</div>
         </div>
       </div>
 

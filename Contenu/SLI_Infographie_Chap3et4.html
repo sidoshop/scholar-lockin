@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ch.3&4 — Scholar Lock-In</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -18,18 +19,18 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .col:last-child { border-right: none; }
 .col-b { background: #e8f3ff; }
 .col-w { background: #fffdf8; }
-.col-g { background: #eaf8ef; }
+.col-j { background: #fef8e2; }
 .col-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 13px; padding-bottom: 8px; border-bottom: 2px solid #aaceee; color: #2a69a8; }
-.lbl-g { color: #1a7a3c; border-color: #8ad8a8; }
 .lbl-w { color: #5a5448; border-color: #e0dbd2; }
+.lbl-j { color: #946e00; border-color: #f5dc8a; }
 .sec-t { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #1e1c18; margin: 13px 0 8px; }
 .card { border-radius: 10px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; }
 .c-b { background: #cce2f8; }
 .c-g { background: #bce8cd; }
 .c-j { background: #fde8a0; }
 .c-r { background: #f9d0d9; }
-.c-o { background: #fce0b0; }
 .c-t { background: #c8f0ec; }
+.c-o { background: #fce0b0; }
 .ci { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
 .cn { font-family: 'Nunito', sans-serif; font-size: 11.5px; font-weight: 900; color: #1e1c18; margin-bottom: 3px; }
 .cd { font-size: 9.5px; color: #5a5448; line-height: 1.55; font-weight: 600; }
@@ -38,29 +39,20 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .piege-t { font-size: 9.5px; font-weight: 700; color: #fffdf8; line-height: 1.6; }
 .piege-t strong { color: #f5c842; }
 .flux-split { display: flex; gap: 0; border-radius: 10px; overflow: hidden; margin: 10px 0; }
-.flux-box { flex: 1; padding: 13px; text-align: center; }
-.flux-icon { font-size: 26px; margin-bottom: 6px; }
-.flux-name { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; margin-bottom: 6px; }
-.flux-list { font-size: 9.5px; font-weight: 700; line-height: 1.6; text-align: left; }
-.flux-ex { font-size: 9px; font-style: italic; margin-top: 5px; }
+.flux-box { flex: 1; padding: 12px; text-align: center; }
+.flux-icon { font-size: 22px; margin-bottom: 5px; }
+.flux-name { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; margin-bottom: 5px; }
+.flux-list { font-size: 9px; font-weight: 700; line-height: 1.6; text-align: left; }
+.flux-ex { font-size: 8.5px; font-style: italic; margin-top: 4px; }
+.pdca-row { display: flex; gap: 5px; margin-top: 8px; }
+.pdca-step { flex: 1; border-radius: 8px; padding: 8px 6px; text-align: center; }
+.pdca-letter { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; margin-bottom: 3px; }
+.pdca-name { font-size: 8.5px; font-weight: 800; margin-bottom: 3px; }
+.pdca-desc { font-size: 7.5px; font-weight: 600; line-height: 1.4; }
 .formule-box { background: #fde8a0; border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
 .formule-t { font-size: 10px; font-weight: 800; color: #946e00; margin-bottom: 8px; }
-.formule-row { background: rgba(255,255,255,.7); border-radius: 7px; padding: 6px 10px; font-family: monospace; font-size: 10.5px; font-weight: 700; color: #7a5800; margin-bottom: 5px; }
+.formule-row { background: rgba(255,255,255,.7); border-radius: 7px; padding: 6px 10px; font-family: monospace; font-size: 10px; font-weight: 700; color: #7a5800; margin-bottom: 5px; line-height: 1.5; }
 .formule-row:last-child { margin-bottom: 0; }
-.charges-split { display: flex; gap: 7px; align-items: center; margin: 10px 0; }
-.charge-box { flex: 1; border-radius: 9px; padding: 10px; text-align: center; }
-.charge-icon { font-size: 16px; margin-bottom: 4px; }
-.charge-name { font-size: 10.5px; font-weight: 800; color: #1a4f82; margin-bottom: 4px; }
-.charge-desc { font-size: 9px; color: #2a4060; font-weight: 600; line-height: 1.4; }
-.charge-ex { font-size: 8.5px; font-style: italic; color: #4a6080; margin-top: 3px; }
-.plus-sign { font-size: 20px; color: #7a7160; font-weight: 900; flex-shrink: 0; }
-.charge-total { background: #1a4f82; border-radius: 8px; padding: 8px; text-align: center; margin-bottom: 10px; }
-.charge-total-t { font-size: 11px; font-weight: 900; color: #fff; }
-.rse-dim { background: #bce8cd; border-radius: 9px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-.rse-dim-name { font-size: 10.5px; font-weight: 800; color: #1e1c18; }
-.rse-dim-desc { font-size: 9px; color: #1a5c35; font-weight: 600; margin-top: 2px; }
-.pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-.pill { border-radius: 20px; padding: 4px 10px; font-size: 9.5px; font-weight: 700; background: #bce8cd; color: #1a5c35; }
 .bac-s { background: #2c2920; padding: 16px 24px; }
 .bac-h { font-family: 'Nunito', sans-serif; font-size: 10.5px; font-weight: 900; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
 .bt { width: 100%; border-collapse: collapse; }
@@ -86,19 +78,18 @@ body{padding-top:72px!important}
 .sli-nl{font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap}
 .sli-nl:hover{background:rgba(255,255,255,.1);color:#fffdf8}
 .sli-nl.on{background:rgba(255,255,255,.1);color:#fffdf8}
-.sli-nl.soon{opacity:.4;pointer-events:none}
 @media print{.sli-nav,.sli-chapnav{display:none!important}body{padding-top:24px!important}}
 </style>
 <nav class="sli-nav">
-  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <a href="../sdgm.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
     <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
     <a href="SLI_Infographie_Chap1.html" class="sli-nl on">📖 Chapitres</a>
-    <a class="sli-nl soon">🃏 Flash cards</a>
-    <a class="sli-nl soon">✅ Méthode</a>
-    <a class="sli-nl soon">🎯 Annales</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
   </div>
-  <a href="../index.html" class="sli-nl">← Accueil</a>
+  <a href="../sdgm.html" class="sli-nl">← Accueil</a>
 </nav>
 <div class="page">
 
@@ -116,154 +107,219 @@ body{padding-top:72px!important}
 
 <div class="hd" style="background:#1a5c82;">
   <div class="hd-badge">Scholar Lock-In · SDGN Terminale STMG · Chapitres 3 &amp; 4</div>
-  <h1>Chapitres 3 &amp; 4 — Comment <em>produire</em> ? Processus, coûts &amp; RSE</h1>
-  <div class="hd-sub">Processus + flux tendus/poussés = 2/3 sessions. RSE en hausse (2/3). Coût complet = ponctuel (1/3) mais discriminant quand il tombe.</div>
+  <h1>Chapitres 3 &amp; 4 — Comment <em>organiser la production</em> ?</h1>
+  <div class="hd-sub">Processus de production (acteurs internes/externes) = ★★★★☆ — tombé en 2024 et 2023. Seuil de rentabilité et coûts = ★★★☆☆ — discriminant quand ça tombe (Caraïbes Fumés 2022).</div>
 </div>
 
 <div class="body">
 
-<!-- COL 1 — Processus + flux -->
+<!-- COL 1 — Processus + organisation + Supply chain -->
 <div class="col col-b">
-  <div class="col-lbl">① Processus de production</div>
+  <div class="col-lbl">① Processus et organisation de la production</div>
 
   <div class="card c-b">
     <div class="ci">⚙️</div>
     <div>
       <div class="cn">Processus de production</div>
-      <div class="cd">Enchaînement d'activités transformant des <strong>ressources (inputs)</strong> en <strong>biens ou services (outputs)</strong>. Chaque étape a des acteurs internes ou externes.</div>
+      <div class="cd">Enchaînement ordonné d'activités transformant des ressources (matières, travail, information) en <strong>produits finis ou services</strong>. Chaque activité a des acteurs et des flux en entrée/sortie.</div>
+      <div class="cx">Acteur interne : salarié / service · Acteur externe : fournisseur, client, prestataire</div>
     </div>
   </div>
 
-  <div class="sec-t">Flux poussés vs flux tendus</div>
+  <div class="card c-b">
+    <div class="ci">🔬</div>
+    <div>
+      <div class="cn">Innovation de procédé</div>
+      <div class="cd">Amélioration de la <strong>façon de produire</strong> (méthodes, équipements, organisation). ≠ innovation produit qui porte sur ce qu'on vend.</div>
+      <div class="cx">Ex : automatisation d'une ligne, robot de préparation de commandes</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Types d'organisation de la production</div>
+  <div class="card c-b">
+    <div class="ci">🏭</div>
+    <div>
+      <div class="cn">En série</div>
+      <div class="cd">Grande quantité de produits <strong>identiques</strong>. Économies d'échelle maximales.</div>
+    </div>
+  </div>
+  <div class="card c-b">
+    <div class="ci">📋</div>
+    <div>
+      <div class="cn">À la commande</div>
+      <div class="cd">Production déclenchée uniquement <strong>sur demande du client</strong>. Personnalisation possible.</div>
+    </div>
+  </div>
+  <div class="card c-b">
+    <div class="ci">🔄</div>
+    <div>
+      <div class="cn">En continu</div>
+      <div class="cd"><strong>Flux ininterrompu</strong> 24h/24 (chimie, pétrole, acier). Arrêt très coûteux.</div>
+    </div>
+  </div>
+
+  <div class="card c-t">
+    <div class="ci">📊</div>
+    <div>
+      <div class="cn">Productivité</div>
+      <div class="cd">Rapport entre la <strong>quantité produite</strong> et les ressources utilisées (travail, capital). Productivité élevée = plus de production avec les mêmes ressources.</div>
+    </div>
+  </div>
+
+  <div class="card c-t">
+    <div class="ci">🔀</div>
+    <div>
+      <div class="cn">Flexibilité</div>
+      <div class="cd">Capacité à s'adapter rapidement aux variations de la demande (volume ou nature des commandes).</div>
+    </div>
+  </div>
+
+  <div class="piege">
+    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
+    <div class="piege-t"><strong>Piège bac :</strong> Toujours qualifier les acteurs d'un processus — <strong>interne</strong> (service de l'entreprise) vs <strong>externe</strong> (fournisseur, client, prestataire). Exigé dans les corrigés officiels.</div>
+  </div>
+</div>
+
+<!-- COL 2 — Supply chain + Flux + Qualité -->
+<div class="col col-w">
+  <div class="col-lbl lbl-w">② Logistique, flux et qualité</div>
+
+  <div class="card c-b">
+    <div class="ci">🔗</div>
+    <div>
+      <div class="cn">Supply chain (chaîne logistique)</div>
+      <div class="cd">Ensemble des acteurs et flux — fournisseurs → production → distribution → client final — qui participent à la création et livraison du produit. Performance mesurée en <strong>délais, coûts et qualité</strong>.</div>
+    </div>
+  </div>
+
   <div class="flux-split">
     <div class="flux-box" style="background:#cce2f8;">
       <div class="flux-icon">📦</div>
       <div class="flux-name" style="color:#1a4f82;">Flux Poussés</div>
-      <div class="flux-list" style="color:#2a4060;">✔ Produire à l'avance<br>✔ Stock constitué<br>✔ Planification sur prévisions<br>✘ Risque d'invendus</div>
-      <div class="flux-ex" style="color:#5a7a9a;">Ex : automobile, agroalimentaire</div>
+      <div class="flux-list" style="color:#2a4060;">✔ Production anticipée<br>✔ Stock constitué<br>✘ Risque d'invendus</div>
+      <div class="flux-ex" style="color:#5a7a9a;">Ex : grande distribution (Leclerc)</div>
     </div>
     <div style="width:2px; background:#fffdf8;"></div>
     <div class="flux-box" style="background:#bce8cd;">
       <div class="flux-icon">🎯</div>
       <div class="flux-name" style="color:#1a5c35;">Flux Tendus</div>
-      <div class="flux-list" style="color:#1a4028;">✔ Produire à la commande<br>✔ Zéro stock<br>✔ Réactivité maximale<br>✘ Exige fournisseurs fiables</div>
-      <div class="flux-ex" style="color:#2d7a4f;">Ex : Toyota, artisan sur mesure</div>
+      <div class="flux-list" style="color:#1a4028;">✔ Sur commande uniquement<br>✔ Zéro stock<br>✘ Exige fournisseurs fiables</div>
+      <div class="flux-ex" style="color:#2d7a4f;">Ex : Toyota, Amazon Prime</div>
     </div>
   </div>
 
-  <div class="card c-t">
-    <div class="ci">⚡</div>
+  <div style="display:flex; gap:7px; margin-bottom:10px;">
+    <div style="flex:1; background:#e8f3ff; border-radius:9px; padding:9px 11px;">
+      <div style="font-size:9.5px; font-weight:800; color:#1a4f82; margin-bottom:3px;">🚛 Flux physiques</div>
+      <div style="font-size:9px; font-weight:600; color:#2c2920; line-height:1.5;">Déplacement des matières, produits en cours, produits finis.</div>
+    </div>
+    <div style="flex:1; background:#fef8e2; border-radius:9px; padding:9px 11px;">
+      <div style="font-size:9.5px; font-weight:800; color:#946e00; margin-bottom:3px;">📡 Flux d'informations</div>
+      <div style="font-size:9px; font-weight:600; color:#2c2920; line-height:1.5;">Commandes, bons de livraison, factures entre acteurs.</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Qualité</div>
+
+  <div class="card c-g">
+    <div class="ci">✅</div>
     <div>
-      <div class="cn">Lean Management</div>
-      <div class="cd">Éliminer tout <strong>gaspillage</strong> pour maximiser la valeur avec un minimum de ressources. Lié aux flux tendus. Origine Toyota.</div>
+      <div class="cn">Qualité</div>
+      <div class="cd">Conformité du produit ou service aux <strong>attentes du client</strong> et aux normes définies (normes ISO, labels).</div>
     </div>
   </div>
 
-  <div class="card c-b">
-    <div class="ci">📐</div>
+  <div class="card c-g">
+    <div class="ci">🔁</div>
     <div>
-      <div class="cn">Diagramme de flux / processus</div>
-      <div class="cd">Représentation visuelle d'un processus. Savoir <strong>lire et commenter</strong> : identifier les étapes, acteurs (internes/externes), flux d'information et de matières.</div>
+      <div class="cn">Démarche qualité</div>
+      <div class="cd">Ensemble d'actions <strong>continues</strong> visant à améliorer la qualité des produits et des processus. Implique tous les acteurs de l'organisation.</div>
     </div>
   </div>
 
-  <div class="piege">
-    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
-    <div class="piege-t"><strong>Piège bac :</strong> Toujours qualifier les acteurs <strong>interne</strong> (service de l'entreprise) vs <strong>externe</strong> (fournisseur, client). La qualification est exigée dans les corrigés officiels.</div>
+  <div class="card c-g">
+    <div class="ci">🇯🇵</div>
+    <div>
+      <div class="cn">Kaizen</div>
+      <div class="cd">Philosophie japonaise d'<strong>amélioration continue par petites étapes</strong>, impliquant l'ensemble des acteurs (du dirigeant à l'opérateur). <em>Kaizen = "changement pour le mieux".</em></div>
+    </div>
+  </div>
+
+  <div class="sec-t">PDCA — Roue de Deming</div>
+  <div class="pdca-row">
+    <div class="pdca-step" style="background:#cce2f8;">
+      <div class="pdca-letter" style="color:#1a4f82;">P</div>
+      <div class="pdca-name" style="color:#1a4f82;">Plan</div>
+      <div class="pdca-desc" style="color:#2a4060;">Identifier le problème et planifier</div>
+    </div>
+    <div class="pdca-step" style="background:#bce8cd;">
+      <div class="pdca-letter" style="color:#1a5c35;">D</div>
+      <div class="pdca-name" style="color:#1a5c35;">Do</div>
+      <div class="pdca-desc" style="color:#1a4028;">Mettre en œuvre les actions</div>
+    </div>
+    <div class="pdca-step" style="background:#fde8a0;">
+      <div class="pdca-letter" style="color:#946e00;">C</div>
+      <div class="pdca-name" style="color:#946e00;">Check</div>
+      <div class="pdca-desc" style="color:#7a5800;">Vérifier les résultats</div>
+    </div>
+    <div class="pdca-step" style="background:#f9d0d9;">
+      <div class="pdca-letter" style="color:#b5415a;">A</div>
+      <div class="pdca-name" style="color:#b5415a;">Act</div>
+      <div class="pdca-desc" style="color:#7a2038;">Standardiser si succès / recommencer si échec</div>
+    </div>
   </div>
 </div>
 
-<!-- COL 2 — Coûts -->
-<div class="col col-w">
-  <div class="col-lbl lbl-w">② Coûts de production</div>
+<!-- COL 3 — Coûts + PLM -->
+<div class="col col-j">
+  <div class="col-lbl lbl-j">③ Contrôle des coûts</div>
 
-  <div class="card c-b">
+  <div class="card c-j">
     <div class="ci">📊</div>
     <div>
-      <div class="cn">Coût complet</div>
-      <div class="cd">Totalité des charges liées à la production. Permet de calculer le <strong>coût de revient</strong> et de fixer un prix rentable.</div>
+      <div class="cn">Coût complet (coût de revient)</div>
+      <div class="cd">Somme de <strong>toutes les charges</strong> affectées à un produit : charges directes (directement liées au produit) + charges indirectes (communes, réparties par clé d'allocation).</div>
     </div>
-  </div>
-
-  <div class="charges-split">
-    <div class="charge-box" style="background:#cce2f8;">
-      <div class="charge-icon">🔩</div>
-      <div class="charge-name">Charges directes</div>
-      <div class="charge-desc">Imputables directement à un produit sans calcul intermédiaire.</div>
-      <div class="charge-ex">Ex : matières premières, main-d'œuvre directe</div>
-    </div>
-    <div class="plus-sign">+</div>
-    <div class="charge-box" style="background:#aaceee;">
-      <div class="charge-icon">🏢</div>
-      <div class="charge-name">Charges indirectes</div>
-      <div class="charge-desc">Communes à plusieurs produits. Réparties via une clé de répartition.</div>
-      <div class="charge-ex">Ex : loyer, électricité, amortissements</div>
-    </div>
-  </div>
-  <div class="charge-total">
-    <div class="charge-total-t">= Coût de revient total</div>
   </div>
 
   <div class="formule-box">
-    <div class="formule-t">Les 3 formules à retenir</div>
-    <div class="formule-row">Marge = Prix de vente − Coût de revient</div>
-    <div class="formule-row">Taux de marge = Marge / Coût de revient × 100</div>
-    <div class="formule-row">Taux de marque = Marge / Prix de vente × 100</div>
+    <div class="formule-t">Formule — Coût complet</div>
+    <div class="formule-row">Coût complet = Charges directes + Charges indirectes affectées</div>
   </div>
 
-  <div class="card c-t">
+  <div class="card c-j">
+    <div class="ci">🎯</div>
+    <div>
+      <div class="cn">Coût spécifique</div>
+      <div class="cd">Ne retient que les <strong>charges variables + charges fixes spécifiques</strong> directement liées à un produit ou activité. Utilisé pour les décisions d'abandon de produit.</div>
+    </div>
+  </div>
+
+  <div class="card c-j">
+    <div class="ci">📈</div>
+    <div>
+      <div class="cn">Seuil de rentabilité</div>
+      <div class="cd">Niveau de chiffre d'affaires à partir duquel l'entreprise commence à réaliser un <strong>bénéfice</strong>. En dessous, elle est en perte.</div>
+    </div>
+  </div>
+
+  <div class="formule-box">
+    <div class="formule-t">Formule — Seuil de rentabilité</div>
+    <div class="formule-row">Seuil de rentabilité = Charges fixes ÷ Taux de marge sur coûts variables</div>
+    <div class="formule-row" style="margin-top:5px;">Taux de marge/CV = (CA − Charges variables) ÷ CA</div>
+  </div>
+
+  <div class="card c-o">
     <div class="ci">🔄</div>
     <div>
-      <div class="cn">Flexibilité de production</div>
-      <div class="cd">Capacité à adapter rapidement volume et nature de la production aux variations de la demande. Lié aux flux tendus + organisation souple (Ch.6).</div>
+      <div class="cn">PLM — Product Lifecycle Management</div>
+      <div class="cd">Gestion du <strong>cycle de vie d'un produit</strong>, de sa conception à son retrait du marché. Outil de pilotage de l'innovation produit.</div>
     </div>
-  </div>
-
-  <div class="piege">
-    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
-    <div class="piege-t"><strong>Coût complet = ponctuel (1/3 sessions)</strong> mais discriminant quand il tombe. Bien distinguer charges directes / indirectes et appliquer les 3 formules.</div>
-  </div>
-</div>
-
-<!-- COL 3 — RSE -->
-<div class="col col-g">
-  <div class="col-lbl lbl-g">③ RSE — 2/3 sessions ⭐ en hausse</div>
-
-  <div class="card c-g">
-    <div class="ci">🌱</div>
-    <div>
-      <div class="cn">RSE — Responsabilité Sociétale des Entreprises</div>
-      <div class="cd">Intégrer volontairement les impacts <strong>sociaux</strong> et <strong>environnementaux</strong> dans la stratégie et les opérations.<br>≠ simple communication verte — un vrai choix stratégique.</div>
-    </div>
-  </div>
-
-  <div class="sec-t">Les 3 dimensions</div>
-  <div class="rse-dim"><span style="font-size:20px;">🌍</span><div><div class="rse-dim-name">Environnementale</div><div class="rse-dim-desc">Réduire l'empreinte carbone, gérer les déchets, économiser les ressources naturelles.</div></div></div>
-  <div class="rse-dim"><span style="font-size:20px;">👥</span><div><div class="rse-dim-name">Sociale</div><div class="rse-dim-desc">QVT, égalité F/H, insertion handicap, conditions de travail des fournisseurs.</div></div></div>
-  <div class="rse-dim" style="margin-bottom:0;"><span style="font-size:20px;">⚖️</span><div><div class="rse-dim-name">Économique (gouvernance)</div><div class="rse-dim-desc">Commerce équitable, ancrage local, pratiques loyales avec partenaires.</div></div></div>
-
-  <div class="sec-t">RSE → Avantage concurrentiel</div>
-  <div style="background:#fffdf8; border-radius:9px; padding:11px 13px; border: 1px solid rgba(0,0,0,.07); margin-bottom:10px;">
-    <div style="font-size:9.5px; font-weight:700; color:#1e1c18; line-height:1.7;">
-      ✔ Fidélisation des clients engagés (valeur perçue +)<br>
-      ✔ Attractivité pour les talents (marque employeur)<br>
-      ✔ Accès aux financements verts (green bonds)<br>
-      ✔ Anticipation des réglementations futures
-    </div>
-  </div>
-
-  <div class="sec-t">Exemples à citer au bac</div>
-  <div class="pills">
-    <div class="pill">🥛 Danone</div>
-    <div class="pill">🍫 Alter Eco</div>
-    <div class="pill">🚗 Tesla</div>
-    <div class="pill">🥗 Phénix</div>
-    <div class="pill">👗 Vinted</div>
   </div>
 
   <div class="piege">
     <div style="font-size:16px; flex-shrink:0;">⭐</div>
-    <div class="piege-t"><strong>Bac :</strong> RSE doit toujours être reliée à la <strong>performance</strong>. Dire "c'est bien pour la planète" sans lien à un avantage concurrentiel = réponse incomplète.</div>
+    <div class="piege-t"><strong>BAC 2022 (Caraïbes Fumés) :</strong> Seuil de rentabilité au calcul. Bien retenir les deux formules et savoir les appliquer. BAC 2023 (Ankama) : coût de revient avec charges directes/indirectes.</div>
   </div>
 </div>
 
@@ -274,17 +330,17 @@ body{padding-top:72px!important}
   <table class="bt">
     <thead><tr><th style="width:22%">Notion clé</th><th style="width:17%">Importance au Bac</th><th>Conseil correcteur</th></tr></thead>
     <tbody>
-      <tr><td>⚙️ Processus de production</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Lecture schéma</span> Savoir lire un diagramme, identifier chaque acteur et le qualifier interne/externe. La qualification est exigée dans les corrigés. Ne pas juste "décrire les étapes".</td></tr>
-      <tr><td>📦 Flux poussés ≠ flux tendus</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Illustration cas</span> Illustrer avec l'entreprise du sujet. Associer flux tendus → lean management → réactivité. Souvent demandé en contexte sectoriel.</td></tr>
-      <tr><td>🌱 RSE</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Lien performance</span> Toujours relier RSE à un avantage concurrentiel (image, fidélisation, recrutement, financement). Préparez 2 exemples d'entreprises engagées.</td></tr>
-      <tr><td>📊 Coût complet / marge</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Ponctuel 1/3</span> Si tombe : bien distinguer charges directes/indirectes. Appliquer les 3 formules (marge / taux de marge / taux de marque). Discriminant quand présent.</td></tr>
+      <tr><td>⚙️ Processus de production</td><td><span class="st">★★★★</span><span class="se">★</span></td><td><span class="lt">Lecture schéma</span> Savoir lire un diagramme, identifier chaque acteur et le qualifier interne/externe. Tombé en 2024 (Topschuss) et 2023 (Ankama). La qualification est exigée dans les corrigés.</td></tr>
+      <tr><td>📦 Flux poussés ≠ flux tendus</td><td><span class="st">★★★★</span><span class="se">★</span></td><td><span class="lt">Illustration cas</span> Illustrer avec l'entreprise du sujet. Bien distinguer les deux logiques (anticipation vs réaction). Associer flux tendus à la réactivité et au besoin de fournisseurs fiables.</td></tr>
+      <tr><td>📊 Coûts — complet, spécifique, seuil</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Calcul + interprétation</span> Mémoriser les deux formules du seuil de rentabilité. Distinguer charges directes/indirectes. Un calcul sans commentaire = points perdus.</td></tr>
+      <tr><td>✅ Qualité — Kaizen / PDCA</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Connaître les 4 étapes</span> PDCA = Plan, Do, Check, Act. Kaizen = amélioration continue par petites étapes. Toujours relier à la performance de l'organisation.</td></tr>
     </tbody>
   </table>
 </div>
 
 <div class="ft">
   <div class="ft-brand">Scholar Lock-In · SDGN Terminale STMG · Chapitres 3 &amp; 4</div>
-  <div class="ft-note">🔵 Bleu = Production &amp; Coûts</div>
+  <div class="ft-note">🔵 Bleu — Organisation de la production</div>
 </div>
 
 <div class="sli-chapnav" style="background:#f0ede6;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e0dbd2;">
@@ -312,9 +368,7 @@ body{padding-top:72px!important}
 <!-- OVERLAY -->
 <div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
   style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
-
   <div style="background:#fffdf8; border-radius:20px; width:700px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
-
     <div style="background:#1a5c82; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
       <div>
         <div style="font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitres 3 &amp; 4</div>
@@ -323,57 +377,49 @@ body{padding-top:72px!important}
       <button onclick="document.getElementById('memo-overlay').style.display='none'"
         style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
     </div>
-
     <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
 
-      <!-- Flux poussés vs tendus -->
+      <!-- Flux -->
       <div>
         <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1e1c18; margin-bottom:8px;">⚙️ Flux poussés vs Flux tendus</div>
         <div style="display:flex; gap:0; border-radius:12px; overflow:hidden;">
           <div style="flex:1; background:#cce2f8; padding:13px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:5px;">📦</div>
+            <div style="font-size:22px; margin-bottom:4px;">📦</div>
             <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1a4f82; margin-bottom:4px;">Flux Poussés</div>
-            <div style="font-size:9px; color:#2a4060; font-weight:700; line-height:1.5;">Produire à l'avance · Stock · Prévisions</div>
+            <div style="font-size:9px; color:#2a4060; font-weight:700; line-height:1.5;">Produire à l'avance · Stock · Prévisions<br><em>Ex : grande distribution</em></div>
           </div>
           <div style="width:3px; background:#fffdf8;"></div>
           <div style="flex:1; background:#bce8cd; padding:13px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:5px;">🎯</div>
+            <div style="font-size:22px; margin-bottom:4px;">🎯</div>
             <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1a5c35; margin-bottom:4px;">Flux Tendus</div>
-            <div style="font-size:9px; color:#1a4028; font-weight:700; line-height:1.5;">À la commande · Zéro stock · Réactivité</div>
+            <div style="font-size:9px; color:#1a4028; font-weight:700; line-height:1.5;">Sur commande · Zéro stock · Réactivité<br><em>Ex : Toyota, Amazon Prime</em></div>
           </div>
         </div>
-        <div style="background:#c8f0ec; border-radius:8px; padding:8px 12px; margin-top:6px; display:flex; gap:8px; align-items:center;">
-          <span style="font-size:16px;">⚡</span>
-          <span style="font-size:9.5px; font-weight:700; color:#1e1c18;">Lean Management — éliminer les gaspillages · Origine Toyota</span>
+      </div>
+
+      <!-- PDCA -->
+      <div style="background:#e8f3ff; border-radius:12px; padding:13px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a4f82; margin-bottom:8px;">🔁 PDCA — Roue de Deming</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:7px;">
+          <div style="background:#cce2f8; border-radius:9px; padding:9px; text-align:center;"><div style="font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#1a4f82;">P</div><div style="font-size:9px; font-weight:800; color:#1e1c18;">Plan</div><div style="font-size:8px; color:#2a4060; font-weight:600; margin-top:2px;">Identifier et planifier</div></div>
+          <div style="background:#bce8cd; border-radius:9px; padding:9px; text-align:center;"><div style="font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#1a5c35;">D</div><div style="font-size:9px; font-weight:800; color:#1e1c18;">Do</div><div style="font-size:8px; color:#1a4028; font-weight:600; margin-top:2px;">Mettre en œuvre</div></div>
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#946e00;">C</div><div style="font-size:9px; font-weight:800; color:#1e1c18;">Check</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">Vérifier les résultats</div></div>
+          <div style="background:#f9d0d9; border-radius:9px; padding:9px; text-align:center;"><div style="font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#b5415a;">A</div><div style="font-size:9px; font-weight:800; color:#1e1c18;">Act</div><div style="font-size:8px; color:#7a2038; font-weight:600; margin-top:2px;">Standardiser ou recommencer</div></div>
         </div>
       </div>
 
       <!-- Coûts -->
-      <div style="background:#e8f3ff; border-radius:12px; padding:13px 16px;">
-        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a4f82; margin-bottom:8px;">📊 Coûts — formules clés</div>
+      <div style="background:#fef8e2; border-radius:12px; padding:13px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#946e00; margin-bottom:8px;">📊 Formules à retenir</div>
         <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
-          <div style="flex:1; background:#cce2f8; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1a4f82;">🔩 Charges directes<br><span style="font-size:8px; color:#2a4060;">Matières, MO directe</span></div>
+          <div style="flex:1; background:#cce2f8; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1a4f82;">Charges directes</div>
           <div style="font-size:18px; color:#7a7160; font-weight:900;">+</div>
-          <div style="flex:1; background:#aaceee; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1a4f82;">🏢 Charges indirectes<br><span style="font-size:8px; color:#2a4060;">Loyer, électricité</span></div>
+          <div style="flex:1; background:#aaceee; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1a4f82;">Charges indirectes</div>
           <div style="font-size:18px; color:#7a7160; font-weight:900;">=</div>
-          <div style="flex:1; background:#1a4f82; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:900; color:#fff;">Coût de revient</div>
+          <div style="flex:1; background:#1a4f82; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:900; color:#fff;">Coût complet</div>
         </div>
-        <div style="display:flex; gap:6px;">
-          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:9px; font-weight:700; color:#7a5800; text-align:center;">Marge = PV − CR</div>
-          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:9px; font-weight:700; color:#7a5800; text-align:center;">Taux marge = M/CR×100</div>
-          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:9px; font-weight:700; color:#7a5800; text-align:center;">Taux marque = M/PV×100</div>
-        </div>
-      </div>
-
-      <!-- RSE -->
-      <div style="background:#eaf8ef; border-radius:12px; padding:13px 16px;">
-        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a5c35; margin-bottom:8px;">🌱 RSE — 3 dimensions</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin-bottom:8px;">
-          <div style="background:#bce8cd; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">🌍</div><div style="font-size:9.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Environnementale</div><div style="font-size:8px; color:#1a5c35; font-weight:600; margin-top:2px;">Carbone, déchets, ressources</div></div>
-          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">👥</div><div style="font-size:9.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Sociale</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">QVT, égalité, handicap</div></div>
-          <div style="background:#cce2f8; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">⚖️</div><div style="font-size:9.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Économique</div><div style="font-size:8px; color:#1a4f82; font-weight:600; margin-top:2px;">Commerce équitable, local</div></div>
-        </div>
-        <div style="background:#1e1c18; border-radius:8px; padding:7px 11px; font-size:9px; font-weight:700; color:#fffdf8;">⭐ Toujours relier RSE à un <span style="color:#f5c842;">avantage concurrentiel</span> — image, recrutement, fidélisation, financement.</div>
+        <div style="background:rgba(255,255,255,.7); border-radius:7px; padding:7px 10px; font-family:monospace; font-size:10px; font-weight:700; color:#7a5800; margin-bottom:5px;">Seuil de rentabilité = Charges fixes ÷ Taux de marge sur coûts variables</div>
+        <div style="background:rgba(255,255,255,.7); border-radius:7px; padding:7px 10px; font-family:monospace; font-size:10px; font-weight:700; color:#7a5800;">Taux de marge/CV = (CA − Charges variables) ÷ CA</div>
       </div>
 
     </div>

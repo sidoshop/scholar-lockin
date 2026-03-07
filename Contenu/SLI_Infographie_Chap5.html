@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ch.5 — Scholar Lock-In</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -20,16 +21,16 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .col-w { background: #fffdf8; }
 .col-j { background: #fef8e2; }
 .col-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 13px; padding-bottom: 8px; border-bottom: 2px solid #aaceee; color: #2a69a8; }
-.lbl-j { color: #946e00; border-color: #f5dc8a; }
 .lbl-w { color: #5a5448; border-color: #e0dbd2; }
+.lbl-j { color: #946e00; border-color: #f5dc8a; }
 .sec-t { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #1e1c18; margin: 13px 0 8px; }
 .card { border-radius: 10px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; }
 .c-b { background: #cce2f8; }
-.c-j { background: #fde8a0; }
 .c-g { background: #bce8cd; }
-.c-r { background: #f9d0d9; }
-.c-o { background: #fce0b0; }
+.c-j { background: #fde8a0; }
 .c-t { background: #c8f0ec; }
+.c-p { background: #ead8f5; }
+.c-o { background: #fce0b0; }
 .ci { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
 .cn { font-family: 'Nunito', sans-serif; font-size: 11.5px; font-weight: 900; color: #1e1c18; margin-bottom: 3px; }
 .cd { font-size: 9.5px; color: #5a5448; line-height: 1.55; font-weight: 600; }
@@ -37,18 +38,10 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .piege { background: #1e1c18; border-radius: 10px; padding: 10px 13px; display: flex; gap: 9px; align-items: flex-start; margin-top: 12px; }
 .piege-t { font-size: 9.5px; font-weight: 700; color: #fffdf8; line-height: 1.6; }
 .piege-t strong { color: #f5c842; }
-.tool-row { background: #cce2f8; border-radius: 9px; padding: 9px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
-.tool-name { font-size: 10.5px; font-weight: 800; color: #1e1c18; }
-.tool-desc { font-size: 9px; color: #1a4f82; font-weight: 600; margin-top: 2px; line-height: 1.4; }
-.flux-steps { background: #e8f3ff; border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
-.flux-t { font-size: 10px; font-weight: 800; color: #1a4f82; margin-bottom: 9px; }
-.flux-step { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 9.5px; font-weight: 700; color: #1e1c18; line-height: 1.5; }
-.flux-step:last-child { margin-bottom: 0; }
-.flux-num { width: 20px; height: 20px; border-radius: 50%; background: #2a69a8; color: #fff; font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Nunito', sans-serif; }
-.impact-row { border-radius: 8px; padding: 8px 11px; display: flex; align-items: center; gap: 9px; margin-bottom: 5px; }
-.impact-name { font-size: 9.5px; font-weight: 700; color: #1e1c18; line-height: 1.4; }
-.pills { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
-.pill { border-radius: 20px; padding: 4px 10px; font-size: 9.5px; font-weight: 700; background: #cce2f8; color: #1a4f82; }
+.si-box { background: #1a4f82; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+.si-box-t { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #fffdf8; margin-bottom: 6px; }
+.si-box-d { font-size: 9.5px; font-weight: 600; color: rgba(255,255,255,.8); line-height: 1.6; }
+.si-box-q { font-size: 9px; font-style: italic; color: #fde8a0; margin-top: 6px; font-weight: 600; }
 .bac-s { background: #2c2920; padding: 16px 24px; }
 .bac-h { font-family: 'Nunito', sans-serif; font-size: 10.5px; font-weight: 900; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
 .bt { width: 100%; border-collapse: collapse; }
@@ -59,7 +52,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: fle
 .se { color: rgba(255,255,255,.2); }
 .lt { display: inline-block; background: rgba(255,255,255,.13); border-radius: 5px; padding: 1px 7px; font-size: 8.5px; color: #e8e2d6; font-weight: 700; white-space: nowrap; margin-right: 4px; }
 .ft { background: #f0ede6; padding: 9px 24px; display: flex; align-items: center; justify-content: space-between; }
-.ft-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 11px; color: #1a4f82; }
+.ft-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 11px; color: #2a69a8; }
 .ft-note { font-size: 9px; color: #a09880; font-weight: 600; }
 </style>
 </head>
@@ -74,19 +67,18 @@ body{padding-top:72px!important}
 .sli-nl{font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap}
 .sli-nl:hover{background:rgba(255,255,255,.1);color:#fffdf8}
 .sli-nl.on{background:rgba(255,255,255,.1);color:#fffdf8}
-.sli-nl.soon{opacity:.4;pointer-events:none}
 @media print{.sli-nav,.sli-chapnav{display:none!important}body{padding-top:24px!important}}
 </style>
 <nav class="sli-nav">
-  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <a href="../sdgm.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
     <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
     <a href="SLI_Infographie_Chap1.html" class="sli-nl on">📖 Chapitres</a>
-    <a class="sli-nl soon">🃏 Flash cards</a>
-    <a class="sli-nl soon">✅ Méthode</a>
-    <a class="sli-nl soon">🎯 Annales</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
   </div>
-  <a href="../index.html" class="sli-nl">← Accueil</a>
+  <a href="../sdgm.html" class="sli-nl">← Accueil</a>
 </nav>
 <div class="page">
 
@@ -102,105 +94,159 @@ body{padding-top:72px!important}
   <a href="SLI_Infographie_Chap6.html" style="font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#5a5448;text-decoration:none;padding:8px 16px;border-radius:8px;background:#fff;border:1.5px solid #ddd8cf;">Chapitre 6 →</a>
 </div>
 
-<div class="hd" style="background:#1a4f82;">
+<div class="hd" style="background:#2a69a8;">
   <div class="hd-badge">Scholar Lock-In · SDGN Terminale STMG · Chapitre 5</div>
-  <h1>Chapitre 5 — Le <em>numérique</em> dans la production</h1>
-  <div class="hd-sub">Un dossier numérique tombe dans 2 sessions sur 3. Savoir lire un diagramme de flux et relier chaque outil numérique à un impact concret sur l'organisation.</div>
+  <h1>Chapitre 5 — Les transformations <em>numériques</em> au service de la production</h1>
+  <div class="hd-sub">Le SI est la notion-mère du chapitre — tous les outils numériques s'y rattachent. En 2024, le robot Autostore (Topschuss) mobilise tout ce chapitre. Savoir évaluer l'impact sur la performance globale.</div>
 </div>
 
 <div class="body">
 
-<!-- COL 1 — Transformation numérique + outils -->
+<!-- COL 1 — SI + Diagramme + Dématérialisation + Automatisation + Workflow -->
 <div class="col col-b">
-  <div class="col-lbl">① Transformation numérique</div>
+  <div class="col-lbl">① Le Système d'Information — notion-mère</div>
+
+  <div class="si-box">
+    <div class="si-box-t">🖥️ Système d'Information (SI)</div>
+    <div class="si-box-d">Ensemble organisé de ressources (humaines, matérielles, logicielles, données) qui <strong>collecte, stocke, traite et diffuse</strong> l'information au sein de l'organisation et avec ses partenaires.<br><br>C'est le cadre conceptuel qui regroupe tous les outils numériques du chapitre.</div>
+    <div class="si-box-q">Question fréquente au Bac : "En quoi le SI de [entreprise] contribue-t-il à sa performance ?"</div>
+  </div>
 
   <div class="card c-b">
-    <div class="ci">🔄</div>
+    <div class="ci">📐</div>
     <div>
-      <div class="cn">Transformation numérique</div>
-      <div class="cd">Intégrer les outils numériques dans <strong>tous les processus</strong> pour gagner en efficacité, réactivité et personnalisation.<br>≠ simple informatisation — c'est un changement de modèle organisationnel.</div>
+      <div class="cn">Diagramme des flux</div>
+      <div class="cd">Représentation schématique des <strong>flux d'informations</strong> entre les acteurs d'un système. Permet d'identifier les émetteurs, récepteurs et la nature des flux échangés.</div>
+      <div class="cx">Compétence directement testée : savoir lire et compléter un diagramme</div>
     </div>
   </div>
 
-  <div class="sec-t">Les outils clés à connaître</div>
-  <div class="tool-row"><span style="font-size:19px;">🤖</span><div><div class="tool-name">Automatisation</div><div class="tool-desc">Remplace les tâches répétitives. Réduit les coûts, libère les salariés pour des tâches à plus forte valeur ajoutée.</div></div></div>
-  <div class="tool-row"><span style="font-size:19px;">☁️</span><div><div class="tool-name">Cloud computing</div><div class="tool-desc">Stocker et accéder aux données à distance via internet. Flexibilité + réduction des coûts d'infrastructure.</div></div></div>
-  <div class="tool-row"><span style="font-size:19px;">📊</span><div><div class="tool-name">Big Data</div><div class="tool-desc">Collecte et exploitation de masses de données clients pour personnaliser l'offre et anticiper les comportements.</div></div></div>
-  <div class="tool-row"><span style="font-size:19px;">🧠</span><div><div class="tool-name">Intelligence artificielle</div><div class="tool-desc">Algorithmes d'apprentissage : prévisions, recommandations, chatbots, détection d'anomalies.</div></div></div>
-  <div class="tool-row" style="margin-bottom:0;"><span style="font-size:19px;">🔗</span><div><div class="tool-name">ERP / PGI</div><div class="tool-desc">Système d'information intégré connectant tous les services (achats, production, RH, finance) en temps réel.</div></div></div>
+  <div class="sec-t">Dématérialisation et automatisation</div>
+
+  <div class="card c-b">
+    <div class="ci">📄</div>
+    <div>
+      <div class="cn">Dématérialisation</div>
+      <div class="cd">Remplacement des documents et processus <strong>physiques (papier)</strong> par des supports numériques.</div>
+      <div class="cx">Ex : factures électroniques, bulletins de paie dématérialisés</div>
+    </div>
+  </div>
+
+  <div class="card c-b">
+    <div class="ci">🤖</div>
+    <div>
+      <div class="cn">Automatisation</div>
+      <div class="cd">Exécution de tâches <strong>répétitives</strong> par des machines ou logiciels, sans intervention humaine. Libère les collaborateurs pour des tâches à plus forte valeur ajoutée.</div>
+      <div class="cx">Ex : robot Autostore (Topschuss) pour la préparation de commandes</div>
+    </div>
+  </div>
+
+  <div class="card c-b">
+    <div class="ci">🔀</div>
+    <div>
+      <div class="cn">Workflow</div>
+      <div class="cd">Flux de travail numérique qui <strong>organise et automatise</strong> la circulation des informations entre les étapes d'un processus.</div>
+      <div class="cx">Ex : validation commande → préparation → bon de livraison (automatique)</div>
+    </div>
+  </div>
+
+  <div class="piege">
+    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
+    <div class="piege-t"><strong>Piège bac :</strong> Décrire le SI sans citer les outils concrets de l'entreprise = réponse incomplète. Le SI inclut PGI, cloud, IoT, workflow. Toujours citer les outils mentionnés dans les documents du sujet.</div>
+  </div>
 </div>
 
-<!-- COL 2 — Diagramme de flux + relation client -->
+<!-- COL 2 — Outils du SI -->
 <div class="col col-w">
-  <div class="col-lbl lbl-w">② Diagramme de flux ⭐ compétence clé</div>
+  <div class="col-lbl lbl-w">② Outils du Système d'Information</div>
 
   <div class="card c-b">
-    <div class="ci">🗺️</div>
+    <div class="ci">🔗</div>
     <div>
-      <div class="cn">Diagramme de flux d'information</div>
-      <div class="cd">Représentation visuelle d'un <strong>processus informatisé</strong> : qui fait quoi, dans quel ordre, quels flux de données entre les acteurs.</div>
+      <div class="cn">PGI / ERP</div>
+      <div class="cd"><strong>Progiciel de Gestion Intégré.</strong> Logiciel unique qui intègre toutes les fonctions de l'entreprise (comptabilité, RH, stocks, ventes, production) dans un système d'information partagé.</div>
+      <div class="cx">Avantage : une seule base de données commune, pas de ressaisie, cohérence des informations</div>
     </div>
   </div>
 
-  <div class="flux-steps">
-    <div class="flux-t">Ce qu'on attend au bac sur un diagramme</div>
-    <div class="flux-step"><div class="flux-num">1</div><div>Identifier les <strong>acteurs</strong> (internes vs externes)</div></div>
-    <div class="flux-step"><div class="flux-num">2</div><div>Nommer les <strong>flux échangés</strong> (commande, facture, bon de livraison…)</div></div>
-    <div class="flux-step"><div class="flux-num">3</div><div>Préciser la <strong>direction des flux</strong> (qui émet, qui reçoit)</div></div>
-    <div class="flux-step"><div class="flux-num">4</div><div>Expliquer l'<strong>intérêt pour l'organisation</strong> (efficacité, traçabilité, réactivité…)</div></div>
-  </div>
-
-  <div class="sec-t">Relation client numérique</div>
   <div class="card c-b">
-    <div class="ci" style="font-size:18px;">💬</div>
+    <div class="ci">☁️</div>
     <div>
-      <div class="cn">CRM (Gestion relation client)</div>
-      <div class="cd">Logiciel qui centralise toutes les données clients pour personnaliser la relation et anticiper les besoins.</div>
+      <div class="cn">Cloud computing</div>
+      <div class="cd">Accès à des ressources informatiques (stockage, logiciels, puissance de calcul) via <strong>internet</strong>, sans les héberger localement.</div>
+      <div class="cx">Avantage : flexibilité, réduction des coûts d'infrastructure. Ex : Google Drive, Microsoft 365</div>
     </div>
   </div>
-  <div class="card c-b">
-    <div class="ci" style="font-size:18px;">🛒</div>
+
+  <div class="card c-t">
+    <div class="ci">📡</div>
     <div>
-      <div class="cn">E-commerce</div>
-      <div class="cd">Vente en ligne. Supprime les intermédiaires physiques. Données clients collectées en temps réel.</div>
+      <div class="cn">IoT — Internet of Things (objets connectés)</div>
+      <div class="cd">Objets physiques équipés de capteurs qui <strong>collectent et transmettent des données en temps réel</strong> sans intervention humaine.</div>
+      <div class="cx">Ex : capteurs de température dans une chaîne du froid, géolocalisation d'une flotte de camions</div>
     </div>
   </div>
-  <div class="card c-b">
-    <div class="ci" style="font-size:18px;">📱</div>
+
+  <div class="card c-p">
+    <div class="ci">🧠</div>
     <div>
-      <div class="cn">Réseaux sociaux &amp; chatbots</div>
-      <div class="cd">Communication directe, SAV automatisé, fidélisation communautaire.</div>
+      <div class="cn">Intelligence artificielle (IA)</div>
+      <div class="cd">Traitement automatisé de grandes quantités de données pour <strong>automatiser des décisions</strong>, prévisions ou recommandations.</div>
+      <div class="cx">Ex : algorithme de recommandation produit, détection de fraudes</div>
     </div>
   </div>
-</div>
 
-<!-- COL 3 — Impacts + exemples -->
-<div class="col col-j">
-  <div class="col-lbl lbl-j">③ Impacts de la transformation numérique</div>
-
-  <div class="sec-t" style="margin-top:0;">Sur la production</div>
-  <div class="impact-row" style="background:#fde8a0;"><span style="font-size:17px;">⬆️</span><div class="impact-name">Productivité accrue par l'automatisation des tâches répétitives</div></div>
-  <div class="impact-row" style="background:#fde8a0;"><span style="font-size:17px;">📉</span><div class="impact-name">Réduction des coûts (stocks, erreurs, délais, administration)</div></div>
-  <div class="impact-row" style="background:#fde8a0;"><span style="font-size:17px;">🎯</span><div class="impact-name">Personnalisation de masse grâce aux données clients (Big Data)</div></div>
-  <div class="impact-row" style="background:#fde8a0; margin-bottom:10px;"><span style="font-size:17px;">⚡</span><div class="impact-name">Réactivité accrue face aux variations de la demande</div></div>
-
-  <div class="sec-t">Sur l'emploi et l'organisation</div>
-  <div class="impact-row" style="background:#f9d0d9; margin-bottom:5px;"><span style="font-size:17px;">⚠️</span><div class="impact-name" style="color:#7a2038;">Suppression de certains emplois (caissiers, agents de saisie…)</div></div>
-  <div class="impact-row" style="background:#bce8cd; margin-bottom:5px;"><span style="font-size:17px;">✔️</span><div class="impact-name" style="color:#1a5c35;">Création de nouveaux métiers (data scientist, UX designer…)</div></div>
-  <div class="impact-row" style="background:#fde8a0; margin-bottom:10px;"><span style="font-size:17px;">📚</span><div class="impact-name">Nécessité de former les salariés aux nouveaux outils (lien RH Ch.2)</div></div>
-
-  <div class="sec-t">Exemples à citer au bac</div>
-  <div class="pills">
-    <div class="pill">🛒 Amazon</div>
-    <div class="pill">🚗 Tesla</div>
-    <div class="pill">🏨 Airbnb</div>
-    <div class="pill">🎵 Spotify</div>
-    <div class="pill">🏦 BNP (appli)</div>
+  <div class="card c-g">
+    <div class="ci">🌐</div>
+    <div>
+      <div class="cn">Open data (données ouvertes)</div>
+      <div class="cd">Données <strong>accessibles et réutilisables gratuitement</strong> par tous (données publiques, statistiques officielles). Source de données secondaires pour les études de marché.</div>
+    </div>
   </div>
 
   <div class="piege">
     <div style="font-size:16px; flex-shrink:0;">⭐</div>
-    <div class="piege-t"><strong>Bac :</strong> Ne pas se contenter de "c'est plus rapide". Toujours montrer le <strong>lien entre outil numérique et performance</strong> de l'organisation (coûts, réactivité, satisfaction client).</div>
+    <div class="piege-t"><strong>BAC 2024 (Topschuss) :</strong> robot Autostore = automatisation + IoT. BAC 2022 Remplacement (Agesys) : dossier numérique centré sur le SI. Savoir évaluer l'impact sur la performance globale de l'organisation.</div>
+  </div>
+</div>
+
+<!-- COL 3 — Identité et réputation numériques -->
+<div class="col col-j">
+  <div class="col-lbl lbl-j">③ Identité et réputation numériques</div>
+
+  <div class="card c-j">
+    <div class="ci">🪪</div>
+    <div>
+      <div class="cn">Identité numérique</div>
+      <div class="cd">Ensemble des <strong>traces et représentations</strong> qu'une organisation laisse sur internet : site web, réseaux sociaux, avis clients, mentions dans la presse en ligne.</div>
+    </div>
+  </div>
+
+  <div class="card c-o">
+    <div class="ci">⭐</div>
+    <div>
+      <div class="cn">E-réputation</div>
+      <div class="cd">Image d'une entreprise <strong>perçue et construite en ligne</strong>. Elle peut être positive ou négative, et est difficile à contrôler car alimentée par les avis, commentaires et partages des internautes.</div>
+    </div>
+  </div>
+
+  <div style="background:#fef8e2; border-radius:12px; padding:14px; margin-top:10px; border:1.5px solid #fde8a0;">
+    <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#946e00; margin-bottom:10px;">🔗 Liens entre les notions du SI</div>
+    <div style="font-size:9.5px; font-weight:700; color:#1e1c18; line-height:1.8;">
+      <span style="color:#2a69a8;">SI</span> (cadre) ← regroupe →
+      <span style="color:#2a69a8;">PGI</span> + <span style="color:#2a69a8;">Cloud</span> + <span style="color:#2a69a8;">IoT</span> + <span style="color:#2a69a8;">IA</span><br><br>
+      <span style="color:#946e00;">Dématérialisation</span> + <span style="color:#946e00;">Automatisation</span> + <span style="color:#946e00;">Workflow</span><br>
+      → Amélioration des processus (Ch 3-4)<br><br>
+      <span style="color:#1a7a3c;">Open data</span><br>
+      → Source de données secondaires (Ch 1 — Étude de marché)<br><br>
+      <span style="color:#b5415a;">Identité numérique</span> + <span style="color:#b5415a;">E-réputation</span><br>
+      → Image de marque et relation client
+    </div>
+  </div>
+
+  <div class="piege">
+    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
+    <div class="piege-t"><strong>Distinction clé :</strong> Identité numérique = ce que l'entreprise <em>choisit</em> de montrer en ligne. E-réputation = ce que les autres <em>disent</em> d'elle. L'e-réputation est partiellement hors de contrôle de l'entreprise.</div>
   </div>
 </div>
 
@@ -211,17 +257,17 @@ body{padding-top:72px!important}
   <table class="bt">
     <thead><tr><th style="width:22%">Notion clé</th><th style="width:17%">Importance au Bac</th><th>Conseil correcteur</th></tr></thead>
     <tbody>
-      <tr><td>🗺️ Diagramme de flux</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Compétence procédurale</span> Lire et commenter un schéma de flux. Identifier acteurs internes/externes, flux échangés, direction. Expliquer l'intérêt pour l'organisation — pas juste décrire.</td></tr>
-      <tr><td>🔄 Transformation numérique</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">2/3 sessions</span> Toujours relier l'outil à un impact concret sur l'organisation. Préparez 2 entreprises et leur outil clé (Amazon → automatisation logistique, Spotify → Big Data + algorithme).</td></tr>
-      <tr><td>💬 Relation client numérique</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Lien Ch.1 marketing</span> Mobilisé quand le cas traite de e-commerce, CRM ou réseaux sociaux. Toujours lier à la satisfaction client et à la fidélisation.</td></tr>
-      <tr><td>🤖 Automatisation &amp; emploi</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Ponctuel 1/3</span> Si tombe : traiter les deux faces — suppressions d'emplois ET création de nouveaux métiers ET nécessité de formation (lien Ch.2 RH).</td></tr>
+      <tr><td>🖥️ SI — Système d'Information</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Notion-mère</span> C'est le cadre qui organise tout le chapitre. Savoir expliquer ce qu'est un SI et en quoi il contribue à la performance. Citer les outils concrets du sujet (PGI, cloud, IoT…).</td></tr>
+      <tr><td>🤖 Automatisation / Workflow</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Impact performance</span> Toujours relier à un gain concret : temps, coûts, qualité. Exemple Topschuss 2024 : robot = automatisation de la préparation de commandes → réduction des erreurs.</td></tr>
+      <tr><td>📡 IoT / IA / Cloud</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Identifier + expliquer</span> Savoir identifier l'outil utilisé dans les documents du sujet et expliquer son rôle dans le SI. Ne pas se limiter à la définition — relier à l'activité de l'entreprise.</td></tr>
+      <tr><td>⭐ E-réputation / Identité numérique</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Distinction obligatoire</span> Ne pas confondre les deux notions. L'e-réputation est construite par les parties prenantes externes (avis, commentaires) ; l'identité est pilotée par l'entreprise.</td></tr>
     </tbody>
   </table>
 </div>
 
 <div class="ft">
   <div class="ft-brand">Scholar Lock-In · SDGN Terminale STMG · Chapitre 5</div>
-  <div class="ft-note">🔵 Bleu = Numérique</div>
+  <div class="ft-note">🔵 Bleu — Transformations numériques</div>
 </div>
 
 <div class="sli-chapnav" style="background:#f0ede6;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e0dbd2;">
@@ -241,7 +287,7 @@ body{padding-top:72px!important}
 <!-- BOUTON FLOTTANT -->
 <div style="position:fixed; bottom:28px; right:28px; z-index:100;">
   <button onclick="document.getElementById('memo-overlay').style.display='flex'"
-    style="background:#1a4f82; color:#fff; border:none; border-radius:50px; padding:12px 22px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px rgba(26,79,130,.4); display:flex; align-items:center; gap:8px; letter-spacing:0.5px;">
+    style="background:#2a69a8; color:#fff; border:none; border-radius:50px; padding:12px 22px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px rgba(42,105,168,.4); display:flex; align-items:center; gap:8px; letter-spacing:0.5px;">
     🧠 Carte Mémo
   </button>
 </div>
@@ -249,10 +295,8 @@ body{padding-top:72px!important}
 <!-- OVERLAY -->
 <div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
   style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
-
   <div style="background:#fffdf8; border-radius:20px; width:700px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
-
-    <div style="background:#1a4f82; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
+    <div style="background:#2a69a8; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
       <div>
         <div style="font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitre 5</div>
         <div style="font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#fff;">🧠 Carte de mémorisation</div>
@@ -260,44 +304,39 @@ body{padding-top:72px!important}
       <button onclick="document.getElementById('memo-overlay').style.display='none'"
         style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
     </div>
-
     <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
 
-      <!-- Notion centrale -->
-      <div style="background:#e8f3ff; border-radius:14px; padding:14px 18px; text-align:center;">
-        <div style="font-size:30px; margin-bottom:6px;">🔄</div>
-        <div style="font-family:'Nunito',sans-serif; font-size:14px; font-weight:900; color:#1a4f82; margin-bottom:4px;">Transformation numérique</div>
-        <div style="font-size:10px; font-weight:700; color:#2a4060;">Intégrer le numérique dans tous les processus pour gagner en efficacité, réactivité et personnalisation</div>
+      <!-- SI notion-mère -->
+      <div style="background:#1a4f82; border-radius:12px; padding:13px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#fff; margin-bottom:6px;">🖥️ SI — Système d'Information (notion-mère)</div>
+        <div style="font-size:9.5px; font-weight:600; color:rgba(255,255,255,.85); line-height:1.6;">Ensemble organisé de ressources qui collecte, stocke, traite et diffuse l'information. C'est le cadre qui regroupe tous les outils numériques du chapitre.</div>
       </div>
 
-      <!-- 5 outils -->
-      <div>
-        <div style="font-family:'Nunito',sans-serif; font-size:11.5px; font-weight:900; color:#1e1c18; margin-bottom:8px;">🛠️ Les 5 outils clés</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px;">
-          <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;"><div style="font-size:20px; margin-bottom:4px;">🤖</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Automatisation</div><div style="font-size:8.5px; color:#1a4f82; font-weight:600; margin-top:2px;">Remplace les tâches répétitives</div></div>
-          <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;"><div style="font-size:20px; margin-bottom:4px;">☁️</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Cloud</div><div style="font-size:8.5px; color:#1a4f82; font-weight:600; margin-top:2px;">Données à distance, flexibilité</div></div>
-          <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;"><div style="font-size:20px; margin-bottom:4px;">📊</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Big Data</div><div style="font-size:8.5px; color:#1a4f82; font-weight:600; margin-top:2px;">Personnalisation de masse</div></div>
-          <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;"><div style="font-size:20px; margin-bottom:4px;">🧠</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">IA</div><div style="font-size:8.5px; color:#1a4f82; font-weight:600; margin-top:2px;">Prévisions, recommandations</div></div>
-          <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;"><div style="font-size:20px; margin-bottom:4px;">🔗</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">ERP / PGI</div><div style="font-size:8.5px; color:#1a4f82; font-weight:600; margin-top:2px;">Tous les services connectés</div></div>
-          <div style="background:#fde8a0; border-radius:10px; padding:10px; text-align:center;"><div style="font-size:20px; margin-bottom:4px;">🗺️</div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Diagramme flux</div><div style="font-size:8.5px; color:#7a5800; font-weight:600; margin-top:2px;">⭐ Compétence clé bac</div></div>
+      <!-- Outils du SI -->
+      <div style="background:#e8f3ff; border-radius:12px; padding:13px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a4f82; margin-bottom:8px;">🔧 Outils du SI</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px;">
+          <div style="background:#cce2f8; border-radius:9px; padding:9px; display:flex; gap:8px; align-items:center;"><span style="font-size:18px;">🔗</span><div><div style="font-size:10px; font-weight:800; color:#1e1c18;">PGI / ERP</div><div style="font-size:8px; color:#1a4f82; font-weight:600;">Intègre toutes les fonctions</div></div></div>
+          <div style="background:#cce2f8; border-radius:9px; padding:9px; display:flex; gap:8px; align-items:center;"><span style="font-size:18px;">☁️</span><div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Cloud computing</div><div style="font-size:8px; color:#1a4f82; font-weight:600;">Ressources via internet</div></div></div>
+          <div style="background:#c8f0ec; border-radius:9px; padding:9px; display:flex; gap:8px; align-items:center;"><span style="font-size:18px;">📡</span><div><div style="font-size:10px; font-weight:800; color:#1e1c18;">IoT</div><div style="font-size:8px; color:#1a5c5a; font-weight:600;">Objets connectés en temps réel</div></div></div>
+          <div style="background:#ead8f5; border-radius:9px; padding:9px; display:flex; gap:8px; align-items:center;"><span style="font-size:18px;">🧠</span><div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Intelligence artificielle</div><div style="font-size:8px; color:#5030a0; font-weight:600;">Décisions automatisées</div></div></div>
+          <div style="background:#bce8cd; border-radius:9px; padding:9px; display:flex; gap:8px; align-items:center;"><span style="font-size:18px;">🌐</span><div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Open data</div><div style="font-size:8px; color:#1a5c35; font-weight:600;">Données gratuites et réutilisables</div></div></div>
+          <div style="background:#cce2f8; border-radius:9px; padding:9px; display:flex; gap:8px; align-items:center;"><span style="font-size:18px;">🤖</span><div><div style="font-size:10px; font-weight:800; color:#1e1c18;">Automatisation</div><div style="font-size:8px; color:#1a4f82; font-weight:600;">Tâches répétitives sans humain</div></div></div>
         </div>
       </div>
 
-      <!-- Diagramme de flux — méthode -->
-      <div style="background:#fef8e2; border-radius:12px; padding:13px 16px;">
-        <div style="font-family:'Nunito',sans-serif; font-size:11.5px; font-weight:900; color:#946e00; margin-bottom:8px;">🗺️ Lire un diagramme de flux — 4 étapes</div>
-        <div style="display:flex; gap:7px;">
-          <div style="flex:1; background:#fde8a0; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1e1c18;"><span style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#946e00; display:block; margin-bottom:3px;">1</span>Identifier les acteurs<br><span style="color:#7a5800;">interne / externe</span></div>
-          <div style="flex:1; background:#fde8a0; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1e1c18;"><span style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#946e00; display:block; margin-bottom:3px;">2</span>Nommer les flux<br><span style="color:#7a5800;">commande, facture…</span></div>
-          <div style="flex:1; background:#fde8a0; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1e1c18;"><span style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#946e00; display:block; margin-bottom:3px;">3</span>Préciser la direction<br><span style="color:#7a5800;">qui → qui</span></div>
-          <div style="flex:1; background:#fde8a0; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1e1c18;"><span style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#946e00; display:block; margin-bottom:3px;">4</span>Expliquer l'intérêt<br><span style="color:#7a5800;">efficacité, traçabilité</span></div>
+      <!-- Identité / E-réputation -->
+      <div style="display:flex; gap:8px;">
+        <div style="flex:1; background:#fde8a0; border-radius:10px; padding:12px; text-align:center;">
+          <div style="font-size:22px; margin-bottom:5px;">🪪</div>
+          <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#946e00; margin-bottom:4px;">Identité numérique</div>
+          <div style="font-size:8.5px; color:#7a5800; font-weight:600; line-height:1.5;">Ce que l'entreprise choisit de montrer (site, réseaux, avis)</div>
         </div>
-      </div>
-
-      <!-- Exemples bac -->
-      <div style="background:#1e1c18; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-        <div style="font-size:10px; font-weight:800; color:#f5c842; flex-shrink:0;">⭐ Exemples bac :</div>
-        <div style="font-size:9.5px; font-weight:700; color:#fffdf8;">Amazon (auto. logistique) · Tesla (robotique) · Spotify (algo Big Data) · BNP (appli) · Airbnb (plateforme numérique)</div>
+        <div style="flex:1; background:#fce0b0; border-radius:10px; padding:12px; text-align:center;">
+          <div style="font-size:22px; margin-bottom:5px;">⭐</div>
+          <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#c47800; margin-bottom:4px;">E-réputation</div>
+          <div style="font-size:8.5px; color:#7a5800; font-weight:600; line-height:1.5;">Ce que les autres disent d'elle en ligne — partiellement hors contrôle</div>
+        </div>
       </div>
 
     </div>
