@@ -153,15 +153,15 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 <body>
 
 <nav class="sli-nav">
-  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <a href="../sdgm.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
     <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
-    <a href="SLI_CarteMemo_Chap1.html" class="sli-nl">📖 Chapitres</a>
+    <a href="SLI_Infographie_Chap1.html" class="sli-nl">📖 Chapitres</a>
     <a href="SLI_Flashcards_Theme1.html" class="sli-nl on">🃏 Flash cards</a>
     <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
     <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
   </div>
-  <a href="../index.html" class="sli-nl">← Accueil</a>
+  <a href="../sdgm.html" class="sli-nl">← Accueil</a>
 </nav>
 
 <div class="page">
@@ -169,7 +169,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
   <div class="fc-header">
     <div class="fc-badge">Scholar Lock-In · Thème 1 · SDGN Terminale STMG</div>
     <div class="fc-title">🃏 Flash Cards</div>
-    <div class="fc-sub">48 notions + 6 formules · Filtre par chapitre · Suivi de maîtrise</div>
+    <div class="fc-sub">61 notions + 7 formules · Filtre par chapitre · Suivi de maîtrise</div>
   </div>
 
   <!-- STATS BAR -->
@@ -182,14 +182,14 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 
   <!-- FILTER BAR -->
   <div class="filter-bar">
-    <button class="filter-btn f-all active" data-filter="all"  onclick="setFilter('all')">Tout · 54</button>
-    <button class="filter-btn f-rose"       data-filter="1"    onclick="setFilter('1')">🩷 Chapitre 1 · 11</button>
-    <button class="filter-btn f-violet"     data-filter="2f"   onclick="setFilter('2f')">🟣 Chap 2 Finance · 9</button>
+    <button class="filter-btn f-all active" data-filter="all"  onclick="setFilter('all')">Tout · 68</button>
+    <button class="filter-btn f-rose"       data-filter="1"    onclick="setFilter('1')">🩷 Chapitre 1 · 14</button>
+    <button class="filter-btn f-violet"     data-filter="2f"   onclick="setFilter('2f')">🟣 Chap 2 Finance · 10</button>
     <button class="filter-btn f-jaune"      data-filter="2rh"  onclick="setFilter('2rh')">🟡 Chap 2 RH · 1</button>
-    <button class="filter-btn f-bleu"       data-filter="34"   onclick="setFilter('34')">🔵 Chap 3 &amp; 4 · 11</button>
-    <button class="filter-btn f-bleu"       data-filter="5"    onclick="setFilter('5')">🔵 Chapitre 5 · 8</button>
-    <button class="filter-btn f-jaune"      data-filter="6"    onclick="setFilter('6')">🟡 Chapitre 6 · 8</button>
-    <button class="filter-btn f-form"       data-filter="form" onclick="setFilter('form')">✨ Formules · 6</button>
+    <button class="filter-btn f-bleu"       data-filter="34"   onclick="setFilter('34')">🔵 Chap 3 &amp; 4 · 13</button>
+    <button class="filter-btn f-bleu"       data-filter="5"    onclick="setFilter('5')">🔵 Chapitre 5 · 12</button>
+    <button class="filter-btn f-jaune"      data-filter="6"    onclick="setFilter('6')">🟡 Chapitre 6 · 11</button>
+    <button class="filter-btn f-form"       data-filter="form" onclick="setFilter('form')">✨ Formules · 7</button>
   </div>
 
   <!-- TOOLBAR -->
@@ -208,13 +208,13 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
         <!-- Front -->
         <div class="card-face card-front">
           <div id="front-tag" class="card-chap-tag">Chapitre 1</div>
-          <div id="front-notion" class="card-notion">Approche marketing</div>
+          <div id="front-notion" class="card-notion">Démarche marketing</div>
           <div class="card-hint">Cliquer pour voir la définition</div>
         </div>
         <!-- Back -->
         <div class="card-face card-back">
           <div id="back-tag" class="back-tag">Chapitre 1</div>
-          <div id="back-def" class="card-def">On part des besoins du client pour créer le produit.</div>
+          <div id="back-def" class="card-def">On part des besoins du client pour créer le produit. ≠ démarche ingénieriste.</div>
           <div id="back-formula" class="card-formula" style="display:none;"></div>
         </div>
       </div>
@@ -226,8 +226,8 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
   <div class="controls">
     <button id="btn-prev" class="nav-btn" onclick="prev()">← Précédente</button>
     <div class="card-counter">
-      <div id="counter-main" class="counter-main">1 / 54</div>
-      <div id="counter-name" class="counter-name">Approche marketing</div>
+      <div id="counter-main" class="counter-main">1 / 68</div>
+      <div id="counter-name" class="counter-name">Démarche marketing</div>
     </div>
     <button id="flip-btn" class="flip-btn" onclick="flipCard()">👁 Voir la définition</button>
     <button id="fiche-btn" class="fiche-btn" onclick="openFiche()">📖 Fiche du cours</button>
@@ -256,70 +256,81 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 <script>
 // ─── DATA ───────────────────────────────────────────────────────────────────
 const CARDS = [
-  // CHAPITRE 1 — Rose
-  { id:1,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Approche marketing',           def:'On part des besoins du client pour créer le produit. ≠ approche ingénierie qui part du produit.' },
-  { id:2,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Approche ingénierie',          def:'On part d\'une innovation technique pour ensuite trouver des clients.' },
-  { id:3,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Étude de marché',              def:'Collecte d\'informations sur les clients, la concurrence et l\'environnement pour orienter les décisions.' },
-  { id:4,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Données primaires',            def:'Informations collectées directement par l\'entreprise (sondages, interviews).' },
-  { id:5,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Données secondaires',          def:'Informations déjà existantes que l\'entreprise réutilise (rapports, statistiques).' },
-  { id:6,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Valeur ajoutée',               def:'Richesse créée par l\'entreprise = Chiffre d\'affaires − Consommations intermédiaires.' },
-  { id:7,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Innovation produit',           def:'Création d\'un produit nouveau ou amélioré destiné au marché.' },
-  { id:8,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Modèle économique',            def:'Façon dont une entreprise crée, délivre et capture de la valeur : clients cibles, proposition de valeur, sources de revenus, structure de coûts.' },
-  { id:9,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Marketing de masse',           def:'Une offre unique pour tous les clients, sans distinction.' },
-  { id:10, chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Marketing différencié',        def:'Plusieurs offres adaptées à plusieurs segments de clientèle.' },
-  { id:11, chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Marketing concentré (niche)',  def:'Une seule offre ciblée sur un segment précis et exigeant.' },
-  // CHAPITRE 2 Finance — Violet
-  { id:12, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Ressources tangibles',         def:'Ressources physiques et financières : machines, bâtiments, trésorerie.' },
-  { id:13, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Ressources intangibles',       def:'Ressources immatérielles : marque, brevet, réputation, savoir-faire.' },
-  { id:14, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Compétences distinctives',     def:'Ce qu\'une organisation sait faire mieux que ses concurrents et qui lui donne un avantage durable.' },
-  { id:15, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Bilan fonctionnel',            def:'Présentation du bilan qui classe les emplois et ressources selon leur durée (long terme / court terme).' },
-  { id:16, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'FRNG',                         def:'Fonds de Roulement Net Global. Mesure si les investissements à long terme sont financés par des ressources durables.', formula:'FRNG = Ressources stables − Emplois stables' },
-  { id:17, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'BFR',                          def:'Besoin en Fonds de Roulement. Besoin de financement lié au cycle d\'exploitation.', formula:'BFR = Actif circulant − Passif circulant' },
-  { id:18, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Trésorerie Nette',             def:'Liquidités disponibles après financement du BFR.', formula:'Trésorerie = FRNG − BFR' },
-  { id:19, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Financement interne',          def:'Autofinancement par les bénéfices conservés dans l\'entreprise.' },
-  { id:20, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Financement externe',          def:'Recours à des sources extérieures : emprunts bancaires, capital-risque, crowdfunding.' },
-  // CHAPITRE 2 RH — Jaune
-  { id:21, chap:'2rh',  chapLabel:'Chap 2 RH',      color:'jaune', notion:'GPEC',                         def:'Gestion Prévisionnelle des Emplois et Compétences — Anticiper les besoins en RH à moyen terme pour adapter les effectifs et les compétences.' },
-  // CHAPITRES 3-4 — Bleu
-  { id:22, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Innovation de procédé',        def:'Amélioration de la façon de produire. ≠ innovation produit qui porte sur ce qu\'on vend.' },
-  { id:23, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Flux tendus',                  def:'On produit uniquement sur commande, sans constituer de stocks (juste-à-temps).' },
-  { id:24, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Flux poussés',                 def:'On produit en anticipant la demande future, avec constitution de stocks.' },
-  { id:25, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Productivité',                 def:'Rapport entre la production obtenue et les moyens utilisés pour l\'obtenir.' },
-  { id:26, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Qualité',                      def:'Conformité du produit ou service aux attentes du client et aux normes définies.' },
-  { id:27, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Démarche qualité',             def:'Ensemble d\'actions visant à améliorer en continu la qualité des produits et processus.' },
-  { id:28, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Kaizen',                       def:'Philosophie d\'amélioration continue, par petites étapes, impliquant tous les acteurs.' },
-  { id:29, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'PDCA',                         def:'Plan-Do-Check-Act — Méthode cyclique d\'amélioration continue : planifier, faire, vérifier, agir.' },
-  { id:30, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Coût complet (coût de revient)', def:'Somme de toutes les charges (directes + indirectes) pour produire une unité.' },
-  { id:31, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Coût spécifique',              def:'Coût qui ne prend en compte que les charges directement liées à un produit.' },
-  { id:32, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu', notion:'Supply chain',                 def:'Ensemble des acteurs et flux (fournisseurs → production → distribution → client) qui participent à la création et livraison du produit.' },
-  // CHAPITRE 5 — Bleu
-  { id:33, chap:'5',    chapLabel:'Chapitre 5',      color:'bleu', notion:'Dématérialisation',            def:'Remplacement des documents et processus physiques par des supports numériques.' },
-  { id:34, chap:'5',    chapLabel:'Chapitre 5',      color:'bleu', notion:'Automatisation',               def:'Exécution de tâches répétitives par des machines ou logiciels, sans intervention humaine.' },
-  { id:35, chap:'5',    chapLabel:'Chapitre 5',      color:'bleu', notion:'Workflow',                     def:'Flux de travail numérique qui organise et automatise la circulation des informations entre les étapes d\'un processus.' },
-  { id:36, chap:'5',    chapLabel:'Chapitre 5',      color:'bleu', notion:'PGI / ERP',                    def:'Progiciel de Gestion Intégré — Logiciel unique qui intègre toutes les fonctions de l\'entreprise (compta, RH, stocks, ventes) dans un seul système partagé.' },
-  { id:37, chap:'5',    chapLabel:'Chapitre 5',      color:'bleu', notion:'Cloud computing',              def:'Accès à des ressources informatiques (stockage, logiciels) via internet, sans les héberger localement.' },
-  { id:38, chap:'5',    chapLabel:'Chapitre 5',      color:'bleu', notion:'IoT (Internet of Things)',     def:'Objets connectés qui collectent et transmettent des données en temps réel.' },
-  { id:39, chap:'5',    chapLabel:'Chapitre 5',      color:'bleu', notion:'Identité numérique',           def:'Ensemble des traces et représentations d\'une organisation sur internet.' },
-  { id:40, chap:'5',    chapLabel:'Chapitre 5',      color:'bleu', notion:'E-réputation',                 def:'Image d\'une entreprise perçue et construite en ligne : avis, réseaux sociaux, mentions.' },
-  // CHAPITRE 6 — Jaune
-  { id:41, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Organisation du travail',     def:'Façon dont les tâches sont réparties et coordonnées entre les membres de l\'organisation.' },
-  { id:42, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Spécialisation',              def:'Chaque salarié se concentre sur une tâche précise (taylorisme).' },
-  { id:43, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Polyvalence',                 def:'Un salarié maîtrise plusieurs tâches différentes.' },
-  { id:44, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Flexibilité',                 def:'Capacité de l\'organisation à s\'adapter rapidement aux variations d\'activité.' },
-  { id:45, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Lean management',             def:'Méthode de gestion qui vise à éliminer les gaspillages pour maximiser la valeur produite avec le minimum de ressources.' },
-  { id:46, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Centralisation',              def:'Le pouvoir de décision est concentré au sommet de la hiérarchie.' },
-  { id:47, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Décentralisation',            def:'Le pouvoir de décision est délégué aux niveaux inférieurs de la hiérarchie.' },
-  { id:48, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Coordination',                def:'Mécanismes qui permettent à différents acteurs de l\'organisation de travailler ensemble de façon cohérente.' },
-  { id:49, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Organisation souple',          def:'Structure favorisant la polyvalence, l\'autonomie et l\'adaptabilité. Salariés polyvalents, décisions décentralisées, favorise la QVT et la motivation.' },
-  { id:50, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Organisation rigide',           def:'Structure fondée sur la spécialisation et la division stricte des tâches (taylorisme). Efficace et contrôlée mais peu flexible et source de démotivation.' },
-  { id:51, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'DAS — Domaine d\'Activité Stratégique', def:'Sous-ensemble d\'activités d\'une entreprise ayant les mêmes facteurs clés de succès, les mêmes concurrents et la même logique stratégique. Permet de définir une stratégie adaptée à chaque domaine.' },
-  // FORMULES CLÉS
-  { id:49, chap:'form', chapLabel:'Formule',         color:'form',  notion:'FRNG',                        def:'Fonds de Roulement Net Global — Ressources durables qui financent les emplois stables.', formula:'Ressources stables − Emplois stables' },
-  { id:50, chap:'form', chapLabel:'Formule',         color:'form',  notion:'BFR',                         def:'Besoin en Fonds de Roulement — Besoin lié au cycle d\'exploitation.', formula:'Actif circulant − Passif circulant' },
-  { id:51, chap:'form', chapLabel:'Formule',         color:'form',  notion:'Trésorerie Nette',            def:'Liquidités disponibles après avoir couvert le BFR.', formula:'FRNG − BFR' },
-  { id:52, chap:'form', chapLabel:'Formule',         color:'form',  notion:'Valeur ajoutée',              def:'Richesse réellement créée par l\'entreprise.', formula:'Chiffre d\'affaires − Consommations intermédiaires' },
-  { id:53, chap:'form', chapLabel:'Formule',         color:'form',  notion:'Coût de revient unitaire',    def:'Coût total ramené à une unité produite.', formula:'(Charges directes + Charges indirectes) ÷ Nb d\'unités' },
-  { id:54, chap:'form', chapLabel:'Formule',         color:'form',  notion:'Taux d\'évolution',           def:'Variation relative entre deux valeurs, exprimée en %.', formula:'(Valeur finale − Valeur initiale) ÷ Valeur initiale × 100' },
+  // CHAPITRE 1 — Rose (14 cartes)
+  { id:1,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Démarche marketing',           def:'On part des besoins du client pour créer le produit. ≠ démarche ingénieriste qui part d\'une innovation technique.' },
+  { id:2,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Démarche ingénieriste',        def:'On part d\'une innovation technique pour ensuite trouver des clients à qui la proposer.' },
+  { id:3,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Étude de marché',              def:'Collecte d\'informations sur les clients, la concurrence et l\'environnement pour orienter les décisions.' },
+  { id:4,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Données primaires',            def:'Informations collectées directement par l\'entreprise (sondages, interviews, observations).' },
+  { id:5,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Données secondaires',          def:'Informations déjà existantes que l\'entreprise réutilise (rapports, statistiques, études).' },
+  { id:6,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Segmentation',                 def:'Diviser le marché en groupes homogènes (segments) de clients ayant des besoins ou comportements similaires.' },
+  { id:7,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Ciblage',                      def:'Choisir le ou les segments de marché sur lesquels l\'entreprise va concentrer ses efforts commerciaux.' },
+  { id:8,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Positionnement',               def:'Définir l\'image que l\'entreprise veut donner à son offre dans l\'esprit des consommateurs, par rapport aux concurrents.' },
+  { id:9,  chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Valeur ajoutée',               def:'Richesse créée par l\'entreprise = Chiffre d\'affaires − Consommations intermédiaires.' },
+  { id:10, chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Innovation produit',           def:'Création d\'un produit nouveau ou amélioré destiné au marché.' },
+  { id:11, chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Modèle économique',            def:'Façon dont une entreprise crée, délivre et capture de la valeur : clients cibles, proposition de valeur, sources de revenus, structure de coûts.' },
+  { id:12, chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Marketing de masse',           def:'Une offre unique pour tous les clients, sans distinction de segment.' },
+  { id:13, chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Marketing différencié',        def:'Plusieurs offres adaptées à plusieurs segments de clientèle différents.' },
+  { id:14, chap:'1',    chapLabel:'Chapitre 1',      color:'rose',  notion:'Marketing concentré (niche)',  def:'Une seule offre ciblée sur un segment précis et restreint.' },
+  // CHAPITRE 2 Finance — Violet (10 cartes)
+  { id:15, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'Ressources tangibles',        def:'Ressources physiques et financières : machines, bâtiments, trésorerie.' },
+  { id:16, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'Ressources intangibles',      def:'Ressources immatérielles : marque, brevet, réputation, savoir-faire.' },
+  { id:17, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'Compétences distinctives',    def:'Ce qu\'une organisation sait faire mieux que ses concurrents et qui lui donne un avantage durable.' },
+  { id:18, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'Bilan fonctionnel',           def:'Présentation du bilan qui classe les emplois et ressources selon leur durée (long terme / court terme).' },
+  { id:19, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'FRNG',                        def:'Fonds de Roulement Net Global. Mesure si les investissements à long terme sont financés par des ressources durables.', formula:'FRNG = Ressources stables − Emplois stables' },
+  { id:20, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'BFR',                         def:'Besoin en Fonds de Roulement. Besoin de financement lié au cycle d\'exploitation.', formula:'BFR = Actif circulant − Passif circulant' },
+  { id:21, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'Trésorerie Nette',            def:'Liquidités disponibles après financement du BFR.', formula:'Trésorerie = FRNG − BFR' },
+  { id:22, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'CAF',                         def:'Capacité d\'Autofinancement — Ressources générées par l\'activité courante de l\'entreprise pour financer ses propres investissements, sans recours extérieur.' },
+  { id:23, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'Financement interne',         def:'Autofinancement par les bénéfices conservés dans l\'entreprise (CAF).' },
+  { id:24, chap:'2f',   chapLabel:'Chap 2 Finance',  color:'violet', notion:'Financement externe',         def:'Recours à des sources extérieures : emprunts bancaires, capital-risque, crowdfunding.' },
+  // CHAPITRE 2 RH — Jaune (1 carte)
+  { id:25, chap:'2rh',  chapLabel:'Chap 2 RH',       color:'jaune', notion:'GPEC',                         def:'Gestion Prévisionnelle des Emplois et Compétences — Anticiper les besoins en RH à moyen terme pour adapter les effectifs et les compétences.' },
+  // CHAPITRES 3-4 — Bleu (13 cartes)
+  { id:26, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Innovation de procédé',        def:'Amélioration de la façon de produire. ≠ innovation produit qui porte sur ce qu\'on vend.' },
+  { id:27, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Flux tendus',                  def:'On produit uniquement sur commande, sans constituer de stocks (juste-à-temps).' },
+  { id:28, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Flux poussés',                 def:'On produit en anticipant la demande future, avec constitution de stocks.' },
+  { id:29, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Productivité',                 def:'Rapport entre la production obtenue et les moyens utilisés pour l\'obtenir.' },
+  { id:30, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Qualité',                      def:'Conformité du produit ou service aux attentes du client et aux normes définies.' },
+  { id:31, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Démarche qualité',             def:'Ensemble d\'actions visant à améliorer en continu la qualité des produits et processus.' },
+  { id:32, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Kaizen',                       def:'Philosophie d\'amélioration continue, par petites étapes, impliquant tous les acteurs.' },
+  { id:33, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'PDCA',                         def:'Plan-Do-Check-Act — Méthode cyclique d\'amélioration continue : planifier, faire, vérifier, agir.' },
+  { id:34, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Seuil de rentabilité',         def:'Niveau de chiffre d\'affaires à partir duquel l\'entreprise couvre toutes ses charges et commence à dégager un bénéfice.', formula:'CA seuil = Charges fixes ÷ Taux de marge sur CV' },
+  { id:35, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Coût complet (coût de revient)', def:'Somme de toutes les charges (directes + indirectes) pour produire une unité.' },
+  { id:36, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Coût spécifique',              def:'Coût qui ne prend en compte que les charges directement liées à un produit.' },
+  { id:37, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'PLM',                          def:'Product Lifecycle Management — Gestion du cycle de vie du produit, de sa conception jusqu\'à son retrait du marché.' },
+  { id:38, chap:'34',   chapLabel:'Chapitres 3 & 4', color:'bleu',  notion:'Supply chain',                 def:'Ensemble des acteurs et flux (fournisseurs → production → distribution → client) qui participent à la création et livraison du produit.' },
+  // CHAPITRE 5 — Bleu (12 cartes)
+  { id:39, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'SI — Système d\'Information',  def:'Ensemble des ressources (humaines, techniques, organisationnelles) qui permettent de collecter, stocker, traiter et diffuser l\'information nécessaire à l\'organisation.' },
+  { id:40, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'Diagramme des flux',           def:'Représentation graphique des échanges d\'informations ou de ressources entre les acteurs d\'un système.' },
+  { id:41, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'Dématérialisation',            def:'Remplacement des documents et processus physiques par des supports numériques.' },
+  { id:42, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'Automatisation',               def:'Exécution de tâches répétitives par des machines ou logiciels, sans intervention humaine.' },
+  { id:43, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'Workflow',                     def:'Flux de travail numérique qui organise et automatise la circulation des informations entre les étapes d\'un processus.' },
+  { id:44, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'PGI / ERP',                    def:'Progiciel de Gestion Intégré — Logiciel unique qui intègre toutes les fonctions de l\'entreprise (compta, RH, stocks, ventes) dans un seul système partagé.' },
+  { id:45, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'Cloud computing',              def:'Accès à des ressources informatiques (stockage, logiciels) via internet, sans les héberger localement.' },
+  { id:46, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'IoT (Internet des objets)',    def:'Objets connectés qui collectent et transmettent des données en temps réel.' },
+  { id:47, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'IA — Intelligence Artificielle', def:'Systèmes informatiques capables d\'effectuer des tâches nécessitant normalement l\'intelligence humaine : apprentissage, analyse, prise de décision.' },
+  { id:48, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'Open data',                    def:'Données librement accessibles et réutilisables par tous, publiées par des organisations publiques ou privées.' },
+  { id:49, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'Identité numérique',           def:'Ensemble des traces et représentations d\'une organisation sur internet.' },
+  { id:50, chap:'5',    chapLabel:'Chapitre 5',       color:'bleu',  notion:'E-réputation',                 def:'Image d\'une entreprise perçue et construite en ligne : avis clients, réseaux sociaux, mentions.' },
+  // CHAPITRE 6 — Jaune (11 cartes)
+  { id:51, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Organisation du travail',      def:'Façon dont les tâches sont réparties et coordonnées entre les membres de l\'organisation.' },
+  { id:52, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Spécialisation',               def:'Chaque salarié se concentre sur une tâche précise (principe du taylorisme).' },
+  { id:53, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Polyvalence',                  def:'Un salarié maîtrise plusieurs tâches différentes, ce qui facilite l\'adaptabilité.' },
+  { id:54, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Flexibilité',                  def:'Capacité de l\'organisation à s\'adapter rapidement aux variations d\'activité.' },
+  { id:55, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Lean management',              def:'Méthode de gestion qui vise à éliminer les gaspillages pour maximiser la valeur produite avec le minimum de ressources.' },
+  { id:56, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Centralisation',               def:'Le pouvoir de décision est concentré au sommet de la hiérarchie.' },
+  { id:57, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Décentralisation',             def:'Le pouvoir de décision est délégué aux niveaux inférieurs de la hiérarchie.' },
+  { id:58, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Coordination',                 def:'Mécanismes qui permettent à différents acteurs de l\'organisation de travailler ensemble de façon cohérente (5 mécanismes : supervision directe, standardisation procédés/résultats/compétences, ajustement mutuel).' },
+  { id:59, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Organisation souple',           def:'Structure favorisant la polyvalence, l\'autonomie et l\'adaptabilité. Décisions décentralisées, favorise la QVT et la motivation.' },
+  { id:60, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Organisation rigide',           def:'Structure fondée sur la spécialisation et la division stricte des tâches (taylorisme). Efficace et contrôlée mais peu flexible et source de démotivation.' },
+  { id:61, chap:'6',    chapLabel:'Chapitre 6',       color:'jaune', notion:'Entreprise libérée',            def:'Organisation dans laquelle les salariés bénéficient d\'une grande autonomie : le management hiérarchique traditionnel est remplacé par l\'auto-organisation et la confiance.' },
+  // FORMULES CLÉS (7 cartes)
+  { id:62, chap:'form', chapLabel:'Formule',          color:'form',  notion:'FRNG',                         def:'Fonds de Roulement Net Global — Ressources durables qui financent les emplois stables.', formula:'Ressources stables − Emplois stables' },
+  { id:63, chap:'form', chapLabel:'Formule',          color:'form',  notion:'BFR',                          def:'Besoin en Fonds de Roulement — Besoin lié au cycle d\'exploitation.', formula:'Actif circulant − Passif circulant' },
+  { id:64, chap:'form', chapLabel:'Formule',          color:'form',  notion:'Trésorerie Nette',             def:'Liquidités disponibles après avoir couvert le BFR.', formula:'FRNG − BFR' },
+  { id:65, chap:'form', chapLabel:'Formule',          color:'form',  notion:'Seuil de rentabilité',         def:'CA à partir duquel l\'entreprise couvre toutes ses charges et commence à faire un bénéfice.', formula:'Charges fixes (CF) ÷ Taux de marge sur coût variable' },
+  { id:66, chap:'form', chapLabel:'Formule',          color:'form',  notion:'Valeur ajoutée',               def:'Richesse réellement créée par l\'entreprise.', formula:'Chiffre d\'affaires − Consommations intermédiaires' },
+  { id:67, chap:'form', chapLabel:'Formule',          color:'form',  notion:'Coût de revient unitaire',     def:'Coût total ramené à une unité produite.', formula:'(Charges directes + Charges indirectes) ÷ Nb d\'unités' },
+  { id:68, chap:'form', chapLabel:'Formule',          color:'form',  notion:'Taux d\'évolution',            def:'Variation relative entre deux valeurs, exprimée en %.', formula:'(Valeur finale − Valeur initiale) ÷ Valeur initiale × 100' },
 ];
 
 // ─── STATE ───────────────────────────────────────────────────────────────────
@@ -481,12 +492,12 @@ document.addEventListener('keydown', e => {
 
 // ─── FICHE DE COURS ──────────────────────────────────────────────────────────
 const CHAP_URL = {
-  '1':   'SLI_CarteMemo_Chap1.html',
-  '2f':  'SLI_CarteMemo_Chap2.html',
-  '2rh': 'SLI_CarteMemo_Chap2.html',
-  '34':  'SLI_CarteMemo_Chap3et4.html',
-  '5':   'SLI_CarteMemo_Chap5.html',
-  '6':   'SLI_CarteMemo_Chap6.html',
+  '1':   'SLI_Infographie_Chap1.html',
+  '2f':  'SLI_Infographie_Chap2.html',
+  '2rh': 'SLI_Infographie_Chap2.html',
+  '34':  'SLI_Infographie_Chap3et4.html',
+  '5':   'SLI_Infographie_Chap5.html',
+  '6':   'SLI_Infographie_Chap6.html',
   'form': null,
 };
 
