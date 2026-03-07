@@ -392,7 +392,7 @@ body{padding-top:72px!important}
 </div>
 
 <script>if(location.hash==='#memo')document.getElementById('memo-overlay').style.display='flex';</script>
-
+<script>
 // Auto-open memo overlay if URL hash is #memo
 if (window.location.hash === '#memo') {
   window.addEventListener('load', function() {
@@ -400,5 +400,6 @@ if (window.location.hash === '#memo') {
     if (ov) ov.style.display = 'flex';
   });
 }
+</script>
 </body>
 </html>
