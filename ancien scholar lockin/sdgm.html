@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholar Lock-In — SDGM · Thème 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background: #f0ede6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.page { width: 100%; max-width: 960px; }
+
+/* Hero */
+.hero { text-align: center; margin-bottom: 44px; }
+.hero-badge {
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  background: #1e1c18; color: #f5c842;
+  padding: 5px 16px; border-radius: 20px;
+  display: inline-block; margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 48px; font-weight: 900; color: #1e1c18;
+  line-height: 1.1; margin-bottom: 10px;
+}
+.hero h1 span { color: #b5415a; }
+.hero-sub { font-size: 14px; color: #7a6a58; font-weight: 600; }
+
+/* Grille principale : 2 grandes tuiles */
+.top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* Rangée 3 petites tuiles */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+/* Carte générique */
+.card {
+  border-radius: 16px;
+  padding: 26px 22px;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.14); }
+.card.off { opacity: 0.6; pointer-events: none; cursor: default; }
+.card.off:hover { transform: none; box-shadow: none; }
+
+.tag {
+  font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px;
+  display: inline-block; margin-bottom: 12px;
+}
+.card-icon { font-size: 34px; margin-bottom: 10px; display: block; }
+.card-title { font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+.card-desc { font-size: 12px; font-weight: 600; line-height: 1.55; }
+
+/* Tuile 1 — Vue d'ensemble (dark) */
+.tile-overview { background: #1e1c18; }
+.tile-overview .tag { background: #f5c842; color: #1e1c18; }
+.tile-overview .card-title { color: #fffdf8; }
+.tile-overview .card-desc { color: #a09880; }
+
+/* Tuile 2 — Chapitres (gradient tri-couleur) */
+.tile-chap { background: linear-gradient(135deg, #fdeef2 0%, #e8f3ff 55%, #fef8e2 100%); border: 1.5px solid #e0dbd2; }
+.tile-chap .tag { background: #1e1c18; color: #fffdf8; }
+.tile-chap .card-title { color: #1e1c18; }
+.tile-chap .card-desc { color: #5a5448; }
+
+/* Thème 1 label dans le hero */
+.hero-theme {
+  font-size: 13px; font-weight: 700; color: #5a5448;
+  background: rgba(30,28,24,.07); border-radius: 10px;
+  padding: 7px 18px; display: inline-block; margin-bottom: 10px;
+  font-style: italic;
+}
+
+/* Liste des chapitres dans la tuile */
+.chap-list { display: flex; flex-direction: column; gap: 5px; margin-top: 12px; }
+.chap-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; border-radius: 10px;
+  text-decoration: none; transition: transform 0.12s, opacity 0.12s;
+}
+.chap-item:hover { transform: translateX(4px); opacity: 0.85; }
+.chap-num {
+  font-family: 'Nunito', sans-serif; font-size: 10px; font-weight: 900;
+  white-space: nowrap; min-width: 90px; flex-shrink: 0;
+}
+.chap-label { font-size: 12px; font-weight: 700; line-height: 1.3; }
+
+.chap-r { background: #f9d0d9; }
+.chap-r .chap-num { color: #b5415a; }
+.chap-r .chap-label { color: #7a2038; }
+
+.chap-b { background: #cce2f8; }
+.chap-b .chap-num { color: #2a69a8; }
+.chap-b .chap-label { color: #1a4f82; }
+
+.chap-j { background: #fde8a0; }
+.chap-j .chap-num { color: #946e00; }
+.chap-j .chap-label { color: #7a5800; }
+
+.chap-v { background: #ead8f5; }
+.chap-v .chap-num { color: #7030a0; }
+.chap-v .chap-label { color: #4a1a7a; }
+
+/* Tuile 3 — Flash cards */
+.tile-flash { background: #fdeef2; border: 1.5px solid #f9d0d9; }
+.tile-flash .tag { background: rgba(181,65,90,.15); color: #b5415a; }
+.tile-flash .card-title { color: #b5415a; }
+.tile-flash .card-desc { color: #7a2038; }
+
+/* Tuile 4 — Méthode */
+.tile-methode { background: #fef8e2; border: 1.5px solid #fde8a0; }
+.tile-methode .tag { background: rgba(148,110,0,.15); color: #946e00; }
+.tile-methode .card-title { color: #946e00; }
+.tile-methode .card-desc { color: #7a5800; }
+
+/* Tuile 5 — Annales */
+.tile-annales { background: #e8f3ff; border: 1.5px solid #cce2f8; }
+.tile-annales .tag { background: rgba(42,105,168,.15); color: #2a69a8; }
+.tile-annales .card-title { color: #2a69a8; }
+.tile-annales .card-desc { color: #1a4f82; }
+
+/* Back link */
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; color: #7a6a58;
+  text-decoration: none; margin-bottom: 24px;
+  padding: 6px 14px; border-radius: 20px;
+  background: rgba(30,28,24,.07);
+  transition: background 0.15s;
+}
+.back-link:hover { background: rgba(30,28,24,.13); }
+
+/* Footer */
+.footer { text-align: center; margin-top: 36px; font-size: 11px; color: #a09880; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div style="text-align:center; margin-bottom:8px;">
+    <a href="index.html" class="back-link">← Accueil Scholar Lock-In</a>
+  </div>
+
+  <div class="hero">
+    <div class="hero-badge">SDGM · Terminale STMG · Thème 1</div>
+    <h1>Scholar <span>Lock-In</span></h1>
+    <div class="hero-theme">Thème 1 — Les organisations et l'activité de production de biens et de services</div>
+    <div class="hero-sub">Ton kit de révision de dernière minute · 5 outils · 45 notions</div>
+  </div>
+
+  <div class="top-grid">
+
+    <!-- Outil 1 — Vue d'ensemble -->
+    <a href="Contenu/SLI_Infographie_Theme1_Global.html" class="card tile-overview">
+      <span class="card-icon">🗺️</span>
+      <div class="card-title">Vue d'ensemble Thème 1</div>
+      <div style="font-size:11px;font-weight:700;color:#a09880;font-style:italic;margin-bottom:8px;line-height:1.35;">Les organisations et l'activité de production de biens et de services</div>
+      <div class="card-desc">Tous les chapitres en un coup d'œil — démarche marketing, bilan fonctionnel, processus, RSE, numérique, organisation. La carte globale pour réviser vite.</div>
+    </a>
+
+    <!-- Outil 2 — Chapitres -->
+    <div class="card tile-chap" style="cursor:default;">
+      <span class="card-icon">📖</span>
+      <div class="card-title">Réviser par chapitre</div>
+      <div class="chap-list">
+        <a href="Contenu/SLI_Infographie_Chap1.html" class="chap-item chap-r">
+          <span class="chap-num">🩷 Chapitre 1</span>
+          <span class="chap-label">Quels produits ou services pour quels besoins ?</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap2.html" class="chap-item chap-j">
+          <span class="chap-num">🟡 Chapitre 2 RH</span>
+          <span class="chap-label">Quelles ressources pour produire ? — partie RH</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap2.html" class="chap-item chap-v">
+          <span class="chap-num">🟣 Chapitre 2 Finance</span>
+          <span class="chap-label">Quelles ressources pour produire ? — partie financière</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap3et4.html" class="chap-item chap-b">
+          <span class="chap-num">🔵 Chapitres 3 &amp; 4</span>
+          <span class="chap-label">Organisation de la production, flux, qualité, coûts</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap5.html" class="chap-item chap-b">
+          <span class="chap-num">🔵 Chapitre 5</span>
+          <span class="chap-label">Les transformations numériques</span>
+        </a>
+        <a href="Contenu/SLI_Infographie_Chap6.html" class="chap-item chap-j">
+          <span class="chap-num">🟡 Chapitre 6</span>
+          <span class="chap-label">Fonctionnement cohérent des organisations</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-row">
+
+    <!-- Outil 3 — Flash cards -->
+    <a href="Contenu/SLI_Flashcards_Theme1.html" class="card tile-flash">
+      <span class="card-icon">🃏</span>
+      <div class="card-title">Flash cards</div>
+      <div class="card-desc">48 notions + 6 formules. Flip au clic, filtre par chapitre, mode aléatoire, compteur de maîtrise.</div>
+    </a>
+
+    <!-- Outil 4 — Méthode -->
+    <a href="Contenu/SLI_Methode_Jday.html" class="card tile-methode">
+      <span class="card-icon">✅</span>
+      <div class="card-title">Méthode J-Day</div>
+      <div class="card-desc">Protocole interactif 5 phases, 8 verbes directeurs décortiqués, 5 règles pour trouver le bon doc, structures de réponse et 8 pièges classiques à déjouer.</div>
+    </a>
+
+    <!-- Outil 5 — Annales -->
+    <a href="Contenu/SLI_Annales_Perspective.html" class="card tile-annales">
+      <span class="card-icon">🎯</span>
+      <div class="card-title">Annales en perspective</div>
+      <div class="card-desc">10 types de questions récurrents au bac. Ce qui tombe, les notions à mobiliser, la structure de réponse, les pièges à éviter.</div>
+    </a>
+
+  </div>
+
+  <div class="footer">Scholar Lock-In · SDGM Terminale STMG · Thème 1 · Les organisations et l'activité de production</div>
+
+</div>
+</body>
+</html>

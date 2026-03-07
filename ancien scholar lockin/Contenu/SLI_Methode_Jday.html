@@ -4,33 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Méthode J-Day — Scholar Lock-In</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 100vh; padding-top: 64px; padding-bottom: 56px; }
+body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 100vh; padding-top: 72px; padding-bottom: 56px; }
 
 /* NAV */
-.sli-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(240,237,230,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid rgba(30,28,24,.1);box-shadow:0 2px 16px rgba(0,0,0,.06) }
+.sli-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:#1e1c18;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 2px 12px rgba(0,0,0,.3) }
 .sli-nav a { text-decoration:none }
-.sli-nav-logo { font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:900;color:#1e1c18 }
-.sli-nav-logo span { color:#b5415a }
+.sli-nav-logo { font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:#fffdf8 }
+.sli-nav-logo span { color:#f5c842 }
 .sli-nav-links { display:flex;gap:2px }
-.sli-nl { font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;color:#7a6a58;padding:6px 14px;border-radius:20px;white-space:nowrap;text-decoration:none }
-.sli-nl:hover { background:rgba(30,28,24,.08);color:#1e1c18 }
-.sli-nl.on { background:#1e1c18;color:#f5c842 }
+.sli-nl { font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap;text-decoration:none }
+.sli-nl:hover { background:rgba(255,255,255,.1);color:#fffdf8 }
+.sli-nl.on { background:rgba(255,255,255,.1);color:#fffdf8 }
 
 .page { max-width: 900px; margin: 0 auto; padding: 24px 20px 0; }
 
 /* HEADER */
 .hdr { text-align: center; margin-bottom: 24px; }
 .hdr-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #1e1c18; color: #f5c842; padding: 4px 16px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
-.hdr-title { font-family: 'Nunito', sans-serif; font-size: 38px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
-.hdr-sub { font-size: 15px; color: #7a6a58; font-weight: 600; }
+.hdr-title { font-family: 'Nunito', sans-serif; font-size: 32px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
+.hdr-sub { font-size: 13px; color: #7a6a58; font-weight: 600; }
 
 /* TAB BAR */
-.tab-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; background: #fffdf8; border-radius: 16px; padding: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
-.tab-btn { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; padding: 10px 20px; border-radius: 10px; border: none; background: transparent; color: #7a6a58; cursor: pointer; transition: all 0.15s; white-space: nowrap; flex: 1; min-width: 0; }
+.tab-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; background: #fffdf8; border-radius: 14px; padding: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.tab-btn { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 800; padding: 8px 14px; border-radius: 9px; border: none; background: transparent; color: #7a6a58; cursor: pointer; transition: all 0.15s; white-space: nowrap; flex: 1; min-width: 0; }
 .tab-btn:hover { background: #f0ede6; color: #1e1c18; }
 .tab-btn.active { background: #1e1c18; color: #fffdf8; }
 
@@ -56,12 +55,12 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 .sn-4 { background: #1a7a3c; }
 .sn-5 { background: #7030a0; }
 .step-body { flex: 1; }
-.step-title { font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
-.step-when { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #a09880; margin-bottom: 6px; }
+.step-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
+.step-when { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #a09880; margin-bottom: 6px; }
 .step-items { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
-.step-item { font-size: 15px; font-weight: 600; color: #5a5448; line-height: 1.5; padding-left: 14px; position: relative; }
+.step-item { font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.5; padding-left: 14px; position: relative; }
 .step-item::before { content: '→'; position: absolute; left: 0; color: #a09880; font-weight: 700; }
-.step-tip { border-radius: 9px; padding: 10px 14px; font-size: 14px; font-weight: 700; line-height: 1.55; }
+.step-tip { border-radius: 9px; padding: 9px 13px; font-size: 12px; font-weight: 700; line-height: 1.55; }
 
 /* GRIDS */
 .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
@@ -71,32 +70,32 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 /* QG section */
 .schema-box { background: #1e1c18; border-radius: 12px; padding: 16px 20px; margin-bottom: 14px; }
 .schema-label { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; margin-bottom: 8px; }
-.schema-txt { font-size: 16px; font-weight: 700; color: #fffdf8; font-style: italic; line-height: 1.7; }
+.schema-txt { font-size: 14px; font-weight: 700; color: #fffdf8; font-style: italic; line-height: 1.7; }
 .usage-card { border-radius: 12px; padding: 16px; }
 .usage-n { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-.usage-title { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; color: #1e1c18; margin-bottom: 6px; }
-.usage-body { font-size: 14px; font-weight: 600; color: #5a5448; line-height: 1.6; }
-.usage-ex { font-size: 14px; font-weight: 700; color: #0d4020; background: #bce8cd; border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-style: italic; line-height: 1.5; }
+.usage-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; margin-bottom: 6px; }
+.usage-body { font-size: 12px; font-weight: 600; color: #5a5448; line-height: 1.6; }
+.usage-ex { font-size: 12px; font-weight: 700; color: #0d4020; background: #bce8cd; border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-style: italic; line-height: 1.5; }
 
 /* Annale examples */
 .ann-list { display: flex; flex-direction: column; gap: 7px; margin-top: 12px; }
 .ann-row { background: #f0ede6; border-radius: 10px; padding: 11px 15px; }
 .ann-year { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #1a7a3c; margin-bottom: 3px; }
-.ann-qg { font-size: 15px; font-weight: 700; color: #1e1c18; font-style: italic; line-height: 1.45; }
-.ann-impact { font-size: 13px; color: #7a6a58; font-weight: 600; margin-top: 3px; }
+.ann-qg { font-size: 13px; font-weight: 700; color: #1e1c18; font-style: italic; line-height: 1.45; }
+.ann-impact { font-size: 11px; color: #7a6a58; font-weight: 600; margin-top: 3px; }
 
 /* Section title inside tab */
-.tab-section-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #7a6a58; margin: 20px 0 10px; }
+.tab-section-title { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #7a6a58; margin: 20px 0 10px; }
 
 /* Rule cards */
 .rule { background: #fffdf8; border-radius: 12px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
 .rule-hd { padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
 .rule-tag { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #dce8fc; color: #1a4f82; }
-.rule-title { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; color: #1e1c18; margin-bottom: 2px; }
-.rule-sub { font-size: 14px; font-weight: 600; color: #7a6a58; }
-.rule-body { padding: 0 18px 14px; font-size: 15px; font-weight: 600; color: #5a5448; line-height: 1.65; border-top: 1px solid #f0ede6; padding-top: 12px; margin: 0 18px; }
-.rule-alert { background: #fdeef2; border-radius: 9px; padding: 9px 13px; font-size: 14px; font-weight: 700; color: #7a2038; margin-top: 10px; line-height: 1.5; }
-.rule-tip-box { background: #f0ede6; border-radius: 9px; padding: 9px 13px; font-size: 14px; font-weight: 700; color: #1e1c18; margin-top: 8px; line-height: 1.5; }
+.rule-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; margin-bottom: 2px; }
+.rule-sub { font-size: 12px; font-weight: 600; color: #7a6a58; }
+.rule-body { padding: 0 18px 14px; font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.65; border-top: 1px solid #f0ede6; padding-top: 12px; margin: 0 18px; }
+.rule-alert { background: #fdeef2; border-radius: 9px; padding: 9px 13px; font-size: 12px; font-weight: 700; color: #7a2038; margin-top: 10px; line-height: 1.5; }
+.rule-tip-box { background: #f0ede6; border-radius: 9px; padding: 9px 13px; font-size: 12px; font-weight: 700; color: #1e1c18; margin-top: 8px; line-height: 1.5; }
 
 /* Mini table */
 .mtable { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; border-radius: 9px; overflow: hidden; }
@@ -105,24 +104,24 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 
 /* Signal grid (doc titles) */
 .sig-card { background: #f0ede6; border-radius: 11px; padding: 12px 14px; }
-.sig-kw { font-size: 14px; font-weight: 800; color: #1a7a6a; margin-bottom: 5px; font-style: italic; }
-.sig-notion { font-size: 15px; font-weight: 700; color: #1e1c18; margin-bottom: 3px; }
-.sig-q { font-size: 13px; font-weight: 600; color: #7a6a58; }
+.sig-kw { font-size: 12px; font-weight: 800; color: #1a7a6a; margin-bottom: 5px; font-style: italic; }
+.sig-notion { font-size: 13px; font-weight: 700; color: #1e1c18; margin-bottom: 3px; }
+.sig-q { font-size: 11px; font-weight: 600; color: #7a6a58; }
 .sig-ex { font-size: 11px; font-weight: 700; background: #c8f0ec; color: #1a7a6a; border-radius: 5px; padding: 2px 7px; display: inline-block; margin-top: 4px; }
 
 /* Verb cards */
 .verb-card { border-radius: 13px; overflow: hidden; }
 .verb-hd { padding: 14px 16px; }
-.verb-name { font-family: 'Nunito', sans-serif; font-size: 19px; font-weight: 900; margin-bottom: 4px; }
+.verb-name { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; margin-bottom: 4px; }
 .verb-expect { font-size: 11px; font-weight: 700; opacity: 0.8; margin-bottom: 0; }
 .verb-body { background: #fffdf8; padding: 13px 16px; }
-.verb-rule { font-size: 15px; font-weight: 600; color: #1e1c18; line-height: 1.6; margin-bottom: 8px; }
-.verb-ex { font-size: 14px; font-weight: 600; color: #5a5448; font-style: italic; background: #f0ede6; border-radius: 8px; padding: 8px 12px; line-height: 1.5; }
-.verb-piege { font-size: 14px; font-weight: 700; color: #b5415a; background: #fdeef2; border-radius: 8px; padding: 7px 12px; margin-top: 6px; }
+.verb-rule { font-size: 13px; font-weight: 600; color: #1e1c18; line-height: 1.6; margin-bottom: 8px; }
+.verb-ex { font-size: 12px; font-weight: 600; color: #5a5448; font-style: italic; background: #f0ede6; border-radius: 8px; padding: 8px 12px; line-height: 1.5; }
+.verb-piege { font-size: 12px; font-weight: 700; color: #b5415a; background: #fdeef2; border-radius: 8px; padding: 7px 12px; margin-top: 6px; }
 
 /* Structure cards */
 .struct-card { background: #fffdf8; border-radius: 14px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
-.struct-title { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; margin-bottom: 14px; }
+.struct-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; margin-bottom: 14px; }
 .struct-step { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
 .struct-step:last-child { margin-bottom: 0; }
 .sn { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
