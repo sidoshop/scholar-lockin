@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ch.3&4 — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: flex; justify-content: center; padding: 24px 16px; }
+.page { width: 980px; background: #fffdf8; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 36px rgba(0,0,0,.11); }
+.hd { padding: 20px 28px 16px; color: #fff; }
+.hd-badge { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,.2); padding: 3px 11px; border-radius: 20px; display: inline-block; margin-bottom: 9px; }
+.hd h1 { font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900; line-height: 1.25; margin-bottom: 5px; }
+.hd h1 em { font-style: normal; color: #fde8a0; }
+.hd-sub { font-size: 10.5px; color: rgba(255,255,255,.75); line-height: 1.55; font-weight: 600; max-width: 760px; }
+.body { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.08); }
+.col { padding: 20px 18px 16px; border-right: 1px solid rgba(0,0,0,.08); }
+.col:last-child { border-right: none; }
+.col-b { background: #e8f3ff; }
+.col-w { background: #fffdf8; }
+.col-g { background: #eaf8ef; }
+.col-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 13px; padding-bottom: 8px; border-bottom: 2px solid #aaceee; color: #2a69a8; }
+.lbl-g { color: #1a7a3c; border-color: #8ad8a8; }
+.lbl-w { color: #5a5448; border-color: #e0dbd2; }
+.sec-t { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #1e1c18; margin: 13px 0 8px; }
+.card { border-radius: 10px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; }
+.c-b { background: #cce2f8; }
+.c-g { background: #bce8cd; }
+.c-j { background: #fde8a0; }
+.c-r { background: #f9d0d9; }
+.c-o { background: #fce0b0; }
+.c-t { background: #c8f0ec; }
+.ci { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.cn { font-family: 'Nunito', sans-serif; font-size: 11.5px; font-weight: 900; color: #1e1c18; margin-bottom: 3px; }
+.cd { font-size: 9.5px; color: #5a5448; line-height: 1.55; font-weight: 600; }
+.cx { font-size: 9px; color: #7a6a58; font-style: italic; margin-top: 4px; }
+.piege { background: #1e1c18; border-radius: 10px; padding: 10px 13px; display: flex; gap: 9px; align-items: flex-start; margin-top: 12px; }
+.piege-t { font-size: 9.5px; font-weight: 700; color: #fffdf8; line-height: 1.6; }
+.piege-t strong { color: #f5c842; }
+.flux-split { display: flex; gap: 0; border-radius: 10px; overflow: hidden; margin: 10px 0; }
+.flux-box { flex: 1; padding: 13px; text-align: center; }
+.flux-icon { font-size: 26px; margin-bottom: 6px; }
+.flux-name { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; margin-bottom: 6px; }
+.flux-list { font-size: 9.5px; font-weight: 700; line-height: 1.6; text-align: left; }
+.flux-ex { font-size: 9px; font-style: italic; margin-top: 5px; }
+.formule-box { background: #fde8a0; border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
+.formule-t { font-size: 10px; font-weight: 800; color: #946e00; margin-bottom: 8px; }
+.formule-row { background: rgba(255,255,255,.7); border-radius: 7px; padding: 6px 10px; font-family: monospace; font-size: 10.5px; font-weight: 700; color: #7a5800; margin-bottom: 5px; }
+.formule-row:last-child { margin-bottom: 0; }
+.charges-split { display: flex; gap: 7px; align-items: center; margin: 10px 0; }
+.charge-box { flex: 1; border-radius: 9px; padding: 10px; text-align: center; }
+.charge-icon { font-size: 16px; margin-bottom: 4px; }
+.charge-name { font-size: 10.5px; font-weight: 800; color: #1a4f82; margin-bottom: 4px; }
+.charge-desc { font-size: 9px; color: #2a4060; font-weight: 600; line-height: 1.4; }
+.charge-ex { font-size: 8.5px; font-style: italic; color: #4a6080; margin-top: 3px; }
+.plus-sign { font-size: 20px; color: #7a7160; font-weight: 900; flex-shrink: 0; }
+.charge-total { background: #1a4f82; border-radius: 8px; padding: 8px; text-align: center; margin-bottom: 10px; }
+.charge-total-t { font-size: 11px; font-weight: 900; color: #fff; }
+.rse-dim { background: #bce8cd; border-radius: 9px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.rse-dim-name { font-size: 10.5px; font-weight: 800; color: #1e1c18; }
+.rse-dim-desc { font-size: 9px; color: #1a5c35; font-weight: 600; margin-top: 2px; }
+.pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.pill { border-radius: 20px; padding: 4px 10px; font-size: 9.5px; font-weight: 700; background: #bce8cd; color: #1a5c35; }
+.bac-s { background: #2c2920; padding: 16px 24px; }
+.bac-h { font-family: 'Nunito', sans-serif; font-size: 10.5px; font-weight: 900; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.bt { width: 100%; border-collapse: collapse; }
+.bt th { background: rgba(255,255,255,.12); color: #e8e2d6; padding: 7px 12px; font-size: 9px; font-weight: 800; text-align: left; }
+.bt td { padding: 8px 12px; font-size: 9.5px; font-weight: 700; color: #fffdf8; border-bottom: 1px solid rgba(255,255,255,.07); vertical-align: middle; line-height: 1.45; }
+.bt tr:last-child td { border-bottom: none; }
+.st { color: #f5c842; font-size: 13px; }
+.se { color: rgba(255,255,255,.2); }
+.lt { display: inline-block; background: rgba(255,255,255,.13); border-radius: 5px; padding: 1px 7px; font-size: 8.5px; color: #e8e2d6; font-weight: 700; white-space: nowrap; margin-right: 4px; }
+.ft { background: #f0ede6; padding: 9px 24px; display: flex; align-items: center; justify-content: space-between; }
+.ft-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 11px; color: #1a5c82; }
+.ft-note { font-size: 9px; color: #a09880; font-weight: 600; }
+</style>
+</head>
+<body>
+<style>
+body{padding-top:72px!important}
+.sli-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#1e1c18;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.sli-nav a{text-decoration:none}
+.sli-nav-logo{font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;color:#fffdf8}
+.sli-nav-logo span{color:#f5c842}
+.sli-nav-links{display:flex;gap:2px}
+.sli-nl{font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap}
+.sli-nl:hover{background:rgba(255,255,255,.1);color:#fffdf8}
+.sli-nl.on{background:rgba(255,255,255,.1);color:#fffdf8}
+.sli-nl.soon{opacity:.4;pointer-events:none}
+@media print{.sli-nav,.sli-chapnav{display:none!important}body{padding-top:24px!important}}
+</style>
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
+    <a href="SLI_Infographie_Chap1.html" class="sli-nl on">📖 Chapitres</a>
+    <a class="sli-nl soon">🃏 Flash cards</a>
+    <a class="sli-nl soon">✅ Méthode</a>
+    <a class="sli-nl soon">🎯 Annales</a>
+  </div>
+  <a href="../index.html" class="sli-nl">← Accueil</a>
+</nav>
+<div class="page">
+
+<div class="sli-chapnav" style="background:#f0ede6;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e0dbd2;">
+  <a href="SLI_Infographie_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#5a5448;text-decoration:none;padding:8px 16px;border-radius:8px;background:#fff;border:1.5px solid #ddd8cf;">← Chapitre 2</a>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <span style="width:10px;height:10px;border-radius:50%;background:#1e1c18;display:inline-block;" title="Chapitre 1"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#1e1c18;display:inline-block;" title="Chapitre 2"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#1e1c18;display:inline-block;" title="Chapitres 3 &amp; 4"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#ddd8cf;display:inline-block;" title="Chapitre 5"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#ddd8cf;display:inline-block;" title="Chapitre 6"></span>
+  </div>
+  <a href="SLI_Infographie_Chap5.html" style="font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#5a5448;text-decoration:none;padding:8px 16px;border-radius:8px;background:#fff;border:1.5px solid #ddd8cf;">Chapitre 5 →</a>
+</div>
+
+<div class="hd" style="background:#1a5c82;">
+  <div class="hd-badge">Scholar Lock-In · SDGN Terminale STMG · Chapitres 3 &amp; 4</div>
+  <h1>Chapitres 3 &amp; 4 — Comment <em>produire</em> ? Processus, coûts &amp; RSE</h1>
+  <div class="hd-sub">Processus + flux tendus/poussés = 2/3 sessions. RSE en hausse (2/3). Coût complet = ponctuel (1/3) mais discriminant quand il tombe.</div>
+</div>
+
+<div class="body">
+
+<!-- COL 1 — Processus + flux -->
+<div class="col col-b">
+  <div class="col-lbl">① Processus de production</div>
+
+  <div class="card c-b">
+    <div class="ci">⚙️</div>
+    <div>
+      <div class="cn">Processus de production</div>
+      <div class="cd">Enchaînement d'activités transformant des <strong>ressources (inputs)</strong> en <strong>biens ou services (outputs)</strong>. Chaque étape a des acteurs internes ou externes.</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Flux poussés vs flux tendus</div>
+  <div class="flux-split">
+    <div class="flux-box" style="background:#cce2f8;">
+      <div class="flux-icon">📦</div>
+      <div class="flux-name" style="color:#1a4f82;">Flux Poussés</div>
+      <div class="flux-list" style="color:#2a4060;">✔ Produire à l'avance<br>✔ Stock constitué<br>✔ Planification sur prévisions<br>✘ Risque d'invendus</div>
+      <div class="flux-ex" style="color:#5a7a9a;">Ex : automobile, agroalimentaire</div>
+    </div>
+    <div style="width:2px; background:#fffdf8;"></div>
+    <div class="flux-box" style="background:#bce8cd;">
+      <div class="flux-icon">🎯</div>
+      <div class="flux-name" style="color:#1a5c35;">Flux Tendus</div>
+      <div class="flux-list" style="color:#1a4028;">✔ Produire à la commande<br>✔ Zéro stock<br>✔ Réactivité maximale<br>✘ Exige fournisseurs fiables</div>
+      <div class="flux-ex" style="color:#2d7a4f;">Ex : Toyota, artisan sur mesure</div>
+    </div>
+  </div>
+
+  <div class="card c-t">
+    <div class="ci">⚡</div>
+    <div>
+      <div class="cn">Lean Management</div>
+      <div class="cd">Éliminer tout <strong>gaspillage</strong> pour maximiser la valeur avec un minimum de ressources. Lié aux flux tendus. Origine Toyota.</div>
+    </div>
+  </div>
+
+  <div class="card c-b">
+    <div class="ci">📐</div>
+    <div>
+      <div class="cn">Diagramme de flux / processus</div>
+      <div class="cd">Représentation visuelle d'un processus. Savoir <strong>lire et commenter</strong> : identifier les étapes, acteurs (internes/externes), flux d'information et de matières.</div>
+    </div>
+  </div>
+
+  <div class="piege">
+    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
+    <div class="piege-t"><strong>Piège bac :</strong> Toujours qualifier les acteurs <strong>interne</strong> (service de l'entreprise) vs <strong>externe</strong> (fournisseur, client). La qualification est exigée dans les corrigés officiels.</div>
+  </div>
+</div>
+
+<!-- COL 2 — Coûts -->
+<div class="col col-w">
+  <div class="col-lbl lbl-w">② Coûts de production</div>
+
+  <div class="card c-b">
+    <div class="ci">📊</div>
+    <div>
+      <div class="cn">Coût complet</div>
+      <div class="cd">Totalité des charges liées à la production. Permet de calculer le <strong>coût de revient</strong> et de fixer un prix rentable.</div>
+    </div>
+  </div>
+
+  <div class="charges-split">
+    <div class="charge-box" style="background:#cce2f8;">
+      <div class="charge-icon">🔩</div>
+      <div class="charge-name">Charges directes</div>
+      <div class="charge-desc">Imputables directement à un produit sans calcul intermédiaire.</div>
+      <div class="charge-ex">Ex : matières premières, main-d'œuvre directe</div>
+    </div>
+    <div class="plus-sign">+</div>
+    <div class="charge-box" style="background:#aaceee;">
+      <div class="charge-icon">🏢</div>
+      <div class="charge-name">Charges indirectes</div>
+      <div class="charge-desc">Communes à plusieurs produits. Réparties via une clé de répartition.</div>
+      <div class="charge-ex">Ex : loyer, électricité, amortissements</div>
+    </div>
+  </div>
+  <div class="charge-total">
+    <div class="charge-total-t">= Coût de revient total</div>
+  </div>
+
+  <div class="formule-box">
+    <div class="formule-t">Les 3 formules à retenir</div>
+    <div class="formule-row">Marge = Prix de vente − Coût de revient</div>
+    <div class="formule-row">Taux de marge = Marge / Coût de revient × 100</div>
+    <div class="formule-row">Taux de marque = Marge / Prix de vente × 100</div>
+  </div>
+
+  <div class="card c-t">
+    <div class="ci">🔄</div>
+    <div>
+      <div class="cn">Flexibilité de production</div>
+      <div class="cd">Capacité à adapter rapidement volume et nature de la production aux variations de la demande. Lié aux flux tendus + organisation souple (Ch.6).</div>
+    </div>
+  </div>
+
+  <div class="piege">
+    <div style="font-size:16px; flex-shrink:0;">⚠️</div>
+    <div class="piege-t"><strong>Coût complet = ponctuel (1/3 sessions)</strong> mais discriminant quand il tombe. Bien distinguer charges directes / indirectes et appliquer les 3 formules.</div>
+  </div>
+</div>
+
+<!-- COL 3 — RSE -->
+<div class="col col-g">
+  <div class="col-lbl lbl-g">③ RSE — 2/3 sessions ⭐ en hausse</div>
+
+  <div class="card c-g">
+    <div class="ci">🌱</div>
+    <div>
+      <div class="cn">RSE — Responsabilité Sociétale des Entreprises</div>
+      <div class="cd">Intégrer volontairement les impacts <strong>sociaux</strong> et <strong>environnementaux</strong> dans la stratégie et les opérations.<br>≠ simple communication verte — un vrai choix stratégique.</div>
+    </div>
+  </div>
+
+  <div class="sec-t">Les 3 dimensions</div>
+  <div class="rse-dim"><span style="font-size:20px;">🌍</span><div><div class="rse-dim-name">Environnementale</div><div class="rse-dim-desc">Réduire l'empreinte carbone, gérer les déchets, économiser les ressources naturelles.</div></div></div>
+  <div class="rse-dim"><span style="font-size:20px;">👥</span><div><div class="rse-dim-name">Sociale</div><div class="rse-dim-desc">QVT, égalité F/H, insertion handicap, conditions de travail des fournisseurs.</div></div></div>
+  <div class="rse-dim" style="margin-bottom:0;"><span style="font-size:20px;">⚖️</span><div><div class="rse-dim-name">Économique (gouvernance)</div><div class="rse-dim-desc">Commerce équitable, ancrage local, pratiques loyales avec partenaires.</div></div></div>
+
+  <div class="sec-t">RSE → Avantage concurrentiel</div>
+  <div style="background:#fffdf8; border-radius:9px; padding:11px 13px; border: 1px solid rgba(0,0,0,.07); margin-bottom:10px;">
+    <div style="font-size:9.5px; font-weight:700; color:#1e1c18; line-height:1.7;">
+      ✔ Fidélisation des clients engagés (valeur perçue +)<br>
+      ✔ Attractivité pour les talents (marque employeur)<br>
+      ✔ Accès aux financements verts (green bonds)<br>
+      ✔ Anticipation des réglementations futures
+    </div>
+  </div>
+
+  <div class="sec-t">Exemples à citer au bac</div>
+  <div class="pills">
+    <div class="pill">🥛 Danone</div>
+    <div class="pill">🍫 Alter Eco</div>
+    <div class="pill">🚗 Tesla</div>
+    <div class="pill">🥗 Phénix</div>
+    <div class="pill">👗 Vinted</div>
+  </div>
+
+  <div class="piege">
+    <div style="font-size:16px; flex-shrink:0;">⭐</div>
+    <div class="piege-t"><strong>Bac :</strong> RSE doit toujours être reliée à la <strong>performance</strong>. Dire "c'est bien pour la planète" sans lien à un avantage concurrentiel = réponse incomplète.</div>
+  </div>
+</div>
+
+</div><!-- /body -->
+
+<div class="bac-s">
+  <div class="bac-h">📋 Points de vigilance pour l'épreuve du Bac</div>
+  <table class="bt">
+    <thead><tr><th style="width:22%">Notion clé</th><th style="width:17%">Importance au Bac</th><th>Conseil correcteur</th></tr></thead>
+    <tbody>
+      <tr><td>⚙️ Processus de production</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Lecture schéma</span> Savoir lire un diagramme, identifier chaque acteur et le qualifier interne/externe. La qualification est exigée dans les corrigés. Ne pas juste "décrire les étapes".</td></tr>
+      <tr><td>📦 Flux poussés ≠ flux tendus</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Illustration cas</span> Illustrer avec l'entreprise du sujet. Associer flux tendus → lean management → réactivité. Souvent demandé en contexte sectoriel.</td></tr>
+      <tr><td>🌱 RSE</td><td><span class="st">★★★</span><span class="se">★★</span></td><td><span class="lt">Lien performance</span> Toujours relier RSE à un avantage concurrentiel (image, fidélisation, recrutement, financement). Préparez 2 exemples d'entreprises engagées.</td></tr>
+      <tr><td>📊 Coût complet / marge</td><td><span class="st">★★</span><span class="se">★★★</span></td><td><span class="lt">Ponctuel 1/3</span> Si tombe : bien distinguer charges directes/indirectes. Appliquer les 3 formules (marge / taux de marge / taux de marque). Discriminant quand présent.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="ft">
+  <div class="ft-brand">Scholar Lock-In · SDGN Terminale STMG · Chapitres 3 &amp; 4</div>
+  <div class="ft-note">🔵 Bleu = Production &amp; Coûts</div>
+</div>
+
+<div class="sli-chapnav" style="background:#f0ede6;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e0dbd2;">
+  <a href="SLI_Infographie_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#5a5448;text-decoration:none;padding:8px 16px;border-radius:8px;background:#fff;border:1.5px solid #ddd8cf;">← Chapitre 2</a>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <span style="width:10px;height:10px;border-radius:50%;background:#1e1c18;display:inline-block;" title="Chapitre 1"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#1e1c18;display:inline-block;" title="Chapitre 2"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#1e1c18;display:inline-block;" title="Chapitres 3 &amp; 4"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#ddd8cf;display:inline-block;" title="Chapitre 5"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#ddd8cf;display:inline-block;" title="Chapitre 6"></span>
+  </div>
+  <a href="SLI_Infographie_Chap5.html" style="font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#5a5448;text-decoration:none;padding:8px 16px;border-radius:8px;background:#fff;border:1.5px solid #ddd8cf;">Chapitre 5 →</a>
+</div>
+
+</div>
+
+<!-- BOUTON FLOTTANT -->
+<div style="position:fixed; bottom:28px; right:28px; z-index:100;">
+  <button onclick="document.getElementById('memo-overlay').style.display='flex'"
+    style="background:#1a5c82; color:#fff; border:none; border-radius:50px; padding:12px 22px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px rgba(26,92,130,.4); display:flex; align-items:center; gap:8px; letter-spacing:0.5px;">
+    🧠 Carte Mémo
+  </button>
+</div>
+
+<!-- OVERLAY -->
+<div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
+  style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
+
+  <div style="background:#fffdf8; border-radius:20px; width:700px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
+
+    <div style="background:#1a5c82; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <div style="font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitres 3 &amp; 4</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#fff;">🧠 Carte de mémorisation</div>
+      </div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'"
+        style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
+    </div>
+
+    <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
+
+      <!-- Flux poussés vs tendus -->
+      <div>
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1e1c18; margin-bottom:8px;">⚙️ Flux poussés vs Flux tendus</div>
+        <div style="display:flex; gap:0; border-radius:12px; overflow:hidden;">
+          <div style="flex:1; background:#cce2f8; padding:13px; text-align:center;">
+            <div style="font-size:24px; margin-bottom:5px;">📦</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1a4f82; margin-bottom:4px;">Flux Poussés</div>
+            <div style="font-size:9px; color:#2a4060; font-weight:700; line-height:1.5;">Produire à l'avance · Stock · Prévisions</div>
+          </div>
+          <div style="width:3px; background:#fffdf8;"></div>
+          <div style="flex:1; background:#bce8cd; padding:13px; text-align:center;">
+            <div style="font-size:24px; margin-bottom:5px;">🎯</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#1a5c35; margin-bottom:4px;">Flux Tendus</div>
+            <div style="font-size:9px; color:#1a4028; font-weight:700; line-height:1.5;">À la commande · Zéro stock · Réactivité</div>
+          </div>
+        </div>
+        <div style="background:#c8f0ec; border-radius:8px; padding:8px 12px; margin-top:6px; display:flex; gap:8px; align-items:center;">
+          <span style="font-size:16px;">⚡</span>
+          <span style="font-size:9.5px; font-weight:700; color:#1e1c18;">Lean Management — éliminer les gaspillages · Origine Toyota</span>
+        </div>
+      </div>
+
+      <!-- Coûts -->
+      <div style="background:#e8f3ff; border-radius:12px; padding:13px 16px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a4f82; margin-bottom:8px;">📊 Coûts — formules clés</div>
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+          <div style="flex:1; background:#cce2f8; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1a4f82;">🔩 Charges directes<br><span style="font-size:8px; color:#2a4060;">Matières, MO directe</span></div>
+          <div style="font-size:18px; color:#7a7160; font-weight:900;">+</div>
+          <div style="flex:1; background:#aaceee; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:700; color:#1a4f82;">🏢 Charges indirectes<br><span style="font-size:8px; color:#2a4060;">Loyer, électricité</span></div>
+          <div style="font-size:18px; color:#7a7160; font-weight:900;">=</div>
+          <div style="flex:1; background:#1a4f82; border-radius:8px; padding:8px; text-align:center; font-size:9px; font-weight:900; color:#fff;">Coût de revient</div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:9px; font-weight:700; color:#7a5800; text-align:center;">Marge = PV − CR</div>
+          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:9px; font-weight:700; color:#7a5800; text-align:center;">Taux marge = M/CR×100</div>
+          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:9px; font-weight:700; color:#7a5800; text-align:center;">Taux marque = M/PV×100</div>
+        </div>
+      </div>
+
+      <!-- RSE -->
+      <div style="background:#eaf8ef; border-radius:12px; padding:13px 16px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#1a5c35; margin-bottom:8px;">🌱 RSE — 3 dimensions</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin-bottom:8px;">
+          <div style="background:#bce8cd; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">🌍</div><div style="font-size:9.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Environnementale</div><div style="font-size:8px; color:#1a5c35; font-weight:600; margin-top:2px;">Carbone, déchets, ressources</div></div>
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">👥</div><div style="font-size:9.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Sociale</div><div style="font-size:8px; color:#7a5800; font-weight:600; margin-top:2px;">QVT, égalité, handicap</div></div>
+          <div style="background:#cce2f8; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">⚖️</div><div style="font-size:9.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Économique</div><div style="font-size:8px; color:#1a4f82; font-weight:600; margin-top:2px;">Commerce équitable, local</div></div>
+        </div>
+        <div style="background:#1e1c18; border-radius:8px; padding:7px 11px; font-size:9px; font-weight:700; color:#fffdf8;">⭐ Toujours relier RSE à un <span style="color:#f5c842;">avantage concurrentiel</span> — image, recrutement, fidélisation, financement.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>if(location.hash==='#memo')document.getElementById('memo-overlay').style.display='flex';</script>
+</body>
+</html>

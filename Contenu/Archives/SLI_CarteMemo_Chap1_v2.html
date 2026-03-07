@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte Mémo Ch.1 v2 — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* =====================================================
+   DESIGN TOKENS
+===================================================== */
+:root {
+  /* Rose / Marché */
+  --rose:        #b5415a;
+  --rose-dark:   #7a2038;
+  --rose-bg:     #fdeef2;
+  --rose-card:   #f9d0d9;
+
+  /* Orange / secondaire col 1-2 */
+  --orange-card: #fce0b0;
+  --orange-txt:  #7a5800;
+  --orange-acc:  #c47800;
+
+  /* Vert / Besoin créé */
+  --green:       #1a7a3c;
+  --green-card:  #bce8cd;
+
+  /* Bleu / Slate */
+  --blue:        #2a69a8;
+  --blue-card:   #cce2f8;
+  --slate-card:  #dce8fc;
+  --purple-card: #ead8f5;
+
+  /* Or / Modèle éco */
+  --gold:        #946e00;
+  --gold-bright: #f5c842;
+  --gold-border: #d4a800;
+  --gold-bg:     #fef8e2;
+  --gold-card:   #fde8a0;
+
+  /* Neutres */
+  --dark:        #1e1c18;
+  --mid:         #5a5448;
+  --muted:       #8a7e6e;
+  --border:      #e8e2da;
+  --cream:       #fffdf8;
+  --warm-bg:     #f0ede6;
+}
+
+/* =====================================================
+   RESET & BASE
+===================================================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--warm-bg);
+  color: var(--dark);
+  min-height: 100vh;
+  padding: 28px 20px 52px;
+}
+
+/* =====================================================
+   PAGE SHELL
+===================================================== */
+.page {
+  max-width: 1300px;
+  margin: 0 auto;
+  background: var(--cream);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 48px rgba(0,0,0,.13);
+}
+
+/* =====================================================
+   NAV
+===================================================== */
+.sli-nav {
+  background: var(--dark);
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.25);
+}
+.sli-nav a { text-decoration: none; }
+.sli-nav-logo {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--cream);
+}
+.sli-nav-logo span { color: var(--gold-bright); }
+.sli-nav-links { display: flex; gap: 2px; }
+.sli-nl {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.sli-nl:hover { background: rgba(255,255,255,.09); color: var(--cream); }
+.sli-nl.on    { background: rgba(255,255,255,.09); color: var(--cream); }
+
+/* =====================================================
+   CHAPNAV
+===================================================== */
+.chapnav {
+  background: var(--warm-bg);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.chapnav-btn {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--mid);
+  text-decoration: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+}
+.chapnav-dots { display: flex; gap: 8px; align-items: center; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-on  { background: var(--dark); }
+.dot-off { background: #d4cec6; }
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+.header {
+  background: var(--dark);
+  padding: 26px 36px 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  background: rgba(245,200,66,.11);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+.header h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.header h1 em { font-style: normal; color: var(--gold-bright); }
+.header-meta {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.header-right {
+  flex-shrink: 0;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.read-tag {
+  background: var(--rose);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 10px;
+  letter-spacing: 0.3px;
+}
+.header-note {
+  font-size: 11px;
+  color: rgba(255,255,255,.35);
+  font-weight: 500;
+}
+
+/* =====================================================
+   3-COLUMN BODY
+===================================================== */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  min-width: 1200px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Column containers */
+.col {
+  padding: 24px 20px;
+  position: relative;
+}
+.col-1 {
+  background: var(--rose-bg);
+  border-right: 1px solid rgba(0,0,0,.08);
+}
+.col-2 {
+  background: var(--cream);
+  border-right: 1px solid rgba(0,0,0,.08);
+}
+.col-3 {
+  background: var(--gold-bg);
+  border-left: 3px solid var(--gold-border);
+}
+
+/* Column header */
+.col-hd {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+}
+.col-1 .col-hd { border-bottom: 2px solid var(--rose-card); }
+.col-2 .col-hd { border-bottom: 2px solid #e0dbd2; }
+.col-3 .col-hd { border-bottom: 2px solid var(--gold-card); }
+
+.col-num {
+  font-family: 'Nunito', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.28;
+}
+.col-1 .col-num { color: var(--rose); }
+.col-2 .col-num { color: var(--mid); }
+.col-3 .col-num { color: var(--gold); }
+
+.col-hd-body { display: flex; flex-direction: column; gap: 5px; }
+.col-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  line-height: 1.3;
+}
+.col-1 .col-title { color: var(--rose); }
+.col-2 .col-title { color: var(--mid); }
+.col-3 .col-title { color: var(--gold); }
+
+.col-subtitle {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* Pill badges in col header */
+.pill-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--rose);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.4px;
+}
+.pill-priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, var(--gold-bright) 0%, #e5a800 100%);
+  color: var(--dark);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.4px;
+}
+
+/* Section divider title */
+.sec-t {
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  margin: 18px 0 10px;
+}
+.col-1 .sec-t { color: rgba(181,65,90,.55); }
+.col-2 .sec-t { color: rgba(90,84,72,.5); }
+.col-3 .sec-t { color: rgba(148,110,0,.55); }
+
+/* =====================================================
+   BADGE SYSTEM — uniform height/padding/radius
+===================================================== */
+.badge {
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  padding: 0 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  margin-bottom: 5px;
+}
+.badge-rose   { background: var(--rose);   color: #fff; }
+.badge-gold   { background: #c47800;       color: #fff; }
+.badge-green  { background: var(--green);  color: #fff; }
+.badge-blue   { background: var(--blue);   color: #fff; }
+
+/* =====================================================
+   CARD SYSTEM
+   - .card        : horizontal layout (icon + body)
+   - .card-stack  : vertical layout (for grids)
+===================================================== */
+.card {
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.card:last-of-type { margin-bottom: 0; }
+
+.card-stack {
+  border-radius: 12px;
+  padding: 14px 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+/* Card color variants */
+.c-rose    { background: var(--rose-card); }
+.c-orange  { background: var(--orange-card); }
+.c-green   { background: var(--green-card); }
+.c-blue    { background: var(--blue-card); }
+.c-slate   { background: var(--slate-card); }
+.c-purple  { background: var(--purple-card); }
+.c-gold    { background: var(--gold-card); }
+
+/* Icon inside card */
+.ci      { font-size: 26px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.ci-sm   { font-size: 19px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.ci-lg   { font-size: 30px; margin-bottom: 2px; }
+
+/* Card text */
+.ct    {
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 5px;
+}
+.ct-sm {
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 3px;
+}
+.cd {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mid);
+  line-height: 1.55;
+}
+.cd strong { font-weight: 700; color: var(--dark); }
+.cx {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   GRIDS
+===================================================== */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* =====================================================
+   PIÈGE BLOCK
+===================================================== */
+.piege {
+  background: var(--dark);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+.piege-ico { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+.piege-txt {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fffdf8;
+  line-height: 1.6;
+}
+.piege-txt strong { color: var(--gold-bright); }
+
+/* =====================================================
+   BUSINESS MODEL CARDS (col 3)
+===================================================== */
+.bm-list { display: flex; flex-direction: column; gap: 8px; }
+.bm-card {
+  background: rgba(255,255,255,.72);
+  border-radius: 10px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 3px solid var(--gold-card);
+}
+.bm-ico  { font-size: 20px; flex-shrink: 0; }
+.bm-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.2;
+}
+.bm-desc {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   QUESTION RÉDIGÉE — élément le plus saillant
+===================================================== */
+.q-card {
+  background: var(--cream);
+  border: 2px solid var(--gold-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-top: 18px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(148,110,0,.14);
+}
+.q-card::after {
+  content: '⭐';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 38px;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.q-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.q-star { font-size: 20px; }
+.q-label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--dark);
+}
+.q-label-tag {
+  display: inline-block;
+  background: var(--gold-bright);
+  color: var(--dark);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 5px;
+  margin-left: 6px;
+  letter-spacing: 0.4px;
+  vertical-align: middle;
+}
+.q-body {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mid);
+  line-height: 1.65;
+}
+.q-body strong { color: var(--dark); font-weight: 700; }
+
+/* =====================================================
+   BAC SECTION
+===================================================== */
+.bac {
+  background: #27241e;
+  padding: 24px 32px;
+}
+.bac-hd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.bac-hd-label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.bac-cards { display: flex; flex-direction: column; gap: 10px; }
+
+.bac-card {
+  background: rgba(255,255,255,.055);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 220px 130px 1fr;
+  gap: 20px;
+  align-items: center;
+  border-left: 3px solid transparent;
+}
+.bac-card-p1 { border-color: var(--gold-bright); }
+.bac-card-p2 { border-color: #e85c72; }
+.bac-card-p3 { border-color: #e85c72; }
+.bac-card-p4 { border-color: rgba(255,255,255,.2); }
+
+.bac-notion {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--cream);
+  line-height: 1.3;
+}
+.bac-stars { display: flex; gap: 3px; align-items: center; }
+.s-on  { color: #f5c842; font-size: 19px; line-height: 1; }
+.s-off { color: rgba(255,255,255,.14); font-size: 19px; line-height: 1; }
+
+.bac-conseil {
+  font-size: 13px;
+  color: rgba(255,255,255,.58);
+  font-weight: 500;
+  line-height: 1.55;
+}
+.bac-tag {
+  display: inline-block;
+  background: rgba(255,255,255,.11);
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ddd8cc;
+  margin-right: 6px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.footer {
+  background: var(--warm-bg);
+  padding: 11px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-brand {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 12px;
+  color: var(--rose);
+}
+.footer-note {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- NAV -->
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
+    <a href="SLI_Infographie_Chap1.html" class="sli-nl on">📖 Chapitres</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
+  </div>
+  <a href="../index.html" class="sli-nl">← Accueil</a>
+</nav>
+
+<!-- CHAPNAV -->
+<div class="chapnav">
+  <a href="SLI_Infographie_Theme1_Global.html" class="chapnav-btn">← Vue d'ensemble</a>
+  <div class="chapnav-dots">
+    <span class="dot dot-on"  title="Chapitre 1"></span>
+    <span class="dot dot-off" title="Chapitre 2"></span>
+    <span class="dot dot-off" title="Chapitres 3 &amp; 4"></span>
+    <span class="dot dot-off" title="Chapitre 5"></span>
+    <span class="dot dot-off" title="Chapitre 6"></span>
+  </div>
+  <a href="SLI_Infographie_Chap2.html" class="chapnav-btn">Chapitre 2 →</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="header">
+  <div>
+    <div class="header-badge">🔒 Scholar Lock-In · SDGN Terminale STMG · Mercatique</div>
+    <h1>Chapitre 1 — Quels produits ou services<br>pour <em>quels besoins ?</em></h1>
+    <div class="header-meta">Démarche marketing · Innovation · Modèle économique · Plan de marchéage<br>Ce chapitre revient au bac 2 sessions sur 3.</div>
+  </div>
+  <div class="header-right">
+    <div class="read-tag">🧠 Carte Mémo · À lire avant le cours</div>
+    <div class="header-note">3 sections · lire de gauche à droite</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     BODY — 3 COLONNES
+============================================================ -->
+<div class="body">
+
+  <!-- ────────────────────── COL 1 — DÉMARCHE ────────────────────── -->
+  <div class="col col-1">
+
+    <div class="col-hd">
+      <div class="col-num">①</div>
+      <div class="col-hd-body">
+        <div class="col-title">Démarche Marketing</div>
+        <span class="pill-start">Commencer ici →</span>
+      </div>
+    </div>
+
+    <!-- Carte principale -->
+    <div class="card c-rose">
+      <div class="ci">🧭</div>
+      <div>
+        <div class="ct">Démarche marketing</div>
+        <div class="cd">Partir du <strong>besoin client</strong> pour construire l'offre.<br>≠ approche ingénierie = produit d'abord, marché ensuite.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Les 4 approches marketing</div>
+
+    <div class="card c-rose">
+      <div class="ci-sm">🔍</div>
+      <div>
+        <span class="badge badge-rose">Besoin existant</span>
+        <div class="ct-sm">Réactive</div>
+        <div class="cd">Le besoin existe → l'entreprise y répond. Peu risqué mais concurrence déjà présente.</div>
+      </div>
+    </div>
+
+    <div class="card c-orange">
+      <div class="ci-sm">🔭</div>
+      <div>
+        <span class="badge badge-gold">Besoin latent</span>
+        <div class="ct-sm">Anticipatrice</div>
+        <div class="cd">Besoin non encore perçu → on l'anticipe avant les concurrents.</div>
+      </div>
+    </div>
+
+    <div class="card c-green">
+      <div class="ci-sm">💡</div>
+      <div>
+        <span class="badge badge-green">Besoin créé</span>
+        <div class="ct-sm">Créative</div>
+        <div class="cd">L'entreprise crée un besoin nouveau et crée son propre marché.</div>
+      </div>
+    </div>
+
+    <div class="card c-slate">
+      <div class="ci-sm">🤝</div>
+      <div>
+        <span class="badge badge-blue">Client partenaire</span>
+        <div class="ct-sm">Cocréation (médiatrice)</div>
+        <div class="cd">Le consommateur co-construit le produit avec l'entreprise.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Étude de marché vs Veille</div>
+
+    <div class="g2">
+      <div class="card-stack c-rose">
+        <div class="ci-lg">🔬</div>
+        <div class="ct-sm">Étude de marché</div>
+        <span class="badge badge-rose">Ponctuelle</span>
+        <div class="cd">Pour une décision précise. Quantitative ou qualitative.</div>
+      </div>
+      <div class="card-stack c-orange">
+        <div class="ci-lg">📡</div>
+        <div class="ct-sm">Veille marketing</div>
+        <span class="badge badge-gold">Continue</span>
+        <div class="cd">Surveillance permanente de l'environnement.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-ico">⚠️</div>
+      <div class="piege-txt"><strong>Piège bac :</strong> Étude = ponctuelle pour une décision. Veille = continue pour surveiller. Distinction testée en question courte.</div>
+    </div>
+
+  </div><!-- /col-1 -->
+
+  <!-- ────────────────────── COL 2 — INNOVATION & 4P ────────────────────── -->
+  <div class="col col-2">
+
+    <div class="col-hd">
+      <div class="col-num">②</div>
+      <div class="col-hd-body">
+        <div class="col-title">Innovation &amp; Plan de marchéage</div>
+        <div class="col-subtitle">Produit · Prix · Distribution · Communication</div>
+      </div>
+    </div>
+
+    <div class="card c-orange">
+      <div class="ci">🚀</div>
+      <div>
+        <div class="ct">Innovation produit ≠ procédés</div>
+        <div class="cd"><strong>Produit</strong> = ce qu'on vend (Ch.1).<br><strong>Procédés</strong> = comment on fabrique (Ch.3&amp;4).</div>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-bottom: 14px;">
+      <div class="card-stack c-rose">
+        <div class="ci-lg">💥</div>
+        <div class="ct-sm">Rupture</div>
+        <div class="cd">Crée un marché radicalement nouveau. Remplace la techno dominante.</div>
+        <div class="cx">Ex : streaming → DVD</div>
+      </div>
+      <div class="card-stack c-blue">
+        <div class="ci-lg">📈</div>
+        <div class="ct-sm">Incrémentale</div>
+        <div class="cd">Amélioration progressive d'un produit existant.</div>
+        <div class="cx">Ex : nouvelle version d'un smartphone</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Plan de marchéage — 4P</div>
+
+    <div class="g2" style="margin-bottom: 14px;">
+      <div class="card c-rose" style="margin:0;">
+        <div class="ci-sm">📦</div>
+        <div>
+          <div class="ct-sm">Produit</div>
+          <div class="cd">Caractéristiques, marque, design, gamme</div>
+        </div>
+      </div>
+      <div class="card c-orange" style="margin:0;">
+        <div class="ci-sm">💶</div>
+        <div>
+          <div class="ct-sm">Prix</div>
+          <div class="cd">Écrémage, pénétration, alignement, freemium</div>
+        </div>
+      </div>
+      <div class="card c-green" style="margin:0;">
+        <div class="ci-sm">🏪</div>
+        <div>
+          <div class="ct-sm">Distribution</div>
+          <div class="cd">Intensive, sélective, exclusive</div>
+        </div>
+      </div>
+      <div class="card c-slate" style="margin:0;">
+        <div class="ci-sm">📣</div>
+        <div>
+          <div class="ct-sm">Communication</div>
+          <div class="cd">Médias / hors-médias, réseaux sociaux</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card c-purple">
+      <div class="ci">⚖️</div>
+      <div>
+        <div class="ct">Valeur perçue &amp; Satisfaction</div>
+        <div class="cd">Valeur perçue ≥ valeur attendue = <strong>satisfaction</strong>.<br>Si inférieure → insatisfaction → perte du client.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-ico">⚠️</div>
+      <div class="piege-txt"><strong>Piège :</strong> Approches SDGN (réactive / anticipatrice / créative / cocréation) ≠ stratégies Mercatique spé (masse / différencié / concentré). Ne pas mélanger.</div>
+    </div>
+
+  </div><!-- /col-2 -->
+
+  <!-- ────────────────────── COL 3 — MODÈLE ÉCONOMIQUE ────────────────────── -->
+  <div class="col col-3">
+
+    <div class="col-hd">
+      <div class="col-num">③</div>
+      <div class="col-hd-body">
+        <div class="col-title">Modèle économique</div>
+        <span class="pill-priority">⭐ Priorité Bac</span>
+      </div>
+    </div>
+
+    <div class="card c-gold">
+      <div class="ci">💡</div>
+      <div>
+        <div class="ct">Business model</div>
+        <div class="cd">Comment l'organisation <strong>crée</strong>, <strong>délivre</strong> et <strong>capte</strong> de la valeur — sa façon de générer ses revenus.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Les 6 types à connaître</div>
+
+    <div class="bm-list">
+      <div class="bm-card">
+        <div class="bm-ico">💰</div>
+        <div>
+          <div class="bm-name">Vente directe</div>
+          <div class="bm-desc">Produit vendu une fois. Ex : H&amp;M, Renault</div>
+        </div>
+      </div>
+      <div class="bm-card">
+        <div class="bm-ico">📦</div>
+        <div>
+          <div class="bm-name">Abonnement</div>
+          <div class="bm-desc">Revenu récurrent. Ex : Netflix, presse en ligne</div>
+        </div>
+      </div>
+      <div class="bm-card">
+        <div class="bm-ico">🆓</div>
+        <div>
+          <div class="bm-name">Freemium</div>
+          <div class="bm-desc">Gratuit de base, payant pour les +. Ex : Spotify, Duolingo</div>
+        </div>
+      </div>
+      <div class="bm-card">
+        <div class="bm-ico">🤝</div>
+        <div>
+          <div class="bm-name">Commission / Marketplace</div>
+          <div class="bm-desc">% sur chaque transaction. Ex : Airbnb, Vinted, Amazon</div>
+        </div>
+      </div>
+      <div class="bm-card">
+        <div class="bm-ico">📣</div>
+        <div>
+          <div class="bm-name">Publicité</div>
+          <div class="bm-desc">Service gratuit financé par la pub. Ex : Google, TF1</div>
+        </div>
+      </div>
+      <div class="bm-card">
+        <div class="bm-ico">⚙️</div>
+        <div>
+          <div class="bm-name">Éco. de la fonctionnalité</div>
+          <div class="bm-desc">On vend l'usage, pas le produit. Ex : leasing, Vélib'</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question rédigée — ÉLÉMENT LE PLUS SAILLANT -->
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-star">⭐</span>
+        <div class="q-label">Question rédigée <span class="q-label-tag">À retenir</span></div>
+      </div>
+      <div class="q-body">
+        Toujours <strong>nommer le type de modèle</strong> + citer un <strong>exemple hors-cas</strong>.<br>
+        Préparez : Airbnb (commission) · Spotify (freemium) · Netflix (abonnement).
+      </div>
+    </div>
+
+  </div><!-- /col-3 -->
+
+</div><!-- /body -->
+
+<!-- ============================================================
+     BAC — CARTES HORIZONTALES EMPILÉES
+============================================================ -->
+<div class="bac">
+
+  <div class="bac-hd">
+    <span style="font-size:18px;">📋</span>
+    <div class="bac-hd-label">Points de vigilance pour l'épreuve du Bac</div>
+  </div>
+
+  <div class="bac-cards">
+
+    <div class="bac-card bac-card-p1">
+      <div class="bac-notion">💡 Modèle économique</div>
+      <div class="bac-stars">
+        <span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span>
+      </div>
+      <div class="bac-conseil">
+        <span class="bac-tag">Question rédigée</span>
+        Nommer le type + illustrer hors-cas + expliquer comment l'entreprise crée de la valeur. Tombe 2/3 sessions.
+      </div>
+    </div>
+
+    <div class="bac-card bac-card-p2">
+      <div class="bac-notion">🧭 Démarche marketing</div>
+      <div class="bac-stars">
+        <span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span>
+      </div>
+      <div class="bac-conseil">
+        <span class="bac-tag">Contextualisation</span>
+        Identifier dans le cas quelle approche est utilisée (réactive / anticipatrice / créative / cocréation). Ne jamais écrire "approche de masse".
+      </div>
+    </div>
+
+    <div class="bac-card bac-card-p3">
+      <div class="bac-notion">🔬 Étude ≠ Veille</div>
+      <div class="bac-stars">
+        <span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span>
+      </div>
+      <div class="bac-conseil">
+        <span class="bac-tag">Q courte 3-4 pts</span>
+        Distinction fréquente. Mémoriser : étude = ponctuelle + décision / veille = continue + surveillance.
+      </div>
+    </div>
+
+    <div class="bac-card bac-card-p4">
+      <div class="bac-notion">🚀 Innovation produit ≠ procédés</div>
+      <div class="bac-stars">
+        <span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span><span class="s-off">★</span>
+      </div>
+      <div class="bac-conseil">
+        <span class="bac-tag">≠ Chap.3&amp;4</span>
+        Produit = ce qu'on vend. Procédés = comment on fabrique. Ajouter rupture vs incrémentale pour enrichir la réponse.
+      </div>
+    </div>
+
+  </div>
+</div><!-- /bac -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">Scholar Lock-In · SDGN Terminale STMG · Chapitre 1</div>
+  <div class="footer-note">🩷 Rose = Marché &amp; Offre · Carte Mémo v2</div>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>

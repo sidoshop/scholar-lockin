@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte Mémo Ch.2 — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f0ede6; color: #1e1c18; min-height: 100vh; padding: 68px 20px 48px; }
+.page { max-width: 1300px; margin: 0 auto; background: #fffdf8; border-radius: 20px; overflow: hidden; box-shadow: 0 6px 48px rgba(0,0,0,.13); }
+
+/* NAV */
+.sli-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #1e1c18; height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; box-shadow: 0 2px 12px rgba(0,0,0,.3); }
+.sli-nav a { text-decoration: none; }
+.sli-nav-logo { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; color: #fffdf8; }
+.sli-nav-logo span { color: #f5c842; }
+.sli-nav-links { display: flex; gap: 2px; }
+.sli-nl { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #a09880; padding: 5px 10px; border-radius: 6px; white-space: nowrap; }
+.sli-nl:hover { background: rgba(255,255,255,.09); color: #fffdf8; }
+.sli-nl.on { background: rgba(255,255,255,.09); color: #fffdf8; }
+@media print { .sli-nav, .chapnav { display: none !important; } body { padding-top: 0 !important; } }
+
+/* CHAPNAV */
+.chapnav { background: #f0ede6; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0dbd2; }
+.chapnav-btn { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; color: #5a5448; text-decoration: none; padding: 7px 16px; border-radius: 8px; background: #fffdf8; border: 1.5px solid #e0dbd2; }
+.chapnav-dots { display: flex; gap: 8px; align-items: center; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-on { background: #1e1c18; } .dot-off { background: #d4cec6; }
+
+/* HEADER */
+.header { background: #2d6ea8; padding: 26px 36px 22px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.header-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; background: rgba(245,200,66,.11); padding: 4px 14px; border-radius: 20px; margin-bottom: 14px; }
+.header h1 { font-family: 'Nunito', sans-serif; font-size: 26px; font-weight: 900; color: #fffdf8; line-height: 1.25; margin-bottom: 8px; }
+.header h1 em { font-style: normal; color: #fde8a0; }
+.header-meta { font-size: 13px; color: rgba(255,255,255,.5); font-weight: 500; line-height: 1.5; }
+.header-right { flex-shrink: 0; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.read-tag { background: rgba(0,0,0,.25); color: #fff; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 10px; }
+.header-note { font-size: 11px; color: rgba(255,255,255,.35); font-weight: 500; }
+
+/* BODY — 3 COLS */
+.body { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.08); }
+.col { padding: 24px 20px; }
+.col-1 { background: #d4e8f8; border-right: 1px solid rgba(0,0,0,.08); }
+.col-2 { background: #fffdf8; border-right: 1px solid rgba(0,0,0,.08); }
+.col-3 { background: #fef8e2; border-left: 3px solid #d4a800; }
+
+/* Col header */
+.col-hd { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; }
+.col-1 .col-hd { border-bottom: 2px solid #a8ccec; }
+.col-2 .col-hd { border-bottom: 2px solid #e0dbd2; }
+.col-3 .col-hd { border-bottom: 2px solid #fde8a0; }
+.col-num { font-family: 'Nunito', sans-serif; font-size: 36px; font-weight: 900; line-height: 1; flex-shrink: 0; margin-top: 2px; opacity: .28; }
+.col-1 .col-num { color: #2d6ea8; } .col-2 .col-num { color: #5a5448; } .col-3 .col-num { color: #946e00; }
+.col-hd-body { display: flex; flex-direction: column; gap: 5px; }
+.col-title { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.8px; line-height: 1.3; }
+.col-1 .col-title { color: #2d6ea8; } .col-2 .col-title { color: #5a5448; } .col-3 .col-title { color: #946e00; }
+.col-subtitle { font-size: 11px; font-weight: 500; color: #8a7e6e; }
+
+/* Indicator pills */
+.pill-start { display: inline-flex; align-items: center; gap: 4px; background: #2d6ea8; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .4px; }
+.pill-priority { display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #f5c842 0%, #e5a800 100%); color: #1e1c18; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 20px; letter-spacing: .4px; }
+
+/* Section title */
+.sec-t { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.8px; margin: 18px 0 10px; }
+.col-1 .sec-t { color: rgba(45,110,168,.6); } .col-2 .sec-t { color: rgba(90,84,72,.5); } .col-3 .sec-t { color: rgba(148,110,0,.55); }
+
+/* BADGE SYSTEM */
+.badge { display: inline-block; height: 22px; line-height: 22px; padding: 0 10px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: .2px; margin-bottom: 5px; }
+.badge-blue { background: #2d6ea8; color: #fff; } .badge-violet { background: #7030a0; color: #fff; } .badge-gold { background: #c47800; color: #fff; }
+.badge-green { background: #1a7a3c; color: #fff; } .badge-rose { background: #b5415a; color: #fff; }
+.badge-dark { background: #1e1c18; color: #f5c842; }
+
+/* CARD SYSTEM */
+.card { border-radius: 12px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.card-stack { border-radius: 12px; padding: 14px 13px; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+.c-blue { background: #cce2f8; } .c-slate { background: #dce8fc; }
+.c-orange { background: #fce0b0; } .c-green { background: #bce8cd; }
+.c-gold { background: #fde8a0; } .c-rose { background: #f9d0d9; }
+.c-teal { background: #c8f0ec; } .c-purple { background: #ead8f5; }
+.ci { font-size: 26px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.ci-sm { font-size: 19px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.ci-lg { font-size: 30px; margin-bottom: 2px; }
+.ct { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #1e1c18; line-height: 1.25; margin-bottom: 5px; }
+.ct-sm { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1e1c18; line-height: 1.25; margin-bottom: 3px; }
+.cd { font-size: 13px; font-weight: 500; color: #5a5448; line-height: 1.55; }
+.cd strong { font-weight: 700; color: #1e1c18; }
+.cx { font-size: 12px; font-weight: 500; color: #8a7e6e; font-style: italic; line-height: 1.4; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* FORMULA BOXES */
+.form-box { background: #1e1c18; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+.form-row { display: flex; align-items: baseline; gap: 8px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+.form-row:last-child { border-bottom: none; padding-bottom: 0; }
+.form-lbl { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #f5c842; min-width: 50px; flex-shrink: 0; }
+.form-eql { font-size: 12px; color: rgba(255,255,255,.35); flex-shrink: 0; }
+.form-def { font-size: 12px; color: #fffdf8; font-weight: 600; line-height: 1.4; }
+.form-tip { font-size: 11px; color: rgba(255,255,255,.45); font-style: italic; margin-top: 3px; line-height: 1.4; }
+
+/* FRACTION (taux d'évolution) */
+.taux-wrap { background: #1e1c18; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.taux-label { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #f5c842; white-space: nowrap; }
+.fraction { display: inline-flex; flex-direction: column; align-items: center; }
+.frac-num { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #fffdf8; padding: 0 8px 4px; border-bottom: 2px solid #f5c842; }
+.frac-den { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #fffdf8; padding: 4px 8px 0; }
+.frac-x { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #f5c842; }
+
+/* MASLOW LEVELS */
+.maslow-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.maslow-item { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.72); border-radius: 9px; padding: 9px 13px; }
+.maslow-num { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #946e00; width: 20px; text-align: center; flex-shrink: 0; }
+.maslow-name { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 800; color: #1e1c18; }
+.maslow-ex { font-size: 11px; color: #8a7e6e; font-weight: 500; }
+
+/* HERZBERG */
+.herz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.herz-card { border-radius: 10px; padding: 12px; }
+.herz-h { background: #dce8fc; }
+.herz-m { background: #fde8a0; }
+.herz-title { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; margin-bottom: 6px; }
+.herz-h .herz-title { color: #2d6ea8; }
+.herz-m .herz-title { color: #946e00; }
+.herz-sub { font-size: 11px; font-weight: 600; color: #5a5448; margin-bottom: 5px; font-style: italic; }
+.herz-list { font-size: 11px; color: #5a5448; line-height: 1.6; }
+
+/* PIÈGE */
+.piege { background: #1e1c18; border-radius: 12px; padding: 14px 16px; display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; }
+.piege-ico { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+.piege-txt { font-size: 13px; font-weight: 600; color: #fffdf8; line-height: 1.6; }
+.piege-txt strong { color: #f5c842; }
+
+/* QUESTION RÉDIGÉE */
+.q-card { background: #fffdf8; border: 2px solid #d4a800; border-radius: 14px; padding: 16px 18px; margin-top: 18px; position: relative; box-shadow: 0 4px 20px rgba(148,110,0,.14); }
+.q-card::after { content: '⭐'; position: absolute; top: 10px; right: 14px; font-size: 38px; opacity: .07; pointer-events: none; }
+.q-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.q-star { font-size: 20px; }
+.q-label { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; }
+.q-tag { display: inline-block; background: #f5c842; color: #1e1c18; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 5px; margin-left: 6px; letter-spacing: .4px; vertical-align: middle; }
+.q-body { font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.65; }
+.q-body strong { color: #1e1c18; font-weight: 700; }
+
+/* BAC */
+.bac { background: #27241e; padding: 24px 32px; }
+.bac-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.bac-hd-label { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #f5c842; text-transform: uppercase; letter-spacing: 2px; }
+.bac-cards { display: flex; flex-direction: column; gap: 10px; }
+.bac-card { background: rgba(255,255,255,.055); border-radius: 12px; padding: 14px 18px; display: grid; grid-template-columns: 220px 130px 1fr; gap: 20px; align-items: center; border-left: 3px solid transparent; }
+.bac-p1 { border-color: #f5c842; } .bac-p2 { border-color: #e85c72; } .bac-p4 { border-color: rgba(255,255,255,.2); }
+.bac-notion { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: #fffdf8; line-height: 1.3; }
+.bac-stars { display: flex; gap: 3px; align-items: center; }
+.s-on { color: #f5c842; font-size: 19px; line-height: 1; } .s-off { color: rgba(255,255,255,.14); font-size: 19px; line-height: 1; }
+.bac-conseil { font-size: 13px; color: rgba(255,255,255,.58); font-weight: 500; line-height: 1.55; }
+.bac-tag { display: inline-block; background: rgba(255,255,255,.11); border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: #ddd8cc; margin-right: 6px; white-space: nowrap; vertical-align: middle; }
+
+/* FOOTER */
+.footer { background: #f0ede6; padding: 11px 32px; display: flex; align-items: center; justify-content: space-between; }
+.footer-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 12px; color: #2d6ea8; }
+.footer-note { font-size: 11px; color: #8a7e6e; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
+    <a href="SLI_CarteMemo_Chap2.html" class="sli-nl on">📖 Chapitres</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
+  </div>
+  <a href="../index.html" class="sli-nl">← Accueil</a>
+</nav>
+
+<div class="page">
+
+<div class="chapnav">
+  <a href="SLI_CarteMemo_Chap1.html" class="chapnav-btn">← Chapitre 1</a>
+  <div class="chapnav-dots">
+    <span class="dot dot-off" title="Carte mémo Ch.1"></span>
+    <span class="dot dot-on" title="Carte mémo Ch.2"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.3&4"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.5"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.6"></span>
+  </div>
+  <a href="SLI_CarteMemo_Chap3et4.html" class="chapnav-btn">Chapitre 3&amp;4 →</a>
+</div>
+
+<div class="header">
+  <div>
+    <div class="header-badge">🧠 Carte Mémo · Scholar Lock-In · SDGN Terminale STMG · Ressources</div>
+    <h1>Chapitre 2 — Comment l'organisation mobilise-t-elle<br>ses <em>ressources humaines et financières ?</em></h1>
+    <div class="header-meta">Bilan fonctionnel · Taux d'évolution · Recrutement · Formation · Motivation<br>Les formules de calcul tombent à chaque session.</div>
+  </div>
+  <div class="header-right">
+    <button onclick="document.getElementById('memo-overlay').style.display='flex'" class="read-tag" style="cursor:pointer; border:none;">🧠 Carte Mémo · Synthèse essentielle</button>
+    <div class="header-note">3 sections · lire de gauche à droite</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- ① ANALYSE FINANCIÈRE -->
+  <div class="col col-1">
+    <div class="col-hd">
+      <div class="col-num">①</div>
+      <div class="col-hd-body">
+        <div class="col-title">Analyse financière</div>
+        <span class="pill-start">Commencer ici →</span>
+      </div>
+    </div>
+
+    <div class="sec-t">Bilan fonctionnel — 3 masses</div>
+    <div class="form-box">
+      <div class="form-row">
+        <span class="form-lbl">FRNG</span>
+        <span class="form-eql">=</span>
+        <div>
+          <div class="form-def">Ressources durables − Emplois stables</div>
+          <div class="form-tip">Doit être &gt; 0 : l'entreprise couvre ses immobilisations par des ressources longues</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <span class="form-lbl">BFR</span>
+        <span class="form-eql">=</span>
+        <div>
+          <div class="form-def">Actif circulant − Passif circulant</div>
+          <div class="form-tip">Besoin de financement lié au cycle d'exploitation (stocks + créances − dettes fournisseurs)</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <span class="form-lbl">TN</span>
+        <span class="form-eql">=</span>
+        <div>
+          <div class="form-def">FRNG − BFR</div>
+          <div class="form-tip">TN &gt; 0 = situation saine. TN &lt; 0 = découvert bancaire</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-t">Taux d'évolution</div>
+    <div class="taux-wrap">
+      <div class="taux-label">Taux d'évolution =</div>
+      <div class="fraction">
+        <div class="frac-num">VA − VD</div>
+        <div class="frac-den">VD</div>
+      </div>
+      <div class="frac-x">× 100</div>
+    </div>
+    <div class="card c-blue">
+      <div class="ci-sm">📖</div>
+      <div>
+        <div class="ct-sm">VA = Valeur d'Arrivée · VD = Valeur de Départ</div>
+        <div class="cd">Résultat <strong>&gt; 0</strong> = hausse · <strong>&lt; 0</strong> = baisse. Toujours exprimer en <strong>%</strong>.</div>
+        <div class="cx">Ex : CA passe de 200 000 € à 250 000 € → (250-200)/200 × 100 = +25%</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Capacité de remboursement</div>
+    <div class="card c-slate">
+      <div class="ci-sm">🏦</div>
+      <div>
+        <div class="ct-sm">Sources de financement</div>
+        <div class="cd"><strong>Internes :</strong> autofinancement (CAF − dividendes), cession d'actifs.<br><strong>Externes :</strong> emprunt bancaire, augmentation de capital, subventions.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-ico">⚠️</div>
+      <div class="piege-txt"><strong>Piège bac :</strong> TN = FRNG − BFR, <strong>pas</strong> l'inverse. Et FRNG se calcule à partir du <strong>haut de bilan</strong> (long terme), pas du bas.</div>
+    </div>
+  </div>
+
+  <!-- ② RESSOURCES HUMAINES -->
+  <div class="col col-2">
+    <div class="col-hd">
+      <div class="col-num">②</div>
+      <div class="col-hd-body">
+        <div class="col-title">Ressources humaines</div>
+        <div class="col-subtitle">Recrutement · Formation · QVT · GPEC</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Recrutement</div>
+    <div class="g2" style="margin-bottom: 12px;">
+      <div class="card-stack c-blue" style="margin:0;">
+        <div class="ci-lg">🏢</div>
+        <div class="ct-sm">Interne</div>
+        <div class="cd">Promotion, mutation, reconversion d'un salarié existant.</div>
+        <div class="cx">+ Fidélisation · – Renouvellement limité</div>
+      </div>
+      <div class="card-stack c-orange" style="margin:0;">
+        <div class="ci-lg">🌍</div>
+        <div class="ct-sm">Externe</div>
+        <div class="cd">Annonce, cabinet, Pôle Emploi, cooptation, réseaux.</div>
+        <div class="cx">+ Compétences nouvelles · – Intégration longue</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Formation</div>
+    <div class="card c-teal">
+      <div class="ci">📚</div>
+      <div>
+        <div class="ct">Plan de développement des compétences</div>
+        <div class="cd">Obligation légale : l'employeur finance les formations nécessaires au poste et à l'évolution.</div>
+      </div>
+    </div>
+    <div class="card c-slate">
+      <div class="ci">💳</div>
+      <div>
+        <div class="ct">CPF — Compte Personnel de Formation</div>
+        <div class="cd">Droits à la formation acquis par le salarié tout au long de sa carrière. Initiative <strong>individuelle</strong>.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">QVT &amp; GPEC</div>
+    <div class="card c-green">
+      <div class="ci-sm">💚</div>
+      <div>
+        <div class="ct-sm">Qualité de Vie au Travail (QVT)</div>
+        <div class="cd">Conditions de travail, ambiance, équilibre pro/perso. Réduit l'absentéisme et améliore la performance.</div>
+      </div>
+    </div>
+    <div class="card c-slate">
+      <div class="ci-sm">🔭</div>
+      <div>
+        <div class="ct-sm">GPEC — Gestion Prévisionnelle des Emplois</div>
+        <div class="cd">Anticiper les besoins en compétences à 3-5 ans pour adapter les effectifs et les formations.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-ico">⚠️</div>
+      <div class="piege-txt"><strong>Piège :</strong> CPF = initiative du salarié. Plan de développement = initiative de <strong>l'employeur</strong>. Ne pas confondre dans une question sur le financement de la formation.</div>
+    </div>
+  </div>
+
+  <!-- ③ MOTIVATION -->
+  <div class="col col-3">
+    <div class="col-hd">
+      <div class="col-num">③</div>
+      <div class="col-hd-body">
+        <div class="col-title">Motivation au travail</div>
+        <span class="pill-priority">⭐ Priorité Bac</span>
+      </div>
+    </div>
+
+    <div class="sec-t">Maslow — Pyramide des besoins</div>
+    <div class="maslow-list">
+      <div class="maslow-item" style="background:#fde8a0;">
+        <div class="maslow-num">5</div>
+        <div><div class="maslow-name">Réalisation de soi</div><div class="maslow-ex">Créativité, accomplissement, sens au travail</div></div>
+      </div>
+      <div class="maslow-item" style="background:#fce0b0;">
+        <div class="maslow-num">4</div>
+        <div><div class="maslow-name">Estime</div><div class="maslow-ex">Reconnaissance, statut, responsabilités, promotion</div></div>
+      </div>
+      <div class="maslow-item" style="background:#cce2f8;">
+        <div class="maslow-num">3</div>
+        <div><div class="maslow-name">Appartenance</div><div class="maslow-ex">Équipe, cohésion, relations sociales au travail</div></div>
+      </div>
+      <div class="maslow-item" style="background:#bce8cd;">
+        <div class="maslow-num">2</div>
+        <div><div class="maslow-name">Sécurité</div><div class="maslow-ex">CDI, mutuelle, stabilité, protection de l'emploi</div></div>
+      </div>
+      <div class="maslow-item" style="background:#e0dbd2;">
+        <div class="maslow-num">1</div>
+        <div><div class="maslow-name">Physiologiques</div><div class="maslow-ex">Salaire suffisant, pauses, conditions basiques</div></div>
+      </div>
+    </div>
+    <div class="card c-gold" style="margin-bottom:14px;">
+      <div class="ci-sm">📌</div>
+      <div class="cd"><strong>Règle :</strong> on ne peut pas satisfaire un besoin supérieur sans avoir d'abord satisfait le besoin inférieur. La hiérarchie est <strong>progressive</strong>.</div>
+    </div>
+
+    <div class="sec-t">Herzberg — 2 facteurs</div>
+    <div class="herz-grid">
+      <div class="herz-card herz-h">
+        <div class="herz-title">Hygiène</div>
+        <div class="herz-sub">Évitent l'insatisfaction</div>
+        <div class="herz-list">· Salaire<br>· Conditions de travail<br>· Relations avec la hiérarchie<br>· Sécurité</div>
+      </div>
+      <div class="herz-card herz-m">
+        <div class="herz-title">Motivation</div>
+        <div class="herz-sub">Créent la satisfaction</div>
+        <div class="herz-list">· Responsabilités<br>· Réalisation personnelle<br>· Reconnaissance<br>· Évolution de carrière</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Marque employeur</div>
+    <div class="card c-gold">
+      <div class="ci">🏆</div>
+      <div>
+        <div class="ct">Image de l'entreprise comme employeur</div>
+        <div class="cd">Attractivité vis-à-vis des candidats + fidélisation des salariés actuels.<br>Levier : valeurs, QVT, télétravail, culture d'entreprise.</div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-star">⭐</span>
+        <div class="q-label">Question rédigée <span class="q-tag">À retenir</span></div>
+      </div>
+      <div class="q-body">
+        Maslow : identifier le <strong>niveau de besoin satisfait</strong> dans le cas.<br>
+        Herzberg : distinguer ce qui <strong>évite l'insatisfaction</strong> (hygiène) de ce qui <strong>motive vraiment</strong>.<br>
+        Ne jamais confondre les deux théories dans la même réponse.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BAC -->
+<div class="bac">
+  <div class="bac-hd"><span style="font-size:18px;">📋</span><div class="bac-hd-label">Points de vigilance pour l'épreuve du Bac</div></div>
+  <div class="bac-cards">
+    <div class="bac-card bac-p1">
+      <div class="bac-notion">📊 Taux d'évolution</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Calcul obligatoire</span>Formule (VA−VD)/VD × 100 à connaître par cœur. Toujours vérifier si hausse ou baisse et exprimer en %.</div>
+    </div>
+    <div class="bac-card bac-p1">
+      <div class="bac-notion">💰 FRNG / BFR / Trésorerie</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Calcul + Interprétation</span>Calculer les 3 masses ET expliquer ce qu'elles signifient pour la santé financière de l'organisation.</div>
+    </div>
+    <div class="bac-card bac-p2">
+      <div class="bac-notion">🧠 Maslow &amp; Herzberg</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Contextualisation</span>Identifier dans le cas quel niveau ou facteur est concerné. Citer la théorie + appliquer un élément du document.</div>
+    </div>
+    <div class="bac-card bac-p4">
+      <div class="bac-notion">🏷️ Marque employeur &amp; Recrutement</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Définir + avantages</span>Expliquer comment la marque employeur aide à attirer ET fidéliser. Toujours citer les deux dimensions.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Scholar Lock-In · SDGN Terminale STMG · Carte Mémo Ch.2</div>
+  <div class="footer-note">💙 Bleu = Ressources humaines &amp; financières</div>
+</div>
+
+<div class="chapnav" style="border-top: 1px solid #e0dbd2; border-bottom: none;">
+  <a href="SLI_CarteMemo_Chap1.html" class="chapnav-btn">← Chapitre 1</a>
+  <div class="chapnav-dots">
+    <span class="dot dot-off"></span><span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
+  </div>
+  <a href="SLI_CarteMemo_Chap3et4.html" class="chapnav-btn">Chapitre 3&amp;4 →</a>
+</div>
+
+</div>
+
+<!-- BOUTON FLOTTANT -->
+<div style="position:fixed; bottom:28px; right:28px; z-index:100;">
+  <button onclick="document.getElementById('memo-overlay').style.display='flex'"
+    style="background:#2d6ea8; color:#fff; border:none; border-radius:50px; padding:12px 22px; font-family:'Nunito',sans-serif; font-size:19px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px rgba(45,110,168,.4); display:flex; align-items:center; gap:8px; letter-spacing:0.5px;">
+    🧠 Carte Mémo
+  </button>
+</div>
+
+<!-- OVERLAY -->
+<div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
+  style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
+
+  <div style="background:#fffdf8; border-radius:20px; width:780px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
+
+    <div style="background:#2d6ea8; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <div style="font-size:19px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitre 2</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#fff;">🧠 Carte de mémorisation</div>
+        <div style="font-size:19px; font-weight:600; color:rgba(255,255,255,.75); margin-top:5px; line-height:1.4;">Comment mobiliser les ressources humaines et financières ?</div>
+      </div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'"
+        style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:18px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
+    </div>
+
+    <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
+
+      <!-- Bilan fonctionnel -->
+      <div style="background:#e8f3ff; border-radius:14px; padding:14px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:19px; font-weight:900; color:#1a4f82; margin-bottom:10px;">📊 Bilan fonctionnel — ⭐ Priorité absolue</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+          <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;">
+            <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1a4f82; margin-bottom:4px;">FRNG</div>
+            <div style="font-family:monospace; font-size:10.5px; font-weight:700; color:#2a4060; background:rgba(255,255,255,.6); border-radius:5px; padding:3px 5px;">Ress. stables − Emplois stables</div>
+          </div>
+          <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;">
+            <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1a4f82; margin-bottom:4px;">BFR</div>
+            <div style="font-family:monospace; font-size:10.5px; font-weight:700; color:#2a4060; background:rgba(255,255,255,.6); border-radius:5px; padding:3px 5px;">Actif circulant − Passif circ.</div>
+          </div>
+          <div style="background:#cce2f8; border-radius:10px; padding:10px; text-align:center;">
+            <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1a4f82; margin-bottom:4px;">Trésorerie</div>
+            <div style="font-family:monospace; font-size:10.5px; font-weight:700; color:#2a4060; background:rgba(255,255,255,.6); border-radius:5px; padding:3px 5px;">FRNG − BFR</div>
+          </div>
+        </div>
+        <div style="margin-top:8px; display:flex; gap:8px;">
+          <div style="flex:1; background:#bce8cd; border-radius:8px; padding:7px 10px; font-size:19px; font-weight:700; color:#1a5c35;">🟢 FRNG &gt; BFR → TN positive → équilibre sain</div>
+          <div style="flex:1; background:#f9d0d9; border-radius:8px; padding:7px 10px; font-size:19px; font-weight:700; color:#b5415a;">🔴 FRNG &lt; BFR → TN négative → risque</div>
+        </div>
+      </div>
+
+      <!-- Taux évolution -->
+      <div style="background:#fde8a0; border-radius:12px; padding:13px 18px; text-align:center;">
+        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#946e00; margin-bottom:5px;">📐 Taux d'évolution — 3/3 sessions</div>
+        <div style="font-family:monospace; font-size:19px; font-weight:900; color:#1e1c18;">(VF − VI) / VI × 100</div>
+        <div style="font-size:19px; color:#7a5800; font-weight:600; margin-top:4px;">Résultat en %. Positif = hausse · Négatif = baisse.</div>
+      </div>
+
+      <!-- RH -->
+      <div style="background:#fef8e2; border-radius:12px; padding:13px 18px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#946e00; margin-bottom:8px;">👥 Ressources humaines — 3/3 sessions ⭐</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px;">
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;">
+            <div style="font-size:18px; margin-bottom:3px;">🎯</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1e1c18;">Recrutement</div>
+            <div style="font-size:18px; color:#7a5800; font-weight:600; margin-top:2px;">Interne ↔ Externe</div>
+          </div>
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;">
+            <div style="font-size:18px; margin-bottom:3px;">📚</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1e1c18;">Formation</div>
+            <div style="font-size:18px; color:#7a5800; font-weight:600; margin-top:2px;">Savoir · Savoir-faire · Savoir-être</div>
+          </div>
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;">
+            <div style="font-size:18px; margin-bottom:3px;">😊</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1e1c18;">QVT</div>
+            <div style="font-size:18px; color:#7a5800; font-weight:600; margin-top:2px;">Bien-être → Performance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tangibles/Intangibles mini -->
+      <div style="display:flex; gap:8px;">
+        <div style="flex:1; background:#cce2f8; border-radius:10px; padding:10px 12px; display:flex; gap:9px; align-items:center;">
+          <span style="font-size:20px;">🏭</span>
+          <div><div style="font-size:18px; font-weight:800; color:#1e1c18;">Ressources tangibles</div><div style="font-size:10.5px; color:#1a4f82; font-weight:600;">Physiques et financières — machines, stocks, trésorerie</div></div>
+        </div>
+        <div style="flex:1; background:#ead8f5; border-radius:10px; padding:10px 12px; display:flex; gap:9px; align-items:center;">
+          <span style="font-size:20px;">🧠</span>
+          <div><div style="font-size:18px; font-weight:800; color:#1e1c18;">Ressources intangibles</div><div style="font-size:10.5px; color:#5030a0; font-weight:600;">Immatérielles — marque, brevet, savoir-faire, réputation</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>if(location.hash==='#memo')document.getElementById('memo-overlay').style.display='flex';</script>
+
+</body>
+</html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annales en perspective — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 100vh; padding-top: 72px; padding-bottom: 48px; }
+
+/* NAV */
+.sli-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:#1e1c18;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 2px 12px rgba(0,0,0,.3) }
+.sli-nav a { text-decoration:none }
+.sli-nav-logo { font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:#fffdf8 }
+.sli-nav-logo span { color:#f5c842 }
+.sli-nav-links { display:flex;gap:2px }
+.sli-nl { font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap;text-decoration:none }
+.sli-nl:hover { background:rgba(255,255,255,.1);color:#fffdf8 }
+.sli-nl.on { background:rgba(255,255,255,.1);color:#fffdf8 }
+.sli-nl.soon { opacity:.4;pointer-events:none }
+
+.page { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+
+/* HEADER */
+.header { text-align: center; margin-bottom: 28px; }
+.header-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #1e1c18; color: #f5c842; padding: 4px 16px; border-radius: 20px; display: inline-block; margin-bottom: 14px; }
+.header-title { font-family: 'Nunito', sans-serif; font-size: 34px; font-weight: 900; color: #1e1c18; margin-bottom: 6px; }
+.header-sub { font-size: 14px; color: #7a6a58; font-weight: 600; }
+
+/* PROGRESS BAR */
+.progress-bar { background: #fffdf8; border-radius: 14px; padding: 16px 22px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.prog-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.prog-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #1e1c18; }
+.prog-count { font-size: 13px; font-weight: 700; color: #7a6a58; }
+.prog-track { height: 10px; background: #e0dbd2; border-radius: 6px; overflow: hidden; }
+.prog-fill { height: 100%; background: linear-gradient(90deg, #1a7a3c, #2cad60); border-radius: 6px; transition: width 0.4s; }
+.prog-hint { font-size: 11px; color: #a09880; font-weight: 600; margin-top: 6px; }
+
+/* FILTER */
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.filt { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 800; padding: 6px 15px; border-radius: 20px; border: 2px solid transparent; cursor: pointer; transition: all 0.13s; opacity: 0.55; background: #e0dbd2; color: #5a5448; }
+.filt:hover { opacity: 0.8; }
+.filt.active { opacity: 1; }
+.filt-all.active { background: #1e1c18; color: #fffdf8; border-color: #1e1c18; }
+.filt-calcul.active { background: #cce2f8; color: #2a69a8; border-color: #2a69a8; }
+.filt-redac.active { background: #fde8a0; color: #946e00; border-color: #946e00; }
+.filt-court.active { background: #f9d0d9; color: #b5415a; border-color: #b5415a; }
+
+/* TOPIC CARD */
+.topic { background: #fffdf8; border-radius: 16px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.topic.done { box-shadow: 0 2px 10px rgba(26,122,60,.15); border: 1.5px solid #bce8cd; }
+.topic-hd { padding: 16px 20px; display: flex; gap: 14px; align-items: center; cursor: pointer; }
+.topic-hd:hover { opacity: 0.9; }
+.topic-stars { font-size: 14px; flex-shrink: 0; }
+.topic-info { flex: 1; }
+.topic-label { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+.topic-name { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; color: #1e1c18; }
+.topic-freq { font-size: 11px; font-weight: 600; color: #7a6a58; margin-top: 2px; }
+.topic-check { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #ddd8cf; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: all 0.15s; }
+.topic-check.done { background: #1a7a3c; border-color: #1a7a3c; }
+.topic-arrow { font-size: 14px; color: #a09880; transition: transform 0.2s; margin-left: 4px; }
+.topic-arrow.open { transform: rotate(90deg); }
+
+.topic-body { display: none; border-top: 1px solid #f0ede6; }
+.topic-body.open { display: block; }
+
+/* INSIDE TOPIC */
+.tb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.tb-col { padding: 18px 20px; }
+.tb-col:first-child { border-right: 1px solid #f0ede6; }
+
+.tb-section-title { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+
+/* Sample question */
+.sample-q { background: #1e1c18; border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; }
+.sq-label { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; margin-bottom:6px; }
+.sq-text { font-size: 13px; font-weight: 700; color: #fffdf8; line-height: 1.55; font-style: italic; }
+.sq-pts { font-size: 11px; color: #a09880; margin-top: 4px; font-weight: 600; }
+
+/* Notions chips */
+.notions { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.notion-chip { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 20px; }
+
+/* Framework steps */
+.fw-steps { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.fw-step { display: flex; gap: 10px; align-items: flex-start; }
+.fw-n { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+.fw-txt { font-size: 13px; font-weight: 600; color: #1e1c18; line-height: 1.5; }
+.fw-hint { font-size: 11px; color: #7a6a58; display: block; margin-top: 2px; }
+
+/* Examples */
+.ex-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.ex-chip { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 8px; }
+
+/* Pieges */
+.piege-box { background: #fdeef2; border-radius: 10px; padding: 11px 14px; margin-bottom: 8px; }
+.piege-box:last-child { margin-bottom: 0; }
+.piege-title { font-size: 13px; font-weight: 800; color: #b5415a; margin-bottom: 3px; }
+.piege-desc { font-size: 12px; font-weight: 600; color: #7a2038; line-height: 1.5; }
+.piege-fix { font-size: 12px; font-weight: 700; color: #1a7a3c; margin-top:4px; }
+
+/* Mark done button */
+.mark-done-row { padding: 14px 20px; border-top: 1px solid #f0ede6; display: flex; justify-content: flex-end; gap: 10px; }
+.btn-mark { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 800; padding: 9px 22px; border-radius: 10px; border: none; cursor: pointer; transition: all 0.15s; }
+.btn-mark-done { background: #1a7a3c; color: #fff; }
+.btn-mark-done:hover { background: #158a35; }
+.btn-mark-undo { background: #e0dbd2; color: #5a5448; }
+.btn-mark-undo:hover { background: #d0cbc2; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
+    <a href="SLI_CarteMemo_Chap1.html" class="sli-nl">📖 Chapitres</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl on">🎯 Annales</a>
+  </div>
+  <a href="../index.html" class="sli-nl">← Accueil</a>
+</nav>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-badge">Scholar Lock-In · SDGN Terminale STMG · Annales</div>
+    <div class="header-title">🎯 Annales en perspective</div>
+    <div class="header-sub">Ce qui tombe vraiment au bac · 7 annales analysées · Comment y répondre</div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar">
+    <div class="prog-header">
+      <div class="prog-title">Sujets préparés</div>
+      <div class="prog-count" id="prog-count">0 / 10</div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="prog-hint">Coche chaque sujet une fois que tu te sens prêt·e à y répondre</div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filter-row">
+    <button class="filt filt-all active" onclick="setFilter('all')">Tout · 10</button>
+    <button class="filt filt-calcul" onclick="setFilter('calcul')">🧮 Calcul · 2</button>
+    <button class="filt filt-redac" onclick="setFilter('redac')">💬 Rédactionnel · 6</button>
+    <button class="filt filt-court" onclick="setFilter('court')">🩷 Court · 2</button>
+  </div>
+
+  <!-- TOPICS -->
+
+  <!-- 1. FRNG/BFR/TN -->
+  <div class="topic" id="topic-1" data-type="calcul">
+    <div class="topic-hd" onclick="toggleTopic('topic-1')">
+      <div class="topic-stars">★★★★★</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#2a69a8;">🧮 Calcul · Chapitre 2 Finance</div>
+        <div class="topic-name">FRNG, BFR et Trésorerie Nette</div>
+        <div class="topic-freq">Tombe 5 sessions sur 5 · Priorité absolue</div>
+      </div>
+      <div class="topic-check" id="check-1" onclick="toggleDone(event,'1')">☐</div>
+      <div class="topic-arrow" id="arrow-1">▶</div>
+    </div>
+    <div class="topic-body" id="body-1">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"À partir des annexes, calculez le FRNG, le BFR et la trésorerie nette de l'entreprise. Commentez la situation financière."</div>
+            <div class="sq-pts">Barème habituel : 6 à 8 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Notions à mobiliser</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">FRNG = Ress. stables − Emplois stables</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">BFR = Actif circ. − Passif circ.</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">TN = FRNG − BFR</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">Bilan fonctionnel</span>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">1</div><div class="fw-txt">Écrire la formule en lettres<span class="fw-hint">FRNG = Ressources stables − Emplois stables</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">2</div><div class="fw-txt">Poser les chiffres<span class="fw-hint">= XXX 000 − YYY 000</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">3</div><div class="fw-txt">Résultat avec unité (€)<span class="fw-hint">= ZZZ 000 €</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">4</div><div class="fw-txt">Interpréter les 3 indicateurs<span class="fw-hint">TN > 0 = équilibre sain · TN < 0 = risque de trésorerie</span></div></div>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Calculer sans interpréter</div>
+            <div class="piege-desc">La moitié des points est souvent sur le commentaire, pas le calcul.</div>
+            <div class="piege-fix">✔ Toujours finir par "Ce résultat signifie que l'entreprise…"</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Inverser les formules</div>
+            <div class="piege-desc">FRNG = Ressources stables MOINS emplois stables (et non l'inverse).</div>
+            <div class="piege-fix">✔ Mémoriser : les ressources "financent" les emplois.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Oublier de calculer les 3</div>
+            <div class="piege-desc">Si la question demande FRNG, BFR et TN, ne pas s'arrêter au FRNG.</div>
+            <div class="piege-fix">✔ Les 3 se calculent toujours ensemble pour avoir le tableau complet.</div>
+          </div>
+          <div style="background:#fef8e2; border-radius:10px; padding:11px 14px; margin-top:10px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#946e00; margin-bottom:5px;">Interprétation express</div>
+            <div style="font-size:12px; font-weight:700; color:#7a5800; line-height:1.6;">🟢 TN positive : FRNG > BFR → équilibre, l'entreprise peut financer son exploitation<br>🔴 TN négative : FRNG &lt; BFR → risque, recours à des crédits CT nécessaire</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'1')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Ressources et compétences distinctives -->
+  <div class="topic" id="topic-2" data-type="redac">
+    <div class="topic-hd" onclick="toggleTopic('topic-2')">
+      <div class="topic-stars">★★★★★</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#946e00;">💬 Rédactionnel · Chapitre 2</div>
+        <div class="topic-name">Ressources et compétences distinctives</div>
+        <div class="topic-freq">Tombe 5 sessions sur 5 · Souvent en question ouverte longue</div>
+      </div>
+      <div class="topic-check" id="check-2" onclick="toggleDone(event,'2')">☐</div>
+      <div class="topic-arrow" id="arrow-2">▶</div>
+    </div>
+    <div class="topic-body" id="body-2">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"Identifiez les ressources et les compétences distinctives de l'entreprise. En quoi lui confèrent-elles un avantage concurrentiel ?"</div>
+            <div class="sq-pts">Barème habituel : 5 à 8 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#946e00;">Notions à mobiliser</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#fde8a0;color:#7a5800;">Ressources tangibles</span>
+            <span class="notion-chip" style="background:#fde8a0;color:#7a5800;">Ressources intangibles</span>
+            <span class="notion-chip" style="background:#fde8a0;color:#7a5800;">Compétences distinctives</span>
+            <span class="notion-chip" style="background:#fffdf8;border:1px solid #ddd8cf;color:#5a5448;">Avantage concurrentiel durable</span>
+          </div>
+          <div class="tb-section-title" style="color:#946e00;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">1</div><div class="fw-txt">Classer les ressources identifiées dans le cas<span class="fw-hint">Tableau : tangibles (physiques + financières) / intangibles (marque, brevet, savoir-faire)</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">2</div><div class="fw-txt">Identifier la compétence distinctive<span class="fw-hint">Ce que l'entreprise fait MIEUX que tous ses concurrents</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">3</div><div class="fw-txt">Expliquer pourquoi c'est un avantage<span class="fw-hint">Difficile à imiter, source de valeur pour le client</span></div></div>
+          </div>
+          <div class="tb-section-title" style="color:#946e00; margin-top:8px;">Exemples hors cas</div>
+          <div class="ex-row">
+            <span class="ex-chip" style="background:#fde8a0;color:#7a5800;">Apple → design + écosystème</span>
+            <span class="ex-chip" style="background:#fde8a0;color:#7a5800;">Zara → supply chain ultra-réactive</span>
+            <span class="ex-chip" style="background:#fde8a0;color:#7a5800;">Google → algorithme + données</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Confondre ressource et compétence</div>
+            <div class="piege-desc">Une ressource = ce que l'entreprise possède. Une compétence distinctive = ce qu'elle sait faire mieux que les autres avec ces ressources.</div>
+            <div class="piege-fix">✔ Ressource : "la marque Apple est valorisée à X milliards". Compétence : "Apple sait intégrer hardware et software mieux que tout le monde."</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Lister sans analyser</div>
+            <div class="piege-desc">Citer les ressources du cas sans expliquer en quoi elles créent un avantage concurrentiel.</div>
+            <div class="piege-fix">✔ Chaque ressource ou compétence doit être suivie de "…ce qui lui permet de…" ou "…ce qui lui confère un avantage car…"</div>
+          </div>
+          <div style="background:#e8f3ff; border-radius:10px; padding:11px 14px; margin-top:10px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#2a69a8; margin-bottom:5px;">Modèle de phrase gagnante</div>
+            <div style="font-size:12px; font-weight:600; color:#1a4f82; line-height:1.6; font-style:italic;">"[Entreprise] dispose de [ressource intangible], ce qui constitue une compétence distinctive car elle lui permet de [avantage] que ses concurrents ne peuvent pas facilement reproduire."</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'2')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. RSE -->
+  <div class="topic" id="topic-3" data-type="redac">
+    <div class="topic-hd" onclick="toggleTopic('topic-3')">
+      <div class="topic-stars">★★★★★</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#1a7a3c;">💬 Rédactionnel · Chapitres 3&4</div>
+        <div class="topic-name">RSE et performance durable</div>
+        <div class="topic-freq">Tombe 5 sessions sur 5 · Souvent question longue ou 15 lignes</div>
+      </div>
+      <div class="topic-check" id="check-3" onclick="toggleDone(event,'3')">☐</div>
+      <div class="topic-arrow" id="arrow-3">▶</div>
+    </div>
+    <div class="topic-body" id="body-3">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"Comment l'entreprise intègre-t-elle la RSE dans sa stratégie ? En quoi cela contribue-t-il à sa performance globale ?"</div>
+            <div class="sq-pts">Barème habituel : 5 à 10 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#1a7a3c;">Notions à mobiliser</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#bce8cd;color:#1a5c35;">RSE — 3 dimensions</span>
+            <span class="notion-chip" style="background:#bce8cd;color:#1a5c35;">Dimension environnementale</span>
+            <span class="notion-chip" style="background:#bce8cd;color:#1a5c35;">Dimension sociale</span>
+            <span class="notion-chip" style="background:#bce8cd;color:#1a5c35;">Dimension économique</span>
+            <span class="notion-chip" style="background:#e6f5ec;color:#1a7a3c;">Avantage concurrentiel</span>
+          </div>
+          <div class="tb-section-title" style="color:#1a7a3c;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#1a7a3c;">1</div><div class="fw-txt">Nommer la/les dimensions RSE concernées<span class="fw-hint">Environnementale, sociale, économique</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#1a7a3c;">2</div><div class="fw-txt">Illustrer avec des faits du cas<span class="fw-hint">"D'après le doc. X, l'entreprise a…"</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#1a7a3c;">3</div><div class="fw-txt">Lier à l'avantage concurrentiel<span class="fw-hint">Image, recrutement, fidélisation, financement</span></div></div>
+          </div>
+          <div class="tb-section-title" style="color:#1a7a3c; margin-top:8px;">Exemples hors cas</div>
+          <div class="ex-row">
+            <span class="ex-chip" style="background:#bce8cd;color:#1a5c35;">Danone → mission sociale</span>
+            <span class="ex-chip" style="background:#bce8cd;color:#1a5c35;">Patagonia → environnement</span>
+            <span class="ex-chip" style="background:#bce8cd;color:#1a5c35;">Michelin → mobilité durable</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Oublier le lien avec la performance</div>
+            <div class="piege-desc">Décrire les actions RSE sans montrer que ça renforce la compétitivité ou la pérennité de l'entreprise.</div>
+            <div class="piege-fix">✔ Conclure : "…ce qui lui permet d'améliorer son image, d'attirer des talents et de fidéliser ses clients."</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Ne citer qu'une seule dimension</div>
+            <div class="piege-desc">La RSE a 3 dimensions. Si la question parle de "performance globale", il faut en aborder au moins deux.</div>
+            <div class="piege-fix">✔ Structurer la réponse en 2 ou 3 parties : une par dimension présente dans le cas.</div>
+          </div>
+          <div style="background:#eaf8ef; border-radius:10px; padding:11px 14px; margin-top:10px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#1a7a3c; margin-bottom:5px;">La chaîne RSE à mémoriser</div>
+            <div style="font-size:12px; font-weight:700; color:#1a5c35; line-height:1.8;">Actions RSE → amélioration de l'image<br>→ attractivité pour les talents (QVT)<br>→ fidélisation clients<br>→ accès à financements "responsables"<br>→ <strong>performance durable</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'3')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Modèle économique -->
+  <div class="topic" id="topic-4" data-type="redac">
+    <div class="topic-hd" onclick="toggleTopic('topic-4')">
+      <div class="topic-stars">★★★★☆</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#b5415a;">💬 Rédactionnel · Chapitre 1</div>
+        <div class="topic-name">Modèle économique (Business Model)</div>
+        <div class="topic-freq">Tombe 4 sessions sur 5 · Souvent question rédigée</div>
+      </div>
+      <div class="topic-check" id="check-4" onclick="toggleDone(event,'4')">☐</div>
+      <div class="topic-arrow" id="arrow-4">▶</div>
+    </div>
+    <div class="topic-body" id="body-4">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"Présentez le modèle économique de l'entreprise. Illustrez votre réponse d'un exemple d'entreprise similaire."</div>
+            <div class="sq-pts">Barème habituel : 5 à 8 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#b5415a;">Les 6 types à connaître par cœur</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#f9d0d9;color:#7a2038;">💰 Vente directe</span>
+            <span class="notion-chip" style="background:#f9d0d9;color:#7a2038;">📦 Abonnement</span>
+            <span class="notion-chip" style="background:#f9d0d9;color:#7a2038;">🆓 Freemium</span>
+            <span class="notion-chip" style="background:#f9d0d9;color:#7a2038;">🤝 Commission</span>
+            <span class="notion-chip" style="background:#f9d0d9;color:#7a2038;">📣 Publicité</span>
+            <span class="notion-chip" style="background:#f9d0d9;color:#7a2038;">⚙️ Fonctionnalité</span>
+          </div>
+          <div class="tb-section-title" style="color:#b5415a;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#b5415a;">1</div><div class="fw-txt">Nommer le type de modèle<span class="fw-hint">"Il s'agit d'un modèle de type abonnement…"</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#b5415a;">2</div><div class="fw-txt">Expliquer comment l'entreprise du cas crée / délivre / capte la valeur<span class="fw-hint">Qui sont les clients ? Quelle offre ? Comment elle gagne de l'argent ?</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#b5415a;">3</div><div class="fw-txt">Exemple hors cas<span class="fw-hint">Netflix, Spotify, Airbnb, Vinted…</span></div></div>
+          </div>
+          <div class="tb-section-title" style="color:#b5415a; margin-top:8px;">Exemples hors cas par type</div>
+          <div class="ex-row">
+            <span class="ex-chip" style="background:#f9d0d9;color:#7a2038;">Netflix → abonnement</span>
+            <span class="ex-chip" style="background:#f9d0d9;color:#7a2038;">Spotify → freemium</span>
+            <span class="ex-chip" style="background:#f9d0d9;color:#7a2038;">Airbnb / Vinted → commission</span>
+            <span class="ex-chip" style="background:#f9d0d9;color:#7a2038;">Google → publicité</span>
+            <span class="ex-chip" style="background:#f9d0d9;color:#7a2038;">Vélib' → fonctionnalité</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Ne pas nommer le type</div>
+            <div class="piege-desc">Expliquer comment l'entreprise gagne de l'argent sans utiliser le vocabulaire du cours.</div>
+            <div class="piege-fix">✔ Toujours commencer par "Il s'agit d'un modèle de type [freemium / abonnement…]"</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Oublier l'exemple hors cas</div>
+            <div class="piege-desc">Les questions "Présentez le modèle économique" mentionnent souvent explicitement un exemple extérieur.</div>
+            <div class="piege-fix">✔ Préparer au moins 3 entreprises hors cas pour chaque type.</div>
+          </div>
+          <div style="background:#fdeef2; border-radius:10px; padding:11px 14px; margin-top:10px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#b5415a; margin-bottom:5px;">Définition à retenir</div>
+            <div style="font-size:12px; font-weight:600; color:#7a2038; line-height:1.6; font-style:italic;">Un modèle économique décrit comment une organisation <strong>crée</strong> de la valeur pour ses clients, <strong>délivre</strong> cette valeur, et <strong>capte</strong> une partie de cette valeur sous forme de revenus.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'4')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Flux et processus -->
+  <div class="topic" id="topic-5" data-type="redac">
+    <div class="topic-hd" onclick="toggleTopic('topic-5')">
+      <div class="topic-stars">★★★★☆</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#2a69a8;">💬 Rédactionnel · Chapitres 3&4</div>
+        <div class="topic-name">Processus de production et flux</div>
+        <div class="topic-freq">Tombe 4 sessions sur 5 · Souvent "caractérisez" ou diagramme</div>
+      </div>
+      <div class="topic-check" id="check-5" onclick="toggleDone(event,'5')">☐</div>
+      <div class="topic-arrow" id="arrow-5">▶</div>
+    </div>
+    <div class="topic-body" id="body-5">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"Caractérisez le processus de production retenu par l'entreprise. Quels en sont les avantages ?"</div>
+            <div class="sq-pts">Barème habituel : 4 à 6 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Notions à mobiliser</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">Flux tendus (juste-à-temps)</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">Flux poussés</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">Supply chain</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">Lean management</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">Qualité / Kaizen / PDCA</span>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">1</div><div class="fw-txt">Caractériser le type de flux<span class="fw-hint">"L'entreprise utilise des flux tendus car…" / "…des flux poussés car…"</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">2</div><div class="fw-txt">Justifier avec un fait du cas<span class="fw-hint">"D'après le doc. X, elle produit uniquement à la commande…"</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">3</div><div class="fw-txt">Citer les avantages ET les limites<span class="fw-hint">FT : zéro stock, réactivité / mais : dépend des fournisseurs. FP : grande série, coût bas / mais : risque invendu.</span></div></div>
+          </div>
+          <div style="background:#cce2f8; border-radius:10px; padding:11px 14px; margin-top:8px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#1a4f82; margin-bottom:4px;">Flux tendus vs Flux poussés — la distinction clé</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;">
+              <div style="background:#fff; border-radius:7px; padding:8px; font-size:11px; font-weight:700; color:#1a4f82;">📦 <strong>Flux poussés</strong><br>Production à l'avance<br>Stock constitué<br>Ex : industrie auto classique</div>
+              <div style="background:#fff; border-radius:7px; padding:8px; font-size:11px; font-weight:700; color:#1a5c35;">🎯 <strong>Flux tendus</strong><br>Production à la commande<br>Zéro stock<br>Ex : Zara, Toyota</div>
+            </div>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Confondre flux tendus et flux poussés</div>
+            <div class="piege-desc">Flux tendus = à la commande, réactif. Flux poussés = à l'avance, avec stock. La distinction est toujours testée.</div>
+            <div class="piege-fix">✔ Retenir : "tendus" → on tire la production depuis la demande. "Poussés" → on pousse la production vers le marché.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Oublier la Supply chain</div>
+            <div class="piege-desc">Le processus de production n'existe pas seul — il est connecté aux fournisseurs et aux clients via la chaîne logistique.</div>
+            <div class="piege-fix">✔ Mentionner la supply chain quand le cas implique des fournisseurs ou une distribution multi-canal.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Caractériser sans citer avantages ET limites</div>
+            <div class="piege-desc">Quand la question demande "quels avantages ?", elle attend souvent aussi une nuance.</div>
+            <div class="piege-fix">✔ Structurer : "Cela permet de [avantage], mais nécessite [condition / limite]."</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'5')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Numérique et performance -->
+  <div class="topic" id="topic-6" data-type="redac">
+    <div class="topic-hd" onclick="toggleTopic('topic-6')">
+      <div class="topic-stars">★★★★☆</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#2a69a8;">💬 Rédactionnel long · Chapitre 5</div>
+        <div class="topic-name">Numérique et performance (question 15 lignes)</div>
+        <div class="topic-freq">Tombe 4 sessions sur 5 · Souvent la grande question de synthèse</div>
+      </div>
+      <div class="topic-check" id="check-6" onclick="toggleDone(event,'6')">☐</div>
+      <div class="topic-arrow" id="arrow-6">▶</div>
+    </div>
+    <div class="topic-body" id="body-6">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"En quoi le recours au numérique contribue-t-il à la performance de l'organisation ? Vous vous appuierez sur les documents et sur un exemple d'entreprise."</div>
+            <div class="sq-pts">Barème habituel : 8 à 12 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Notions à mobiliser</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">Dématérialisation</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">Automatisation</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">PGI / ERP</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">Cloud computing</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">IoT</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">E-réputation</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">Identité numérique</span>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">1</div><div class="fw-txt">Intro : ancrer dans le cas<span class="fw-hint">"D'après le doc. X, [entreprise] a mis en place [outil numérique]…"</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">2</div><div class="fw-txt">Développer l'impact sur la performance économique<span class="fw-hint">Réduction des coûts, gains de productivité, meilleure réactivité</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">3</div><div class="fw-txt">Développer l'impact sur la performance sociale/commerciale<span class="fw-hint">Satisfaction client, e-réputation, conditions de travail</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">4</div><div class="fw-txt">Exemple hors cas<span class="fw-hint">Amazon, Tesla, BNP, Spotify, Airbnb…</span></div></div>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8; margin-top:8px;">Exemples hors cas par outil</div>
+          <div class="ex-row">
+            <span class="ex-chip" style="background:#cce2f8;color:#1a4f82;">Amazon → automatisation logistique</span>
+            <span class="ex-chip" style="background:#cce2f8;color:#1a4f82;">Tesla → IoT (véhicule connecté)</span>
+            <span class="ex-chip" style="background:#cce2f8;color:#1a4f82;">BNP → dématérialisation bancaire</span>
+            <span class="ex-chip" style="background:#cce2f8;color:#1a4f82;">Spotify → Big Data (recommandations)</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Rester descriptif sans montrer l'impact</div>
+            <div class="piege-desc">"L'entreprise utilise un ERP" ne suffit pas. Le correcteur attend l'impact sur la performance.</div>
+            <div class="piege-fix">✔ Chaque outil cité doit être suivi de "ce qui permet de [gain : réduction de coûts, rapidité, satisfaction client…]"</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">N'aborder qu'une seule dimension de la performance</div>
+            <div class="piege-desc">La performance est économique, sociale ET environnementale. La question attend souvent plusieurs angles.</div>
+            <div class="piege-fix">✔ Structurer en 2 parties : "performance économique" + "performance sociale / commerciale".</div>
+          </div>
+          <div style="background:#e8f3ff; border-radius:10px; padding:11px 14px; margin-top:10px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#2a69a8; margin-bottom:5px;">Numérique → Performance : la chaîne</div>
+            <div style="font-size:12px; font-weight:700; color:#1a4f82; line-height:1.8;">Outil numérique adopté<br>→ Automatisation / fluidification des processus<br>→ Réduction des coûts ET amélioration de l'expérience client<br>→ <strong>Meilleure compétitivité et performance durable</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'6')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Coût de revient -->
+  <div class="topic" id="topic-7" data-type="calcul">
+    <div class="topic-hd" onclick="toggleTopic('topic-7')">
+      <div class="topic-stars">★★★☆☆</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#2a69a8;">🧮 Calcul · Chapitres 3&4</div>
+        <div class="topic-name">Coût de revient et marges</div>
+        <div class="topic-freq">Tombe 3 sessions sur 5 · Toujours accompagné d'un tableau de données</div>
+      </div>
+      <div class="topic-check" id="check-7" onclick="toggleDone(event,'7')">☐</div>
+      <div class="topic-arrow" id="arrow-7">▶</div>
+    </div>
+    <div class="topic-body" id="body-7">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"Calculez le coût de revient unitaire du produit A. Calculez la marge unitaire et le taux de marge. Commentez."</div>
+            <div class="sq-pts">Barème habituel : 4 à 6 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Formules à connaître par cœur</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">CR unitaire = (charges dir. + indir.) ÷ nb unités</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">Marge = Prix de vente − Coût de revient</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">Taux de marge = Marge ÷ CR × 100</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">Taux de marque = Marge ÷ PV × 100</span>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">1</div><div class="fw-txt">Séparer charges directes et indirectes<span class="fw-hint">Directes : matières premières, main-d'œuvre directe. Indirectes : loyer, électricité…</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">2</div><div class="fw-txt">Calculer le CR total puis unitaire<span class="fw-hint">Poser le calcul en étapes, arrondir à 2 décimales</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">3</div><div class="fw-txt">Calculer la marge et le taux<span class="fw-hint">Avec unité (€) et % selon le cas</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#2a69a8;">4</div><div class="fw-txt">Interpréter<span class="fw-hint">"La marge de X € représente Y% du coût de revient, ce qui indique que l'entreprise…"</span></div></div>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Oublier les charges indirectes</div>
+            <div class="piege-desc">Le coût de revient inclut TOUTES les charges, directes et indirectes. N'oublier aucune ligne du tableau.</div>
+            <div class="piege-fix">✔ Faire un tableau récapitulatif avant de calculer le total.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Confondre taux de marge et taux de marque</div>
+            <div class="piege-desc">Taux de marge = sur le CR. Taux de marque = sur le prix de vente. Ce n'est pas le même dénominateur.</div>
+            <div class="piege-fix">✔ Retenir : "marque" → sur le prix de vente (ce que voit le marché). "marge" → sur le coût (ce que coûte la production).</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Ne pas interpréter le résultat</div>
+            <div class="piege-desc">Donner un résultat numérique sans dire ce qu'il signifie pour la rentabilité de l'entreprise.</div>
+            <div class="piege-fix">✔ Finir par : "Ce taux de marge de X% indique que l'entreprise [est/n'est pas] suffisamment rentable sur ce produit."</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'7')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. GPEC -->
+  <div class="topic" id="topic-8" data-type="court">
+    <div class="topic-hd" onclick="toggleTopic('topic-8')">
+      <div class="topic-stars">★★★☆☆</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#946e00;">🩷 Question courte · Chapitre 2 RH</div>
+        <div class="topic-name">GPEC et gestion des ressources humaines</div>
+        <div class="topic-freq">Tombe 3 sessions sur 5 · Souvent question courte ou définition</div>
+      </div>
+      <div class="topic-check" id="check-8" onclick="toggleDone(event,'8')">☐</div>
+      <div class="topic-arrow" id="arrow-8">▶</div>
+    </div>
+    <div class="topic-body" id="body-8">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"Définissez la GPEC. Quel est son intérêt pour l'entreprise présentée dans le dossier ?"</div>
+            <div class="sq-pts">Barème habituel : 3 à 5 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#946e00;">Définition à mémoriser mot pour mot</div>
+          <div style="background:#fef8e2; border-radius:10px; padding:12px 16px; margin-bottom:14px; font-size:13px; font-weight:600; color:#7a5800; line-height:1.6; font-style:italic;">
+            "La GPEC (Gestion Prévisionnelle des Emplois et des Compétences) est une démarche qui consiste à anticiper les besoins en ressources humaines à moyen terme pour adapter les effectifs et les compétences aux évolutions de l'organisation."
+          </div>
+          <div class="tb-section-title" style="color:#946e00;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">1</div><div class="fw-txt">Définir la GPEC en une phrase<span class="fw-hint">Anticiper + adapter + moyen terme</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">2</div><div class="fw-txt">Identifier le défi RH de l'entreprise dans le cas<span class="fw-hint">"Face à [transformation / départ / montée en compétences]…"</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">3</div><div class="fw-txt">Expliquer comment la GPEC y répond<span class="fw-hint">Recrutement anticipé, formation, mobilité interne</span></div></div>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Confondre GPEC et simple recrutement</div>
+            <div class="piege-desc">La GPEC est une démarche PRÉVISIONNELLE à moyen terme. Ce n'est pas juste embaucher quand il manque du monde.</div>
+            <div class="piege-fix">✔ Insister sur "anticiper" et "moyen terme" dans la définition.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Oublier de lier au contexte du cas</div>
+            <div class="piege-desc">La question demande "l'intérêt pour l'entreprise du dossier" — répondre en général ne suffit pas.</div>
+            <div class="piege-fix">✔ Identifier dans le cas le changement qui justifie une GPEC (transformation numérique, croissance, départs en retraite…)</div>
+          </div>
+          <div style="background:#fef8e2; border-radius:10px; padding:11px 14px; margin-top:10px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#946e00; margin-bottom:5px;">Les 3 leviers RH liés</div>
+            <div style="display:flex; gap:7px; flex-wrap:wrap; margin-top:4px;">
+              <span style="background:#fde8a0; border-radius:8px; padding:5px 11px; font-size:12px; font-weight:700; color:#7a5800;">🎯 Recrutement (interne / externe)</span>
+              <span style="background:#fde8a0; border-radius:8px; padding:5px 11px; font-size:12px; font-weight:700; color:#7a5800;">📚 Formation</span>
+              <span style="background:#fde8a0; border-radius:8px; padding:5px 11px; font-size:12px; font-weight:700; color:#7a5800;">😊 QVT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'8')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Identité numérique / E-réputation -->
+  <div class="topic" id="topic-9" data-type="court">
+    <div class="topic-hd" onclick="toggleTopic('topic-9')">
+      <div class="topic-stars">★★★☆☆</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#2a69a8;">🩷 Question courte · Chapitre 5</div>
+        <div class="topic-name">Identité numérique et e-réputation</div>
+        <div class="topic-freq">Tombe 3 sessions sur 5 · Souvent question de définition + application</div>
+      </div>
+      <div class="topic-check" id="check-9" onclick="toggleDone(event,'9')">☐</div>
+      <div class="topic-arrow" id="arrow-9">▶</div>
+    </div>
+    <div class="topic-body" id="body-9">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"Définissez l'e-réputation. Comment l'entreprise gère-t-elle son identité numérique ?"</div>
+            <div class="sq-pts">Barème habituel : 3 à 5 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">Notions à mobiliser</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">Identité numérique</span>
+            <span class="notion-chip" style="background:#cce2f8;color:#1a4f82;">E-réputation</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">Réseaux sociaux</span>
+            <span class="notion-chip" style="background:#e8f3ff;color:#2a69a8;">Avis clients</span>
+          </div>
+          <div class="tb-section-title" style="color:#2a69a8;">2 définitions à savoir</div>
+          <div style="background:#e8f3ff; border-radius:10px; padding:12px; margin-bottom:10px;">
+            <div style="font-size:12px; font-weight:800; color:#2a69a8; margin-bottom:4px;">Identité numérique</div>
+            <div style="font-size:12px; font-weight:600; color:#1a4f82; line-height:1.5;">Ensemble des traces et représentations d'une organisation sur internet (site, réseaux, mentions).</div>
+          </div>
+          <div style="background:#e8f3ff; border-radius:10px; padding:12px;">
+            <div style="font-size:12px; font-weight:800; color:#2a69a8; margin-bottom:4px;">E-réputation</div>
+            <div style="font-size:12px; font-weight:600; color:#1a4f82; line-height:1.5;">Image perçue et construite en ligne à partir des avis, commentaires, réseaux sociaux et mentions.</div>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Confondre identité numérique et e-réputation</div>
+            <div class="piege-desc">L'identité numérique = ce que l'entreprise publie. L'e-réputation = l'image que les autres ont d'elle en ligne.</div>
+            <div class="piege-fix">✔ Identité : ce que je contrôle. E-réputation : ce que les autres disent de moi.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Ne pas lier à la performance</div>
+            <div class="piege-desc">L'e-réputation a un impact direct sur les ventes, le recrutement et la fidélisation.</div>
+            <div class="piege-fix">✔ Conclure : "Une e-réputation positive renforce la confiance des clients et attire de nouveaux talents."</div>
+          </div>
+          <div style="background:#cce2f8; border-radius:10px; padding:11px 14px; margin-top:10px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#1a4f82; margin-bottom:5px;">Gérer son e-réputation : les leviers</div>
+            <div style="font-size:12px; font-weight:700; color:#1a4f82; line-height:1.7;">📣 Réseaux sociaux actifs<br>⭐ Réponse aux avis (positifs ET négatifs)<br>🌐 Site web à jour<br>📸 Contenu de qualité</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'9')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Organisation et coordination -->
+  <div class="topic" id="topic-10" data-type="redac">
+    <div class="topic-hd" onclick="toggleTopic('topic-10')">
+      <div class="topic-stars">★★★☆☆</div>
+      <div class="topic-info">
+        <div class="topic-label" style="color:#946e00;">💬 Rédactionnel · Chapitre 6</div>
+        <div class="topic-name">Organisation du travail et coordination</div>
+        <div class="topic-freq">Tombe régulièrement · Souvent lié à QVT ou performance humaine</div>
+      </div>
+      <div class="topic-check" id="check-10" onclick="toggleDone(event,'10')">☐</div>
+      <div class="topic-arrow" id="arrow-10">▶</div>
+    </div>
+    <div class="topic-body" id="body-10">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="sample-q">
+            <div class="sq-label">Question type bac</div>
+            <div class="sq-text">"Caractérisez l'organisation du travail mise en place. En quoi favorise-t-elle la performance de l'organisation ?"</div>
+            <div class="sq-pts">Barème habituel : 4 à 6 points</div>
+          </div>
+          <div class="tb-section-title" style="color:#946e00;">Notions à mobiliser</div>
+          <div class="notions">
+            <span class="notion-chip" style="background:#fde8a0;color:#7a5800;">Organisation souple vs rigide</span>
+            <span class="notion-chip" style="background:#fde8a0;color:#7a5800;">Polyvalence / Spécialisation</span>
+            <span class="notion-chip" style="background:#fde8a0;color:#7a5800;">Centralisation / Décentralisation</span>
+            <span class="notion-chip" style="background:#fef8e2;color:#946e00;">Lean management</span>
+            <span class="notion-chip" style="background:#fef8e2;color:#946e00;">3 mécanismes de coordination</span>
+          </div>
+          <div class="tb-section-title" style="color:#946e00;">Structure de réponse</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">1</div><div class="fw-txt">Caractériser : souple ou rigide ? Centralisée ou décentralisée ?<span class="fw-hint">S'appuyer sur les faits du cas pour justifier</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">2</div><div class="fw-txt">Identifier le mécanisme de coordination dominant<span class="fw-hint">Supervision directe / Standardisation / Ajustement mutuel</span></div></div>
+            <div class="fw-step"><div class="fw-n" style="background:#946e00;">3</div><div class="fw-txt">Lier à la performance<span class="fw-hint">Souple → QVT → Motivation → Performance (la chaîne)</span></div></div>
+          </div>
+          <div class="tb-section-title" style="color:#946e00; margin-top:8px;">La chaîne gagnante</div>
+          <div style="background:#fef8e2; border-radius:10px; padding:11px 14px; font-size:12px; font-weight:700; color:#7a5800; line-height:1.8;">
+            🌿 Organisation souple → 😊 QVT → 🔥 Motivation → 📈 Performance
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title" style="color:#b5415a;">Pièges à éviter</div>
+          <div class="piege-box">
+            <div class="piege-title">Confondre spécialisation et polyvalence</div>
+            <div class="piege-desc">Spécialisation (taylorisme) = un salarié, une tâche. Polyvalence = un salarié, plusieurs compétences. Ce n'est pas la même logique de performance.</div>
+            <div class="piege-fix">✔ Identifier dans le cas : est-ce que les salariés font une seule chose ou plusieurs ?</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">Oublier la dimension humaine</div>
+            <div class="piege-desc">La performance humaine (QVT, motivation, engagement) est toujours attendue dans Chap 6.</div>
+            <div class="piege-fix">✔ Ne jamais conclure sans mentionner l'impact sur les salariés → motivation → performance.</div>
+          </div>
+          <div style="background:#fef8e2; border-radius:10px; padding:11px 14px; margin-top:10px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#946e00; margin-bottom:5px;">3 mécanismes de coordination</div>
+            <div style="font-size:12px; font-weight:700; color:#7a5800; line-height:1.8;">👀 Supervision directe — manager contrôle<br>📋 Standardisation — règles et procédures<br>💬 Ajustement mutuel — communication informelle</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-mark-done" onclick="toggleDone(event,'10')">✓ Je suis prêt·e sur ce sujet</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─── DONE STATE ──────────────────────────────────────────────────────────────
+let done = {};
+(function() {
+  try { const s = localStorage.getItem('sli_annales_done'); if(s) done = JSON.parse(s); } catch(e) {}
+  applyDoneState();
+})();
+
+function saveDone() {
+  try { localStorage.setItem('sli_annales_done', JSON.stringify(done)); } catch(e) {}
+}
+
+function applyDoneState() {
+  let count = 0;
+  const total = 10;
+  for (let i = 1; i <= total; i++) {
+    const topic = document.getElementById('topic-' + i);
+    const check = document.getElementById('check-' + i);
+    const btn = topic ? topic.querySelector('.btn-mark-done') : null;
+    if (done[i]) {
+      count++;
+      topic && topic.classList.add('done');
+      if (check) { check.textContent = '✓'; check.classList.add('done'); }
+      if (btn) { btn.textContent = '↩ Retirer'; btn.classList.remove('btn-mark-done'); btn.classList.add('btn-mark-undo'); }
+    } else {
+      topic && topic.classList.remove('done');
+      if (check) { check.textContent = '☐'; check.classList.remove('done'); }
+      if (btn) { btn.textContent = '✓ Je suis prêt·e sur ce sujet'; btn.classList.add('btn-mark-done'); btn.classList.remove('btn-mark-undo'); }
+    }
+  }
+  document.getElementById('prog-count').textContent = count + ' / ' + total;
+  document.getElementById('prog-fill').style.width = (count / total * 100) + '%';
+}
+
+function toggleDone(event, id) {
+  event.stopPropagation();
+  done[id] = !done[id];
+  saveDone();
+  applyDoneState();
+}
+
+// ─── ACCORDION ───────────────────────────────────────────────────────────────
+function toggleTopic(id) {
+  const body = document.getElementById('body-' + id.replace('topic-',''));
+  const arrow = document.getElementById('arrow-' + id.replace('topic-',''));
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ─── FILTER ──────────────────────────────────────────────────────────────────
+function setFilter(type) {
+  document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
+  const activeBtn = type === 'all' ? document.querySelector('.filt-all')
+    : type === 'calcul' ? document.querySelector('.filt-calcul')
+    : type === 'redac' ? document.querySelector('.filt-redac')
+    : document.querySelector('.filt-court');
+  if (activeBtn) activeBtn.classList.add('active');
+
+  document.querySelectorAll('.topic').forEach(t => {
+    const match = type === 'all' || t.dataset.type === type;
+    t.style.display = match ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

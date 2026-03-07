@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scholar Lock-In — Thème 1 SDGN</title>
+<title>Scholar Lock-In — Terminale STMG</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,213 +17,142 @@ body {
   justify-content: center;
   padding: 40px 20px;
 }
-.page { width: 100%; max-width: 960px; }
+.page { width: 100%; max-width: 820px; }
 
 /* Hero */
-.hero { text-align: center; margin-bottom: 44px; }
+.hero { text-align: center; margin-bottom: 52px; }
 .hero-badge {
   font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
   background: #1e1c18; color: #f5c842;
   padding: 5px 16px; border-radius: 20px;
-  display: inline-block; margin-bottom: 16px;
+  display: inline-block; margin-bottom: 18px;
 }
 .hero h1 {
   font-family: 'Nunito', sans-serif;
-  font-size: 48px; font-weight: 900; color: #1e1c18;
-  line-height: 1.1; margin-bottom: 10px;
+  font-size: 52px; font-weight: 900; color: #1e1c18;
+  line-height: 1.05; margin-bottom: 14px;
 }
 .hero h1 span { color: #b5415a; }
-.hero-sub { font-size: 14px; color: #7a6a58; font-weight: 600; }
-
-/* Grille principale : 2 grandes tuiles */
-.top-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 14px;
+.hero-sub {
+  font-size: 15px; color: #7a6a58; font-weight: 600;
 }
 
-/* Rangée 3 petites tuiles */
-.bottom-row {
+/* Grille 3 matières */
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 14px;
+  gap: 16px;
 }
 
-/* Carte générique */
+/* Carte matière */
 .card {
-  border-radius: 16px;
-  padding: 26px 22px;
+  border-radius: 20px;
+  padding: 32px 24px;
   text-decoration: none;
   display: block;
   transition: transform 0.15s, box-shadow 0.15s;
   position: relative;
 }
-.card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.14); }
-.card.off { opacity: 0.6; pointer-events: none; cursor: default; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(0,0,0,.14); }
+
+/* Désactivé */
+.card.off {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
 .card.off:hover { transform: none; box-shadow: none; }
 
-.tag {
-  font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+.card-badge {
+  font-size: 9px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase;
   padding: 3px 10px; border-radius: 20px;
-  display: inline-block; margin-bottom: 12px;
+  display: inline-block; margin-bottom: 18px;
 }
-.card-icon { font-size: 34px; margin-bottom: 10px; display: block; }
-.card-title { font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; margin-bottom: 6px; }
-.card-desc { font-size: 12px; font-weight: 600; line-height: 1.55; }
+.card-icon { font-size: 40px; margin-bottom: 14px; display: block; }
+.card-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px; font-weight: 900;
+  margin-bottom: 8px;
+}
+.card-full {
+  font-size: 11px; font-weight: 700; font-style: italic;
+  margin-bottom: 12px; line-height: 1.4;
+}
+.card-desc { font-size: 12px; font-weight: 600; line-height: 1.6; }
 
-/* Tuile 1 — Vue d'ensemble (dark) */
-.tile-overview { background: #1e1c18; }
-.tile-overview .tag { background: #f5c842; color: #1e1c18; }
-.tile-overview .card-title { color: #fffdf8; }
-.tile-overview .card-desc { color: #a09880; }
-
-/* Tuile 2 — Chapitres (gradient tri-couleur) */
-.tile-chap { background: linear-gradient(135deg, #fdeef2 0%, #e8f3ff 55%, #fef8e2 100%); border: 1.5px solid #e0dbd2; }
-.tile-chap .tag { background: #1e1c18; color: #fffdf8; }
-.tile-chap .card-title { color: #1e1c18; }
-.tile-chap .card-desc { color: #5a5448; }
-
-/* Thème 1 label dans le hero */
-.hero-theme {
-  font-size: 13px; font-weight: 700; color: #5a5448;
-  background: rgba(30,28,24,.07); border-radius: 10px;
-  padding: 7px 18px; display: inline-block; margin-bottom: 10px;
-  font-style: italic;
+.coming-soon {
+  position: absolute; top: 16px; right: 16px;
+  font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  background: rgba(0,0,0,.1); color: inherit;
+  padding: 3px 8px; border-radius: 20px;
 }
 
-/* Liste des chapitres dans la tuile */
-.chap-list { display: flex; flex-direction: column; gap: 5px; margin-top: 12px; }
-.chap-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 12px; border-radius: 10px;
-  text-decoration: none; transition: transform 0.12s, opacity 0.12s;
-}
-.chap-item:hover { transform: translateX(4px); opacity: 0.85; }
-.chap-num {
-  font-family: 'Nunito', sans-serif; font-size: 10px; font-weight: 900;
-  white-space: nowrap; min-width: 90px; flex-shrink: 0;
-}
-.chap-label { font-size: 12px; font-weight: 700; line-height: 1.3; }
+/* SDGM — dark */
+.tile-sdgm { background: #1e1c18; }
+.tile-sdgm .card-badge { background: #f5c842; color: #1e1c18; }
+.tile-sdgm .card-title { color: #fffdf8; }
+.tile-sdgm .card-full { color: #a09880; }
+.tile-sdgm .card-desc { color: #c0b090; }
 
-.chap-r { background: #f9d0d9; }
-.chap-r .chap-num { color: #b5415a; }
-.chap-r .chap-label { color: #7a2038; }
+/* Droit — bleu foncé */
+.tile-droit { background: #e8f3ff; border: 1.5px solid #cce2f8; }
+.tile-droit .card-badge { background: rgba(42,105,168,.18); color: #1a4f82; }
+.tile-droit .card-title { color: #1a4f82; }
+.tile-droit .card-full { color: #2a69a8; }
+.tile-droit .card-desc { color: #3a6a98; }
 
-.chap-b { background: #cce2f8; }
-.chap-b .chap-num { color: #2a69a8; }
-.chap-b .chap-label { color: #1a4f82; }
-
-.chap-j { background: #fde8a0; }
-.chap-j .chap-num { color: #946e00; }
-.chap-j .chap-label { color: #7a5800; }
-
-/* Tuile 3 — Flash cards */
-.tile-flash { background: #fdeef2; border: 1.5px solid #f9d0d9; }
-.tile-flash .tag { background: rgba(181,65,90,.15); color: #b5415a; }
-.tile-flash .card-title { color: #b5415a; }
-.tile-flash .card-desc { color: #7a2038; }
-
-/* Tuile 4 — Méthode */
-.tile-methode { background: #fef8e2; border: 1.5px solid #fde8a0; }
-.tile-methode .tag { background: rgba(148,110,0,.15); color: #946e00; }
-.tile-methode .card-title { color: #946e00; }
-.tile-methode .card-desc { color: #7a5800; }
-
-/* Tuile 5 — Annales */
-.tile-annales { background: #e8f3ff; border: 1.5px solid #cce2f8; }
-.tile-annales .tag { background: rgba(42,105,168,.15); color: #2a69a8; }
-.tile-annales .card-title { color: #2a69a8; }
-.tile-annales .card-desc { color: #1a4f82; }
+/* Eco — vert/sable */
+.tile-eco { background: #eef6ee; border: 1.5px solid #c2dfc2; }
+.tile-eco .card-badge { background: rgba(50,120,50,.15); color: #2a6a2a; }
+.tile-eco .card-title { color: #2a6a2a; }
+.tile-eco .card-full { color: #3a8a3a; }
+.tile-eco .card-desc { color: #3a7a3a; }
 
 /* Footer */
-.footer { text-align: center; margin-top: 36px; font-size: 11px; color: #a09880; font-weight: 600; }
+.footer { text-align: center; margin-top: 44px; font-size: 11px; color: #a09880; font-weight: 600; }
 </style>
 </head>
 <body>
 <div class="page">
 
   <div class="hero">
-    <div class="hero-badge">SDGN · Terminale STMG · Thème 1</div>
+    <div class="hero-badge">Terminale STMG · Révisions Bac</div>
     <h1>Scholar <span>Lock-In</span></h1>
-    <div class="hero-theme">Thème 1 — Les organisations et l'activité de production de biens et de services</div>
-    <div class="hero-sub">Ton kit de révision de dernière minute · 5 outils · 45 notions</div>
+    <div class="hero-sub">Choisis ta matière pour commencer</div>
   </div>
 
-  <div class="top-grid">
+  <div class="grid">
 
-    <!-- Outil 1 — Vue d'ensemble -->
-    <a href="Contenu/SLI_Infographie_Theme1_Global.html" class="card tile-overview">
-      <div class="tag">✅ Disponible</div>
-      <span class="card-icon">🗺️</span>
-      <div class="card-title">Vue d'ensemble Thème 1</div>
-      <div class="card-desc">Les 6 chapitres sur une seule page. Parfait pour avoir la vision globale avant de plonger dans les détails.</div>
+    <!-- SDGM -->
+    <a href="sdgm.html" class="card tile-sdgm">
+      <div class="card-badge">Actif</div>
+      <span class="card-icon">📊</span>
+      <div class="card-title">SDGM</div>
+      <div class="card-full">Sciences de Gestion et du Management</div>
+      <div class="card-desc">Vue d'ensemble, chapitres, flash cards, méthode J-Day, annales. Thème 1 disponible.</div>
     </a>
 
-    <!-- Outil 2 — Chapitres -->
-    <div class="card tile-chap" style="cursor:default;">
-      <div class="tag">✅ Disponible</div>
-      <span class="card-icon">📖</span>
-      <div class="card-title">Réviser par chapitre</div>
-      <div class="chap-list">
-        <a href="Contenu/SLI_Infographie_Chap1.html" class="chap-item chap-r">
-          <span class="chap-num">🩷 Chapitre 1</span>
-          <span class="chap-label">Quels produits ou services pour quels besoins ?</span>
-        </a>
-        <a href="Contenu/SLI_Infographie_Chap2.html" class="chap-item chap-j">
-          <span class="chap-num">🟡 Chapitre 2 RH</span>
-          <span class="chap-label">Quelles ressources pour produire ? — partie RH</span>
-        </a>
-        <a href="Contenu/SLI_Infographie_Chap2.html" class="chap-item chap-b">
-          <span class="chap-num">🔵 Chapitre 2 Finance</span>
-          <span class="chap-label">Quelles ressources pour produire ? — partie financière</span>
-        </a>
-        <a href="Contenu/SLI_Infographie_Chap3et4.html" class="chap-item chap-b">
-          <span class="chap-num">🔵 Chapitres 3 &amp; 4</span>
-          <span class="chap-label">Organisation de la production, flux, qualité, coûts</span>
-        </a>
-        <a href="Contenu/SLI_Infographie_Chap5.html" class="chap-item chap-b">
-          <span class="chap-num">🔵 Chapitre 5</span>
-          <span class="chap-label">Les transformations numériques</span>
-        </a>
-        <a href="Contenu/SLI_Infographie_Chap6.html" class="chap-item chap-j">
-          <span class="chap-num">🟡 Chapitre 6</span>
-          <span class="chap-label">Fonctionnement cohérent des organisations</span>
-        </a>
-      </div>
+    <!-- Droit -->
+    <div class="card tile-droit off">
+      <div class="coming-soon">Bientôt</div>
+      <span class="card-icon">⚖️</span>
+      <div class="card-title">Droit</div>
+      <div class="card-full">Sciences Juridiques</div>
+      <div class="card-desc">Contenu en cours de préparation.</div>
+    </div>
+
+    <!-- Eco -->
+    <div class="card tile-eco off">
+      <div class="coming-soon">Bientôt</div>
+      <span class="card-icon">📈</span>
+      <div class="card-title">Éco</div>
+      <div class="card-full">Sciences Économiques</div>
+      <div class="card-desc">Contenu en cours de préparation.</div>
     </div>
 
   </div>
 
-  <div class="bottom-row">
-
-    <!-- Outil 3 — Flash cards -->
-    <a href="Contenu/SLI_Flashcards_Theme1.html" class="card tile-flash">
-      <div class="tag">✅ Disponible</div>
-      <span class="card-icon">🃏</span>
-      <div class="card-title">Flash cards</div>
-      <div class="card-desc">48 notions + 6 formules. Flip au clic, filtre par chapitre, mode aléatoire, compteur de maîtrise.</div>
-    </a>
-
-    <!-- Outil 4 — Méthode -->
-    <div class="card tile-methode off">
-      <div class="tag">🔜 Bientôt</div>
-      <span class="card-icon">✅</span>
-      <div class="card-title">Méthode J-day</div>
-      <div class="card-desc">Quoi faire en premier, le code des verbes directeurs, comment lier une question à un document.</div>
-    </div>
-
-    <!-- Outil 5 — Annales -->
-    <div class="card tile-annales off">
-      <div class="tag">🔜 Bientôt</div>
-      <span class="card-icon">🎯</span>
-      <div class="card-title">Entraînement annales</div>
-      <div class="card-desc">Questions des 7 annales 2021–2025. Timer, auto-évaluation, tableau de bord de progression.</div>
-    </div>
-
-  </div>
-
-  <div class="footer">Scholar Lock-In · SDGN Terminale STMG · Thème 1 · Les organisations et l'activité de production</div>
+  <div class="footer">Scholar Lock-In · Terminale STMG · Révisions Bac</div>
 
 </div>
 </body>

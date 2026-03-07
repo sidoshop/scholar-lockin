@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte Mémo Ch.3&4 — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f0ede6; color: #1e1c18; min-height: 100vh; padding: 68px 20px 48px; }
+.page { max-width: 1300px; margin: 0 auto; background: #fffdf8; border-radius: 20px; overflow: hidden; box-shadow: 0 6px 48px rgba(0,0,0,.13); }
+
+/* NAV */
+.sli-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #1e1c18; height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; box-shadow: 0 2px 12px rgba(0,0,0,.3); }
+.sli-nav a { text-decoration: none; }
+.sli-nav-logo { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; color: #fffdf8; }
+.sli-nav-logo span { color: #f5c842; }
+.sli-nav-links { display: flex; gap: 2px; }
+.sli-nl { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #a09880; padding: 5px 10px; border-radius: 6px; white-space: nowrap; }
+.sli-nl:hover { background: rgba(255,255,255,.09); color: #fffdf8; }
+.sli-nl.on { background: rgba(255,255,255,.09); color: #fffdf8; }
+@media print { .sli-nav, .chapnav { display: none !important; } body { padding-top: 0 !important; } }
+
+/* CHAPNAV */
+.chapnav { background: #f0ede6; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0dbd2; }
+.chapnav-btn { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; color: #5a5448; text-decoration: none; padding: 7px 16px; border-radius: 8px; background: #fffdf8; border: 1.5px solid #e0dbd2; }
+.chapnav-dots { display: flex; gap: 8px; align-items: center; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-on { background: #1e1c18; } .dot-off { background: #d4cec6; }
+
+/* HEADER */
+.header { background: #1a5c82; padding: 26px 36px 22px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.header-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; background: rgba(245,200,66,.11); padding: 4px 14px; border-radius: 20px; margin-bottom: 14px; }
+.header h1 { font-family: 'Nunito', sans-serif; font-size: 26px; font-weight: 900; color: #fffdf8; line-height: 1.25; margin-bottom: 8px; }
+.header h1 em { font-style: normal; color: #a8f0c0; }
+.header-meta { font-size: 13px; color: rgba(255,255,255,.5); font-weight: 500; line-height: 1.5; }
+.header-right { flex-shrink: 0; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.read-tag { background: rgba(0,0,0,.25); color: #fff; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 10px; }
+.header-note { font-size: 11px; color: rgba(255,255,255,.35); font-weight: 500; }
+
+/* BODY — 3 COLS */
+.body { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.08); }
+.col { padding: 24px 20px; }
+.col-1 { background: #c8def0; border-right: 1px solid rgba(0,0,0,.08); }
+.col-2 { background: #fffdf8; border-right: 1px solid rgba(0,0,0,.08); }
+.col-3 { background: #eaf8ef; border-left: 3px solid #1a7a3c; }
+
+/* Col header */
+.col-hd { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; }
+.col-1 .col-hd { border-bottom: 2px solid #9cbedd; }
+.col-2 .col-hd { border-bottom: 2px solid #e0dbd2; }
+.col-3 .col-hd { border-bottom: 2px solid #a0e0b4; }
+.col-num { font-family: 'Nunito', sans-serif; font-size: 36px; font-weight: 900; line-height: 1; flex-shrink: 0; margin-top: 2px; opacity: .28; }
+.col-1 .col-num { color: #1a5c82; } .col-2 .col-num { color: #5a5448; } .col-3 .col-num { color: #1a7a3c; }
+.col-hd-body { display: flex; flex-direction: column; gap: 5px; }
+.col-title { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.8px; line-height: 1.3; }
+.col-1 .col-title { color: #1a5c82; } .col-2 .col-title { color: #5a5448; } .col-3 .col-title { color: #1a7a3c; }
+.col-subtitle { font-size: 11px; font-weight: 500; color: #8a7e6e; }
+
+/* Indicator pills */
+.pill-start { display: inline-flex; align-items: center; gap: 4px; background: #1a5c82; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .4px; }
+.pill-priority { display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #2daa5f 0%, #1a7a3c 100%); color: #fff; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 20px; letter-spacing: .4px; }
+
+/* Section title */
+.sec-t { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.8px; margin: 18px 0 10px; }
+.col-1 .sec-t { color: rgba(26,92,130,.6); } .col-2 .sec-t { color: rgba(90,84,72,.5); } .col-3 .sec-t { color: rgba(26,122,60,.6); }
+
+/* BADGE SYSTEM */
+.badge { display: inline-block; height: 22px; line-height: 22px; padding: 0 10px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: .2px; margin-bottom: 5px; }
+.badge-blue { background: #1a5c82; color: #fff; } .badge-gold { background: #c47800; color: #fff; }
+.badge-green { background: #1a7a3c; color: #fff; } .badge-rose { background: #b5415a; color: #fff; }
+
+/* CARD SYSTEM */
+.card { border-radius: 12px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.card-stack { border-radius: 12px; padding: 14px 13px; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+.c-blue { background: #c8def0; } .c-slate { background: #dce8fc; }
+.c-orange { background: #fce0b0; } .c-green { background: #bce8cd; }
+.c-gold { background: #fde8a0; } .c-rose { background: #f9d0d9; }
+.c-teal { background: #c8f0ec; } .c-mint { background: #d4f5e0; }
+.ci { font-size: 26px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.ci-sm { font-size: 19px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.ci-lg { font-size: 30px; margin-bottom: 2px; }
+.ct { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #1e1c18; line-height: 1.25; margin-bottom: 5px; }
+.ct-sm { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1e1c18; line-height: 1.25; margin-bottom: 3px; }
+.cd { font-size: 13px; font-weight: 500; color: #5a5448; line-height: 1.55; }
+.cd strong { font-weight: 700; color: #1e1c18; }
+.cx { font-size: 12px; font-weight: 500; color: #8a7e6e; font-style: italic; line-height: 1.4; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* FORMULA BOXES (coût complet) */
+.form-box { background: #1e1c18; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+.form-row { display: flex; align-items: baseline; gap: 8px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+.form-row:last-child { border-bottom: none; padding-bottom: 0; }
+.form-lbl { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #f5c842; min-width: 90px; flex-shrink: 0; }
+.form-eql { font-size: 12px; color: rgba(255,255,255,.35); flex-shrink: 0; }
+.form-def { font-size: 12px; color: #fffdf8; font-weight: 600; line-height: 1.4; }
+
+/* DIAGRAMME FLUX */
+.flux-steps { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.flux-step { display: flex; align-items: center; gap: 10px; }
+.flux-arrow { font-size: 14px; color: #9cbedd; flex-shrink: 0; margin-top: 2px; }
+.flux-box { background: #c8def0; border-radius: 8px; padding: 8px 12px; flex: 1; display: flex; align-items: center; gap: 8px; }
+.flux-sym { font-size: 16px; flex-shrink: 0; }
+.flux-txt { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; color: #1a5c82; }
+.flux-desc { font-size: 11px; color: #5a5448; }
+
+/* RSE DIMENSIONS */
+.rse-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.rse-card { border-radius: 10px; padding: 12px 14px; display: flex; gap: 12px; align-items: flex-start; }
+.rse-card.eco { background: rgba(255,255,255,.72); border-left: 3px solid #1a7a3c; }
+.rse-card.soc { background: rgba(188,232,205,.5); border-left: 3px solid #2daa5f; }
+.rse-card.env { background: rgba(160,224,180,.4); border-left: 3px solid #5ac87a; }
+.rse-ico { font-size: 22px; flex-shrink: 0; }
+.rse-name { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1a5c82; margin-bottom: 3px; }
+.rse-name.green { color: #1a7a3c; }
+.rse-def { font-size: 12px; color: #5a5448; line-height: 1.45; }
+
+/* PIÈGE */
+.piege { background: #1e1c18; border-radius: 12px; padding: 14px 16px; display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; }
+.piege-ico { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+.piege-txt { font-size: 13px; font-weight: 600; color: #fffdf8; line-height: 1.6; }
+.piege-txt strong { color: #f5c842; }
+
+/* QUESTION RÉDIGÉE */
+.q-card { background: #fffdf8; border: 2px solid #1a7a3c; border-radius: 14px; padding: 16px 18px; margin-top: 18px; position: relative; box-shadow: 0 4px 20px rgba(26,122,60,.14); }
+.q-card::after { content: '🌿'; position: absolute; top: 10px; right: 14px; font-size: 38px; opacity: .09; pointer-events: none; }
+.q-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.q-star { font-size: 20px; }
+.q-label { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; }
+.q-tag { display: inline-block; background: #2daa5f; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 5px; margin-left: 6px; letter-spacing: .4px; vertical-align: middle; }
+.q-body { font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.65; }
+.q-body strong { color: #1e1c18; font-weight: 700; }
+
+/* BAC */
+.bac { background: #27241e; padding: 24px 32px; }
+.bac-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.bac-hd-label { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #f5c842; text-transform: uppercase; letter-spacing: 2px; }
+.bac-cards { display: flex; flex-direction: column; gap: 10px; }
+.bac-card { background: rgba(255,255,255,.055); border-radius: 12px; padding: 14px 18px; display: grid; grid-template-columns: 220px 130px 1fr; gap: 20px; align-items: center; border-left: 3px solid transparent; }
+.bac-p1 { border-color: #f5c842; } .bac-p2 { border-color: #e85c72; } .bac-p4 { border-color: rgba(255,255,255,.2); }
+.bac-notion { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: #fffdf8; line-height: 1.3; }
+.bac-stars { display: flex; gap: 3px; align-items: center; }
+.s-on { color: #f5c842; font-size: 19px; line-height: 1; } .s-off { color: rgba(255,255,255,.14); font-size: 19px; line-height: 1; }
+.bac-conseil { font-size: 13px; color: rgba(255,255,255,.58); font-weight: 500; line-height: 1.55; }
+.bac-tag { display: inline-block; background: rgba(255,255,255,.11); border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: #ddd8cc; margin-right: 6px; white-space: nowrap; vertical-align: middle; }
+
+/* FOOTER */
+.footer { background: #f0ede6; padding: 11px 32px; display: flex; align-items: center; justify-content: space-between; }
+.footer-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 12px; color: #1a5c82; }
+.footer-note { font-size: 11px; color: #8a7e6e; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
+    <a href="SLI_CarteMemo_Chap3et4.html" class="sli-nl on">📖 Chapitres</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
+  </div>
+  <a href="../index.html" class="sli-nl">← Accueil</a>
+</nav>
+
+<div class="page">
+
+<div class="chapnav">
+  <a href="SLI_CarteMemo_Chap2.html" class="chapnav-btn">← Chapitre 2</a>
+  <div class="chapnav-dots">
+    <span class="dot dot-off" title="Carte mémo Ch.1"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.2"></span>
+    <span class="dot dot-on" title="Carte mémo Ch.3&4"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.5"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.6"></span>
+  </div>
+  <a href="SLI_CarteMemo_Chap5.html" class="chapnav-btn">Chapitre 5 →</a>
+</div>
+
+<div class="header">
+  <div>
+    <div class="header-badge">🧠 Carte Mémo · Scholar Lock-In · SDGN Terminale STMG · Processus &amp; RSE</div>
+    <h1>Chapitres 3&amp;4 — Comment l'organisation optimise-t-elle<br>ses <em>processus de production et intègre-t-elle la RSE ?</em></h1>
+    <div class="header-meta">Processus de production · Flux · Lean management · Coût complet · RSE 3 dimensions<br>La RSE et le coût complet reviennent très régulièrement au Bac.</div>
+  </div>
+  <div class="header-right">
+    <button onclick="document.getElementById('memo-overlay').style.display='flex'" class="read-tag" style="cursor:pointer; border:none;">🧠 Carte Mémo · Synthèse essentielle</button>
+    <div class="header-note">3 sections · lire de gauche à droite</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- ① PROCESSUS & FLUX -->
+  <div class="col col-1">
+    <div class="col-hd">
+      <div class="col-num">①</div>
+      <div class="col-hd-body">
+        <div class="col-title">Processus &amp; Flux</div>
+        <span class="pill-start">Commencer ici →</span>
+      </div>
+    </div>
+
+    <div class="card c-blue">
+      <div class="ci">⚙️</div>
+      <div>
+        <div class="ct">Processus</div>
+        <div class="cd">Ensemble d'<strong>activités liées</strong> qui transforment des ressources (inputs) en résultats (outputs) pour créer de la valeur.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">3 types de flux</div>
+    <div class="g2" style="margin-bottom: 12px;">
+      <div class="card-stack c-blue" style="margin:0;">
+        <div class="ci-lg">📦</div>
+        <div class="ct-sm">Flux physique</div>
+        <div class="cd">Déplacement de matières, composants, produits finis.</div>
+      </div>
+      <div class="card-stack c-teal" style="margin:0;">
+        <div class="ci-lg">📋</div>
+        <div class="ct-sm">Flux informationnel</div>
+        <div class="cd">Données, bons de commande, factures, documents.</div>
+      </div>
+    </div>
+    <div class="card c-slate">
+      <div class="ci-sm">💶</div>
+      <div>
+        <div class="ct-sm">Flux financier</div>
+        <div class="cd">Paiements, encaissements, règlements entre acteurs du processus.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Diagramme de flux — Lecture</div>
+    <div class="flux-steps">
+      <div class="flux-step">
+        <div class="flux-box"><div class="flux-sym">⬜</div><div><div class="flux-txt">Rectangle</div><div class="flux-desc">Acteur (émetteur ou récepteur)</div></div></div>
+      </div>
+      <div class="flux-step">
+        <div class="flux-arrow">↓</div>
+        <div class="flux-box"><div class="flux-sym">→</div><div><div class="flux-txt">Flèche numérotée</div><div class="flux-desc">Flux (physique, info ou financier)</div></div></div>
+      </div>
+      <div class="flux-step">
+        <div class="flux-arrow">↓</div>
+        <div class="flux-box"><div class="flux-sym">💬</div><div><div class="flux-txt">Libellé du flux</div><div class="flux-desc">Ex : bon de commande, facture</div></div></div>
+      </div>
+    </div>
+
+    <div class="sec-t">Lean management</div>
+    <div class="card c-blue">
+      <div class="ci">🎯</div>
+      <div>
+        <div class="ct">Éliminer les gaspillages</div>
+        <div class="cd">Le lean vise à supprimer tout ce qui ne crée pas de valeur : <strong>stocks inutiles</strong>, <strong>attentes</strong>, <strong>défauts</strong>, <strong>surproduction</strong>.</div>
+        <div class="cx">Méthode juste-à-temps : produire exactement ce qu'il faut, quand il le faut.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-ico">⚠️</div>
+      <div class="piege-txt"><strong>Piège bac :</strong> Dans un diagramme de flux, les <strong>numéros</strong> des flèches indiquent l'ordre chronologique, pas l'importance. Lire dans l'ordre 1, 2, 3…</div>
+    </div>
+  </div>
+
+  <!-- ② COÛT COMPLET -->
+  <div class="col col-2">
+    <div class="col-hd">
+      <div class="col-num">②</div>
+      <div class="col-hd-body">
+        <div class="col-title">Coût complet</div>
+        <div class="col-subtitle">Charges directes · Indirectes · Résultat</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Structure du coût</div>
+    <div class="g2" style="margin-bottom: 12px;">
+      <div class="card-stack c-blue" style="margin:0;">
+        <div class="ci-lg">🎯</div>
+        <div class="ct-sm">Charges directes</div>
+        <div class="cd">Affectées directement au produit sans calcul de répartition.</div>
+        <div class="cx">Ex : matières premières, main-d'œuvre directe</div>
+      </div>
+      <div class="card-stack c-orange" style="margin:0;">
+        <div class="ci-lg">🔀</div>
+        <div class="ct-sm">Charges indirectes</div>
+        <div class="cd">Communes à plusieurs produits → <strong>clé de répartition</strong> nécessaire.</div>
+        <div class="cx">Ex : loyer, énergie, administration</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Formules à connaître</div>
+    <div class="form-box">
+      <div class="form-row">
+        <span class="form-lbl">Coût achat</span>
+        <span class="form-eql">=</span>
+        <span class="form-def">Prix achat + frais approvisionnement</span>
+      </div>
+      <div class="form-row">
+        <span class="form-lbl">Coût prod.</span>
+        <span class="form-eql">=</span>
+        <span class="form-def">Coût achat mat. consommées + charges transformation</span>
+      </div>
+      <div class="form-row">
+        <span class="form-lbl">Coût revient</span>
+        <span class="form-eql">=</span>
+        <span class="form-def">Coût production + frais distribution + frais admin.</span>
+      </div>
+      <div class="form-row">
+        <span class="form-lbl">Résultat</span>
+        <span class="form-eql">=</span>
+        <span class="form-def">Chiffre d'affaires − Coût de revient</span>
+      </div>
+    </div>
+
+    <div class="card c-teal">
+      <div class="ci-sm">📐</div>
+      <div>
+        <div class="ct-sm">Charges fixes vs variables</div>
+        <div class="cd"><strong>Fixes :</strong> ne varient pas avec le volume (loyer, amortissements).<br><strong>Variables :</strong> varient proportionnellement à la production (matières, énergie).</div>
+      </div>
+    </div>
+
+    <div class="card c-gold">
+      <div class="ci-sm">🎯</div>
+      <div>
+        <div class="ct-sm">Seuil de rentabilité</div>
+        <div class="cd">Chiffre d'affaires à partir duquel l'entreprise couvre toutes ses charges et commence à faire du bénéfice.</div>
+        <div class="cx">SR = Charges fixes ÷ Taux de marge sur coût variable</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-ico">⚠️</div>
+      <div class="piege-txt"><strong>Piège :</strong> Le coût de revient inclut <strong>toutes</strong> les charges (production + distribution + admin). Un résultat négatif = perte, même si le prix de vente est supérieur au coût de production.</div>
+    </div>
+  </div>
+
+  <!-- ③ RSE -->
+  <div class="col col-3">
+    <div class="col-hd">
+      <div class="col-num">③</div>
+      <div class="col-hd-body">
+        <div class="col-title">RSE</div>
+        <span class="pill-priority">🌿 Priorité Bac</span>
+      </div>
+    </div>
+
+    <div class="card c-mint">
+      <div class="ci">🌍</div>
+      <div>
+        <div class="ct">Responsabilité Sociale des Entreprises</div>
+        <div class="cd">Intégrer <strong>volontairement</strong> des préoccupations sociales, environnementales et économiques dans les activités et les relations avec les parties prenantes.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Les 3 dimensions (Triple Bottom Line)</div>
+    <div class="rse-list">
+      <div class="rse-card eco">
+        <div class="rse-ico">💰</div>
+        <div>
+          <div class="rse-name">Économique</div>
+          <div class="rse-def">Performance durable, création de valeur, pratiques commerciales éthiques (prix équitables, lutte anti-corruption).</div>
+        </div>
+      </div>
+      <div class="rse-card soc">
+        <div class="rse-ico">👥</div>
+        <div>
+          <div class="rse-name green">Sociale</div>
+          <div class="rse-def">Conditions de travail, égalité H/F, formation, sécurité, respect des droits humains dans la chaîne d'approvisionnement.</div>
+        </div>
+      </div>
+      <div class="rse-card env">
+        <div class="rse-ico">🌱</div>
+        <div>
+          <div class="rse-name green">Environnementale</div>
+          <div class="rse-def">Réduction empreinte carbone, gestion des déchets, économie circulaire, efficacité énergétique.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-t">RSE = avantage concurrentiel</div>
+    <div class="card c-mint">
+      <div class="ci-sm">🏆</div>
+      <div>
+        <div class="ct-sm">Pourquoi s'engager dans la RSE ?</div>
+        <div class="cd">· Attirer des <strong>consommateurs engagés</strong><br>· Fidéliser les <strong>talents</strong> (marque employeur)<br>· Réduire les <strong>risques</strong> (réglementaires, réputation)<br>· Accès à des <strong>financements responsables</strong> (ISR)</div>
+      </div>
+    </div>
+
+    <div class="card c-green" style="margin-bottom:14px;">
+      <div class="ci-sm">🏷️</div>
+      <div>
+        <div class="ct-sm">Labels &amp; Certifications</div>
+        <div class="cd"><strong>ISO 14001</strong> (environnement) · <strong>ISO 26000</strong> (RSE) · <strong>Label B Corp</strong> · Commerce équitable · Écolabel</div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-star">🌿</span>
+        <div class="q-label">Question rédigée <span class="q-tag">RSE</span></div>
+      </div>
+      <div class="q-body">
+        Toujours préciser la <strong>dimension concernée</strong> (économique, sociale ou environnementale).<br>
+        Relier à une <strong>partie prenante impactée</strong> : clients, salariés, fournisseurs, collectivité.<br>
+        Montrer que c'est à la fois <strong>éthique</strong> et <strong>stratégiquement rentable</strong>.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BAC -->
+<div class="bac">
+  <div class="bac-hd"><span style="font-size:18px;">📋</span><div class="bac-hd-label">Points de vigilance pour l'épreuve du Bac</div></div>
+  <div class="bac-cards">
+    <div class="bac-card bac-p1">
+      <div class="bac-notion">💶 Coût complet &amp; Résultat</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Calcul obligatoire</span>Maîtriser la cascade : coût achat → coût production → coût revient → résultat. Ne jamais oublier les charges indirectes imputées.</div>
+    </div>
+    <div class="bac-card bac-p2">
+      <div class="bac-notion">🌍 RSE — 3 dimensions</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Contextualisation</span>Identifier quelle dimension est concernée dans le document. Citer la partie prenante + l'avantage concurrentiel obtenu.</div>
+    </div>
+    <div class="bac-card bac-p2">
+      <div class="bac-notion">⚙️ Processus &amp; Flux</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Diagramme</span>Savoir lire et commenter un diagramme de flux : identifier les acteurs, le type de flux, et la séquence chronologique.</div>
+    </div>
+    <div class="bac-card bac-p4">
+      <div class="bac-notion">🎯 Lean &amp; Gaspillages</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Q courte</span>Expliquer ce que le lean élimine (gaspillages) et quel est son objectif (valeur pour le client, zéro stock, flux tendu).</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Scholar Lock-In · SDGN Terminale STMG · Carte Mémo Ch.3&amp;4</div>
+  <div class="footer-note">💙 Bleu = Processus · 💚 Vert = RSE</div>
+</div>
+
+<div class="chapnav" style="border-top: 1px solid #e0dbd2; border-bottom: none;">
+  <a href="SLI_CarteMemo_Chap2.html" class="chapnav-btn">← Chapitre 2</a>
+  <div class="chapnav-dots">
+    <span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
+  </div>
+  <a href="SLI_CarteMemo_Chap5.html" class="chapnav-btn">Chapitre 5 →</a>
+</div>
+
+</div>
+
+<!-- BOUTON FLOTTANT -->
+<div style="position:fixed; bottom:28px; right:28px; z-index:100;">
+  <button onclick="document.getElementById('memo-overlay').style.display='flex'"
+    style="background:#1a5c82; color:#fff; border:none; border-radius:50px; padding:12px 22px; font-family:'Nunito',sans-serif; font-size:19px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px rgba(26,92,130,.4); display:flex; align-items:center; gap:8px; letter-spacing:0.5px;">
+    🧠 Carte Mémo
+  </button>
+</div>
+
+<!-- OVERLAY -->
+<div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
+  style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
+
+  <div style="background:#fffdf8; border-radius:20px; width:780px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
+
+    <div style="background:#1a5c82; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <div style="font-size:19px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitres 3 &amp; 4</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#fff;">🧠 Carte de mémorisation</div>
+        <div style="font-size:19px; font-weight:600; color:rgba(255,255,255,.75); margin-top:5px; line-height:1.4;">Comment optimiser les processus de production et intégrer la RSE ?</div>
+      </div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'"
+        style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:18px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
+    </div>
+
+    <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
+
+      <!-- Flux poussés vs tendus -->
+      <div>
+        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1e1c18; margin-bottom:8px;">⚙️ Flux poussés vs Flux tendus</div>
+        <div style="display:flex; gap:0; border-radius:12px; overflow:hidden;">
+          <div style="flex:1; background:#cce2f8; padding:13px; text-align:center;">
+            <div style="font-size:24px; margin-bottom:5px;">📦</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:19px; font-weight:900; color:#1a4f82; margin-bottom:4px;">Flux Poussés</div>
+            <div style="font-size:19px; color:#2a4060; font-weight:700; line-height:1.5;">Produire à l'avance · Stock · Prévisions</div>
+          </div>
+          <div style="width:3px; background:#fffdf8;"></div>
+          <div style="flex:1; background:#bce8cd; padding:13px; text-align:center;">
+            <div style="font-size:24px; margin-bottom:5px;">🎯</div>
+            <div style="font-family:'Nunito',sans-serif; font-size:19px; font-weight:900; color:#1a5c35; margin-bottom:4px;">Flux Tendus</div>
+            <div style="font-size:19px; color:#1a4028; font-weight:700; line-height:1.5;">À la commande · Zéro stock · Réactivité</div>
+          </div>
+        </div>
+        <div style="background:#c8f0ec; border-radius:8px; padding:8px 12px; margin-top:6px; display:flex; gap:8px; align-items:center;">
+          <span style="font-size:18px;">⚡</span>
+          <span style="font-size:11.5px; font-weight:700; color:#1e1c18;">Lean Management — éliminer les gaspillages · Origine Toyota</span>
+        </div>
+      </div>
+
+      <!-- Coûts -->
+      <div style="background:#e8f3ff; border-radius:12px; padding:13px 16px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1a4f82; margin-bottom:8px;">📊 Coûts — formules clés</div>
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+          <div style="flex:1; background:#cce2f8; border-radius:8px; padding:8px; text-align:center; font-size:19px; font-weight:700; color:#1a4f82;">🔩 Charges directes<br><span style="font-size:18px; color:#2a4060;">Matières, MO directe</span></div>
+          <div style="font-size:18px; color:#7a7160; font-weight:900;">+</div>
+          <div style="flex:1; background:#aaceee; border-radius:8px; padding:8px; text-align:center; font-size:19px; font-weight:700; color:#1a4f82;">🏢 Charges indirectes<br><span style="font-size:18px; color:#2a4060;">Loyer, électricité</span></div>
+          <div style="font-size:18px; color:#7a7160; font-weight:900;">=</div>
+          <div style="flex:1; background:#1a4f82; border-radius:8px; padding:8px; text-align:center; font-size:19px; font-weight:900; color:#fff;">Coût de revient</div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:19px; font-weight:700; color:#7a5800; text-align:center;">Marge = PV − CR</div>
+          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:19px; font-weight:700; color:#7a5800; text-align:center;">Taux marge = M/CR×100</div>
+          <div style="flex:1; background:#fde8a0; border-radius:7px; padding:5px 8px; font-family:monospace; font-size:19px; font-weight:700; color:#7a5800; text-align:center;">Taux marque = M/PV×100</div>
+        </div>
+      </div>
+
+      <!-- RSE -->
+      <div style="background:#eaf8ef; border-radius:12px; padding:13px 16px;">
+        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1a5c35; margin-bottom:8px;">🌱 RSE — 3 dimensions</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin-bottom:8px;">
+          <div style="background:#bce8cd; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">🌍</div><div style="font-size:11.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Environnementale</div><div style="font-size:18px; color:#1a5c35; font-weight:600; margin-top:2px;">Carbone, déchets, ressources</div></div>
+          <div style="background:#fde8a0; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">👥</div><div style="font-size:11.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Sociale</div><div style="font-size:18px; color:#7a5800; font-weight:600; margin-top:2px;">QVT, égalité, handicap</div></div>
+          <div style="background:#cce2f8; border-radius:9px; padding:9px; text-align:center;"><div style="font-size:18px;">⚖️</div><div style="font-size:11.5px; font-weight:800; color:#1e1c18; margin-top:3px;">Économique</div><div style="font-size:18px; color:#1a4f82; font-weight:600; margin-top:2px;">Commerce équitable, local</div></div>
+        </div>
+        <div style="background:#1e1c18; border-radius:8px; padding:7px 11px; font-size:19px; font-weight:700; color:#fffdf8;">⭐ Toujours relier RSE à un <span style="color:#f5c842;">avantage concurrentiel</span> — image, recrutement, fidélisation, financement.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>if(location.hash==='#memo')document.getElementById('memo-overlay').style.display='flex';</script>
+
+</body>
+</html>

@@ -12,10 +12,10 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 /* NAV */
 .sli-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:#1e1c18;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 2px 12px rgba(0,0,0,.3) }
 .sli-nav a { text-decoration:none }
-.sli-nav-logo { font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;color:#fffdf8 }
+.sli-nav-logo { font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:#fffdf8 }
 .sli-nav-logo span { color:#f5c842 }
 .sli-nav-links { display:flex;gap:2px }
-.sli-nl { font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap }
+.sli-nl { font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap }
 .sli-nl:hover { background:rgba(255,255,255,.1);color:#fffdf8 }
 .sli-nl.on { background:rgba(255,255,255,.1);color:#fffdf8 }
 .sli-nl.soon { opacity:.4;pointer-events:none }
@@ -51,6 +51,8 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 .f-rose.active { border-color: #b5415a; }
 .f-bleu { background: #cce2f8; color: #2a69a8; }
 .f-bleu.active { border-color: #2a69a8; }
+.f-violet { background: #ead8f5; color: #7030a0; }
+.f-violet.active { border-color: #7030a0; }
 .f-jaune { background: #fde8a0; color: #946e00; }
 .f-jaune.active { border-color: #946e00; }
 .f-form { background: #2c2920; color: #f5c842; }
@@ -77,6 +79,8 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 .card-rose .card-back   { background: #fdeef2; box-shadow: 0 4px 20px rgba(0,0,0,.1); }
 .card-bleu .card-front  { background: linear-gradient(135deg, #2a69a8 0%, #3a82c8 100%); box-shadow: 0 8px 32px rgba(42,105,168,.35); }
 .card-bleu .card-back   { background: #e8f3ff; box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+.card-violet .card-front { background: linear-gradient(135deg, #7030a0 0%, #9055b8 100%); box-shadow: 0 8px 32px rgba(112,48,160,.35); }
+.card-violet .card-back  { background: #f5eeff; box-shadow: 0 4px 20px rgba(0,0,0,.1); }
 .card-jaune .card-front { background: linear-gradient(135deg, #946e00 0%, #b88c00 100%); box-shadow: 0 8px 32px rgba(148,110,0,.35); }
 .card-jaune .card-back  { background: #fef8e2; box-shadow: 0 4px 20px rgba(0,0,0,.1); }
 .card-form .card-front  { background: linear-gradient(135deg, #1e1c18 0%, #2c2920 100%); box-shadow: 0 8px 32px rgba(0,0,0,.4); }
@@ -91,15 +95,17 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 
 /* Card back content */
 .back-tag { font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 12px; display: inline-block; }
-.card-rose  .back-tag { background: rgba(181,65,90,.15);  color: #b5415a; }
-.card-bleu  .back-tag { background: rgba(42,105,168,.15); color: #2a69a8; }
-.card-jaune .back-tag { background: rgba(148,110,0,.15);  color: #946e00; }
-.card-form  .back-tag { background: rgba(30,28,24,.1);    color: #7a5800; }
-.card-def { font-size: 14px; font-weight: 600; line-height: 1.65; }
-.card-rose  .card-def { color: #7a2038; }
-.card-bleu  .card-def { color: #1a4f82; }
-.card-jaune .card-def { color: #7a5800; }
-.card-form  .card-def { color: #5a4000; }
+.card-rose   .back-tag { background: rgba(181,65,90,.15);  color: #b5415a; }
+.card-bleu   .back-tag { background: rgba(42,105,168,.15); color: #2a69a8; }
+.card-violet .back-tag { background: rgba(112,48,160,.15); color: #7030a0; }
+.card-jaune  .back-tag { background: rgba(148,110,0,.15);  color: #946e00; }
+.card-form   .back-tag { background: rgba(30,28,24,.1);    color: #7a5800; }
+.card-def { font-size: 17px; font-weight: 600; line-height: 1.65; }
+.card-rose   .card-def { color: #7a2038; }
+.card-bleu   .card-def { color: #1a4f82; }
+.card-violet .card-def { color: #4a1a7a; }
+.card-jaune  .card-def { color: #7a5800; }
+.card-form   .card-def { color: #5a4000; }
 .card-formula { font-family: monospace; font-size: 14px; font-weight: 700; background: rgba(30,28,24,.12); padding: 8px 16px; border-radius: 8px; margin-top: 12px; color: #1e1c18; }
 
 /* Mastery badge on card corner */
@@ -117,6 +123,9 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 .counter-name { font-size: 11px; color: #7a6a58; font-weight: 600; margin-top: 2px; }
 .flip-btn { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; padding: 10px 18px; border-radius: 10px; border: none; background: #1e1c18; color: #fffdf8; cursor: pointer; transition: background 0.13s; white-space: nowrap; }
 .flip-btn:hover { background: #2c2920; }
+.fiche-btn { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; padding: 10px 16px; border-radius: 10px; border: 1.5px solid #2a69a8; background: #e8f3ff; color: #2a69a8; cursor: pointer; transition: all 0.13s; white-space: nowrap; }
+.fiche-btn:hover:not(:disabled) { background: #cce2f8; }
+.fiche-btn:disabled { opacity: 0.3; cursor: default; }
 
 /* MASTERY BUTTONS */
 .mastery-row { display: flex; gap: 10px; margin-bottom: 16px; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
@@ -147,10 +156,10 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
   <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
     <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
-    <a href="SLI_Infographie_Chap1.html" class="sli-nl">📖 Chapitres</a>
+    <a href="SLI_CarteMemo_Chap1.html" class="sli-nl">📖 Chapitres</a>
     <a href="SLI_Flashcards_Theme1.html" class="sli-nl on">🃏 Flash cards</a>
-    <a class="sli-nl soon">✅ Méthode</a>
-    <a class="sli-nl soon">🎯 Annales</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
   </div>
   <a href="../index.html" class="sli-nl">← Accueil</a>
 </nav>
@@ -175,7 +184,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
   <div class="filter-bar">
     <button class="filter-btn f-all active" data-filter="all"  onclick="setFilter('all')">Tout · 54</button>
     <button class="filter-btn f-rose"       data-filter="1"    onclick="setFilter('1')">🩷 Chapitre 1 · 11</button>
-    <button class="filter-btn f-bleu"       data-filter="2f"   onclick="setFilter('2f')">🔵 Chap 2 Finance · 9</button>
+    <button class="filter-btn f-violet"     data-filter="2f"   onclick="setFilter('2f')">🟣 Chap 2 Finance · 9</button>
     <button class="filter-btn f-jaune"      data-filter="2rh"  onclick="setFilter('2rh')">🟡 Chap 2 RH · 1</button>
     <button class="filter-btn f-bleu"       data-filter="34"   onclick="setFilter('34')">🔵 Chap 3 &amp; 4 · 11</button>
     <button class="filter-btn f-bleu"       data-filter="5"    onclick="setFilter('5')">🔵 Chapitre 5 · 8</button>
@@ -221,6 +230,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
       <div id="counter-name" class="counter-name">Approche marketing</div>
     </div>
     <button id="flip-btn" class="flip-btn" onclick="flipCard()">👁 Voir la définition</button>
+    <button id="fiche-btn" class="fiche-btn" onclick="openFiche()">📖 Fiche du cours</button>
     <button id="btn-next" class="nav-btn" onclick="next()">Suivante →</button>
   </div>
 
@@ -233,6 +243,14 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
   <!-- DOT TRACK -->
   <div id="dot-track" class="dot-track"></div>
 
+</div>
+
+<!-- FICHE OVERLAY -->
+<div id="fiche-overlay" onclick="if(event.target===this)closeFiche()" style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.85); z-index:500; align-items:center; justify-content:center; padding:16px;">
+  <div style="position:relative; width:100%; max-width:1040px; height:88vh; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 16px 80px rgba(0,0,0,.4);">
+    <button onclick="closeFiche()" style="position:absolute; top:12px; right:12px; z-index:10; background:#1e1c18; color:#fff; border:none; width:36px; height:36px; border-radius:50%; font-size:18px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,.3);">✕</button>
+    <iframe id="fiche-iframe" src="" style="width:100%; height:100%; border:none;"></iframe>
+  </div>
 </div>
 
 <script>
@@ -250,16 +268,16 @@ const CARDS = [
   { id:9,  chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Marketing de masse',           def:'Une offre unique pour tous les clients, sans distinction.' },
   { id:10, chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Marketing différencié',        def:'Plusieurs offres adaptées à plusieurs segments de clientèle.' },
   { id:11, chap:'1',    chapLabel:'Chapitre 1',     color:'rose',  notion:'Marketing concentré (niche)',  def:'Une seule offre ciblée sur un segment précis et exigeant.' },
-  // CHAPITRE 2 Finance — Bleu
-  { id:12, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'Ressources tangibles',         def:'Ressources physiques et financières : machines, bâtiments, trésorerie.' },
-  { id:13, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'Ressources intangibles',       def:'Ressources immatérielles : marque, brevet, réputation, savoir-faire.' },
-  { id:14, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'Compétences distinctives',     def:'Ce qu\'une organisation sait faire mieux que ses concurrents et qui lui donne un avantage durable.' },
-  { id:15, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'Bilan fonctionnel',            def:'Présentation du bilan qui classe les emplois et ressources selon leur durée (long terme / court terme).' },
-  { id:16, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'FRNG',                         def:'Fonds de Roulement Net Global. Mesure si les investissements à long terme sont financés par des ressources durables.', formula:'FRNG = Ressources stables − Emplois stables' },
-  { id:17, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'BFR',                          def:'Besoin en Fonds de Roulement. Besoin de financement lié au cycle d\'exploitation.', formula:'BFR = Actif circulant − Passif circulant' },
-  { id:18, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'Trésorerie Nette',             def:'Liquidités disponibles après financement du BFR.', formula:'Trésorerie = FRNG − BFR' },
-  { id:19, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'Financement interne',          def:'Autofinancement par les bénéfices conservés dans l\'entreprise.' },
-  { id:20, chap:'2f',   chapLabel:'Chap 2 Finance', color:'bleu',  notion:'Financement externe',          def:'Recours à des sources extérieures : emprunts bancaires, capital-risque, crowdfunding.' },
+  // CHAPITRE 2 Finance — Violet
+  { id:12, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Ressources tangibles',         def:'Ressources physiques et financières : machines, bâtiments, trésorerie.' },
+  { id:13, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Ressources intangibles',       def:'Ressources immatérielles : marque, brevet, réputation, savoir-faire.' },
+  { id:14, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Compétences distinctives',     def:'Ce qu\'une organisation sait faire mieux que ses concurrents et qui lui donne un avantage durable.' },
+  { id:15, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Bilan fonctionnel',            def:'Présentation du bilan qui classe les emplois et ressources selon leur durée (long terme / court terme).' },
+  { id:16, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'FRNG',                         def:'Fonds de Roulement Net Global. Mesure si les investissements à long terme sont financés par des ressources durables.', formula:'FRNG = Ressources stables − Emplois stables' },
+  { id:17, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'BFR',                          def:'Besoin en Fonds de Roulement. Besoin de financement lié au cycle d\'exploitation.', formula:'BFR = Actif circulant − Passif circulant' },
+  { id:18, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Trésorerie Nette',             def:'Liquidités disponibles après financement du BFR.', formula:'Trésorerie = FRNG − BFR' },
+  { id:19, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Financement interne',          def:'Autofinancement par les bénéfices conservés dans l\'entreprise.' },
+  { id:20, chap:'2f',   chapLabel:'Chap 2 Finance', color:'violet', notion:'Financement externe',          def:'Recours à des sources extérieures : emprunts bancaires, capital-risque, crowdfunding.' },
   // CHAPITRE 2 RH — Jaune
   { id:21, chap:'2rh',  chapLabel:'Chap 2 RH',      color:'jaune', notion:'GPEC',                         def:'Gestion Prévisionnelle des Emplois et Compétences — Anticiper les besoins en RH à moyen terme pour adapter les effectifs et les compétences.' },
   // CHAPITRES 3-4 — Bleu
@@ -292,6 +310,9 @@ const CARDS = [
   { id:46, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Centralisation',              def:'Le pouvoir de décision est concentré au sommet de la hiérarchie.' },
   { id:47, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Décentralisation',            def:'Le pouvoir de décision est délégué aux niveaux inférieurs de la hiérarchie.' },
   { id:48, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Coordination',                def:'Mécanismes qui permettent à différents acteurs de l\'organisation de travailler ensemble de façon cohérente.' },
+  { id:49, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Organisation souple',          def:'Structure favorisant la polyvalence, l\'autonomie et l\'adaptabilité. Salariés polyvalents, décisions décentralisées, favorise la QVT et la motivation.' },
+  { id:50, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'Organisation rigide',           def:'Structure fondée sur la spécialisation et la division stricte des tâches (taylorisme). Efficace et contrôlée mais peu flexible et source de démotivation.' },
+  { id:51, chap:'6',    chapLabel:'Chapitre 6',      color:'jaune', notion:'DAS — Domaine d\'Activité Stratégique', def:'Sous-ensemble d\'activités d\'une entreprise ayant les mêmes facteurs clés de succès, les mêmes concurrents et la même logique stratégique. Permet de définir une stratégie adaptée à chaque domaine.' },
   // FORMULES CLÉS
   { id:49, chap:'form', chapLabel:'Formule',         color:'form',  notion:'FRNG',                        def:'Fonds de Roulement Net Global — Ressources durables qui financent les emplois stables.', formula:'Ressources stables − Emplois stables' },
   { id:50, chap:'form', chapLabel:'Formule',         color:'form',  notion:'BFR',                         def:'Besoin en Fonds de Roulement — Besoin lié au cycle d\'exploitation.', formula:'Actif circulant − Passif circulant' },
@@ -412,6 +433,9 @@ function render() {
   // Flip button
   document.getElementById('flip-btn').textContent = flipped ? '↩ Cacher' : '👁 Voir la définition';
 
+  // Fiche button
+  document.getElementById('fiche-btn').disabled = !CHAP_URL[card.chap];
+
   // Mastery row
   document.getElementById('mastery-row').className = 'mastery-row' + (flipped ? ' visible' : '');
 
@@ -454,6 +478,29 @@ document.addEventListener('keydown', e => {
   else if(e.code === 'Digit1' && flipped) markMastery('ok');
   else if(e.code === 'Digit2' && flipped) markMastery('nope');
 });
+
+// ─── FICHE DE COURS ──────────────────────────────────────────────────────────
+const CHAP_URL = {
+  '1':   'SLI_CarteMemo_Chap1.html',
+  '2f':  'SLI_CarteMemo_Chap2.html',
+  '2rh': 'SLI_CarteMemo_Chap2.html',
+  '34':  'SLI_CarteMemo_Chap3et4.html',
+  '5':   'SLI_CarteMemo_Chap5.html',
+  '6':   'SLI_CarteMemo_Chap6.html',
+  'form': null,
+};
+
+function openFiche() {
+  const url = CHAP_URL[deck[idx].chap];
+  if (!url) return;
+  document.getElementById('fiche-iframe').src = url;
+  document.getElementById('fiche-overlay').style.display = 'flex';
+}
+
+function closeFiche() {
+  document.getElementById('fiche-overlay').style.display = 'none';
+  document.getElementById('fiche-iframe').src = '';
+}
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
 render();

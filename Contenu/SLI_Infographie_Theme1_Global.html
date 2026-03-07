@@ -30,13 +30,13 @@ body {
   padding: 22px 32px 18px;
 }
 .header-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
-.badge { font-family:'Nunito',sans-serif; font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; background:rgba(255,255,255,0.12); padding:4px 12px; border-radius:20px; color:#e8e2d6; display:inline-block; margin-bottom:8px; }
-.header h1 { font-family:'Nunito',sans-serif; font-size:26px; font-weight:900; line-height:1.15; }
+.badge { font-family:'Nunito',sans-serif; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; background:rgba(255,255,255,0.12); padding:4px 12px; border-radius:20px; color:#e8e2d6; display:inline-block; margin-bottom:8px; }
+.header h1 { font-family:'Nunito',sans-serif; font-size:30px; font-weight:900; line-height:1.15; }
 .header h1 span { color:#f5c842; }
-.header-sub { font-size:12px; color:#a09880; margin-top:4px; font-weight:600; }
+.header-sub { font-size:14px; color:#a09880; margin-top:4px; font-weight:600; }
 
 .legend-bar { display:flex; background:#2c2920; }
-.legend-item { flex:1; padding:9px 16px; display:flex; align-items:center; gap:8px; font-size:11px; font-weight:700; color:#fffdf8; border-right:1px solid rgba(255,255,255,0.07); }
+.legend-item { flex:1; padding:9px 16px; display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#fffdf8; border-right:1px solid rgba(255,255,255,0.07); }
 .legend-item:last-child { border-right:none; }
 .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
 
@@ -45,17 +45,19 @@ body {
 
 .section { padding:20px 18px; border-right:1px solid rgba(0,0,0,0.07); border-bottom:1px solid rgba(0,0,0,0.07); }
 .section:last-child { border-right:none; }
-.sec-rose  { background:#fdeef1; }
-.sec-bleu  { background:#e8f3ff; }
-.sec-jaune { background:#fef8e2; }
-.sec-white { background:#fffdf8; }
+.sec-rose   { background:#fdeef1; }
+.sec-bleu   { background:#e8f3ff; }
+.sec-violet { background:#f5eeff; }
+.sec-jaune  { background:#fef8e2; }
+.sec-white  { background:#fffdf8; }
 
 .section-label { font-size:9.5px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
-.sec-rose  .section-label { color:#b5415a; }
-.sec-bleu  .section-label { color:#2a69a8; }
-.sec-jaune .section-label { color:#946e00; }
+.sec-rose   .section-label { color:#b5415a; }
+.sec-bleu   .section-label { color:#2a69a8; }
+.sec-violet .section-label { color:#7030a0; }
+.sec-jaune  .section-label { color:#946e00; }
 
-.section-title { font-family:'Nunito',sans-serif; font-size:14.5px; font-weight:900; color:#1e1c18; margin-bottom:13px; line-height:1.3; }
+.section-title { font-family:'Nunito',sans-serif; font-size:16px; font-weight:900; color:#1e1c18; margin-bottom:13px; line-height:1.3; }
 
 /* Notion box */
 .nb { border-radius:9px; padding:9px 11px; display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; }
@@ -65,8 +67,8 @@ body {
 .nb-jaune { background:#fde8a0; }
 .nb-green { background:#bce8cd; }
 .nb i { font-size:17px; flex-shrink:0; margin-top:1px; font-style:normal; }
-.nb-title { font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#1e1c18; margin-bottom:2px; line-height:1.2; }
-.nb-desc  { font-size:9.5px; color:#5a5448; line-height:1.5; font-weight:600; }
+.nb-title { font-family:'Nunito',sans-serif; font-size:13px; font-weight:800; color:#1e1c18; margin-bottom:2px; line-height:1.2; }
+.nb-desc  { font-size:11.5px; color:#5a5448; line-height:1.5; font-weight:600; }
 
 /* Step flow */
 .flow { display:flex; flex-direction:column; gap:5px; margin-bottom:12px; }
@@ -141,11 +143,11 @@ body {
 
 /* FIL ROUGE */
 .fil { background:#1e1c18; padding:14px 24px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-.fil-title { font-family:'Nunito',sans-serif; font-size:10.5px; font-weight:900; color:#f5c842; letter-spacing:1px; text-transform:uppercase; flex-shrink:0; }
+.fil-title { font-family:'Nunito',sans-serif; font-size:14px; font-weight:900; color:#f5c842; letter-spacing:1px; text-transform:uppercase; flex-shrink:0; }
 .fil-step { background:rgba(255,255,255,0.09); border-radius:8px; padding:7px 10px; flex:1; min-width:90px; text-align:center; }
 .fil-step .fn { font-size:9px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:#a09880; margin-bottom:2px; }
 .fil-step .fi { font-size:15px; }
-.fil-step .fl { font-size:10px; font-weight:800; color:#fffdf8; margin:2px 0 1px; }
+.fil-step .fl { font-size:13px; font-weight:800; color:#fffdf8; margin:2px 0 1px; }
 .fil-step .fs { font-size:9px; color:#a09880; font-weight:600; }
 .fil-arr { color:#f5c842; font-size:16px; flex-shrink:0; }
 
@@ -161,10 +163,10 @@ body {
 body{padding-top:72px!important}
 .sli-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#1e1c18;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 2px 12px rgba(0,0,0,.3)}
 .sli-nav a{text-decoration:none}
-.sli-nav-logo{font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;color:#fffdf8}
+.sli-nav-logo{font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:#fffdf8}
 .sli-nav-logo span{color:#f5c842}
 .sli-nav-links{display:flex;gap:2px}
-.sli-nl{font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap}
+.sli-nl{font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:700;color:#a09880;padding:5px 9px;border-radius:6px;white-space:nowrap}
 .sli-nl:hover{background:rgba(255,255,255,.1);color:#fffdf8}
 .sli-nl.on{background:rgba(255,255,255,.1);color:#fffdf8}
 .sli-nl.soon{opacity:.4;pointer-events:none}
@@ -193,10 +195,10 @@ body{padding-top:72px!important}
   <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
     <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl on">🗺️ Vue d'ensemble</a>
-    <a href="SLI_Infographie_Chap1.html" class="sli-nl">📖 Chapitres</a>
-    <a class="sli-nl soon">🃏 Flash cards</a>
-    <a class="sli-nl soon">✅ Méthode</a>
-    <a class="sli-nl soon">🎯 Annales</a>
+    <a href="SLI_CarteMemo_Chap1.html" class="sli-nl">📖 Chapitres</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
   </div>
   <a href="../index.html" class="sli-nl">← Accueil</a>
 </nav>
@@ -214,10 +216,25 @@ body{padding-top:72px!important}
   </div>
 </div>
 
+<!-- FIL CONDUCTEUR -->
+<div class="fil">
+  <div class="fil-title">🔗 Fil conducteur</div>
+  <div class="fil-step" style="background:#f9d0d9;"><div class="fn" style="color:#b5415a;">Ch. 1</div><div class="fi">📣</div><div class="fl" style="color:#7a2038;">Identifier le besoin</div><div class="fs" style="color:#b5415a;">Démarche marketing</div></div>
+  <div class="fil-arr">→</div>
+  <div class="fil-step" style="background:#ead8f5;"><div class="fn" style="color:#7030a0;">Ch. 2</div><div class="fi">👥💰</div><div class="fl" style="color:#4a1a7a;">Mobiliser les ressources</div><div class="fs" style="color:#7030a0;">RH + Finance</div></div>
+  <div class="fil-arr">→</div>
+  <div class="fil-step" style="background:#cce2f8;"><div class="fn" style="color:#2a69a8;">Ch. 3 &amp; 4</div><div class="fi">⚙️</div><div class="fl" style="color:#1a4f82;">Organiser la production</div><div class="fs" style="color:#2a69a8;">Processus · Coûts · RSE</div></div>
+  <div class="fil-arr">→</div>
+  <div class="fil-step" style="background:#cce2f8;"><div class="fn" style="color:#2a69a8;">Ch. 5</div><div class="fi">💻</div><div class="fl" style="color:#1a4f82;">Numériser</div><div class="fs" style="color:#2a69a8;">Transformation numérique</div></div>
+  <div class="fil-arr">→</div>
+  <div class="fil-step" style="background:#fde8a0;"><div class="fn" style="color:#946e00;">Ch. 6</div><div class="fi">🏗️</div><div class="fl" style="color:#7a5800;">Structurer l'équipe</div><div class="fs" style="color:#946e00;">Organisation · Coordination</div></div>
+</div>
+
 <!-- LÉGENDE -->
 <div class="legend-bar">
   <div class="legend-item"><div class="legend-dot" style="background:#e8526b"></div>🩷 Marché &amp; Offre — Chapitre 1</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#3a82c8"></div>🔵 Production, Finance &amp; Numérique — Chap. 2 (finance) · 3&amp;4 · 5</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#9055b8"></div>🟣 Finance — Chap. 2 (finance)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3a82c8"></div>🔵 Production &amp; Numérique — Chap. 3&amp;4 · 5</div>
   <div class="legend-item"><div class="legend-dot" style="background:#c49a00"></div>🟡 Humains &amp; Organisation — Chap. 2 (RH) · 6</div>
 </div>
 
@@ -226,11 +243,11 @@ body{padding-top:72px!important}
 
   <!-- COL 1 : Chap 1 -->
   <div class="section sec-rose">
-    <div class="section-label">🩷 Chapitre 1</div>
+    <div class="section-label">🩷 Chapitre 1 · Marché &amp; Offre</div>
     <div class="section-title">Quels produits ou services<br>pour quels besoins ?</div>
     <div style="display:flex;gap:6px;margin-bottom:12px;">
-      <a href="SLI_Infographie_Chap1.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#b5415a;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-      <a href="SLI_Infographie_Chap1.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#f9d0d9;color:#b5415a;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+      <a href="SLI_CarteMemo_Chap1.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#b5415a;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
+      <a href="SLI_CarteMemo_Chap1.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#f9d0d9;color:#b5415a;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
     </div>
 
     <div class="flow">
@@ -280,8 +297,8 @@ body{padding-top:72px!important}
       <div class="section-label">🟡 Chapitre 2 · Ressources humaines</div>
       <div class="section-title" style="font-size:13px;margin-bottom:8px;">Les ressources humaines</div>
       <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <a href="SLI_Infographie_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_Infographie_Chap2.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#fde8a0;color:#946e00;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_CarteMemo_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
+        <a href="SLI_CarteMemo_Chap2.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#fde8a0;color:#946e00;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <div class="nb nb-jaune" style="margin-bottom:5px;">
@@ -312,12 +329,12 @@ body{padding-top:72px!important}
       </div>
     </div>
 
-    <div class="c2half sec-bleu">
-      <div class="section-label">🔵 Chapitre 2 · Ressources financières</div>
+    <div class="c2half sec-violet">
+      <div class="section-label">🟣 Chapitre 2 · Ressources financières</div>
       <div class="section-title" style="font-size:13px;margin-bottom:8px;">Bilan fonctionnel</div>
       <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <a href="SLI_Infographie_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_Infographie_Chap2.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_CarteMemo_Chap2.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#7030a0;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
+        <a href="SLI_CarteMemo_Chap2.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#ead8f5;color:#7030a0;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <table class="btable">
@@ -362,11 +379,11 @@ body{padding-top:72px!important}
 
     <!-- Chap 3 & 4 -->
     <div class="section sec-bleu" style="border-right:none;">
-      <div class="section-label">🔵 Chapitres 3 &amp; 4</div>
+      <div class="section-label">🔵 Chapitres 3 &amp; 4 · Processus de production</div>
       <div class="section-title">Comment produire ?<br>Processus, coûts &amp; RSE</div>
       <div style="display:flex;gap:6px;margin-bottom:12px;">
-        <a href="SLI_Infographie_Chap3et4.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_Infographie_Chap3et4.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_CarteMemo_Chap3et4.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
+        <a href="SLI_CarteMemo_Chap3et4.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <div class="flux">
@@ -403,11 +420,11 @@ body{padding-top:72px!important}
 
     <!-- Chap 5 -->
     <div class="section sec-bleu" style="border-right:none;border-top:1px solid rgba(0,0,0,0.07);">
-      <div class="section-label">🔵 Chapitre 5</div>
+      <div class="section-label">🔵 Chapitre 5 · Transformation numérique</div>
       <div class="section-title" style="font-size:13px;margin-bottom:8px;">Le numérique dans la production</div>
       <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <a href="SLI_Infographie_Chap5.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_Infographie_Chap5.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_CarteMemo_Chap5.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
+        <a href="SLI_CarteMemo_Chap5.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#cce2f8;color:#2a69a8;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <div class="num-grid">
@@ -422,11 +439,11 @@ body{padding-top:72px!important}
 
     <!-- Chap 6 -->
     <div class="section sec-jaune" style="border-right:none;border-top:1px solid rgba(0,0,0,0.07);border-bottom:none;">
-      <div class="section-label">🟡 Chapitre 6</div>
+      <div class="section-label">🟡 Chapitre 6 · Organisation &amp; Structure</div>
       <div class="section-title" style="font-size:13px;margin-bottom:8px;">Fonctionnement cohérent des organisations</div>
       <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <a href="SLI_Infographie_Chap6.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
-        <a href="SLI_Infographie_Chap6.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#fde8a0;color:#946e00;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
+        <a href="SLI_CarteMemo_Chap6.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours</a>
+        <a href="SLI_CarteMemo_Chap6.html#memo" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#fde8a0;color:#946e00;text-decoration:none;display:inline-block;">🧠 Carte Mémo</a>
       </div>
 
       <div class="org">
@@ -473,20 +490,6 @@ body{padding-top:72px!important}
 
   </div>
 </div><!-- /body -->
-
-<!-- FIL ROUGE -->
-<div class="fil">
-  <div class="fil-title">🔗 Fil conducteur</div>
-  <div class="fil-step"><div class="fn">Ch. 1</div><div class="fi">📣</div><div class="fl">Identifier le besoin</div><div class="fs">Démarche marketing</div></div>
-  <div class="fil-arr">→</div>
-  <div class="fil-step"><div class="fn">Ch. 2</div><div class="fi">👥💰</div><div class="fl">Mobiliser les ressources</div><div class="fs">RH + Finance</div></div>
-  <div class="fil-arr">→</div>
-  <div class="fil-step"><div class="fn">Ch. 3 &amp; 4</div><div class="fi">⚙️</div><div class="fl">Organiser la production</div><div class="fs">Processus · Coûts · RSE</div></div>
-  <div class="fil-arr">→</div>
-  <div class="fil-step"><div class="fn">Ch. 5</div><div class="fi">💻</div><div class="fl">Numériser</div><div class="fs">Transformation numérique</div></div>
-  <div class="fil-arr">→</div>
-  <div class="fil-step"><div class="fn">Ch. 6</div><div class="fi">🏗️</div><div class="fl">Structurer l'équipe</div><div class="fs">Organisation · Coordination</div></div>
-</div>
 
 <!-- FOOTER -->
 <div class="footer">

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte Mémo Ch.1 — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f0ede6; color: #1e1c18; min-height: 100vh; padding: 68px 20px 48px; }
+.page { max-width: 1300px; margin: 0 auto; background: #fffdf8; border-radius: 20px; overflow: hidden; box-shadow: 0 6px 48px rgba(0,0,0,.13); }
+
+/* NAV */
+.sli-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #1e1c18; height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; box-shadow: 0 2px 12px rgba(0,0,0,.3); }
+.sli-nav a { text-decoration: none; }
+.sli-nav-logo { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; color: #fffdf8; }
+.sli-nav-logo span { color: #f5c842; }
+.sli-nav-links { display: flex; gap: 2px; }
+.sli-nl { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #a09880; padding: 5px 10px; border-radius: 6px; white-space: nowrap; }
+.sli-nl:hover { background: rgba(255,255,255,.09); color: #fffdf8; }
+.sli-nl.on { background: rgba(255,255,255,.09); color: #fffdf8; }
+@media print { .sli-nav, .chapnav { display: none !important; } body { padding-top: 0 !important; } }
+
+/* CHAPNAV */
+.chapnav { background: #f0ede6; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0dbd2; }
+.chapnav-btn { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; color: #5a5448; text-decoration: none; padding: 7px 16px; border-radius: 8px; background: #fffdf8; border: 1.5px solid #e0dbd2; }
+.chapnav-dots { display: flex; gap: 8px; align-items: center; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-on { background: #1e1c18; } .dot-off { background: #d4cec6; }
+
+/* HEADER */
+.header { background: #b5415a; padding: 26px 36px 22px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.header-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; background: rgba(245,200,66,.11); padding: 4px 14px; border-radius: 20px; margin-bottom: 14px; }
+.header h1 { font-family: 'Nunito', sans-serif; font-size: 26px; font-weight: 900; color: #fffdf8; line-height: 1.25; margin-bottom: 8px; }
+.header h1 em { font-style: normal; color: #fde8a0; }
+.header-meta { font-size: 13px; color: rgba(255,255,255,.5); font-weight: 500; line-height: 1.5; }
+.header-right { flex-shrink: 0; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.read-tag { background: rgba(0,0,0,.25); color: #fff; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 10px; }
+.header-note { font-size: 11px; color: rgba(255,255,255,.35); font-weight: 500; }
+
+/* BODY — 3 COLS */
+.body { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.08); }
+.col { padding: 24px 20px; }
+.col-1 { background: #fdeef2; border-right: 1px solid rgba(0,0,0,.08); }
+.col-2 { background: #fffdf8; border-right: 1px solid rgba(0,0,0,.08); }
+.col-3 { background: #fef8e2; border-left: 3px solid #d4a800; }
+
+/* Col header */
+.col-hd { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; }
+.col-1 .col-hd { border-bottom: 2px solid #f9d0d9; }
+.col-2 .col-hd { border-bottom: 2px solid #e0dbd2; }
+.col-3 .col-hd { border-bottom: 2px solid #fde8a0; }
+.col-num { font-family: 'Nunito', sans-serif; font-size: 36px; font-weight: 900; line-height: 1; flex-shrink: 0; margin-top: 2px; opacity: .28; }
+.col-1 .col-num { color: #b5415a; } .col-2 .col-num { color: #5a5448; } .col-3 .col-num { color: #946e00; }
+.col-hd-body { display: flex; flex-direction: column; gap: 5px; }
+.col-title { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.8px; line-height: 1.3; }
+.col-1 .col-title { color: #b5415a; } .col-2 .col-title { color: #5a5448; } .col-3 .col-title { color: #946e00; }
+.col-subtitle { font-size: 11px; font-weight: 500; color: #8a7e6e; }
+
+/* Indicator pills */
+.pill-start { display: inline-flex; align-items: center; gap: 4px; background: #b5415a; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .4px; }
+.pill-priority { display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #f5c842 0%, #e5a800 100%); color: #1e1c18; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 20px; letter-spacing: .4px; }
+
+/* Section title */
+.sec-t { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.8px; margin: 18px 0 10px; }
+.col-1 .sec-t { color: rgba(181,65,90,.55); } .col-2 .sec-t { color: rgba(90,84,72,.5); } .col-3 .sec-t { color: rgba(148,110,0,.55); }
+
+/* BADGE SYSTEM */
+.badge { display: inline-block; height: 22px; line-height: 22px; padding: 0 10px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: .2px; margin-bottom: 5px; }
+.badge-rose { background: #b5415a; color: #fff; } .badge-gold { background: #c47800; color: #fff; }
+.badge-green { background: #1a7a3c; color: #fff; } .badge-blue { background: #2a69a8; color: #fff; }
+
+/* CARD SYSTEM */
+.card { border-radius: 12px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.card-stack { border-radius: 12px; padding: 14px 13px; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+.c-rose { background: #f9d0d9; } .c-orange { background: #fce0b0; } .c-green { background: #bce8cd; }
+.c-blue { background: #cce2f8; } .c-slate { background: #dce8fc; } .c-purple { background: #ead8f5; }
+.c-gold { background: #fde8a0; } .c-teal { background: #c8f0ec; }
+.ci { font-size: 26px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.ci-sm { font-size: 19px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.ci-lg { font-size: 30px; margin-bottom: 2px; }
+.ct { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #1e1c18; line-height: 1.25; margin-bottom: 5px; }
+.ct-sm { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1e1c18; line-height: 1.25; margin-bottom: 3px; }
+.cd { font-size: 13px; font-weight: 500; color: #5a5448; line-height: 1.55; }
+.cd strong { font-weight: 700; color: #1e1c18; }
+.cx { font-size: 12px; font-weight: 500; color: #8a7e6e; font-style: italic; line-height: 1.4; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* PIÈGE */
+.piege { background: #1e1c18; border-radius: 12px; padding: 14px 16px; display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; }
+.piege-ico { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+.piege-txt { font-size: 13px; font-weight: 600; color: #fffdf8; line-height: 1.6; }
+.piege-txt strong { color: #f5c842; }
+
+/* BM CARDS */
+.bm-list { display: flex; flex-direction: column; gap: 8px; }
+.bm-card { background: rgba(255,255,255,.72); border-radius: 10px; padding: 11px 14px; display: flex; align-items: center; gap: 12px; border-left: 3px solid #fde8a0; }
+.bm-ico { font-size: 20px; flex-shrink: 0; }
+.bm-name { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: #1e1c18; line-height: 1.2; }
+.bm-desc { font-size: 12px; font-weight: 500; color: #8a7e6e; margin-top: 2px; line-height: 1.4; }
+
+/* QUESTION RÉDIGÉE */
+.q-card { background: #fffdf8; border: 2px solid #d4a800; border-radius: 14px; padding: 16px 18px; margin-top: 18px; position: relative; box-shadow: 0 4px 20px rgba(148,110,0,.14); }
+.q-card::after { content: '⭐'; position: absolute; top: 10px; right: 14px; font-size: 38px; opacity: .07; pointer-events: none; }
+.q-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.q-star { font-size: 20px; }
+.q-label { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; }
+.q-tag { display: inline-block; background: #f5c842; color: #1e1c18; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 5px; margin-left: 6px; letter-spacing: .4px; vertical-align: middle; }
+.q-body { font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.65; }
+.q-body strong { color: #1e1c18; font-weight: 700; }
+
+/* BAC */
+.bac { background: #27241e; padding: 24px 32px; }
+.bac-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.bac-hd-label { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #f5c842; text-transform: uppercase; letter-spacing: 2px; }
+.bac-cards { display: flex; flex-direction: column; gap: 10px; }
+.bac-card { background: rgba(255,255,255,.055); border-radius: 12px; padding: 14px 18px; display: grid; grid-template-columns: 220px 130px 1fr; gap: 20px; align-items: center; border-left: 3px solid transparent; }
+.bac-p1 { border-color: #f5c842; } .bac-p2 { border-color: #e85c72; } .bac-p4 { border-color: rgba(255,255,255,.2); }
+.bac-notion { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: #fffdf8; line-height: 1.3; }
+.bac-stars { display: flex; gap: 3px; align-items: center; }
+.s-on { color: #f5c842; font-size: 19px; line-height: 1; } .s-off { color: rgba(255,255,255,.14); font-size: 19px; line-height: 1; }
+.bac-conseil { font-size: 13px; color: rgba(255,255,255,.58); font-weight: 500; line-height: 1.55; }
+.bac-tag { display: inline-block; background: rgba(255,255,255,.11); border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: #ddd8cc; margin-right: 6px; white-space: nowrap; vertical-align: middle; }
+
+/* FOOTER */
+.footer { background: #f0ede6; padding: 11px 32px; display: flex; align-items: center; justify-content: space-between; }
+.footer-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 12px; color: #b5415a; }
+.footer-note { font-size: 11px; color: #8a7e6e; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
+    <a href="SLI_CarteMemo_Chap1.html" class="sli-nl on">📖 Chapitres</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
+  </div>
+  <a href="../index.html" class="sli-nl">← Accueil</a>
+</nav>
+
+<div class="page">
+
+<div class="chapnav">
+  <a href="SLI_CarteMemo_Chap6.html" class="chapnav-btn">← Chapitre 6</a>
+  <div class="chapnav-dots">
+    <span class="dot dot-on" title="Carte mémo Ch.1"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.2"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.3&4"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.5"></span>
+    <span class="dot dot-off" title="Carte mémo Ch.6"></span>
+  </div>
+  <a href="SLI_CarteMemo_Chap2.html" class="chapnav-btn">Chapitre 2 →</a>
+</div>
+
+<div class="header">
+  <div>
+    <div class="header-badge">🧠 Carte Mémo · Scholar Lock-In · SDGN Terminale STMG · Mercatique</div>
+    <h1>Chapitre 1 — Quels produits ou services<br>pour <em>quels besoins ?</em></h1>
+    <div class="header-meta">Démarche marketing · Innovation · Modèle économique · Plan de marchéage<br>Ce chapitre revient au bac 2 sessions sur 3.</div>
+  </div>
+  <div class="header-right">
+    <button onclick="document.getElementById('memo-overlay').style.display='flex'" class="read-tag" style="cursor:pointer; border:none;">🧠 Carte Mémo · Synthèse essentielle</button>
+    <div class="header-note">3 sections · lire de gauche à droite</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- ① DÉMARCHE MARKETING -->
+  <div class="col col-1">
+    <div class="col-hd">
+      <div class="col-num">①</div>
+      <div class="col-hd-body">
+        <div class="col-title">Démarche Marketing</div>
+        <span class="pill-start">Commencer ici →</span>
+      </div>
+    </div>
+
+    <div class="card c-rose">
+      <div class="ci">🧭</div>
+      <div>
+        <div class="ct">Démarche marketing</div>
+        <div class="cd">Partir du <strong>besoin client</strong> pour construire l'offre.<br>≠ approche ingénierie = produit d'abord, marché ensuite.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Les 4 approches marketing</div>
+
+    <div class="card c-rose">
+      <div class="ci-sm">🔍</div>
+      <div>
+        <span class="badge badge-rose">Besoin existant</span>
+        <div class="ct-sm">Réactive</div>
+        <div class="cd">Le besoin existe → l'entreprise y répond. Peu risqué mais concurrence déjà présente.</div>
+      </div>
+    </div>
+    <div class="card c-orange">
+      <div class="ci-sm">🔭</div>
+      <div>
+        <span class="badge badge-gold">Besoin latent</span>
+        <div class="ct-sm">Anticipatrice</div>
+        <div class="cd">Besoin non encore perçu → on l'anticipe avant les concurrents.</div>
+      </div>
+    </div>
+    <div class="card c-green">
+      <div class="ci-sm">💡</div>
+      <div>
+        <span class="badge badge-green">Besoin créé</span>
+        <div class="ct-sm">Créative</div>
+        <div class="cd">L'entreprise crée un besoin nouveau et crée son propre marché.</div>
+      </div>
+    </div>
+    <div class="card c-slate">
+      <div class="ci-sm">🤝</div>
+      <div>
+        <span class="badge badge-blue">Client partenaire</span>
+        <div class="ct-sm">Cocréation (médiatrice)</div>
+        <div class="cd">Le consommateur co-construit le produit avec l'entreprise.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Étude de marché vs Veille</div>
+    <div class="g2">
+      <div class="card-stack c-rose">
+        <div class="ci-lg">🔬</div>
+        <div class="ct-sm">Étude de marché</div>
+        <span class="badge badge-rose">Ponctuelle</span>
+        <div class="cd">Pour une décision précise. Quantitative ou qualitative.</div>
+      </div>
+      <div class="card-stack c-orange">
+        <div class="ci-lg">📡</div>
+        <div class="ct-sm">Veille marketing</div>
+        <span class="badge badge-gold">Continue</span>
+        <div class="cd">Surveillance permanente de l'environnement.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-ico">⚠️</div>
+      <div class="piege-txt"><strong>Piège bac :</strong> Étude = ponctuelle pour une décision. Veille = continue pour surveiller. Distinction testée en question courte.</div>
+    </div>
+  </div>
+
+  <!-- ② INNOVATION & 4P -->
+  <div class="col col-2">
+    <div class="col-hd">
+      <div class="col-num">②</div>
+      <div class="col-hd-body">
+        <div class="col-title">Innovation &amp; Plan de marchéage</div>
+        <div class="col-subtitle">Produit · Prix · Distribution · Communication</div>
+      </div>
+    </div>
+
+    <div class="card c-orange">
+      <div class="ci">🚀</div>
+      <div>
+        <div class="ct">Innovation produit ≠ procédés</div>
+        <div class="cd"><strong>Produit</strong> = ce qu'on vend (Ch.1).<br><strong>Procédés</strong> = comment on fabrique (Ch.3&amp;4).</div>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-bottom: 14px;">
+      <div class="card-stack c-rose">
+        <div class="ci-lg">💥</div>
+        <div class="ct-sm">Rupture</div>
+        <div class="cd">Crée un marché radicalement nouveau. Remplace la techno dominante.</div>
+        <div class="cx">Ex : streaming → DVD</div>
+      </div>
+      <div class="card-stack c-blue">
+        <div class="ci-lg">📈</div>
+        <div class="ct-sm">Incrémentale</div>
+        <div class="cd">Amélioration progressive d'un produit existant.</div>
+        <div class="cx">Ex : nouvelle version d'un smartphone</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Plan de marchéage — 4P</div>
+    <div class="g2" style="margin-bottom: 14px;">
+      <div class="card c-rose" style="margin:0;">
+        <div class="ci-sm">📦</div>
+        <div><div class="ct-sm">Produit</div><div class="cd">Caractéristiques, marque, design, gamme</div></div>
+      </div>
+      <div class="card c-orange" style="margin:0;">
+        <div class="ci-sm">💶</div>
+        <div><div class="ct-sm">Prix</div><div class="cd">Écrémage, pénétration, alignement, freemium</div></div>
+      </div>
+      <div class="card c-green" style="margin:0;">
+        <div class="ci-sm">🏪</div>
+        <div><div class="ct-sm">Distribution</div><div class="cd">Intensive, sélective, exclusive</div></div>
+      </div>
+      <div class="card c-slate" style="margin:0;">
+        <div class="ci-sm">📣</div>
+        <div><div class="ct-sm">Communication</div><div class="cd">Médias / hors-médias, réseaux sociaux</div></div>
+      </div>
+    </div>
+
+    <div class="card c-purple">
+      <div class="ci">⚖️</div>
+      <div>
+        <div class="ct">Valeur perçue &amp; Satisfaction</div>
+        <div class="cd">Valeur perçue ≥ valeur attendue = <strong>satisfaction</strong>.<br>Si inférieure → insatisfaction → perte du client.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-ico">⚠️</div>
+      <div class="piege-txt"><strong>Piège :</strong> Approches SDGN (réactive / anticipatrice / créative / cocréation) ≠ stratégies Mercatique spé (masse / différencié / concentré). Ne pas mélanger.</div>
+    </div>
+  </div>
+
+  <!-- ③ MODÈLE ÉCONOMIQUE -->
+  <div class="col col-3">
+    <div class="col-hd">
+      <div class="col-num">③</div>
+      <div class="col-hd-body">
+        <div class="col-title">Modèle économique</div>
+        <span class="pill-priority">⭐ Priorité Bac</span>
+      </div>
+    </div>
+
+    <div class="card c-gold">
+      <div class="ci">💡</div>
+      <div>
+        <div class="ct">Business model</div>
+        <div class="cd">Comment l'organisation <strong>crée</strong>, <strong>délivre</strong> et <strong>capte</strong> de la valeur — sa façon de générer ses revenus.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Les 6 types à connaître</div>
+    <div class="bm-list">
+      <div class="bm-card"><div class="bm-ico">💰</div><div><div class="bm-name">Vente directe</div><div class="bm-desc">Produit vendu une fois. Ex : H&amp;M, Renault</div></div></div>
+      <div class="bm-card"><div class="bm-ico">📦</div><div><div class="bm-name">Abonnement</div><div class="bm-desc">Revenu récurrent. Ex : Netflix, presse en ligne</div></div></div>
+      <div class="bm-card"><div class="bm-ico">🆓</div><div><div class="bm-name">Freemium</div><div class="bm-desc">Gratuit de base, payant pour les +. Ex : Spotify, Duolingo</div></div></div>
+      <div class="bm-card"><div class="bm-ico">🤝</div><div><div class="bm-name">Commission / Marketplace</div><div class="bm-desc">% sur chaque transaction. Ex : Airbnb, Vinted, Amazon</div></div></div>
+      <div class="bm-card"><div class="bm-ico">📣</div><div><div class="bm-name">Publicité</div><div class="bm-desc">Service gratuit financé par la pub. Ex : Google, TF1</div></div></div>
+      <div class="bm-card"><div class="bm-ico">⚙️</div><div><div class="bm-name">Éco. de la fonctionnalité</div><div class="bm-desc">On vend l'usage, pas le produit. Ex : leasing, Vélib'</div></div></div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-star">⭐</span>
+        <div class="q-label">Question rédigée <span class="q-tag">À retenir</span></div>
+      </div>
+      <div class="q-body">
+        Toujours <strong>nommer le type de modèle</strong> + citer un <strong>exemple hors-cas</strong>.<br>
+        Préparez : Airbnb (commission) · Spotify (freemium) · Netflix (abonnement).
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BAC -->
+<div class="bac">
+  <div class="bac-hd"><span style="font-size:18px;">📋</span><div class="bac-hd-label">Points de vigilance pour l'épreuve du Bac</div></div>
+  <div class="bac-cards">
+    <div class="bac-card bac-p1">
+      <div class="bac-notion">💡 Modèle économique</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Question rédigée</span>Nommer le type + illustrer hors-cas + expliquer comment l'entreprise crée de la valeur. Tombe 2/3 sessions.</div>
+    </div>
+    <div class="bac-card bac-p2">
+      <div class="bac-notion">🧭 Démarche marketing</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Contextualisation</span>Identifier dans le cas quelle approche est utilisée. Ne jamais écrire "approche de masse".</div>
+    </div>
+    <div class="bac-card bac-p2">
+      <div class="bac-notion">🔬 Étude ≠ Veille</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">Q courte 3-4 pts</span>Mémoriser : étude = ponctuelle + décision / veille = continue + surveillance.</div>
+    </div>
+    <div class="bac-card bac-p4">
+      <div class="bac-notion">🚀 Innovation produit ≠ procédés</div>
+      <div class="bac-stars"><span class="s-on">★</span><span class="s-on">★</span><span class="s-off">★</span><span class="s-off">★</span><span class="s-off">★</span></div>
+      <div class="bac-conseil"><span class="bac-tag">≠ Chap.3&amp;4</span>Produit = ce qu'on vend. Procédés = comment on fabrique.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Scholar Lock-In · SDGN Terminale STMG · Carte Mémo Ch.1</div>
+  <div class="footer-note">🩷 Rose = Marché &amp; Offre</div>
+</div>
+
+<div class="chapnav" style="border-top: 1px solid #e0dbd2; border-bottom: none;">
+  <a href="SLI_CarteMemo_Chap6.html" class="chapnav-btn">← Chapitre 6</a>
+  <div class="chapnav-dots">
+    <span class="dot dot-on"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span><span class="dot dot-off"></span>
+  </div>
+  <a href="SLI_CarteMemo_Chap2.html" class="chapnav-btn">Chapitre 2 →</a>
+</div>
+
+</div>
+
+<!-- BOUTON FLOTTANT -->
+<div style="position:fixed; bottom:28px; right:28px; z-index:100;">
+  <button onclick="document.getElementById('memo-overlay').style.display='flex'"
+    style="background:#b5415a; color:#fff; border:none; border-radius:50px; padding:12px 22px; font-family:'Nunito',sans-serif; font-size:19px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px rgba(181,65,90,.4); display:flex; align-items:center; gap:8px; letter-spacing:0.5px;">
+    🧠 Carte Mémo
+  </button>
+</div>
+
+<!-- OVERLAY -->
+<div id="memo-overlay" onclick="if(event.target===this)this.style.display='none'"
+  style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.65); z-index:200; align-items:center; justify-content:center; padding:20px;">
+
+  <div style="background:#fffdf8; border-radius:20px; width:780px; max-width:95vw; box-shadow:0 8px 60px rgba(0,0,0,.3); overflow:hidden;">
+
+    <!-- Header mémo -->
+    <div style="background:#b5415a; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <div style="font-size:19px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:4px;">Scholar Lock-In · Chapitre 1</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#fff;">🧠 Carte de mémorisation</div>
+        <div style="font-size:19px; font-weight:600; color:rgba(255,255,255,.75); margin-top:5px; line-height:1.4;">Quels produits ou services pour quels besoins ?</div>
+      </div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'"
+        style="background:rgba(255,255,255,.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:18px; cursor:pointer; font-weight:900; display:flex; align-items:center; justify-content:center;">✕</button>
+    </div>
+
+    <!-- Corps mémo -->
+    <div style="padding:24px; display:flex; flex-direction:column; gap:14px;">
+
+      <!-- Notion centrale + définition -->
+      <div style="background:#f9d0d9; border-radius:14px; padding:16px 20px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div style="font-size:36px; flex-shrink:0;">🧭</div>
+          <div>
+            <div style="font-family:'Nunito',sans-serif; font-size:19px; font-weight:900; color:#1e1c18; margin-bottom:4px;">Démarche Marketing</div>
+            <div style="font-size:18px; font-weight:700; color:#7a2038; line-height:1.5; font-style:italic;">« Identifier les besoins des consommateurs pour y adapter une offre de produits ou services, plutôt que de chercher à vendre ce qu'on sait produire. »</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:19px; font-weight:800; color:#b5415a;">
+          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">Besoin client</span>
+          <span style="color:#b5415a;">→</span>
+          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">Étude</span>
+          <span style="color:#b5415a;">→</span>
+          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">Segmentation</span>
+          <span style="color:#b5415a;">→</span>
+          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">Positionnement</span>
+          <span style="color:#b5415a;">→</span>
+          <span style="background:rgba(255,255,255,.6); border-radius:6px; padding:3px 9px;">4P</span>
+        </div>
+      </div>
+
+      <!-- 4 approches -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px;">
+        <div style="background:#f9d0d9; border-radius:10px; padding:12px 8px; text-align:center;">
+          <div style="font-size:24px; margin-bottom:5px;">🔍</div>
+          <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#b5415a;">Réactive</div>
+          <div style="font-size:18px; color:#7a2038; font-weight:700; margin-top:3px;">Besoin existant</div>
+        </div>
+        <div style="background:#fce0b0; border-radius:10px; padding:12px 8px; text-align:center;">
+          <div style="font-size:24px; margin-bottom:5px;">🔭</div>
+          <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#c47800;">Anticipatrice</div>
+          <div style="font-size:18px; color:#7a5800; font-weight:700; margin-top:3px;">Besoin latent</div>
+        </div>
+        <div style="background:#bce8cd; border-radius:10px; padding:12px 8px; text-align:center;">
+          <div style="font-size:24px; margin-bottom:5px;">💡</div>
+          <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1a7a3c;">Créative</div>
+          <div style="font-size:18px; color:#1a5c35; font-weight:700; margin-top:3px;">Besoin créé</div>
+        </div>
+        <div style="background:#dce8fc; border-radius:10px; padding:12px 8px; text-align:center;">
+          <div style="font-size:24px; margin-bottom:5px;">🤝</div>
+          <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#2a69a8;">Cocréation</div>
+          <div style="font-size:18px; color:#1a4f82; font-weight:700; margin-top:3px;">Client partenaire</div>
+        </div>
+      </div>
+
+      <!-- Étude vs Veille + Business model -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div style="background:#fdeef2; border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="font-family:'Nunito',sans-serif; font-size:12.5px; font-weight:900; color:#1e1c18;">🔬 Étude ≠ 📡 Veille</div>
+          <div style="display:flex; gap:7px;">
+            <div style="flex:1; background:#f9d0d9; border-radius:8px; padding:8px; text-align:center;">
+              <div style="font-size:19px; font-weight:800; color:#b5415a;">Étude</div>
+              <div style="font-size:18px; color:#7a2038; font-weight:700; margin-top:2px;">Ponctuelle · Décision</div>
+            </div>
+            <div style="flex:1; background:#fce0b0; border-radius:8px; padding:8px; text-align:center;">
+              <div style="font-size:19px; font-weight:800; color:#c47800;">Veille</div>
+              <div style="font-size:18px; color:#7a5800; font-weight:700; margin-top:2px;">Continue · Surveillance</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#fff3cc; border-radius:12px; padding:14px;">
+          <div style="font-family:'Nunito',sans-serif; font-size:12.5px; font-weight:900; color:#1e1c18; margin-bottom:8px;">💡 Business Model</div>
+          <div style="display:flex; flex-wrap:wrap; gap:5px;">
+            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:18px; font-weight:700; color:#7a5800;">💰 Vente directe</div>
+            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:18px; font-weight:700; color:#7a5800;">📦 Abonnement</div>
+            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:18px; font-weight:700; color:#7a5800;">🆓 Freemium</div>
+            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:18px; font-weight:700; color:#7a5800;">🤝 Commission</div>
+            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:18px; font-weight:700; color:#7a5800;">📣 Publicité</div>
+            <div style="background:#fde8a0; border-radius:6px; padding:4px 9px; font-size:18px; font-weight:700; color:#7a5800;">⚙️ Fonctionnalité</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barre exemples bac -->
+      <div style="background:#1e1c18; border-radius:10px; padding:11px 16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <div style="font-size:19px; font-weight:800; color:#f5c842; flex-shrink:0;">⭐ Exemples bac :</div>
+        <div style="font-size:19px; font-weight:700; color:#fffdf8;">Airbnb (commission) · Spotify (freemium) · Netflix (abonnement) · Vinted (commission)</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>if(location.hash==='#memo')document.getElementById('memo-overlay').style.display='flex';</script>
+
+</body>
+</html>
