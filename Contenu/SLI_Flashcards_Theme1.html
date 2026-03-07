@@ -126,6 +126,9 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 .fiche-btn { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; padding: 10px 16px; border-radius: 10px; border: 1.5px solid #2a69a8; background: #e8f3ff; color: #2a69a8; cursor: pointer; transition: all 0.13s; white-space: nowrap; }
 .fiche-btn:hover:not(:disabled) { background: #cce2f8; }
 .fiche-btn:disabled { opacity: 0.3; cursor: default; }
+.memo-btn { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; padding: 10px 16px; border-radius: 10px; border: 1.5px solid #b5415a; background: #fdeef2; color: #b5415a; cursor: pointer; transition: all 0.13s; white-space: nowrap; }
+.memo-btn:hover:not(:disabled) { background: #f9d0d9; }
+.memo-btn:disabled { opacity: 0.3; cursor: default; }
 
 /* MASTERY BUTTONS */
 .mastery-row { display: flex; gap: 10px; margin-bottom: 16px; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
@@ -231,6 +234,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
     </div>
     <button id="flip-btn" class="flip-btn" onclick="flipCard()">👁 Voir la définition</button>
     <button id="fiche-btn" class="fiche-btn" onclick="openFiche()">📖 Fiche du cours</button>
+    <button id="memo-btn" class="memo-btn" onclick="openMemo()">🧠 Carte Mémo</button>
     <button id="btn-next" class="nav-btn" onclick="next()">Suivante →</button>
   </div>
 
@@ -446,6 +450,7 @@ function render() {
 
   // Fiche button
   document.getElementById('fiche-btn').disabled = !CHAP_URL[card.chap];
+  document.getElementById('memo-btn').disabled = !CHAP_MEMO_URL[card.chap];
 
   // Mastery row
   document.getElementById('mastery-row').className = 'mastery-row' + (flipped ? ' visible' : '');
@@ -501,8 +506,25 @@ const CHAP_URL = {
   'form': null,
 };
 
+const CHAP_MEMO_URL = {
+  '1':   'SLI_Infographie_Chap1.html#memo',
+  '2f':  'SLI_Infographie_Chap2.html#memo',
+  '2rh': 'SLI_Infographie_Chap2.html#memo',
+  '34':  'SLI_Infographie_Chap3et4.html#memo',
+  '5':   'SLI_Infographie_Chap5.html#memo',
+  '6':   'SLI_Infographie_Chap6.html#memo',
+  'form': null,
+};
+
 function openFiche() {
   const url = CHAP_URL[deck[idx].chap];
+  if (!url) return;
+  document.getElementById('fiche-iframe').src = url;
+  document.getElementById('fiche-overlay').style.display = 'flex';
+}
+
+function openMemo() {
+  const url = CHAP_MEMO_URL[deck[idx].chap];
   if (!url) return;
   document.getElementById('fiche-iframe').src = url;
   document.getElementById('fiche-overlay').style.display = 'flex';

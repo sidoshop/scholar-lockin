@@ -8,7 +8,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: flex; justify-content: center; padding: 24px 16px; }
 .page { width: 980px; background: #fffdf8; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 36px rgba(0,0,0,.11); }
-.hd { padding: 20px 28px 16px; color: #fff; }
+.hd { padding: 20px 28px 16px; color: #fff; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
 .hd-badge { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,.2); padding: 3px 11px; border-radius: 20px; display: inline-block; margin-bottom: 9px; }
 .hd h1 { font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 900; line-height: 1.25; margin-bottom: 5px; }
 .hd h1 em { font-style: normal; color: #fde8a0; }
@@ -109,10 +109,12 @@ body{padding-top:72px!important}
 </div>
 
 <div class="hd" style="background:#b5415a;">
-  <div class="hd-badge">Scholar Lock-In · SDGN Terminale STMG · Chapitre 1</div>
+  <div style="flex:1;">
+<div class="hd-badge">Scholar Lock-In · SDGN Terminale STMG · Chapitre 1</div>
   <h1>Chapitre 1 — Quels produits ou services pour <em>quels besoins ?</em></h1>
   <div class="hd-sub">Démarche marketing · Segmentation · Ciblage · Positionnement · Étude de marché · Valeur ajoutée · Innovation produit · Business model</div>
-  <div style="margin-top:14px;">
+</div>
+<div style="flex-shrink:0; padding-top:4px;">
     <button onclick="document.getElementById('memo-overlay').style.display='flex'" style="background:rgba(255,255,255,.22); color:#fff; border:2px solid rgba(255,255,255,.4); border-radius:50px; padding:9px 20px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; cursor:pointer; display:inline-flex; align-items:center; gap:8px; letter-spacing:0.3px; backdrop-filter:blur(4px);">🧠 Carte Mémo</button>
   </div>
 </div>
@@ -360,5 +362,13 @@ body{padding-top:72px!important}
 </div>
 
 <script>if(location.hash==='#memo')document.getElementById('memo-overlay').style.display='flex';</script>
+
+// Auto-open memo overlay if URL hash is #memo
+if (window.location.hash === '#memo') {
+  window.addEventListener('load', function() {
+    var ov = document.getElementById('memo-overlay');
+    if (ov) ov.style.display = 'flex';
+  });
+}
 </body>
 </html>

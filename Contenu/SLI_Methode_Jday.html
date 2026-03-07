@@ -19,190 +19,140 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 .sli-nl:hover { background:rgba(255,255,255,.1);color:#fffdf8 }
 .sli-nl.on { background:rgba(255,255,255,.1);color:#fffdf8 }
 
-.page { max-width: 920px; margin: 0 auto; padding: 28px 20px; }
+.page { max-width: 900px; margin: 0 auto; padding: 24px 20px 0; }
 
 /* HEADER */
-.header { text-align: center; margin-bottom: 32px; }
-.header-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #1e1c18; color: #f5c842; padding: 4px 16px; border-radius: 20px; display: inline-block; margin-bottom: 14px; }
-.header-title { font-family: 'Nunito', sans-serif; font-size: 34px; font-weight: 900; color: #1e1c18; margin-bottom: 6px; }
-.header-sub { font-size: 14px; color: #7a6a58; font-weight: 600; }
-.header-intro { background: #fffdf8; border-radius: 14px; padding: 16px 20px; margin-top: 18px; border-left: 4px solid #f5c842; font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.7; text-align: left; }
-.header-intro strong { color: #1e1c18; }
+.hdr { text-align: center; margin-bottom: 24px; }
+.hdr-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #1e1c18; color: #f5c842; padding: 4px 16px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+.hdr-title { font-family: 'Nunito', sans-serif; font-size: 32px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
+.hdr-sub { font-size: 13px; color: #7a6a58; font-weight: 600; }
 
-/* SECTION */
-.section { background: #fffdf8; border-radius: 18px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,.07); }
-.section-hd { padding: 16px 22px; display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
-.section-hd:hover { opacity: 0.88; }
-.section-num { font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.section-info { flex: 1; }
-.section-title { font-family: 'Nunito', sans-serif; font-size: 17px; font-weight: 900; color: #1e1c18; }
-.section-desc { font-size: 12px; font-weight: 600; color: #7a6a58; margin-top: 2px; }
-.section-arrow { font-size: 16px; color: #a09880; transition: transform 0.2s; }
-.section-arrow.open { transform: rotate(90deg); }
-.section-body { display: none; padding: 0 22px 22px; }
-.section-body.open { display: block; }
+/* TAB BAR */
+.tab-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; background: #fffdf8; border-radius: 14px; padding: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.tab-btn { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 800; padding: 8px 14px; border-radius: 9px; border: none; background: transparent; color: #7a6a58; cursor: pointer; transition: all 0.15s; white-space: nowrap; flex: 1; min-width: 0; }
+.tab-btn:hover { background: #f0ede6; color: #1e1c18; }
+.tab-btn.active { background: #1e1c18; color: #fffdf8; }
 
-/* ── S1 : PROTOCOLE INTERACTIF ── */
-.proto-overall { background: #fffdf8; border-radius: 12px; padding: 12px 18px; display: flex; align-items: center; gap: 14px; margin-bottom: 16px; border: 1.5px solid #e0dbd2; }
-.po-label { font-size: 13px; font-weight: 700; color: #5a5448; white-space: nowrap; }
-.po-track { flex: 1; height: 8px; background: #e0dbd2; border-radius: 4px; overflow: hidden; }
-.po-fill { height: 100%; background: linear-gradient(90deg, #1a7a3c, #2cad60); border-radius: 4px; transition: width 0.35s; }
-.po-count { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1a7a3c; white-space: nowrap; }
-.proto-steps { display: flex; flex-direction: column; gap: 10px; }
-.proto-step { border-radius: 14px; overflow: hidden; border: 2px solid transparent; transition: border-color 0.25s; }
-.proto-step.ps-active { border-color: #f5c842; }
-.proto-step.ps-done { border-color: #bce8cd; }
-.proto-hd { padding: 14px 18px; display: flex; gap: 14px; align-items: center; cursor: pointer; user-select: none; }
-.proto-hd:hover { filter: brightness(0.97); }
-.proto-num { width: 38px; height: 38px; border-radius: 50%; font-family: 'Nunito', sans-serif; font-size: 17px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-.pn-idle { background: rgba(30,28,24,.09); color: #5a5448; }
-.pn-active { background: #f5c842; color: #1e1c18; }
-.pn-done { background: #1a7a3c; color: #fff; font-size: 20px; }
-.proto-info { flex: 1; }
-.proto-phase { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #a09880; margin-bottom: 2px; }
-.proto-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #1e1c18; }
-.proto-subtitle { font-size: 12px; font-weight: 600; color: #7a6a58; margin-top: 2px; }
-.proto-body { display: none; padding: 0 18px 18px; }
-.proto-body.open { display: block; }
-.proto-items { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
-.proto-item { display: flex; gap: 12px; align-items: flex-start; padding: 11px 14px; border-radius: 10px; cursor: pointer; user-select: none; transition: opacity 0.12s; }
-.proto-item:hover { filter: brightness(0.96); }
-.proto-item.checked { opacity: 0.55; }
-.proto-cb { width: 22px; height: 22px; border-radius: 6px; border: 2px solid rgba(30,28,24,.2); background: rgba(255,255,255,.5); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.15s; margin-top: 2px; }
-.proto-item.checked .proto-cb { background: #1a7a3c; border-color: #1a7a3c; color: #fff; }
-.proto-txt { flex: 1; }
-.proto-main { font-size: 13px; font-weight: 700; color: #1e1c18; line-height: 1.45; }
-.proto-hint { font-size: 12px; font-weight: 600; color: #7a6a58; line-height: 1.5; margin-top: 3px; }
-.proto-tip { border-radius: 10px; padding: 10px 14px; margin-top: 4px; }
-.proto-tip-t { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.proto-tip-d { font-size: 13px; font-weight: 600; line-height: 1.6; }
-.proto-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(30,28,24,.08); }
-.proto-prog-txt { font-size: 12px; font-weight: 700; color: #a09880; }
-.proto-prog-txt strong { color: #1a7a3c; }
-.proto-btn { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 800; padding: 9px 20px; border-radius: 10px; border: none; cursor: pointer; transition: background 0.15s; }
-.proto-btn-next { background: #1e1c18; color: #fffdf8; }
-.proto-btn-next:hover { background: #2c2920; }
-.proto-btn-reset { background: #e0dbd2; color: #5a5448; font-size: 11px; padding: 7px 14px; }
-.proto-btn-reset:hover { background: #d0c8be; }
-.proto-resume { background: #1e1c18; border-radius: 12px; padding: 16px 20px; margin-top: 14px; font-size: 12px; font-weight: 700; color: #a09880; line-height: 1.8; }
-.proto-resume strong { color: #f5c842; }
+/* PANEL */
+.panel { display: none; }
+.panel.active { display: block; }
 
-/* ── S2 : VERBES DIRECTEURS ── */
-.verbs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.verb-card { border-radius: 12px; overflow: hidden; }
-.verb-hd { padding: 12px 16px; display: flex; align-items: center; gap: 10px; user-select: none; }
-.verb-name { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; }
-.verb-arrow { margin-left: auto; font-size: 14px; opacity: 0.7; transition: transform 0.2s; }
-.verb-arrow.open { transform: rotate(180deg); }
-.verb-body { display: none; background: #fffdf8; padding: 14px 16px; }
-.verb-body.open { display: block; }
-.verb-expects { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+/* SHARED CARD */
+.card { background: #fffdf8; border-radius: 16px; padding: 22px 24px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+
+/* STEP TIMELINE (Protocole) */
+.steps { display: flex; flex-direction: column; gap: 12px; }
+.step { display: flex; gap: 16px; align-items: flex-start; background: #fffdf8; border-radius: 14px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(0,0,0,.06); border-left: 4px solid transparent; }
+.step-1 { border-color: #f5c842; }
+.step-2 { border-color: #2a69a8; }
+.step-3 { border-color: #b5415a; }
+.step-4 { border-color: #1a7a3c; }
+.step-5 { border-color: #7030a0; }
+.step-n { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 900; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+.sn-1 { background: #f5c842; color: #1e1c18; }
+.sn-2 { background: #2a69a8; }
+.sn-3 { background: #b5415a; }
+.sn-4 { background: #1a7a3c; }
+.sn-5 { background: #7030a0; }
+.step-body { flex: 1; }
+.step-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
+.step-when { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #a09880; margin-bottom: 6px; }
+.step-items { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+.step-item { font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.5; padding-left: 14px; position: relative; }
+.step-item::before { content: '→'; position: absolute; left: 0; color: #a09880; font-weight: 700; }
+.step-tip { border-radius: 9px; padding: 9px 13px; font-size: 12px; font-weight: 700; line-height: 1.55; }
+
+/* GRIDS */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.g4 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+
+/* QG section */
+.schema-box { background: #1e1c18; border-radius: 12px; padding: 16px 20px; margin-bottom: 14px; }
+.schema-label { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; margin-bottom: 8px; }
+.schema-txt { font-size: 14px; font-weight: 700; color: #fffdf8; font-style: italic; line-height: 1.7; }
+.usage-card { border-radius: 12px; padding: 16px; }
+.usage-n { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.usage-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; margin-bottom: 6px; }
+.usage-body { font-size: 12px; font-weight: 600; color: #5a5448; line-height: 1.6; }
+.usage-ex { font-size: 12px; font-weight: 700; color: #0d4020; background: #bce8cd; border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-style: italic; line-height: 1.5; }
+
+/* Annale examples */
+.ann-list { display: flex; flex-direction: column; gap: 7px; margin-top: 12px; }
+.ann-row { background: #f0ede6; border-radius: 10px; padding: 11px 15px; }
+.ann-year { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #1a7a3c; margin-bottom: 3px; }
+.ann-qg { font-size: 13px; font-weight: 700; color: #1e1c18; font-style: italic; line-height: 1.45; }
+.ann-impact { font-size: 11px; color: #7a6a58; font-weight: 600; margin-top: 3px; }
+
+/* Section title inside tab */
+.tab-section-title { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #7a6a58; margin: 20px 0 10px; }
+
+/* Rule cards */
+.rule { background: #fffdf8; border-radius: 12px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.rule-hd { padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+.rule-tag { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #dce8fc; color: #1a4f82; }
+.rule-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; margin-bottom: 2px; }
+.rule-sub { font-size: 12px; font-weight: 600; color: #7a6a58; }
+.rule-body { padding: 0 18px 14px; font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.65; border-top: 1px solid #f0ede6; padding-top: 12px; margin: 0 18px; }
+.rule-alert { background: #fdeef2; border-radius: 9px; padding: 9px 13px; font-size: 12px; font-weight: 700; color: #7a2038; margin-top: 10px; line-height: 1.5; }
+.rule-tip-box { background: #f0ede6; border-radius: 9px; padding: 9px 13px; font-size: 12px; font-weight: 700; color: #1e1c18; margin-top: 8px; line-height: 1.5; }
+
+/* Mini table */
+.mtable { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; border-radius: 9px; overflow: hidden; }
+.mtable th { background: #dce8fc; color: #1a4f82; padding: 7px 10px; font-weight: 800; text-align: left; font-size: 11px; }
+.mtable td { padding: 7px 10px; border-top: 1px solid #f0ede6; font-weight: 600; color: #1e1c18; }
+
+/* Signal grid (doc titles) */
+.sig-card { background: #f0ede6; border-radius: 11px; padding: 12px 14px; }
+.sig-kw { font-size: 12px; font-weight: 800; color: #1a7a6a; margin-bottom: 5px; font-style: italic; }
+.sig-notion { font-size: 13px; font-weight: 700; color: #1e1c18; margin-bottom: 3px; }
+.sig-q { font-size: 11px; font-weight: 600; color: #7a6a58; }
+.sig-ex { font-size: 11px; font-weight: 700; background: #c8f0ec; color: #1a7a6a; border-radius: 5px; padding: 2px 7px; display: inline-block; margin-top: 4px; }
+
+/* Verb cards */
+.verb-card { border-radius: 13px; overflow: hidden; }
+.verb-hd { padding: 14px 16px; }
+.verb-name { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900; margin-bottom: 4px; }
+.verb-expect { font-size: 11px; font-weight: 700; opacity: 0.8; margin-bottom: 0; }
+.verb-body { background: #fffdf8; padding: 13px 16px; }
 .verb-rule { font-size: 13px; font-weight: 600; color: #1e1c18; line-height: 1.6; margin-bottom: 8px; }
-.verb-ex-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #7a6a58; margin-bottom: 4px; }
-.verb-ex { font-size: 12px; font-weight: 600; color: #5a5448; font-style: italic; background: #f0ede6; border-radius: 8px; padding: 8px 12px; line-height: 1.5; margin-bottom: 8px; }
-.verb-piege { font-size: 12px; font-weight: 700; color: #b5415a; background: #fdeef2; border-radius: 8px; padding: 8px 12px; }
-.verb-nofaire { font-size: 11px; font-weight: 700; color: #7a2038; background: #fdeef2; border-radius: 8px; padding: 7px 12px; margin-top: 6px; }
+.verb-ex { font-size: 12px; font-weight: 600; color: #5a5448; font-style: italic; background: #f0ede6; border-radius: 8px; padding: 8px 12px; line-height: 1.5; }
+.verb-piege { font-size: 12px; font-weight: 700; color: #b5415a; background: #fdeef2; border-radius: 8px; padding: 7px 12px; margin-top: 6px; }
 
-/* ── S3 : 5 RÈGLES D'OR ── */
-.rules-list { display: flex; flex-direction: column; gap: 10px; }
-.rule-card { border-radius: 12px; overflow: hidden; }
-.rule-hd { padding: 14px 18px; display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }
-.rule-hd:hover { filter: brightness(0.97); }
-.rule-num { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.rule-info { flex: 1; }
-.rule-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #1e1c18; }
-.rule-sub { font-size: 12px; font-weight: 600; color: #7a6a58; margin-top: 2px; }
-.rule-arrow { font-size: 14px; color: #a09880; transition: transform 0.2s; }
-.rule-arrow.open { transform: rotate(90deg); }
-.rule-body { display: none; padding: 0 18px 18px; }
-.rule-body.open { display: block; }
-.rule-content { font-size: 13px; font-weight: 600; color: #1e1c18; line-height: 1.7; }
-.rule-alert { border-radius: 10px; padding: 10px 14px; margin-top: 10px; font-size: 13px; font-weight: 700; line-height: 1.6; }
-.rule-tip { border-radius: 10px; padding: 10px 14px; margin-top: 10px; font-size: 13px; font-weight: 600; line-height: 1.6; background: #f0ede6; color: #5a5448; }
-.rule-tip strong { color: #1e1c18; }
-.mini-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
-.mini-table th { font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; font-size: 10px; padding: 6px 10px; text-align: left; }
-.mini-table td { padding: 6px 10px; font-weight: 600; border-top: 1px solid rgba(30,28,24,.06); }
-.mini-table tr:first-child td { border-top: none; }
-.formule-box { background: #e8f3ff; border-radius: 10px; padding: 12px 16px; margin-top: 10px; }
-.formule-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #2a69a8; margin-bottom: 6px; }
-.formule-text { font-size: 13px; font-weight: 700; color: #1a3a6a; font-style: italic; line-height: 1.6; }
+/* Structure cards */
+.struct-card { background: #fffdf8; border-radius: 14px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.struct-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; margin-bottom: 14px; }
+.struct-step { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+.struct-step:last-child { margin-bottom: 0; }
+.sn { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+.struct-txt { font-size: 13px; font-weight: 700; color: #1e1c18; line-height: 1.45; }
+.struct-hint { font-size: 11px; color: #7a6a58; font-weight: 600; margin-top: 2px; display: block; }
+.struct-formula { border-radius: 9px; padding: 10px 14px; margin-top: 10px; font-size: 13px; font-weight: 700; line-height: 1.6; }
 
-/* ── S4 : TITRES DES DOCUMENTS ── */
-.signal-intro { font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.7; margin-bottom: 16px; }
-.decode-steps { display: flex; gap: 10px; margin-bottom: 18px; }
-.decode-step { flex: 1; background: #f0ede6; border-radius: 10px; padding: 12px 14px; }
-.decode-step-n { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1a7a6a; margin-bottom: 4px; }
-.decode-step-txt { font-size: 12px; font-weight: 700; color: #1e1c18; line-height: 1.5; }
-.signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.signal-card { background: #f0ede6; border-radius: 12px; padding: 12px 14px; }
-.signal-kw { font-size: 12px; font-weight: 800; color: #1a7a6a; margin-bottom: 6px; font-style: italic; }
-.signal-notion { font-size: 12px; font-weight: 700; color: #1e1c18; margin-bottom: 4px; }
-.signal-q { font-size: 11px; font-weight: 600; color: #7a6a58; }
-.signal-ex { font-size: 10px; font-weight: 700; background: #c8f0ec; color: #1a7a6a; border-radius: 5px; padding: 2px 7px; display: inline-block; margin-top: 4px; }
+/* Bloque grid */
+.bloque-card { border-radius: 13px; overflow: hidden; }
+.bloque-hd { padding: 14px 16px; }
+.bloque-situation { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.bloque-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; }
+.bloque-body { background: #fffdf8; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.bloque-strat { background: #f0ede6; border-radius: 9px; padding: 10px 13px; }
+.bloque-s-num { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+.bloque-s-title { font-size: 13px; font-weight: 800; color: #1e1c18; margin-bottom: 2px; }
+.bloque-s-detail { font-size: 12px; font-weight: 600; color: #5a5448; line-height: 1.5; }
 
-/* ── S5 : JE BLOQUE ── */
-.bloque-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.bloque-col { border-radius: 14px; overflow: hidden; }
-.bloque-col-hd { padding: 14px 18px; }
-.bloque-col-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; margin-bottom: 4px; }
-.bloque-col-sub { font-size: 12px; font-weight: 600; opacity: 0.75; }
-.bloque-strats { padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
-.strat-item { background: #fffdf8; border-radius: 10px; padding: 12px 14px; }
-.strat-num { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.strat-title { font-size: 13px; font-weight: 800; color: #1e1c18; margin-bottom: 4px; }
-.strat-detail { font-size: 12px; font-weight: 600; color: #5a5448; line-height: 1.55; }
-.bloque-regle { margin: 0 18px 18px; border-radius: 10px; padding: 10px 14px; font-size: 13px; font-weight: 700; line-height: 1.6; }
-.notion-table { margin-top: 16px; }
-.notion-table-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #7a6a58; margin-bottom: 10px; }
-.notion-row { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-top: 1px solid #e0dbd2; font-size: 12px; }
-.notion-row:first-child { border-top: none; }
-.notion-kw { font-weight: 800; color: #1e1c18; flex: 0 0 160px; }
-.notion-strat { font-weight: 600; color: #5a5448; line-height: 1.5; }
-
-/* ── S6 : QUESTION GLOBALE ── */
-.qg-intro { font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.7; margin-bottom: 14px; }
-.qg-schema { background: #eaf8ef; border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; }
-.qg-schema-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #1a7a3c; margin-bottom: 8px; }
-.qg-schema-txt { font-size: 13px; font-weight: 700; color: #1e1c18; font-style: italic; line-height: 1.7; }
-.annales-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-.annale-row { background: #f0ede6; border-radius: 10px; padding: 11px 16px; }
-.annale-top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
-.annale-year { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1a7a3c; flex-shrink: 0; }
-.annale-qg { font-size: 13px; font-weight: 700; color: #1e1c18; font-style: italic; line-height: 1.45; }
-.annale-impact { font-size: 12px; font-weight: 600; color: #7a6a58; line-height: 1.5; }
-.usages-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-.usage-card { border-radius: 12px; padding: 14px 16px; }
-.usage-num { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-.usage-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; margin-bottom: 8px; }
-.usage-detail { font-size: 12px; font-weight: 600; color: #5a5448; line-height: 1.6; }
-.usage-ex { font-size: 12px; font-weight: 700; color: #1a7a3c; background: #eaf8ef; border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-style: italic; line-height: 1.5; }
-.formule-qg { background: #bce8cd; border-radius: 10px; padding: 12px 16px; margin-top: 14px; font-size: 13px; font-weight: 700; color: #0d4020; line-height: 1.6; }
-
-/* ── S7 : STRUCTURES DE RÉPONSE ── */
-.reponse-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.rep-card { border-radius: 12px; padding: 16px; }
-.rep-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; margin-bottom: 12px; }
-.rep-step { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
-.rep-step:last-child { margin-bottom: 0; }
-.rep-n { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
-.rep-txt { font-size: 13px; font-weight: 600; color: #1e1c18; line-height: 1.5; }
-.rep-hint { font-size: 11px; color: #7a6a58; }
-.rep-alert { font-size: 12px; font-weight: 700; border-radius: 8px; padding: 8px 12px; margin-top: 8px; }
-
-/* ── S8 : PIÈGES ── */
-.pieges-list { display: flex; flex-direction: column; gap: 10px; }
-.piege-row { background: #fdeef2; border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
-.piege-icon { font-size: 20px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
-.piege-text { flex: 1; }
-.piege-label { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #b5415a; margin-bottom: 4px; }
+/* Piege cards */
+.piege-card { background: #fdeef2; border-radius: 12px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; margin-bottom: 10px; }
+.piege-icon { font-size: 22px; flex-shrink: 0; }
+.piege-label { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 900; color: #b5415a; margin-bottom: 4px; }
 .piege-detail { font-size: 13px; font-weight: 600; color: #7a2038; line-height: 1.5; }
-.piege-fix { font-size: 12px; font-weight: 700; color: #1a7a3c; background: #e6f5ec; border-radius: 7px; padding: 5px 10px; margin-top: 6px; display: inline-block; }
+.piege-fix { font-size: 12px; font-weight: 700; color: #1a7a3c; background: #e6f5ec; border-radius: 7px; padding: 5px 10px; margin-top: 7px; display: inline-block; }
 
-/* RESPONSIVE */
+/* Highlight box */
+.hl { border-radius: 12px; padding: 14px 18px; margin-bottom: 14px; font-size: 13px; font-weight: 700; line-height: 1.65; }
+
 @media (max-width: 640px) {
-  .verbs-grid, .reponse-grid, .bloque-grid, .usages-grid, .signal-grid { grid-template-columns: 1fr; }
-  .decode-steps { flex-direction: column; }
+  .g2, .g3, .g4 { grid-template-columns: 1fr; }
+  .tab-btn { font-size: 11px; padding: 7px 10px; }
 }
 </style>
 </head>
@@ -211,1240 +161,674 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 <nav class="sli-nav">
   <a href="../sdgm.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
   <div class="sli-nav-links">
-    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">🗺️ Vue d'ensemble</a>
-    <a href="SLI_Infographie_Chap1.html" class="sli-nl">📖 Chapitres</a>
-    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">🃏 Flash cards</a>
-    <a href="SLI_Methode_Jday.html" class="sli-nl on">✅ Méthode</a>
-    <a href="SLI_Annales_Perspective.html" class="sli-nl">🎯 Annales</a>
+    <a href="SLI_Infographie_Theme1_Global.html" class="sli-nl">Vue d'ensemble</a>
+    <a href="SLI_Infographie_Chap1.html" class="sli-nl">Chapitres</a>
+    <a href="SLI_Flashcards_Theme1.html" class="sli-nl">Flash cards</a>
+    <a href="SLI_Methode_Jday.html" class="sli-nl on">Methode</a>
+    <a href="SLI_Annales_Perspective.html" class="sli-nl">Annales</a>
   </div>
-  <a href="../sdgm.html" class="sli-nl">← Accueil</a>
+  <a href="../sdgm.html" class="sli-nl">Accueil</a>
 </nav>
 
 <div class="page">
 
-  <div class="header">
-    <div class="header-badge">Scholar Lock-In · SDGN Terminale STMG · Méthode</div>
-    <div class="header-title">✅ Méthode J-Day</div>
-    <div class="header-sub">Ce que font les élèves qui réussissent — du premier coup d'œil à la dernière ligne</div>
-    <div class="header-intro">
-      Ce guide répond à une seule question : <strong>par où je commence ? qu'est-ce que je lis en premier ? comment je sais quel doc va avec quelle question ? et si je ne comprends pas un mot ?</strong><br>
-      Toutes les stratégies sont tirées de l'analyse de 7 annales réelles (BAC 2021–2025).
-    </div>
+  <div class="hdr">
+    <div class="hdr-badge">Scholar Lock-In · SDGN Terminale STMG · Méthode</div>
+    <div class="hdr-title">Méthode J-Day</div>
+    <div class="hdr-sub">Ce que font les élèves qui réussissent — du premier coup d'oeil à la dernière ligne</div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- S6 — LA QUESTION GLOBALE                                  -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-hd" onclick="toggleSection(this)">
-      <div class="section-num" style="background:#bce8cd; color:#1a7a3c;">🎯</div>
-      <div class="section-info">
-        <div class="section-title">La question globale — à quoi elle sert vraiment</div>
-        <div class="section-desc">La plupart des élèves ne la lisent pas vraiment. C'est une erreur.</div>
-      </div>
-      <div class="section-arrow open">▶</div>
-    </div>
-    <div class="section-body open">
-
-      <div class="qg-intro">La question globale (en gras ou italique au début du sujet) est la problématique centrale. Elle résume l'enjeu de l'entreprise et donne le <strong>fil rouge de toutes les questions des 3 dossiers</strong>.</div>
-
-      <div class="qg-schema">
-        <div class="qg-schema-label">Le schéma de toutes les questions globales</div>
-        <div class="qg-schema-txt">"L'entreprise fait face à [un enjeu / un défi concurrentiel]. Les choix qu'elle a faits sont-ils pertinents pour [objectif : se démarquer / assurer sa pérennité / maintenir sa performance] ?"</div>
-      </div>
-
-      <div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#7a6a58; margin-bottom:10px;">Exemples tirés des annales réelles</div>
-      <div class="annales-list">
-        <div class="annale-row">
-          <div class="annale-top">
-            <div class="annale-year">BAC 2025 — Bébé Serein</div>
-          </div>
-          <div class="annale-qg">"Peut-elle se démarquer et accroître sa performance dans un contexte de marché fortement concurrentiel ?"</div>
-          <div class="annale-impact">→ Toutes les questions portent sur comment Bébé Serein se différencie (modèle éco, RSE, diversification lait)</div>
-        </div>
-        <div class="annale-row">
-          <div class="annale-top">
-            <div class="annale-year">BAC 2024 — Topschuss</div>
-          </div>
-          <div class="annale-qg">"Les choix stratégiques de Topschuss sont-ils pertinents pour maintenir sa croissance ?"</div>
-          <div class="annale-impact">→ Chaque dossier évalue UN choix stratégique (marque employeur, robot Autostore, financement, RSE)</div>
-        </div>
-        <div class="annale-row">
-          <div class="annale-top">
-            <div class="annale-year">BAC 2023 — Ankama</div>
-          </div>
-          <div class="annale-qg">"Les spécificités d'Ankama lui permettent-elles d'être performante ?"</div>
-          <div class="annale-impact">→ Les questions mesurent la performance de chaque spécificité (DAS, ressources, culture, coût de production)</div>
-        </div>
-        <div class="annale-row">
-          <div class="annale-top">
-            <div class="annale-year">BAC 2022 — Caraïbes Fumés</div>
-          </div>
-          <div class="annale-qg">"Les choix stratégiques assurent-ils la pérennité de l'entreprise ?"</div>
-          <div class="annale-impact">→ Chaque question évalue si un choix (expansion Martinique, produits, financement) assure la survie</div>
-        </div>
-        <div class="annale-row">
-          <div class="annale-top">
-            <div class="annale-year">Bac Blanc — Fromagerie Réo</div>
-          </div>
-          <div class="annale-qg">"Les choix de gestion de Réo sont-ils pertinents pour assurer sa performance ?"</div>
-          <div class="annale-impact">→ Chaque question évalue UN choix : qualité AOP, flux poussés, PGI, identité numérique</div>
-        </div>
-      </div>
-
-      <div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#7a6a58; margin-bottom:10px;">Les 3 usages concrets de la question globale</div>
-      <div class="usages-grid">
-
-        <div class="usage-card" style="background:#eaf8ef;">
-          <div class="usage-num" style="color:#1a7a3c;">Usage 1</div>
-          <div class="usage-title">Comprendre une question floue</div>
-          <div class="usage-detail">Si une question te semble floue, relis la question globale. Elle te dit dans QUELLE DIRECTION aller.</div>
-          <div class="usage-ex">Q 2.3 Bébé Serein : "Justifier la décision de se positionner sur le lait bio" → relis "comment se démarquer dans un marché concurrentiel ?" → ta réponse doit montrer que le lait bio est une façon de se différencier.</div>
-        </div>
-
-        <div class="usage-card" style="background:#eaf8ef;">
-          <div class="usage-num" style="color:#1a7a3c;">Usage 2</div>
-          <div class="usage-title">Conclure chaque réponse</div>
-          <div class="usage-detail">Chaque réponse devrait pouvoir se terminer par un lien avec la question globale.</div>
-          <div class="usage-ex">Formule : "Ainsi, [cette décision / compétence / outil] contribue à [reformuler la question globale]."<br>Ex. : "Ainsi, la démarche qualité AOP permet à Réo d'assurer la pertinence de ses choix et de maintenir sa performance."</div>
-        </div>
-
-        <div class="usage-card" style="background:#eaf8ef;">
-          <div class="usage-num" style="color:#1a7a3c;">Usage 3</div>
-          <div class="usage-title">Cadrer les questions "15 lignes"</div>
-          <div class="usage-detail">Pour les questions rédigées longues, la question globale est le prisme sous lequel répondre.</div>
-          <div class="usage-ex">"En 15 lignes, montrer que la RSE est créatrice de valeur" → tes exemples doivent montrer que la RSE aide Bébé Serein à se démarquer = répondre à la question globale.</div>
-        </div>
-
-      </div>
-
-      <div class="formule-qg">
-        Ce que la question globale révèle : l'entreprise a fait DES CHOIX RÉELS → qui ont des <strong>avantages</strong> (les questions t'amèneront à les identifier) et des <strong>limites</strong> (les questions t'amèneront à les nuancer). Toute réponse doit aller dans le sens : "ce choix est pertinent parce que… / mais il a des limites car…"
-      </div>
-
-    </div>
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('protocole')">1. Protocole</button>
+    <button class="tab-btn" onclick="showTab('qglobale')">2. Question globale</button>
+    <button class="tab-btn" onclick="showTab('documents')">3. Documents</button>
+    <button class="tab-btn" onclick="showTab('verbes')">4. Verbes</button>
+    <button class="tab-btn" onclick="showTab('structures')">5. Structures</button>
+    <button class="tab-btn" onclick="showTab('bloque')">6. Je bloque</button>
+    <button class="tab-btn" onclick="showTab('pieges')">7. Pieges</button>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- S1 — PROTOCOLE D'ENTRÉE                                   -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-hd" onclick="toggleSection(this)">
-      <div class="section-num" style="background:#fde8a0; color:#946e00;">📋</div>
-      <div class="section-info">
-        <div class="section-title">Le protocole d'entrée — dans quel ordre lire le sujet</div>
-        <div class="section-desc">Les 5 étapes à faire avant d'écrire la moindre réponse · Protocole interactif</div>
-      </div>
-      <div class="section-arrow">▶</div>
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- TAB 1 — PROTOCOLE                                  -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="panel active" id="tab-protocole">
+
+    <div class="hl" style="background:#fde8a0; color:#7a5800;">
+      Ces 5 etapes se font <strong>avant d'ecrire la moindre reponse</strong>. Elles prennent environ 15 minutes et te font gagner du temps sur tout le reste.
     </div>
-    <div class="section-body">
 
-      <div class="proto-overall">
-        <div class="po-label">Progression</div>
-        <div class="po-track"><div class="po-fill" id="po-fill" style="width:0%"></div></div>
-        <div class="po-count" id="po-count">0 / 17</div>
-      </div>
+    <div class="steps">
 
-      <div class="proto-steps" id="proto-steps">
-
-        <!-- Phase 1 -->
-        <div class="proto-step ps-active" id="step-0">
-          <div class="proto-hd" style="background:#fef9e8;" onclick="gotoPhase(0)">
-            <div class="proto-num pn-active" id="pn-0">1</div>
-            <div class="proto-info">
-              <div class="proto-phase">Étape 1</div>
-              <div class="proto-title">Lis la présentation de l'entreprise</div>
-              <div class="proto-subtitle">La première ou deuxième page — toujours</div>
-            </div>
+      <div class="step step-1">
+        <div class="step-n sn-1">1</div>
+        <div class="step-body">
+          <div class="step-when">Etape 1 — Presentation de l'entreprise</div>
+          <div class="step-title">Lis la premiere page — cerne le contexte</div>
+          <div class="step-items">
+            <div class="step-item">Note le nom de l'entreprise et son secteur d'activite</div>
+            <div class="step-item">Identifie la question globale (souvent en gras ou italique) — c'est la boussole de tout le sujet</div>
+            <div class="step-item">Repere les 3 dossiers et leur intitule : Strategie / Gestion / Numerique&amp;RSE</div>
           </div>
-          <div class="proto-body open" id="pb-0">
-            <div class="proto-items">
-              <div class="proto-item" style="background:#fef9e8;" onclick="checkItem(this,0)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Note le nom de l'entreprise et son secteur d'activité</div>
-                  <div class="proto-hint">Tu sais dans quel univers tu vas travailler — gardes-les en tête pour tout le sujet</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#fef9e8;" onclick="checkItem(this,0)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Identifie la problématique centrale (souvent en gras ou italique)</div>
-                  <div class="proto-hint">C'est la boussole de tout le sujet — toutes les questions y répondent indirectement</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#fef9e8;" onclick="checkItem(this,0)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Repère les 3 dossiers et leur intitulé</div>
-                  <div class="proto-hint">Tu vois déjà les 3 grands thèmes — souvent : Stratégie / Gestion / Numérique&RSE</div>
-                </div>
-              </div>
-            </div>
-            <div class="proto-tip" style="background:#fde8a0;">
-              <div class="proto-tip-t" style="color:#946e00;">Ce que tu dois noter sur ton brouillon dès maintenant</div>
-              <div class="proto-tip-d" style="color:#5a3800;">Nom + secteur · Problématique centrale · Dossier 1 = ___ · Dossier 2 = ___ · Dossier 3 = ___</div>
-            </div>
-            <div class="proto-nav">
-              <div class="proto-prog-txt" id="prog-0">Étape : <strong>0 / 3</strong></div>
-              <button class="proto-btn proto-btn-next" onclick="nextPhase(0)">Étape suivante →</button>
-            </div>
+          <div class="step-tip" style="background:#fde8a0; color:#5a3800;">
+            <strong>Sur ton brouillon :</strong> Nom + secteur · Question globale · Dossier 1 = ___ · Dossier 2 = ___ · Dossier 3 = ___
           </div>
-        </div>
-
-        <!-- Phase 2 -->
-        <div class="proto-step" id="step-1">
-          <div class="proto-hd" style="background:#e8f0fb;" onclick="gotoPhase(1)">
-            <div class="proto-num pn-idle" id="pn-1">2</div>
-            <div class="proto-info">
-              <div class="proto-phase">Étape 2</div>
-              <div class="proto-title">Lis TOUTES les questions — PAS les documents</div>
-              <div class="proto-subtitle">Les questions te disent ce que tu cherches dans les docs</div>
-            </div>
-          </div>
-          <div class="proto-body" id="pb-1">
-            <div class="proto-items">
-              <div class="proto-item" style="background:#e8f0fb;" onclick="checkItem(this,1)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Lis toutes les questions de A à Z sans t'arrêter pour chercher la réponse</div>
-                  <div class="proto-hint">L'objectif est juste de comprendre ce qu'on attend — pas encore d'y répondre</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#e8f0fb;" onclick="checkItem(this,1)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Encadre le verbe directeur de chaque question</div>
-                  <div class="proto-hint">Identifier / Analyser / Justifier / Calculer — chaque verbe a sa logique de réponse (voir Section 2)</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#e8f0fb;" onclick="checkItem(this,1)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Surligne les mots-clés notions dans chaque question</div>
-                  <div class="proto-hint">FRNG, flux tendus, RSE, compétences distinctives… ces mots te disent quelle notion du cours mobiliser</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#e8f0fb;" onclick="checkItem(this,1)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Marque les questions complexes ou floues d'un « ? »</div>
-                  <div class="proto-hint">Tu y reviendras — mais tu ne les oublies plus. Passer une question difficile n'est pas abandonner, c'est stratégique.</div>
-                </div>
-              </div>
-            </div>
-            <div class="proto-tip" style="background:#cce2f8;">
-              <div class="proto-tip-t" style="color:#2a69a8;">Pourquoi les questions AVANT les documents</div>
-              <div class="proto-tip-d" style="color:#1a3a6a;">Sans connaître les questions, tu lis les documents sans savoir quoi retenir. Avec les questions en tête, chaque phrase d'un document devient soit utile, soit inutile. Tu lis une seule fois, de façon active.</div>
-            </div>
-            <div class="proto-nav">
-              <div class="proto-prog-txt" id="prog-1">Étape : <strong>0 / 4</strong></div>
-              <button class="proto-btn proto-btn-next" onclick="nextPhase(1)">Étape suivante →</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 3 -->
-        <div class="proto-step" id="step-2">
-          <div class="proto-hd" style="background:#eaf8ef;" onclick="gotoPhase(2)">
-            <div class="proto-num pn-idle" id="pn-2">3</div>
-            <div class="proto-info">
-              <div class="proto-phase">Étape 3</div>
-              <div class="proto-title">Lis les titres des documents — PAS leur contenu</div>
-              <div class="proto-subtitle">Les titres sont un code — apprends à les déchiffrer</div>
-            </div>
-          </div>
-          <div class="proto-body" id="pb-2">
-            <div class="proto-items">
-              <div class="proto-item" style="background:#eaf8ef;" onclick="checkItem(this,2)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Parcours les titres de tous les documents listés dans chaque dossier</div>
-                  <div class="proto-hint">Juste les titres — quelques secondes par document suffisent</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#eaf8ef;" onclick="checkItem(this,2)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Souligne les mots du titre qui résonnent avec les questions déjà lues</div>
-                  <div class="proto-hint">« éléments chiffrés » → question financière · « RSE / engagements » → Dossier 3 (voir Section 4)</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#eaf8ef;" onclick="checkItem(this,2)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Anticipe mentalement quel document ira avec quelle question</div>
-                  <div class="proto-hint">Tu n'as pas lu le contenu, mais tu devines déjà dans 70-80% des cas — tu affineras à l'étape 4</div>
-                </div>
-              </div>
-            </div>
-            <div class="proto-tip" style="background:#bce8cd;">
-              <div class="proto-tip-t" style="color:#1a7a3c;">Exemple concret — BAC 2025 Bébé Serein</div>
-              <div class="proto-tip-d" style="color:#0d4020;">Q 2.1 : « Analyser l'équilibre financier (FRNG, BFR, TN) » → tu cherches un doc avec des chiffres.<br>Document 9 : « Éléments chiffrés de Bébé Serein au 31/12/2023 » → BINGO. Tu sais déjà, sans l'avoir lu.</div>
-            </div>
-            <div class="proto-nav">
-              <div class="proto-prog-txt" id="prog-2">Étape : <strong>0 / 3</strong></div>
-              <button class="proto-btn proto-btn-next" onclick="nextPhase(2)">Étape suivante →</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 4 -->
-        <div class="proto-step" id="step-3">
-          <div class="proto-hd" style="background:#fceef1;" onclick="gotoPhase(3)">
-            <div class="proto-num pn-idle" id="pn-3">4</div>
-            <div class="proto-info">
-              <div class="proto-phase">Étape 4</div>
-              <div class="proto-title">Fais le lien Question ↔ Documents sur ton brouillon</div>
-              <div class="proto-subtitle">L'étape clé — elle te fait gagner sur toute la suite</div>
-            </div>
-          </div>
-          <div class="proto-body" id="pb-3">
-            <div class="proto-items">
-              <div class="proto-item" style="background:#fceef1;" onclick="checkItem(this,3)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Pour chaque question, note sur le brouillon les numéros de documents probables</div>
-                  <div class="proto-hint">Q 1.1 → docs 1, 2, 6 · Q 2.1 → doc 9 · Q 3.1 → docs 10, 11, 12</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#fceef1;" onclick="checkItem(this,3)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Vérifie quels documents sont LISTÉS dans l'énoncé pour chaque dossier — et utilise-les TOUS</div>
-                  <div class="proto-hint">Ignorer un document listé = perdre des points garantis. Si tu ne vois pas le lien, cite au moins 1 phrase.</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#fceef1;" onclick="checkItem(this,3)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Repère le document avec des colonnes de chiffres → c'est TOUJOURS la question financière</div>
-                  <div class="proto-hint">FRNG / BFR / TN ou coût de revient — mets ce doc de côté pour cette question précise</div>
-                </div>
-              </div>
-            </div>
-            <div class="proto-tip" style="background:#f9d0d9;">
-              <div class="proto-tip-t" style="color:#b5415a;">Ce que doit ressembler ton brouillon après cette étape</div>
-              <div class="proto-tip-d" style="color:#7a2038;">Q 1.1 → docs 1, 2, 6 &nbsp;|&nbsp; Q 1.2 → docs 1, 3, 4 &nbsp;|&nbsp; Q 2.1 → doc 9 (financier) &nbsp;|&nbsp; Q 3.1 → docs 10, 11, 12, 13 (RSE)<br>Tu sais déjà TOUT — avant d'avoir lu un seul document en entier.</div>
-            </div>
-            <div class="proto-nav">
-              <div class="proto-prog-txt" id="prog-3">Étape : <strong>0 / 3</strong></div>
-              <button class="proto-btn proto-btn-next" onclick="nextPhase(3)">Étape suivante →</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 5 -->
-        <div class="proto-step" id="step-4">
-          <div class="proto-hd" style="background:#e8f3ff;" onclick="gotoPhase(4)">
-            <div class="proto-num pn-idle" id="pn-4">5</div>
-            <div class="proto-info">
-              <div class="proto-phase">Étape 5</div>
-              <div class="proto-title">Réponds question par question</div>
-              <div class="proto-subtitle">Lire les docs AU FIL des questions — pas tout d'un coup</div>
-            </div>
-          </div>
-          <div class="proto-body" id="pb-4">
-            <div class="proto-items">
-              <div class="proto-item" style="background:#e8f3ff;" onclick="checkItem(this,4)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Commence par Q 1.1 et avance dans l'ordre — les questions se construisent</div>
-                  <div class="proto-hint">Les examinateurs conçoivent souvent les questions pour que les réponses s'enchaînent logiquement</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#e8f3ff;" onclick="checkItem(this,4)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Lis SEULEMENT les docs liés à la question que tu traites — au moment de la traiter</div>
-                  <div class="proto-hint">On ne lit PAS les 12 docs d'une traite. Avant Q 1.1 → lis docs 1 et 2. Avant Q 1.2 → lis docs 3 et 4.</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#e8f3ff;" onclick="checkItem(this,4)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Si tu bloques sur une question, passe à la suivante — reviens après</div>
-                  <div class="proto-hint">Une réponse partielle rapporte des points. Rester bloqué 20 min sur 3 points = une erreur stratégique.</div>
-                </div>
-              </div>
-              <div class="proto-item" style="background:#e8f3ff;" onclick="checkItem(this,4)">
-                <div class="proto-cb"></div>
-                <div class="proto-txt">
-                  <div class="proto-main">Ne laisse aucune question sans réponse — même approximative</div>
-                  <div class="proto-hint">Un correcteur valorise une réponse partielle bien construite plutôt qu'une feuille blanche</div>
-                </div>
-              </div>
-            </div>
-            <div class="proto-tip" style="background:#1e1c18;">
-              <div class="proto-tip-t" style="color:#f5c842;">Règle d'or du SDGN</div>
-              <div class="proto-tip-d" style="color:#fffdf8;">Cas + Cours = points. Le cas sans le cours, c'est descriptif. Le cours sans le cas, c'est hors-sujet. Les deux ensemble, c'est l'excellence.</div>
-            </div>
-            <div class="proto-nav">
-              <div class="proto-prog-txt" id="prog-4">Étape : <strong>0 / 4</strong></div>
-              <button class="proto-btn proto-btn-next" onclick="finishProtocol()">Protocole terminé ✓</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Résumé protocole -->
-      <div class="proto-resume" style="margin-top:14px;">
-        <strong>Résumé du protocole :</strong> Présentation entreprise → Toutes les questions → Titres des docs → Lien Q↔docs sur brouillon → Répondre Q par Q en lisant les docs au fur et à mesure
-      </div>
-
-      <!-- Fin -->
-      <div id="proto-complete" style="display:none; background:#1e1c18; border-radius:12px; padding:20px 22px; margin-top:14px; text-align:center;">
-        <div style="font-size:30px; margin-bottom:8px;">⭐</div>
-        <div style="font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#f5c842; margin-bottom:6px;">Protocole validé</div>
-        <div style="font-size:13px; font-weight:600; color:#fffdf8; line-height:1.6; margin-bottom:16px;">Tu as appliqué la méthode des élèves qui réussissent.<br>Maintenant, rends ta copie avec confiance.</div>
-        <button class="proto-btn proto-btn-reset" onclick="resetProtocol()">Recommencer</button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- S3 — 5 RÈGLES D'OR : TROUVER LE BON DOCUMENT            -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-hd" onclick="toggleSection(this)">
-      <div class="section-num" style="background:#cce2f8; color:#2a69a8;">📎</div>
-      <div class="section-info">
-        <div class="section-title">Les 5 règles d'or pour trouver le bon document</div>
-        <div class="section-desc">L'examinateur te donne les indices — apprends à les lire</div>
-      </div>
-      <div class="section-arrow">▶</div>
-    </div>
-    <div class="section-body">
-      <div class="rules-list">
-
-        <div class="rule-card">
-          <div class="rule-hd" style="background:#e8f3ff;" onclick="toggleRule(this)">
-            <div class="rule-num" style="background:#cce2f8; color:#1a4f82;">R1</div>
-            <div class="rule-info">
-              <div class="rule-title">L'énoncé te donne DÉJÀ la liste des documents à utiliser</div>
-              <div class="rule-sub">Chaque dossier commence par : "Documents à exploiter : Document 1, 4, 7…"</div>
-            </div>
-            <div class="rule-arrow">▶</div>
-          </div>
-          <div class="rule-body">
-            <div class="rule-content">Chaque dossier liste explicitement les documents à utiliser. <strong>Ces documents ET SEULEMENT CES DOCUMENTS doivent être cités.</strong></div>
-            <div class="rule-alert" style="background:#fdeef2; color:#b5415a;">⚠️ Règle absolue : si l'énoncé t'indique d'utiliser les documents 3, 7 et 9 pour Q 2.1, tu DOIS utiliser ces 3 documents. Ignorer l'un d'eux = perdre des points garantis.</div>
-            <div class="rule-tip"><strong>Si tu bloques sur un document :</strong> cherche au moins 1 élément à citer ("Selon le document X, …"). Les correcteurs vérifient que chaque document listé a été utilisé.</div>
-          </div>
-        </div>
-
-        <div class="rule-card">
-          <div class="rule-hd" style="background:#e8f3ff;" onclick="toggleRule(this)">
-            <div class="rule-num" style="background:#cce2f8; color:#1a4f82;">R2</div>
-            <div class="rule-info">
-              <div class="rule-title">Le Document 1 (présentation de l'entreprise) sert à TOUTES les questions</div>
-              <div class="rule-sub">Dans toutes les annales analysées — sans exception</div>
-            </div>
-            <div class="rule-arrow">▶</div>
-          </div>
-          <div class="rule-body">
-            <div class="rule-content">Le Document 1 fournit le contexte, les données générales (secteur, CA, effectifs, stratégie) et les éléments identitaires. Il peut venir en appui de n'importe quelle question.</div>
-            <table class="mini-table" style="background:#f0ede6; border-radius:10px; overflow:hidden;">
-              <tr style="background:#dce8fc;"><th>Annale</th><th>Le Document 1 parlait de…</th></tr>
-              <tr><td>2025 Bébé Serein</td><td>Le concept (circuit court, labels, savoir-faire)</td></tr>
-              <tr><td>2024 Topschuss</td><td>L'entreprise et ses ambitions 100 M€</td></tr>
-              <tr><td>2023 Ankama</td><td>Les principales filiales d'Ankama</td></tr>
-              <tr><td>2021 Titi Floris</td><td>Forces et savoir-faire de Titi Floris</td></tr>
-              <tr><td>Bac Blanc Réo</td><td>L'offre de la fromagerie Réo</td></tr>
-            </table>
-            <div class="rule-tip" style="margin-top:10px;"><strong>Astuce :</strong> si tu bloques sur une question et que tu cherches des éléments → relis le Document 1.</div>
-          </div>
-        </div>
-
-        <div class="rule-card">
-          <div class="rule-hd" style="background:#e8f3ff;" onclick="toggleRule(this)">
-            <div class="rule-num" style="background:#cce2f8; color:#1a4f82;">R3</div>
-            <div class="rule-info">
-              <div class="rule-title">Le document avec des chiffres = la question financière (TOUJOURS)</div>
-              <div class="rule-sub">FRNG, BFR, TN, coût de revient — dans toutes les annales</div>
-            </div>
-            <div class="rule-arrow">▶</div>
-          </div>
-          <div class="rule-body">
-            <div class="rule-content">Dans toutes les annales, il y a systématiquement un document avec un tableau de données financières. Ce document va TOUJOURS avec la question de calcul.</div>
-            <table class="mini-table" style="background:#f0ede6; border-radius:10px; overflow:hidden; margin-top:10px;">
-              <tr style="background:#dce8fc;"><th>Titre du document financier</th><th>Question associée</th></tr>
-              <tr><td>"Éléments chiffrés de Bébé Serein au 31/12/2023"</td><td>FRNG + BFR + TN (Q 2.1)</td></tr>
-              <tr><td>"Données financières de l'entreprise Réo"</td><td>Bilan fonctionnel → FRNG, BFR, TN (Q 1.5)</td></tr>
-              <tr><td>"Informations sur le coût de production d'une BD"</td><td>Coût de revient unitaire (Q 2.2 Ankama)</td></tr>
-            </table>
-            <div class="rule-tip" style="margin-top:10px;"><strong>Astuce :</strong> si tu vois des colonnes avec des € ou des %, c'est le document financier. Mets-le de côté pour la question de calcul dès l'étape 4.</div>
-          </div>
-        </div>
-
-        <div class="rule-card">
-          <div class="rule-hd" style="background:#e8f3ff;" onclick="toggleRule(this)">
-            <div class="rule-num" style="background:#cce2f8; color:#1a4f82;">R4</div>
-            <div class="rule-info">
-              <div class="rule-title">Les docs RSE / éthique → Dossier 3 (numérique et performance)</div>
-              <div class="rule-sub">Mots-clés : valeurs, engagements, partenariat, avis clients, identité numérique</div>
-            </div>
-            <div class="rule-arrow">▶</div>
-          </div>
-          <div class="rule-body">
-            <div class="rule-content">Dans toutes les annales, le Dossier 3 traite du numérique ET/OU de la RSE et de la performance globale. Les documents avec ces mots-clés y sont associés.</div>
-            <table class="mini-table" style="background:#f0ede6; border-radius:10px; overflow:hidden; margin-top:10px;">
-              <tr style="background:#dce8fc;"><th>Titre du document</th><th>Question associée</th></tr>
-              <tr><td>"Recueil d'avis de consommateurs" (Réo)</td><td>Risques identité numérique (Q 3.2)</td></tr>
-              <tr><td>"Bébé Serein en partenariat avec des ESAT"</td><td>Démarche éthique et RSE (Q 3.1)</td></tr>
-              <tr><td>"L'entreprise augmentée, c'est pour demain"</td><td>Numérique et performance (Q 3.1 Réo)</td></tr>
-            </table>
-          </div>
-        </div>
-
-        <div class="rule-card">
-          <div class="rule-hd" style="background:#e8f3ff;" onclick="toggleRule(this)">
-            <div class="rule-num" style="background:#cce2f8; color:#1a4f82;">R5</div>
-            <div class="rule-info">
-              <div class="rule-title">Quand plusieurs docs couvrent le même sujet → ils se complètent</div>
-              <div class="rule-sub">Cite-les tous — les correcteurs valorisent le croisement des sources</div>
-            </div>
-            <div class="rule-arrow">▶</div>
-          </div>
-          <div class="rule-body">
-            <div class="rule-content">Si 3-4 documents portent sur le même thème, l'examinateur attend que tu cites plusieurs angles :</div>
-            <div style="display:flex; flex-direction:column; gap:7px; margin-top:10px;">
-              <div style="background:#f0ede6; border-radius:8px; padding:9px 12px; font-size:12px; font-weight:700; color:#1e1c18;">Document factuel (chiffres, stats) → appuyer un argument quantitativement</div>
-              <div style="background:#f0ede6; border-radius:8px; padding:9px 12px; font-size:12px; font-weight:700; color:#1e1c18;">Document témoignage ou presse → illustrer concrètement</div>
-              <div style="background:#f0ede6; border-radius:8px; padding:9px 12px; font-size:12px; font-weight:700; color:#1e1c18;">Document institutionnel (site entreprise) → présenter la position officielle</div>
-            </div>
-            <div class="formule-box" style="margin-top:12px;">
-              <div class="formule-label">Formule magique pour citer plusieurs documents</div>
-              <div class="formule-text">"Selon le Document 2, […]. Cette information est confirmée par le Document 5 qui précise que […]."<br><span style="font-style:normal; font-size:11px; font-weight:700; color:#2a69a8;">→ Tu montres que tu as croisé les sources, ce que les correcteurs valorisent.</span></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- S4 — DÉCODER LES TITRES DES DOCUMENTS                    -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-hd" onclick="toggleSection(this)">
-      <div class="section-num" style="background:#c8f0ec; color:#1a7a6a;">🔍</div>
-      <div class="section-info">
-        <div class="section-title">Décoder les titres des documents — le code en 5 secondes</div>
-        <div class="section-desc">Les titres ne sont pas choisis au hasard — ils te disent déjà quelle notion mobiliser</div>
-      </div>
-      <div class="section-arrow">▶</div>
-    </div>
-    <div class="section-body">
-
-      <div class="signal-intro">Les titres des documents sont rédigés par les examinateurs pour <strong>guider sans dévoiler</strong>. Chaque mot-clé dans un titre pointe vers une notion du cours et une question probable. Entraîne-toi à lire un titre en 5 secondes.</div>
-
-      <div class="decode-steps">
-        <div class="decode-step">
-          <div class="decode-step-n">Étape 1</div>
-          <div class="decode-step-txt">Repère le SUJET du titre<br><span style="color:#7a6a58; font-weight:600;">De quoi ça parle ?</span></div>
-        </div>
-        <div class="decode-step">
-          <div class="decode-step-n">Étape 2</div>
-          <div class="decode-step-txt">Repère l'ANGLE du titre<br><span style="color:#7a6a58; font-weight:600;">Chiffres ? Témoignage ? Article presse ? Fiche interne ?</span></div>
-        </div>
-        <div class="decode-step">
-          <div class="decode-step-n">Étape 3</div>
-          <div class="decode-step-txt">Cherche la question qui pose ce sujet<br><span style="color:#7a6a58; font-weight:600;">→ Lien trouvé</span></div>
         </div>
       </div>
 
-      <div class="signal-grid">
-
-        <div class="signal-card">
-          <div class="signal-kw">"financement", "éléments chiffrés", "bilan", "données financières"</div>
-          <div class="signal-notion">FRNG / BFR / TN · Bilan fonctionnel · Coût de revient</div>
-          <div class="signal-q">Question probable : Analyser l'équilibre financier</div>
-          <div class="signal-ex">C'est le doc financier → Règle 3</div>
+      <div class="step step-2">
+        <div class="step-n sn-2">2</div>
+        <div class="step-body">
+          <div class="step-when">Etape 2 — Lire TOUTES les questions</div>
+          <div class="step-title">Lis les questions de A a Z — sans chercher les reponses</div>
+          <div class="step-items">
+            <div class="step-item">Encadre le verbe directeur de chaque question (identifier / analyser / justifier / calculer)</div>
+            <div class="step-item">Souligne les mots-cles notions (FRNG, RSE, competences distinctives…) — c'est ce que tu devras mobiliser</div>
+            <div class="step-item">Marque d'un "?" les questions floues ou complexes — tu y reviendras apres</div>
+          </div>
+          <div class="step-tip" style="background:#cce2f8; color:#1a3a6a;">
+            <strong>Pourquoi les questions avant les docs :</strong> sans les questions en tete, tu lis les documents sans savoir quoi retenir. Avec les questions, chaque phrase devient "utile" ou "inutile" instantanement.
+          </div>
         </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"modèle économique", "proposition de valeur", "revenus"</div>
-          <div class="signal-notion">Business model · Freemium · Abonnement · Commission</div>
-          <div class="signal-q">Question probable : Identifier / Analyser le modèle économique</div>
-          <div class="signal-ex">Nommer le TYPE en premier</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"processus de commande", "commandes", "production", "flux"</div>
-          <div class="signal-notion">Flux tendus / poussés · PGI · Diagramme de flux</div>
-          <div class="signal-q">Question probable : Expliquer le mode de production ou réaliser un diagramme</div>
-          <div class="signal-ex">Cherche si l'entreprise a des stocks ou non</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"qualité", "AOP", "label", "certification", "cahier des charges"</div>
-          <div class="signal-notion">Démarche qualité · Kaizen · PDCA · Innovation produit</div>
-          <div class="signal-q">Question probable : Montrer comment la qualité crée de la valeur</div>
-          <div class="signal-ex">Lier à l'avantage concurrentiel</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"RSE", "engagements", "partenariat", "éthique", "responsable"</div>
-          <div class="signal-notion">RSE · Triple bilan (éco + social + enviro) · Indicateurs RSE</div>
-          <div class="signal-q">Question probable : Présenter la démarche RSE / montrer l'engagement</div>
-          <div class="signal-ex">Dossier 3 → Règle 4</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"identité numérique", "avis", "réseaux", "e-réputation"</div>
-          <div class="signal-notion">E-réputation · RGPD · Usurpation d'identité numérique</div>
-          <div class="signal-q">Question probable : Identifier les risques numériques</div>
-          <div class="signal-ex">Citer les 3 types de risques</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"stratégie", "diversification", "nouveau marché", "DAS"</div>
-          <div class="signal-notion">DAS · Spécialisation / Diversification · Management stratégique</div>
-          <div class="signal-q">Question probable : Analyser les options stratégiques</div>
-          <div class="signal-ex">Long terme + ressources importantes</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"compétences", "savoir-faire", "ressources", "forces"</div>
-          <div class="signal-notion">Ressources tangibles / intangibles · Compétences distinctives</div>
-          <div class="signal-q">Question probable : Identifier les ressources et compétences clés</div>
-          <div class="signal-ex">Distinctif = ce que les concurrents ne font pas</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"portrait du dirigeant", "style de direction", "blog"</div>
-          <div class="signal-notion">Style de direction · Culture d'entreprise · Management</div>
-          <div class="signal-q">Question probable : Repérer et justifier le style de direction</div>
-          <div class="signal-ex">Participatif / Directif / Délégatif / Persuasif</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"PGI", "logiciel", "automatisation", "workflow"</div>
-          <div class="signal-notion">PGI / ERP · Automatisation · Numérique et performance</div>
-          <div class="signal-q">Question probable : Identifier les enjeux du numérique pour la performance</div>
-          <div class="signal-ex">Lier à la réduction des coûts ou la coordination</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"marché du lait", "étude de marché", "données sectorielles"</div>
-          <div class="signal-notion">Étude de marché · Données secondaires · Positionnement</div>
-          <div class="signal-q">Question probable : Justifier une décision stratégique</div>
-          <div class="signal-ex">Lier au contexte concurrentiel et à la différenciation</div>
-        </div>
-
-        <div class="signal-card">
-          <div class="signal-kw">"recrutement", "marque employeur", "bien-être au travail"</div>
-          <div class="signal-notion">GRH · Motivation · Fidélisation des salariés</div>
-          <div class="signal-q">Question probable : Analyser la politique RH et son impact</div>
-          <div class="signal-ex">Lier à la performance globale</div>
-        </div>
-
       </div>
 
-      <div style="background:#1e1c18; border-radius:12px; padding:14px 18px; margin-top:14px;">
-        <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#f5c842; margin-bottom:6px;">Exercice à faire avant l'épreuve</div>
-        <div style="font-size:13px; font-weight:600; color:#fffdf8; line-height:1.6;">Prends n'importe quelle liste de documents d'annale (juste la page de garde). Pour chaque titre, essaie de prédire : quelle notion ? quelle question ? Vérifie ensuite — tu auras juste dans 70-80% des cas. Cet exercice entraîne ton cerveau à lire les titres comme des signaux, pas comme des mots.</div>
+      <div class="step step-3">
+        <div class="step-n sn-3">3</div>
+        <div class="step-body">
+          <div class="step-when">Etape 3 — Titres des documents</div>
+          <div class="step-title">Lis les titres — pas encore le contenu</div>
+          <div class="step-items">
+            <div class="step-item">Parcours les titres de tous les documents listes dans chaque dossier</div>
+            <div class="step-item">Souligne les mots du titre qui resonent avec les questions deja lues</div>
+            <div class="step-item">Anticipe deja quel document va avec quelle question (tu affineras a l'etape 4)</div>
+          </div>
+          <div class="step-tip" style="background:#f9d0d9; color:#7a2038;">
+            <strong>Exemple — BAC 2025 Bebe Serein :</strong> Q 2.1 porte sur FRNG, BFR, TN → tu cherches un doc avec des chiffres. Document 9 : "Elements chiffres de Bebe Serein au 31/12/2023" → BINGO. Tu sais deja, sans avoir rien lu.
+          </div>
+        </div>
       </div>
 
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- S2 — VERBES DIRECTEURS                                    -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-hd" onclick="toggleSection(this)">
-      <div class="section-num" style="background:#fdeef2; color:#b5415a;">📝</div>
-      <div class="section-info">
-        <div class="section-title">Décoder les verbes directeurs — ce que chacun attend</div>
-        <div class="section-desc">Chaque question commence par un verbe. Ce verbe est un code — clique pour le déchiffrer.</div>
-      </div>
-      <div class="section-arrow">▶</div>
-    </div>
-    <div class="section-body">
-      <div class="verbs-grid">
-
-        <div class="verb-card">
-          <div class="verb-hd" style="background:#f9d0d9; cursor:pointer;">
-            <div style="font-size:20px;">🔍</div>
-            <div class="verb-name" style="color:#b5415a;">Identifier / Repérer</div>
-            <div class="verb-arrow">▼</div>
+      <div class="step step-4">
+        <div class="step-n sn-4">4</div>
+        <div class="step-body">
+          <div class="step-when">Etape 4 — Brouillon : lien Question ↔ Documents</div>
+          <div class="step-title">Fais le mapping — c'est l'etape cle</div>
+          <div class="step-items">
+            <div class="step-item">Pour chaque question, note sur le brouillon les numeros de documents probables</div>
+            <div class="step-item">Verifie quels documents sont listes dans l'enonce pour chaque dossier — utilise-les TOUS</div>
+            <div class="step-item">Le doc avec des colonnes de chiffres (€, %) = la question financiere → met-le de cote</div>
           </div>
-          <div class="verb-body">
-            <div class="verb-expects" style="color:#b5415a;">Ce qu'on attend :</div>
-            <div class="verb-rule">Lister des éléments tirés des documents avec leur référence (Doc X). <strong>Pas de développement. Pas de "parce que".</strong></div>
-            <div class="verb-ex-label">Exemple de réponse</div>
-            <div class="verb-ex">"Les ressources intangibles identifiées sont : la marque, le savoir-faire et les brevets (Doc. 2)."</div>
-            <div class="verb-piege">⚠️ Piège : développer. Si le verbe dit "identifier", s'arrêter après avoir nommé — chaque mot de plus est du temps perdu.</div>
-            <div class="verb-nofaire">✗ Ne pas faire : "L'entreprise identifie ses ressources car elle souhaite…" → c'est une explication, pas une identification.</div>
+          <div class="step-tip" style="background:#e6f5ec; color:#0d4020;">
+            <strong>Ton brouillon apres cette etape :</strong> Q 1.1 → docs 1, 2, 6 &nbsp;|&nbsp; Q 1.2 → docs 1, 3, 4 &nbsp;|&nbsp; Q 2.1 → doc 9 (financier) &nbsp;|&nbsp; Q 3.1 → docs 10, 11, 12<br>
+            Tu sais tout — avant d'avoir lu un seul document en entier.
           </div>
         </div>
-
-        <div class="verb-card">
-          <div class="verb-hd" style="background:#fce0b0; cursor:pointer;">
-            <div style="font-size:20px;">🏷️</div>
-            <div class="verb-name" style="color:#c47800;">Caractériser / Présenter</div>
-            <div class="verb-arrow">▼</div>
-          </div>
-          <div class="verb-body">
-            <div class="verb-expects" style="color:#c47800;">Ce qu'on attend :</div>
-            <div class="verb-rule">Qualifier avec un type ou une catégorie + citer la source (doc n°…) + application à l'entreprise. <strong>Structure : définition + éléments + exemple de l'entreprise du sujet.</strong></div>
-            <div class="verb-ex-label">Exemple de réponse</div>
-            <div class="verb-ex">"D'après le document 2, il s'agit d'un modèle économique de type freemium : le service de base est gratuit, et les fonctionnalités avancées sont payantes."</div>
-            <div class="verb-piege">⚠️ Piège : Lister sans structure. "Présenter" implique une organisation lisible — numérotée, ou avec des titres.</div>
-          </div>
-        </div>
-
-        <div class="verb-card">
-          <div class="verb-hd" style="background:#bce8cd; cursor:pointer;">
-            <div style="font-size:20px;">⚖️</div>
-            <div class="verb-name" style="color:#1a7a3c;">Justifier</div>
-            <div class="verb-arrow">▼</div>
-          </div>
-          <div class="verb-body">
-            <div class="verb-expects" style="color:#1a7a3c;">Ce qu'on attend :</div>
-            <div class="verb-rule">Donner des raisons précises (chiffres, faits, notions) qui prouvent un choix ou une affirmation. <strong>Formule : Oui/Non + parce que + selon le document…</strong></div>
-            <div class="verb-ex-label">Exemple de réponse</div>
-            <div class="verb-ex">"Oui, l'entreprise adopte une démarche RSE, car elle a mis en place un programme de réduction de son empreinte carbone (doc. 3) et a amélioré la qualité de vie au travail de ses salariés."</div>
-            <div class="verb-piege">⚠️ Piège : Reformuler la question autrement sans donner de vraies raisons.</div>
-          </div>
-        </div>
-
-        <div class="verb-card">
-          <div class="verb-hd" style="background:#cce2f8; cursor:pointer;">
-            <div style="font-size:20px;">💬</div>
-            <div class="verb-name" style="color:#2a69a8;">Expliquer</div>
-            <div class="verb-arrow">▼</div>
-          </div>
-          <div class="verb-body">
-            <div class="verb-expects" style="color:#2a69a8;">Ce qu'on attend :</div>
-            <div class="verb-rule">Développer le mécanisme de cause à effet. <strong>Formule : X entraîne Y, ce qui produit Z.</strong> Montrer un lien logique, pas juste décrire.</div>
-            <div class="verb-ex-label">Exemple de réponse</div>
-            <div class="verb-ex">"Le recours aux flux tendus (doc. 2) permet à l'entreprise de produire uniquement à la commande, ce qui réduit les stocks et diminue les coûts de stockage, améliorant ainsi la rentabilité."</div>
-            <div class="verb-piege">⚠️ Piège : Rester descriptif. "Expliquer" = montrer un lien de cause à effet, pas juste constater.</div>
-          </div>
-        </div>
-
-        <div class="verb-card">
-          <div class="verb-hd" style="background:#c8f0ec; cursor:pointer;">
-            <div style="font-size:20px;">🔬</div>
-            <div class="verb-name" style="color:#1a7a6a;">Analyser</div>
-            <div class="verb-arrow">▼</div>
-          </div>
-          <div class="verb-body">
-            <div class="verb-expects" style="color:#1a7a6a;">Ce qu'on attend :</div>
-            <div class="verb-rule">Si calcul : formule visible + calcul détaillé + résultat + <strong>commentaire OBLIGATOIRE</strong>. Si rédactionnel : décomposer + interpréter + commenter. <strong>Jamais de calcul sans commentaire.</strong></div>
-            <div class="verb-ex-label">Exemple de réponse (calcul)</div>
-            <div class="verb-ex">"FRNG = Ressources stables − Emplois stables = 850 000 − 620 000 = 230 000 €<br>Interprétation : le FRNG est positif, ce qui signifie que les investissements à long terme sont intégralement financés par des ressources durables."</div>
-            <div class="verb-piege">⚠️ Piège : Donner le résultat sans l'interpréter. La moitié des points est sur le commentaire.</div>
-          </div>
-        </div>
-
-        <div class="verb-card">
-          <div class="verb-hd" style="background:#fde8a0; cursor:pointer;">
-            <div style="font-size:20px;">🧮</div>
-            <div class="verb-name" style="color:#946e00;">Calculer</div>
-            <div class="verb-arrow">▼</div>
-          </div>
-          <div class="verb-body">
-            <div class="verb-expects" style="color:#946e00;">Ce qu'on attend :</div>
-            <div class="verb-rule">Écrire la formule → Poser les chiffres du cas → Résultat avec unité → Interprétation en 1 phrase. <strong>La formule visible = des points même si le calcul est faux.</strong></div>
-            <div class="verb-ex-label">Exemple de réponse</div>
-            <div class="verb-ex">"Taux d'évolution = (Valeur finale − Valeur initiale) / Valeur initiale × 100<br>= (1 200 000 − 1 000 000) / 1 000 000 × 100 = <strong>+20 %</strong><br>Le chiffre d'affaires a progressé de 20 %, traduisant une croissance significative de l'activité."</div>
-            <div class="verb-piege">⚠️ Piège : Donner le résultat seul sans la formule ni l'interprétation = pertes de points assurées.</div>
-          </div>
-        </div>
-
-        <div class="verb-card">
-          <div class="verb-hd" style="background:#ead8f5; cursor:pointer;">
-            <div style="font-size:20px;">📝</div>
-            <div class="verb-name" style="color:#6030a0;">Montrer / Démontrer</div>
-            <div class="verb-arrow">▼</div>
-          </div>
-          <div class="verb-body">
-            <div class="verb-expects" style="color:#6030a0;">Ce qu'on attend :</div>
-            <div class="verb-rule">Construire un raisonnement avec des preuves tirées des documents ET du cours. <strong>Pas d'affirmation sans preuve ("car les docs le montrent" ne suffit pas).</strong></div>
-            <div class="verb-ex-label">Exemple de réponse</div>
-            <div class="verb-ex">"La démarche qualité de Bébé Serein (AOP, ESAT, doc. 4 et 6) constitue un avantage concurrentiel durable, car elle permet de se différencier dans un marché fortement concurrentiel tout en valorisant son image de marque."</div>
-            <div class="verb-piege">⚠️ Piège : Affirmer sans preuve ou sans citer le dossier. Chaque argument doit être suivi d'une référence documentaire.</div>
-          </div>
-        </div>
-
-        <div class="verb-card">
-          <div class="verb-hd" style="background:#dce8fc; cursor:pointer;">
-            <div style="font-size:20px;">💡</div>
-            <div class="verb-name" style="color:#2a4f90;">Proposer / Formuler</div>
-            <div class="verb-arrow">▼</div>
-          </div>
-          <div class="verb-body">
-            <div class="verb-expects" style="color:#2a4f90;">Ce qu'on attend :</div>
-            <div class="verb-rule">Inventer des éléments cohérents avec la situation de l'entreprise (indicateurs, solutions). <strong>On ne recopie PAS les documents — on imagine à partir du contexte.</strong></div>
-            <div class="verb-ex-label">Exemple de réponse</div>
-            <div class="verb-ex">"Pour réduire son BFR, l'entreprise pourrait négocier des délais de paiement plus courts avec ses clients. Cette mesure diminuerait l'actif circulant et donc le besoin de financement lié à l'exploitation."</div>
-            <div class="verb-piege">⚠️ Piège : Proposer sans justifier. "Je suggère X" sans "parce que Y" = réponse incomplète.</div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Question rédigée 15 lignes -->
-      <div style="background:#fef8e2; border-radius:12px; padding:16px 18px; margin-top:14px; border-left:4px solid #946e00;">
-        <div style="font-family:'Nunito',sans-serif; font-size:14px; font-weight:900; color:#946e00; margin-bottom:8px;">Cas particulier — "En 15 lignes"</div>
-        <div style="font-size:13px; font-weight:600; color:#5a3800; line-height:1.7;">
-          Introduction (2 lignes) : définir la notion + annoncer le plan<br>
-          Axe 1 (3-4 lignes) : idée + exemple issu de l'entreprise du sujet<br>
-          Axe 2 (3-4 lignes) : idée + exemple d'une autre entreprise connue (Airbnb, Zara, Danone…)<br>
-          Axe 3 (2-3 lignes) : nuance ou limite<br>
-          Conclusion (1-2 lignes) : synthèse courte qui répond à la question globale
+      <div class="step step-5">
+        <div class="step-n sn-5">5</div>
+        <div class="step-body">
+          <div class="step-when">Etape 5 — Repondre</div>
+          <div class="step-title">Repondre Q par Q — lire les docs au fil des questions</div>
+          <div class="step-items">
+            <div class="step-item">Commence par Q 1.1 et avance dans l'ordre — les questions se construisent</div>
+            <div class="step-item">Lis SEULEMENT les docs lies a la question que tu traites, au moment ou tu la traites</div>
+            <div class="step-item">Si tu bloques sur une question, passe a la suivante — reviens apres. Une reponse partielle rapporte des points.</div>
+            <div class="step-item">Ne laisse aucune question sans reponse — meme partielle, meme approximative</div>
+          </div>
+          <div class="step-tip" style="background:#1e1c18; color:#fffdf8;">
+            <strong style="color:#f5c842;">Regle d'or du SDGN :</strong> Cas + Cours = points. Le cas sans le cours, c'est descriptif. Le cours sans le cas, c'est hors-sujet. Les deux ensemble, c'est l'excellence.
+          </div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- S5 — JE BLOQUE : QUE FAIRE ?                             -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-hd" onclick="toggleSection(this)">
-      <div class="section-num" style="background:#ead8f5; color:#6030a0;">🆘</div>
-      <div class="section-info">
-        <div class="section-title">Je bloque — que faire ? Stratégies de déblocage</div>
-        <div class="section-desc">Mot inconnu · Notion oubliée · Document inutilisable · Question floue</div>
-      </div>
-      <div class="section-arrow">▶</div>
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- TAB 2 — QUESTION GLOBALE                           -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="panel" id="tab-qglobale">
+
+    <div class="schema-box">
+      <div class="schema-label">Le schema de toutes les questions globales</div>
+      <div class="schema-txt">"L'entreprise fait face a [un enjeu / defi concurrentiel]. Les choix qu'elle a faits sont-ils pertinents pour [objectif : se demarquer / assurer sa perennite / maintenir sa performance] ?"</div>
     </div>
-    <div class="section-body">
 
-      <div class="bloque-grid">
+    <div class="hl" style="background:#eaf8ef; color:#0d4020;">
+      La question globale est le <strong>fil rouge de toutes les questions des 3 dossiers</strong>. Elle dit : l'entreprise a fait des choix reels, qui ont des avantages ET des limites. Chaque reponse doit aller dans ce sens.
+    </div>
 
-        <!-- Cas A -->
-        <div class="bloque-col" style="background:#f0ede6;">
-          <div class="bloque-col-hd" style="background:#ead8f5;">
-            <div class="bloque-col-title" style="color:#6030a0;">Cas A — Je ne comprends pas un mot dans la question</div>
-            <div class="bloque-col-sub" style="color:#6030a0;">Ex : "freins et motivations", "compétences distinctives"…</div>
-          </div>
-          <div class="bloque-strats">
-            <div class="strat-item">
-              <div class="strat-num" style="color:#6030a0;">Stratégie 1</div>
-              <div class="strat-title">Cherche dans les documents</div>
-              <div class="strat-detail">Les examinateurs donnent souvent des indices dans les documents eux-mêmes. Si le mot est dans un titre de document → lis CE document en premier : il contient la définition ou des exemples.</div>
-            </div>
-            <div class="strat-item">
-              <div class="strat-num" style="color:#6030a0;">Stratégie 2</div>
-              <div class="strat-title">Cherche les notes de bas de page</div>
-              <div class="strat-detail">Les sujets BAC utilisent systématiquement des notes (¹, ², ³) pour définir les mots techniques. Ex. BAC 2025 Bébé Serein — note ¹ : "perturbateurs endocriniens : substances à haut potentiel de risque pour la santé". Vérifie d'abord avant de paniquer.</div>
-            </div>
-            <div class="strat-item">
-              <div class="strat-num" style="color:#6030a0;">Stratégie 3</div>
-              <div class="strat-title">Décompose le mot</div>
-              <div class="strat-detail">"Freins" = ce qui empêche d'acheter. "Motivations" = ce qui pousse à acheter. "Compétences distinctives" = compétences + distinctif = ce que l'entreprise fait différemment des autres. Les mots sont souvent leur propre définition.</div>
-            </div>
-            <div class="strat-item">
-              <div class="strat-num" style="color:#6030a0;">Stratégie 4</div>
-              <div class="strat-title">Réponds sur le thème général</div>
-              <div class="strat-detail">Si tu ne comprends vraiment pas : identifie le thème (RSE ? Ressources ? Stratégie ?) et réponds sur ce thème avec les docs. Un correcteur valorise une réponse partielle bien construite.</div>
-            </div>
-          </div>
+    <div class="tab-section-title">Ses 3 usages concrets</div>
+    <div class="g3">
+      <div class="usage-card" style="background:#eaf8ef;">
+        <div class="usage-n" style="color:#1a7a3c;">Usage 1</div>
+        <div class="usage-title">Comprendre une question floue</div>
+        <div class="usage-body">Si une question te semble floue, relis la question globale. Elle te dit dans quelle direction aller.</div>
+        <div class="usage-ex">Q floue sur Bebe Serein → relis "se demarquer dans un marche concurrentiel" → ta reponse doit montrer en quoi la decision aide a se differencier.</div>
+      </div>
+      <div class="usage-card" style="background:#eaf8ef;">
+        <div class="usage-n" style="color:#1a7a3c;">Usage 2</div>
+        <div class="usage-title">Conclure chaque reponse</div>
+        <div class="usage-body">Chaque reponse peut se terminer par un lien avec la question globale — c'est ce que les correcteurs valorisent.</div>
+        <div class="usage-ex">"Ainsi, la demarche qualite AOP permet a Reo d'assurer la pertinence de ses choix et de maintenir sa performance."</div>
+      </div>
+      <div class="usage-card" style="background:#eaf8ef;">
+        <div class="usage-n" style="color:#1a7a3c;">Usage 3</div>
+        <div class="usage-title">Cadrer les questions "15 lignes"</div>
+        <div class="usage-body">Pour les questions longues, la question globale est le prisme sous lequel repondre.</div>
+        <div class="usage-ex">"Montrer que la RSE est creatrice de valeur" → tes exemples doivent montrer que la RSE aide l'entreprise a atteindre son objectif central.</div>
+      </div>
+    </div>
+
+    <div class="tab-section-title">Exemples tires des annales reelles</div>
+    <div class="ann-list">
+      <div class="ann-row">
+        <div class="ann-year">BAC 2025 — Bebe Serein</div>
+        <div class="ann-qg">"Peut-elle se demarquer et accroitre sa performance dans un contexte de marche fortement concurrentiel ?"</div>
+        <div class="ann-impact">→ Toutes les questions portent sur comment Bebe Serein se differencie (modele eco, RSE, lait bio)</div>
+      </div>
+      <div class="ann-row">
+        <div class="ann-year">BAC 2024 — Topschuss</div>
+        <div class="ann-qg">"Les choix strategiques de Topschuss sont-ils pertinents pour maintenir sa croissance ?"</div>
+        <div class="ann-impact">→ Chaque dossier evalue UN choix strategique (marque employeur, robot Autostore, RSE)</div>
+      </div>
+      <div class="ann-row">
+        <div class="ann-year">BAC 2023 — Ankama</div>
+        <div class="ann-qg">"Les specificites d'Ankama lui permettent-elles d'etre performante ?"</div>
+        <div class="ann-impact">→ Les questions mesurent la performance de chaque specificite (DAS, ressources, culture)</div>
+      </div>
+      <div class="ann-row">
+        <div class="ann-year">BAC 2022 — Caraibes Fumes</div>
+        <div class="ann-qg">"Les choix strategiques assurent-ils la perennite de l'entreprise ?"</div>
+        <div class="ann-impact">→ Chaque question evalue si un choix (expansion, produits, financement) assure la survie</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- TAB 3 — DOCUMENTS                                  -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="panel" id="tab-documents">
+
+    <div class="tab-section-title">Les 5 regles pour trouver le bon document</div>
+
+    <div class="rule">
+      <div class="rule-hd">
+        <div class="rule-tag">R1</div>
+        <div>
+          <div class="rule-title">L'enonce te donne deja la liste des documents a utiliser</div>
+          <div class="rule-sub">Chaque dossier commence par : "Documents a exploiter : Document 1, 4, 7…"</div>
         </div>
+      </div>
+      <div class="rule-body">
+        Chaque dossier liste explicitement les documents a utiliser. Ces documents, et seulement ces documents, doivent etre cites.
+        <div class="rule-alert">Regle absolue : si l'enonce indique les documents 3, 7 et 9 pour Q 2.1, tu DOIS utiliser ces 3 documents. Ignorer l'un d'eux = perdre des points garantis.</div>
+        <div class="rule-tip-box">Si tu bloques sur un document : cherche au moins 1 element a citer — "Selon le document X, …". Les correcteurs verifient que chaque document liste a ete utilise.</div>
+      </div>
+    </div>
 
-        <!-- Cas B -->
-        <div class="bloque-col" style="background:#f0ede6;">
-          <div class="bloque-col-hd" style="background:#c8f0ec;">
-            <div class="bloque-col-title" style="color:#1a7a6a;">Cas B — Je ne me souviens plus de la notion</div>
-            <div class="bloque-col-sub" style="color:#1a7a6a;">Ex : j'ai oublié la formule FRNG, je confonds flux tendus et poussés…</div>
-          </div>
-          <div class="bloque-strats">
-            <div class="strat-item">
-              <div class="strat-num" style="color:#1a7a6a;">Stratégie 1</div>
-              <div class="strat-title">Cherche dans les questions voisines</div>
-              <div class="strat-detail">Les examinateurs formulent parfois la notion dans la question elle-même. Ex. : "Analyser l'équilibre financier en calculant le fonds de roulement net global (FRNG), le besoin en fonds de roulement (BFR) et la trésorerie nette (TN)" → la parenthèse te rappelle le nom complet et te guide.</div>
-            </div>
-            <div class="strat-item">
-              <div class="strat-num" style="color:#1a7a6a;">Stratégie 2</div>
-              <div class="strat-title">Cherche dans les documents</div>
-              <div class="strat-detail">Un document de presse ou institutionnel peut contenir la définition de la notion. Ex. : un doc sur la RSE peut rappeler ce qu'est le triple bilan. Le doc financier avec ses colonnes Actif/Passif te permet de retrouver les formules par la structure même du tableau.</div>
-            </div>
-            <div class="strat-item">
-              <div class="strat-num" style="color:#1a7a6a;">Stratégie 3</div>
-              <div class="strat-title">Raisonne depuis le contexte</div>
-              <div class="strat-detail">Si tu oublies "flux poussés" mais tu sais que Réo doit faire des stocks à cause de l'affinage → c'est la bonne réponse, même sans le terme exact. Le fond compte autant que la forme.</div>
-            </div>
-          </div>
-          <div class="bloque-regle" style="background:#bce8cd; color:#0d4020;">⚠️ Règle d'or : une réponse sans le terme exact mais avec la bonne idée vaut plus qu'une réponse vide.</div>
+    <div class="rule">
+      <div class="rule-hd">
+        <div class="rule-tag">R2</div>
+        <div>
+          <div class="rule-title">Le Document 1 sert a TOUTES les questions</div>
+          <div class="rule-sub">Presentation de l'entreprise — contexte, CA, effectifs, identite. Valable dans toutes les annales.</div>
         </div>
+      </div>
+      <div class="rule-body">
+        Le Document 1 donne le contexte general et les elements identitaires. Il peut venir en appui de n'importe quelle question.
+        <table class="mtable">
+          <tr><th>Annale</th><th>Le Document 1 parlait de…</th></tr>
+          <tr><td>2025 Bebe Serein</td><td>Le concept : circuit court, labels, savoir-faire</td></tr>
+          <tr><td>2024 Topschuss</td><td>L'entreprise et ses ambitions 100 M€</td></tr>
+          <tr><td>2023 Ankama</td><td>Les principales filiales d'Ankama</td></tr>
+          <tr><td>Bac Blanc Reo</td><td>L'offre de la fromagerie Reo</td></tr>
+        </table>
+        <div class="rule-tip-box">Astuce : si tu bloques sur une question et tu cherches des elements → relis le Document 1.</div>
+      </div>
+    </div>
 
+    <div class="rule">
+      <div class="rule-hd">
+        <div class="rule-tag">R3</div>
+        <div>
+          <div class="rule-title">Le document avec des colonnes de chiffres = la question financiere</div>
+          <div class="rule-sub">FRNG, BFR, TN, cout de revient — dans toutes les annales sans exception</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        Dans toutes les annales, il y a systematiquement un document avec un tableau de donnees financieres. Ce document va toujours avec la question de calcul.
+        <table class="mtable">
+          <tr><th>Titre du document financier</th><th>Question associee</th></tr>
+          <tr><td>"Elements chiffres de Bebe Serein au 31/12/2023"</td><td>FRNG + BFR + TN</td></tr>
+          <tr><td>"Donnees financieres de l'entreprise Reo"</td><td>Bilan fonctionnel → FRNG, BFR, TN</td></tr>
+          <tr><td>"Informations sur le cout de production d'une BD"</td><td>Cout de revient unitaire (Ankama)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-hd">
+        <div class="rule-tag">R4</div>
+        <div>
+          <div class="rule-title">Les docs RSE / ethique → Dossier 3 (numerique et performance)</div>
+          <div class="rule-sub">Mots-cles : valeurs, engagements, partenariat, avis clients, identite numerique</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        Dans toutes les annales, le Dossier 3 traite du numerique ET/OU de la RSE. Les documents avec ces mots-cles y sont associes.
+        <table class="mtable">
+          <tr><th>Titre du document</th><th>Question associee</th></tr>
+          <tr><td>"Recueil d'avis de consommateurs" (Reo)</td><td>Risques identite numerique</td></tr>
+          <tr><td>"Bebe Serein en partenariat avec des ESAT"</td><td>Demarche ethique et RSE</td></tr>
+          <tr><td>"L'entreprise augmentee, c'est pour demain"</td><td>Numerique et performance</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-hd">
+        <div class="rule-tag">R5</div>
+        <div>
+          <div class="rule-title">Plusieurs docs sur le meme sujet → ils se completent</div>
+          <div class="rule-sub">Cite-les tous — les correcteurs valorisent le croisement des sources</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        Si 3-4 documents portent sur le meme theme, l'examinateur attend que tu cites plusieurs angles :
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px;">
+          <div class="rule-tip-box">Document factuel (chiffres, stats) → appuyer un argument quantitativement</div>
+          <div class="rule-tip-box">Document temoignage ou presse → illustrer concretement</div>
+          <div class="rule-tip-box">Document institutionnel (site entreprise) → presenter la position officielle</div>
+        </div>
+        <div class="rule-alert" style="background:#e8f3ff; color:#1a3a6a; margin-top:10px;">
+          Formule : "Selon le document X, [info 1]. De plus, le document Y confirme [info 2], ce qui montre que [conclusion liee a la question]."
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-section-title" style="margin-top:24px;">Decoder les titres des documents en 5 secondes</div>
+    <div class="g4">
+      <div class="sig-card">
+        <div class="sig-kw">"elements chiffres", "donnees financieres", "bilan"</div>
+        <div class="sig-notion">Calcul financier (FRNG, BFR, TN)</div>
+        <div class="sig-q">Question de calcul avec formules</div>
+        <div class="sig-ex">Verifier les colonnes €</div>
+      </div>
+      <div class="sig-card">
+        <div class="sig-kw">"engagements RSE", "rapport developpement durable", "partenariat ESAT"</div>
+        <div class="sig-notion">Responsabilite Sociale / Ethique</div>
+        <div class="sig-q">Dossier 3 — performance globale</div>
+        <div class="sig-ex">Dossier RSE</div>
+      </div>
+      <div class="sig-card">
+        <div class="sig-kw">"avis clients", "e-reputation", "reseaux sociaux", "site web"</div>
+        <div class="sig-notion">Identite numerique / E-reputation</div>
+        <div class="sig-q">Numerique et performance → Chap 5</div>
+        <div class="sig-ex">Dossier Numerique</div>
+      </div>
+      <div class="sig-card">
+        <div class="sig-kw">"cout de production", "charges", "prix de revient"</div>
+        <div class="sig-notion">Cout de revient (Chap 3&amp;4)</div>
+        <div class="sig-q">Calcul du cout + interpretation</div>
+        <div class="sig-ex">= Charges directes + indirectes</div>
+      </div>
+      <div class="sig-card">
+        <div class="sig-kw">"fiche de poste", "formation", "competences", "GPEC"</div>
+        <div class="sig-notion">Gestion des RH / Competences</div>
+        <div class="sig-q">Ressources intangibles — Chap 2</div>
+        <div class="sig-ex">Dossier Strategie ou RH</div>
+      </div>
+      <div class="sig-card">
+        <div class="sig-kw">"presentation de l'entreprise", "historique", "nos metiers"</div>
+        <div class="sig-notion">Context general — Document 1</div>
+        <div class="sig-q">Utilisable pour TOUTES les questions</div>
+        <div class="sig-ex">Toujours le garder accessible</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- TAB 4 — VERBES DIRECTEURS                          -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="panel" id="tab-verbes">
+
+    <div class="hl" style="background:#cce2f8; color:#1a3a6a;">
+      Le verbe directeur est le premier mot de la question. Il te dit exactement <strong>quelle forme prendre</strong> pour repondre — pas seulement quoi dire, mais comment le construire.
+    </div>
+
+    <div class="g2">
+
+      <div class="verb-card">
+        <div class="verb-hd" style="background:#fde8a0;">
+          <div class="verb-name" style="color:#7a5800;">Identifier</div>
+          <div class="verb-expect" style="color:#946e00;">Nommer les elements — pas expliquer</div>
+        </div>
+        <div class="verb-body">
+          <div class="verb-rule">Liste les elements du document avec leur nom exact. Tu n'as pas a expliquer — juste nommer, classer, enumerer.</div>
+          <div class="verb-ex">"Identifiez les ressources distinctives de l'entreprise" → liste les ressources en les nommant et en precisant si elles sont tangibles ou intangibles.</div>
+          <div class="verb-piege">Piege : ne pas developper = perdre des points. Chaque element cite doit etre qualifie (ex: "la marque = ressource intangible").</div>
+        </div>
       </div>
 
-      <!-- Tableau récapitulatif par notion -->
-      <div class="notion-table">
-        <div class="notion-table-title">Comment retrouver les notions souvent oubliées</div>
-        <div class="notion-row">
-          <div class="notion-kw">FRNG / BFR / TN</div>
-          <div class="notion-strat">Le doc financier a des colonnes Actif/Passif → les formules se déduisent de la structure du tableau</div>
+      <div class="verb-card">
+        <div class="verb-hd" style="background:#fdeef2;">
+          <div class="verb-name" style="color:#b5415a;">Analyser</div>
+          <div class="verb-expect" style="color:#9a2a40;">Decrire + expliquer pourquoi + lier au cas</div>
         </div>
-        <div class="notion-row">
-          <div class="notion-kw">Flux tendus vs poussés</div>
-          <div class="notion-strat">Cherche si l'entreprise a des stocks ou produit sur commande → ça te dit le type de flux</div>
+        <div class="verb-body">
+          <div class="verb-rule">Structure : observe (qu'est-ce qui se passe ?) → explique (pourquoi ?) → lie au cas (et donc pour l'entreprise, ca signifie…).</div>
+          <div class="verb-ex">"Analysez l'equilibre financier" → FRNG positif : l'entreprise finance ses emplois stables par des ressources durables. BFR > FRNG : risque de tension de tresorerie.</div>
+          <div class="verb-piege">Piege : decrire sans expliquer. "Le FRNG est positif" seul = 0 point. Il faut ajouter "ce qui signifie que…"</div>
         </div>
-        <div class="notion-row">
-          <div class="notion-kw">Marketing concentré vs différencié</div>
-          <div class="notion-strat">Le doc 1 ou 2 décrit le segment ciblé → s'il y en a qu'un seul = concentré</div>
+      </div>
+
+      <div class="verb-card">
+        <div class="verb-hd" style="background:#e8f3ff;">
+          <div class="verb-name" style="color:#2a69a8;">Justifier</div>
+          <div class="verb-expect" style="color:#1a4a88;">Affirmer + 2 arguments + conclusion</div>
         </div>
-        <div class="notion-row">
-          <div class="notion-kw">Compétences distinctives</div>
-          <div class="notion-strat">Cherche dans les docs ce que l'entreprise fait QUE SES CONCURRENTS NE FONT PAS</div>
+        <div class="verb-body">
+          <div class="verb-rule">Structure : affirmation (prendre position) → argument 1 avec doc → argument 2 avec doc → conclusion liee a la question globale.</div>
+          <div class="verb-ex">"Justifiez le choix de se positionner sur le lait bio" → 1. Tendance marche (chiffres doc) → 2. Coherence avec image qualite de l'entreprise → Conclusion : ce positionnement est pertinent car il repond a la question globale.</div>
+          <div class="verb-piege">Piege : ne donner qu'un seul argument. Le barème attend toujours au moins 2 arguments distincts pour "justifier".</div>
         </div>
-        <div class="notion-row">
-          <div class="notion-kw">Démarche qualité (Kaizen, PDCA)</div>
-          <div class="notion-strat">Le doc sur le processus ou la production mentionne souvent les certifications</div>
+      </div>
+
+      <div class="verb-card">
+        <div class="verb-hd" style="background:#bce8cd;">
+          <div class="verb-name" style="color:#1a7a3c;">Calculer</div>
+          <div class="verb-expect" style="color:#0d5a2a;">Formule → chiffres → resultat → interpretation</div>
         </div>
-        <div class="notion-row">
-          <div class="notion-kw">RSE triple bilan</div>
-          <div class="notion-strat">Le doc 1 ou "engagements" liste les actions sociales + enviro + économiques</div>
+        <div class="verb-body">
+          <div class="verb-rule">Structure absolue : 1. Ecrire la formule en lettres → 2. Poser les chiffres → 3. Resultat avec unite (€ ou %) → 4. Interpreter.</div>
+          <div class="verb-ex">FRNG = Ressources stables − Emplois stables = 450 000 − 320 000 = 130 000 €. L'entreprise dispose d'un FRNG positif, ce qui signifie que ses ressources durables financent largement ses emplois stables.</div>
+          <div class="verb-piege">Piege le plus frequent : calculer sans interpreter. La moitie des points est sur le commentaire — TOUJOURS finir par "Ce resultat signifie que…"</div>
         </div>
-        <div class="notion-row">
-          <div class="notion-kw">Management stratégique vs opérationnel</div>
-          <div class="notion-strat">Stratégique = long terme + ressources importantes + impact sur toute l'organisation</div>
+      </div>
+
+      <div class="verb-card">
+        <div class="verb-hd" style="background:#ead8f5;">
+          <div class="verb-name" style="color:#7030a0;">Caracteriser</div>
+          <div class="verb-expect" style="color:#5a1a80;">Identifier la nature + qualifier + justifier</div>
+        </div>
+        <div class="verb-body">
+          <div class="verb-rule">Structure : identifier la categorie (c'est une organisation souple / rigide) → qualifier avec le vocabulaire du cours → justifier avec des faits du cas.</div>
+          <div class="verb-ex">"Caracterisez l'organisation du travail" → Organisation souple (demarche qualite, polyvalence, autonomie) : les salaries de Reo sont polyvalents et participent a l'amelioration continue → ce qui favorise la QVT et la performance.</div>
+          <div class="verb-piege">Piege : oublier de relier la caracterisation a la performance. Toujours finir par l'impact concret.</div>
+        </div>
+      </div>
+
+      <div class="verb-card">
+        <div class="verb-hd" style="background:#c8f0ec;">
+          <div class="verb-name" style="color:#1a7a6a;">Expliquer</div>
+          <div class="verb-expect" style="color:#0d5a50;">Cause → mecanisme → effet</div>
+        </div>
+        <div class="verb-body">
+          <div class="verb-rule">Structure : cause (pourquoi ca se produit ?) → mecanisme (comment ca fonctionne ?) → effet (quelle consequence pour l'entreprise ?).</div>
+          <div class="verb-ex">"Expliquez en quoi l'utilisation d'un PGI ameliore la performance" → Cause : informations dispersees → Mecanisme : le PGI centralise toutes les donnees en temps reel → Effet : decisions plus rapides, moins d'erreurs, gain de productivite.</div>
+          <div class="verb-piege">Piege : s'arretee a la cause. La chaine cause → mecanisme → effet est indispensable.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- S7 — STRUCTURES DE RÉPONSE                               -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-hd" onclick="toggleSection(this)">
-      <div class="section-num" style="background:#fce0b0; color:#c47800;">🏗️</div>
-      <div class="section-info">
-        <div class="section-title">Les 3 structures de réponse — 90% des questions</div>
-        <div class="section-desc">Un modèle précis à appliquer selon le type de question</div>
-      </div>
-      <div class="section-arrow">▶</div>
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- TAB 5 — STRUCTURES DE REPONSE                      -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="panel" id="tab-structures">
+
+    <div class="hl" style="background:#fde8a0; color:#7a5800;">
+      Ces 3 structures couvrent 90% des questions du BAC SDGN. Applique le bon modele selon le verbe directeur de la question.
     </div>
-    <div class="section-body">
-      <div class="reponse-grid">
 
-        <!-- Structure A -->
-        <div class="rep-card" style="background:#e8f3ff;">
-          <div class="rep-title" style="color:#1a4f82;">Structure A — Définition / Identification</div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#2a69a8;">1</div>
-            <div class="rep-txt"><strong>Définition en 1 phrase</strong><br><span class="rep-hint">La notion du cours, formulée simplement</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#2a69a8;">2</div>
-            <div class="rep-txt"><strong>Application à l'entreprise du sujet</strong><br><span class="rep-hint">Citer son nom + données du document (Doc n°…)</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#2a69a8;">3</div>
-            <div class="rep-txt"><strong>Mini-conclusion (1 phrase)</strong><br><span class="rep-hint">Lien avec la question globale si possible</span></div>
-          </div>
-          <div class="rep-alert" style="background:#cce2f8; color:#1a3a6a;">Verbes : Identifier, Repérer, Caractériser, Présenter</div>
-        </div>
+    <div class="g3">
 
-        <!-- Structure B -->
-        <div class="rep-card" style="background:#fef8e2;">
-          <div class="rep-title" style="color:#946e00;">Structure B — Analyse / Calcul</div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#946e00;">1</div>
-            <div class="rep-txt"><strong>La formule écrite en lettres</strong><br><span class="rep-hint">FRNG = Ressources stables − Emplois stables</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#946e00;">2</div>
-            <div class="rep-txt"><strong>L'application numérique avec les données du cas</strong><br><span class="rep-hint">= 850 000 − 620 000</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#946e00;">3</div>
-            <div class="rep-txt"><strong>Le résultat avec unité</strong><br><span class="rep-hint">= 230 000 €</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#946e00;">4</div>
-            <div class="rep-txt"><strong>Le commentaire — OBLIGATOIRE</strong><br><span class="rep-hint">"Ce résultat positif signifie que… pour CETTE entreprise."</span></div>
-          </div>
-          <div class="rep-alert" style="background:#fde8a0; color:#5a3800;">La formule visible = des points même si le calcul est faux. Le commentaire = la moitié des points.</div>
-        </div>
-
-        <!-- Structure C -->
-        <div class="rep-card" style="background:#eaf8ef;">
-          <div class="rep-title" style="color:#1a7a3c;">Structure C — Question rédigée (≥ 15 lignes)</div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#1a7a3c;">1</div>
-            <div class="rep-txt"><strong>Introduction (2 lignes)</strong><br><span class="rep-hint">Définir la notion + annoncer le plan en 1 phrase</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#1a7a3c;">2</div>
-            <div class="rep-txt"><strong>Axe 1 (3-4 lignes)</strong><br><span class="rep-hint">Idée + exemple issu de l'entreprise du sujet + doc cité</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#1a7a3c;">3</div>
-            <div class="rep-txt"><strong>Axe 2 (3-4 lignes)</strong><br><span class="rep-hint">Idée + exemple d'une autre entreprise connue (Airbnb, Zara, Danone…)</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#1a7a3c;">4</div>
-            <div class="rep-txt"><strong>Axe 3 — nuance (2-3 lignes)</strong><br><span class="rep-hint">Limite ou condition de réussite du mécanisme</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#1a7a3c;">5</div>
-            <div class="rep-txt"><strong>Conclusion (1-2 lignes)</strong><br><span class="rep-hint">Synthèse qui répond à la question globale</span></div>
-          </div>
-          <div class="rep-alert" style="background:#bce8cd; color:#0d4020;">Verbes : Expliquer, Montrer, Démontrer, Analyser (15 lignes)</div>
-        </div>
-
-        <!-- Structure D — Diagramme de flux -->
-        <div class="rep-card" style="background:#fdeef2;">
-          <div class="rep-title" style="color:#b5415a;">Structure D — Diagramme de flux</div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#b5415a;">1</div>
-            <div class="rep-txt"><strong>Identifier les acteurs</strong><br><span class="rep-hint">Entreprise, client, fournisseur, banque… (interne / externe)</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#b5415a;">2</div>
-            <div class="rep-txt"><strong>Nommer les flux avec leur nature</strong><br><span class="rep-hint">Flux physique, monétaire, d'information</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#b5415a;">3</div>
-            <div class="rep-txt"><strong>Préciser la direction (qui → qui)</strong><br><span class="rep-hint">Flèche bien orientée, sens correct — points perdus si inversé</span></div>
-          </div>
-          <div class="rep-step">
-            <div class="rep-n" style="background:#b5415a;">4</div>
-            <div class="rep-txt"><strong>Expliquer l'intérêt en 1 phrase si demandé</strong><br><span class="rep-hint">"Ce flux permet de réduire les délais / stocks / coûts…"</span></div>
-          </div>
-          <div class="rep-alert" style="background:#f9d0d9; color:#7a2038;">Verbe : Réaliser un diagramme / Représenter les flux</div>
-        </div>
-
+      <div class="struct-card">
+        <div class="struct-title" style="color:#2a69a8;">Structure A — Calcul financier</div>
+        <div class="struct-step"><div class="sn" style="background:#2a69a8;">1</div><div class="struct-txt">Ecrire la formule en lettres<span class="struct-hint">FRNG = Ressources stables − Emplois stables</span></div></div>
+        <div class="struct-step"><div class="sn" style="background:#2a69a8;">2</div><div class="struct-txt">Poser les chiffres<span class="struct-hint">= XXX 000 − YYY 000</span></div></div>
+        <div class="struct-step"><div class="sn" style="background:#2a69a8;">3</div><div class="struct-txt">Resultat avec unite<span class="struct-hint">= ZZZ 000 €</span></div></div>
+        <div class="struct-step"><div class="sn" style="background:#2a69a8;">4</div><div class="struct-txt">Interpreter les 3 indicateurs<span class="struct-hint">TN > 0 = equilibre sain · TN < 0 = risque</span></div></div>
+        <div class="struct-formula" style="background:#cce2f8; color:#1a3a6a;">Verbes : Calculer, Determiner, Etablir</div>
       </div>
+
+      <div class="struct-card">
+        <div class="struct-title" style="color:#1a7a3c;">Structure B — Analyse redigee</div>
+        <div class="struct-step"><div class="sn" style="background:#1a7a3c;">1</div><div class="struct-txt">Definition de la notion mobilisee<span class="struct-hint">Selon le cours : "La RSE designe…"</span></div></div>
+        <div class="struct-step"><div class="sn" style="background:#1a7a3c;">2</div><div class="struct-txt">Application au cas (citation du doc)<span class="struct-hint">Selon le document X, l'entreprise…</span></div></div>
+        <div class="struct-step"><div class="sn" style="background:#1a7a3c;">3</div><div class="struct-txt">Deuxieme argument ou nuance<span class="struct-hint">De plus / En revanche / Cependant…</span></div></div>
+        <div class="struct-step"><div class="sn" style="background:#1a7a3c;">4</div><div class="struct-txt">Conclusion liee a la question globale<span class="struct-hint">Ainsi, ce choix contribue a [question globale]</span></div></div>
+        <div class="struct-formula" style="background:#bce8cd; color:#0d4020;">Verbes : Analyser, Justifier, Expliquer, Caracteriser</div>
+      </div>
+
+      <div class="struct-card">
+        <div class="struct-title" style="color:#7030a0;">Structure C — Identification courte</div>
+        <div class="struct-step"><div class="sn" style="background:#7030a0;">1</div><div class="struct-txt">Nommer l'element (notion du cours)<span class="struct-hint">Ex : "Il s'agit d'une ressource intangible"</span></div></div>
+        <div class="struct-step"><div class="sn" style="background:#7030a0;">2</div><div class="struct-txt">Qualifier avec vocabulaire precis<span class="struct-hint">Ex : "car elle est imaterielle et strategique"</span></div></div>
+        <div class="struct-step"><div class="sn" style="background:#7030a0;">3</div><div class="struct-txt">Ancrer dans le cas<span class="struct-hint">Ex : "Ici, la marque Ankama est…"</span></div></div>
+        <div class="struct-formula" style="background:#ead8f5; color:#4a1a7a;">Verbes : Identifier, Presenter, Reperer, Relever</div>
+      </div>
+
+    </div>
+
+    <div class="tab-section-title">Formule magique pour citer plusieurs documents</div>
+    <div class="hl" style="background:#1e1c18; color:#fffdf8;">
+      "Selon le document X, [information 1]. De plus, le document Y confirme [information 2], ce qui montre que [conclusion liee a la question]."
+    </div>
+
+    <div class="tab-section-title">Formule de conclusion universelle</div>
+    <div class="hl" style="background:#eaf8ef; color:#0d4020;">
+      "Ainsi, [cette decision / competence / outil] contribue a [reformuler la question globale en lien avec le cas]."<br>
+      Ex : "Ainsi, le PGI mis en place par Reo ameliore la coordination interne et contribue a la pertinence de ses choix de gestion."
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- TAB 6 — JE BLOQUE                                  -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="panel" id="tab-bloque">
+
+    <div class="hl" style="background:#fdeef2; color:#7a2038;">
+      Bloquer est normal. Ce qui compte, c'est de ne pas rester bloque. Voici les 4 situations et ce que tu fais dans chacune.
+    </div>
+
+    <div class="g2">
+
+      <div class="bloque-card">
+        <div class="bloque-hd" style="background:#fde8a0;">
+          <div class="bloque-situation" style="color:#946e00;">Situation 1</div>
+          <div class="bloque-title" style="color:#7a5800;">Je ne comprends pas un mot</div>
+        </div>
+        <div class="bloque-body">
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#946e00;">Strategie A</div>
+            <div class="bloque-s-title">Cherche dans les documents</div>
+            <div class="bloque-s-detail">Le mot est souvent defini ou contextualis dans un document du sujet. Lis les docs associes a la question.</div>
+          </div>
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#946e00;">Strategie B</div>
+            <div class="bloque-s-title">Retourne a la question globale</div>
+            <div class="bloque-s-detail">Le mot inconnu s'inscrit dans l'enjeu general. La question globale te donne le contexte pour l'interpreter.</div>
+          </div>
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#946e00;">Strategie C</div>
+            <div class="bloque-s-title">Reformule avec tes mots</div>
+            <div class="bloque-s-detail">"Meme si je ne connais pas ce terme exactement, d'apres le contexte, il s'agit de…" — montre que tu raisonnes.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloque-card">
+        <div class="bloque-hd" style="background:#fdeef2;">
+          <div class="bloque-situation" style="color:#b5415a;">Situation 2</div>
+          <div class="bloque-title" style="color:#7a2038;">J'ai oublie la notion du cours</div>
+        </div>
+        <div class="bloque-body">
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#b5415a;">Strategie A</div>
+            <div class="bloque-s-title">Definis avec du bon sens</div>
+            <div class="bloque-s-detail">Si tu ne sais plus exactement ce qu'est la "CAF", essaie : "La CAF correspond aux ressources que l'entreprise genere elle-meme pour financer ses projets." C'est juste dans l'esprit.</div>
+          </div>
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#b5415a;">Strategie B</div>
+            <div class="bloque-s-title">Passe directement au cas</div>
+            <div class="bloque-s-detail">Sans definir, applique directement au cas avec les documents. Une reponse ancree dans le cas vaut mieux que rien.</div>
+          </div>
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#b5415a;">Strategie C</div>
+            <div class="bloque-s-title">Utilise le vocabulaire de la question</div>
+            <div class="bloque-s-detail">Reprends les mots de la question pour structurer ta reponse — le correcteur voit que tu as compris l'enjeu.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloque-card">
+        <div class="bloque-hd" style="background:#cce2f8;">
+          <div class="bloque-situation" style="color:#2a69a8;">Situation 3</div>
+          <div class="bloque-title" style="color:#1a3a6a;">Je ne vois pas quel document utiliser</div>
+        </div>
+        <div class="bloque-body">
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#2a69a8;">Strategie A</div>
+            <div class="bloque-s-title">Relis l'enonce du dossier</div>
+            <div class="bloque-s-detail">L'enonce liste les documents a utiliser pour chaque dossier. Lis la liste — le document est la.</div>
+          </div>
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#2a69a8;">Strategie B</div>
+            <div class="bloque-s-title">Utilise le Document 1 en secours</div>
+            <div class="bloque-s-detail">Le Document 1 (presentation de l'entreprise) est utilisable pour toutes les questions. Il t'apporte toujours quelque chose.</div>
+          </div>
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#2a69a8;">Strategie C</div>
+            <div class="bloque-s-title">Cite n'importe quel fait du cas</div>
+            <div class="bloque-s-detail">Meme sans le "bon" document, un fait du cas cite = un point. Ne laisse pas de blanc.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloque-card">
+        <div class="bloque-hd" style="background:#eaf8ef;">
+          <div class="bloque-situation" style="color:#1a7a3c;">Situation 4</div>
+          <div class="bloque-title" style="color:#0d4020;">La question me semble floue ou trop large</div>
+        </div>
+        <div class="bloque-body">
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#1a7a3c;">Strategie A</div>
+            <div class="bloque-s-title">Relis la question globale</div>
+            <div class="bloque-s-detail">La question globale te dit dans quelle direction aller. Toute question, meme floue, est un angle de la question globale.</div>
+          </div>
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#1a7a3c;">Strategie B</div>
+            <div class="bloque-s-title">Applique la structure B (analyse redigee)</div>
+            <div class="bloque-s-detail">Definition + application au cas + 2 arguments + conclusion. Cette structure fonctionne pour 80% des questions floues.</div>
+          </div>
+          <div class="bloque-strat">
+            <div class="bloque-s-num" style="color:#1a7a3c;">Strategie C</div>
+            <div class="bloque-s-title">Passe et reviens</div>
+            <div class="bloque-s-detail">Marque la question d'un "?" et passe a la suivante. Souvent, les questions suivantes eclairent les precedentes.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- S8 — PIÈGES CLASSIQUES                                    -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-hd" onclick="toggleSection(this)">
-      <div class="section-num" style="background:#f9d0d9; color:#b5415a;">⚠️</div>
-      <div class="section-info">
-        <div class="section-title">Les pièges classiques — ce qui fait perdre des points sans raison</div>
-        <div class="section-desc">Tirés de l'analyse des copies et des grilles de correction BAC</div>
-      </div>
-      <div class="section-arrow">▶</div>
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- TAB 7 — PIEGES                                     -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="panel" id="tab-pieges">
+
+    <div class="hl" style="background:#fdeef2; color:#7a2038;">
+      Ces pieges sont tires de l'analyse des copies et des grilles de correction BAC. Ce sont les erreurs les plus frequentes — les eviter te fait gagner des points sans effort supplementaire.
     </div>
-    <div class="section-body">
-      <div class="pieges-list">
 
-        <div class="piege-row">
-          <div class="piege-icon">📖</div>
-          <div class="piege-text">
-            <div class="piege-label">Lire tous les documents avant de regarder les questions</div>
-            <div class="piege-detail">Résultat : tu lis sans savoir quoi retenir, tu oublies tout, et tu dois relire. C'est une perte de temps inutile qui peut désorganiser toute la copie.</div>
-            <div class="piege-fix">✔ Fix : questions EN PREMIER, toujours. Les docs sont lus au fil des questions, pas avant.</div>
-          </div>
-        </div>
-
-        <div class="piege-row">
-          <div class="piege-icon">💰</div>
-          <div class="piege-text">
-            <div class="piege-label">Calculer sans interpréter</div>
-            <div class="piege-detail">Donner le résultat d'un FRNG ou d'un taux d'évolution sans dire ce que ça signifie pour l'entreprise. Le correcteur attend TOUJOURS un commentaire — c'est souvent la moitié des points.</div>
-            <div class="piege-fix">✔ Fix : finir chaque calcul par "Ce résultat signifie que…" ou "L'entreprise est donc…"</div>
-          </div>
-        </div>
-
-        <div class="piege-row">
-          <div class="piege-icon">📄</div>
-          <div class="piege-text">
-            <div class="piege-label">Répondre en général sans citer le cas</div>
-            <div class="piege-detail">Écrire une définition du cours sans l'appliquer à l'entreprise du sujet. Le correcteur ne peut pas attribuer les points — ton savoir cours ne compte que si tu le connectes au cas.</div>
-            <div class="piege-fix">✔ Fix : chaque argument doit être suivi de "d'après le document X" ou d'un fait tiré du cas (nom de l'entreprise, chiffre, date).</div>
-          </div>
-        </div>
-
-        <div class="piege-row">
-          <div class="piege-icon">🚫</div>
-          <div class="piege-text">
-            <div class="piege-label">Ignorer un document listé dans l'énoncé</div>
-            <div class="piege-detail">Si l'énoncé indique "Documents à exploiter : 3, 7, 9" et que tu n'utilises que le 3 et le 9, tu perds des points garantis sur le 7 — même si tu ne vois pas son utilité immédiate.</div>
-            <div class="piege-fix">✔ Fix : si tu bloques sur un document, cite au moins une phrase ("Selon le document 7, …"). Les correcteurs vérifient chaque document listé.</div>
-          </div>
-        </div>
-
-        <div class="piege-row">
-          <div class="piege-icon">🔀</div>
-          <div class="piege-text">
-            <div class="piege-label">Confondre les notions proches</div>
-            <div class="piege-detail">Flux tendus ≠ flux poussés · Innovation produit ≠ innovation de procédé · Compétences distinctives ≠ ressources · Marketing concentré ≠ différencié · Ces distinctions tombent souvent au BAC.</div>
-            <div class="piege-fix">✔ Fix : revoir ces paires dans les Flash Cards. Utiliser la Stratégie 3 de la Section 5 pour retrouver depuis le contexte.</div>
-          </div>
-        </div>
-
-        <div class="piege-row">
-          <div class="piege-icon">🌍</div>
-          <div class="piege-text">
-            <div class="piege-label">Sur les questions RSE : oublier le lien avec la performance</div>
-            <div class="piege-detail">Décrire les actions RSE de l'entreprise sans expliquer en quoi elles renforcent sa compétitivité ou son image. La RSE seule ne suffit pas — elle doit être reliée à un avantage.</div>
-            <div class="piege-fix">✔ Fix : toujours conclure "…ce qui lui permet de [avantage concurrentiel : image, recrutement, fidélisation, financement]"</div>
-          </div>
-        </div>
-
-        <div class="piege-row">
-          <div class="piege-icon">💡</div>
-          <div class="piege-text">
-            <div class="piege-label">Sur le modèle économique : ne pas nommer le type</div>
-            <div class="piege-detail">Expliquer comment l'entreprise gagne de l'argent sans utiliser les termes du cours (freemium, commission, abonnement…). L'examinateur attend d'abord la catégorie, puis l'application.</div>
-            <div class="piege-fix">✔ Fix : toujours commencer par "Il s'agit d'un modèle économique de type [nom]…" puis donner l'exemple de l'entreprise et un exemple hors cas.</div>
-          </div>
-        </div>
-
-        <div class="piege-row">
-          <div class="piege-icon">📝</div>
-          <div class="piege-text">
-            <div class="piege-label">Laisser une question sans réponse</div>
-            <div class="piege-detail">Même une réponse partielle ou approximative peut rapporter des points. Une feuille blanche rapporte 0. Le correcteur valorise une réponse bien construite même incomplète.</div>
-            <div class="piege-fix">✔ Fix : s'appuyer sur la Stratégie 4 de la Section 5 — identifier le thème général et répondre en cohérence avec les docs disponibles.</div>
-          </div>
-        </div>
-
+    <div class="piege-card">
+      <div class="piege-icon">🔢</div>
+      <div>
+        <div class="piege-label">Calculer sans interpreter</div>
+        <div class="piege-detail">La moitie des points d'une question de calcul est sur le commentaire, pas sur le calcul lui-meme. "FRNG = 130 000 €" seul ne vaut presque rien.</div>
+        <div class="piege-fix">Toujours finir par "Ce resultat signifie que l'entreprise…" avec une interpretation concrète.</div>
       </div>
     </div>
+
+    <div class="piege-card">
+      <div class="piege-icon">📋</div>
+      <div>
+        <div class="piege-label">Ignorer un document liste dans l'enonce</div>
+        <div class="piege-detail">Si l'enonce dit "documents 3, 7 et 9 pour Q 2.1", utiliser seulement le doc 9 = perdre des points garantis. Les correcteurs verifient systematiquement.</div>
+        <div class="piege-fix">Meme un seul element cite d'un document = "Selon le document X, …" — c'est suffisant si tu ne vois pas d'autre lien.</div>
+      </div>
+    </div>
+
+    <div class="piege-card">
+      <div class="piege-icon">📝</div>
+      <div>
+        <div class="piege-label">Repondre sans definir la notion</div>
+        <div class="piege-detail">Utiliser "RSE", "FRNG", "competences distinctives" sans les definir = faire comme si le correcteur ne sait pas ce que c'est. Il s'attend a la definition.</div>
+        <div class="piege-fix">Toujours 1 phrase de definition avant d'appliquer. Ex : "La RSE designe… Ici, l'entreprise X…"</div>
+      </div>
+    </div>
+
+    <div class="piege-card">
+      <div class="piege-icon">🏢</div>
+      <div>
+        <div class="piege-label">Parler en general au lieu de parler du cas</div>
+        <div class="piege-detail">"La RSE permet d'ameliorer l'image de l'entreprise" = reponse generale, hors-sujet. Il faut parler de l'entreprise du sujet avec ses faits concrets.</div>
+        <div class="piege-fix">Toujours citer le nom de l'entreprise et un fait precis. "La RSE de Bebe Serein, illustree par son partenariat avec des ESAT, permet…"</div>
+      </div>
+    </div>
+
+    <div class="piege-card">
+      <div class="piege-icon">⬜</div>
+      <div>
+        <div class="piege-label">Laisser une question sans reponse</div>
+        <div class="piege-detail">Une feuille blanche = 0 point garantis. Une reponse partielle, meme approximative, rapporte toujours quelque chose.</div>
+        <div class="piege-fix">Meme si tu ne sais pas : definir la notion du cours, citer un element du cas, et conclure. C'est deja 1-2 points.</div>
+      </div>
+    </div>
+
+    <div class="piege-card">
+      <div class="piege-icon">🎯</div>
+      <div>
+        <div class="piege-label">Ne pas lier les reponses a la question globale</div>
+        <div class="piege-detail">Repondre a chaque question en vase clos, sans jamais referer a la problematique centrale, donne une copie "descriptive" — pas analytique.</div>
+        <div class="piege-fix">Terminer chaque reponse par "Ainsi, [ce choix] contribue a [reformuler la question globale]."</div>
+      </div>
+    </div>
+
+    <div class="piege-card">
+      <div class="piege-icon">📖</div>
+      <div>
+        <div class="piege-label">Lire tous les documents d'un coup au debut</div>
+        <div class="piege-detail">Lire 12 documents en entier avant de commencer = 30 minutes perdues, saturation d'information, oubli de la majorite.</div>
+        <div class="piege-fix">Lire uniquement les docs lies a la question que tu traites, au moment ou tu la traites (voir Protocole — etape 5).</div>
+      </div>
+    </div>
+
   </div>
 
-</div>
+</div><!-- end .page -->
 
 <script>
-// ── ACCORDÉONS SECTIONS ──────────────────────────────────────
-function toggleSection(hd) {
-  const body = hd.nextElementSibling;
-  const arrow = hd.querySelector('.section-arrow');
-  body.classList.toggle('open');
-  arrow.classList.toggle('open');
-}
-
-// ── ACCORDÉONS VERBES (header uniquement) ────────────────────
-document.querySelectorAll('.verb-hd').forEach(function(hd) {
-  hd.addEventListener('click', function() {
-    const body = hd.nextElementSibling;
-    const arrow = hd.querySelector('.verb-arrow');
-    body.classList.toggle('open');
-    arrow.classList.toggle('open');
-  });
-});
-
-// ── ACCORDÉONS RÈGLES D'OR ───────────────────────────────────
-function toggleRule(hd) {
-  const body = hd.nextElementSibling;
-  const arrow = hd.querySelector('.rule-arrow');
-  body.classList.toggle('open');
-  arrow.classList.toggle('open');
-}
-
-// ── PROTOCOLE INTERACTIF ─────────────────────────────────────
-const PHASE_COUNTS = [3, 4, 3, 3, 4];
-const TOTAL_ITEMS = 17;
-let phaseChecked = [0, 0, 0, 0, 0];
-let currentPhase = 0;
-
-function checkItem(el, phaseIdx) {
-  el.classList.toggle('checked');
-  const isChecked = el.classList.contains('checked');
-  el.querySelector('.proto-cb').textContent = isChecked ? '✓' : '';
-  phaseChecked[phaseIdx] += isChecked ? 1 : -1;
-  updatePhaseProgress(phaseIdx);
-  // Si on décoche une case dans une phase déjà marquée done, on retire le ✓
-  if (!isChecked) {
-    const step = document.getElementById('step-' + phaseIdx);
-    const pn = document.getElementById('pn-' + phaseIdx);
-    if (step.classList.contains('ps-done')) {
-      step.classList.remove('ps-done');
-      pn.className = 'proto-num pn-idle';
-      pn.textContent = phaseIdx + 1;
-    }
-  }
-  updateOverall();
-}
-
-function updatePhaseProgress(idx) {
-  const el = document.getElementById('prog-' + idx);
-  if (el) el.innerHTML = 'Étape : <strong>' + phaseChecked[idx] + ' / ' + PHASE_COUNTS[idx] + '</strong>';
-}
-
-function updateOverall() {
-  const done = phaseChecked.reduce(function(a, b) { return a + b; }, 0);
-  const pct = Math.round(done / TOTAL_ITEMS * 100);
-  document.getElementById('po-fill').style.width = pct + '%';
-  document.getElementById('po-count').textContent = done + ' / ' + TOTAL_ITEMS;
-}
-
-function gotoPhase(idx) {
-  for (let i = 0; i < 5; i++) {
-    document.getElementById('pb-' + i).classList.toggle('open', i === idx);
-  }
-  currentPhase = idx;
-}
-
-function nextPhase(idx) {
-  const step = document.getElementById('step-' + idx);
-  const pn = document.getElementById('pn-' + idx);
-  if (phaseChecked[idx] === PHASE_COUNTS[idx]) {
-    step.classList.remove('ps-active');
-    step.classList.add('ps-done');
-    pn.className = 'proto-num pn-done';
-    pn.textContent = '✓';
-  } else {
-    step.classList.remove('ps-active');
-    pn.className = 'proto-num pn-idle';
-  }
-  const next = idx + 1;
-  if (next < 5) {
-    gotoPhase(next);
-    document.getElementById('step-' + next).classList.add('ps-active');
-    const nextPn = document.getElementById('pn-' + next);
-    nextPn.className = 'proto-num pn-active';
-    currentPhase = next;
-  }
-}
-
-function finishProtocol() {
-  const idx = 4;
-  const step = document.getElementById('step-' + idx);
-  const pn = document.getElementById('pn-' + idx);
-  if (phaseChecked[idx] === PHASE_COUNTS[idx]) {
-    step.classList.remove('ps-active');
-    step.classList.add('ps-done');
-    pn.className = 'proto-num pn-done';
-    pn.textContent = '✓';
-  }
-  const complete = document.getElementById('proto-complete');
-  complete.style.display = 'block';
-  complete.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  updateOverall();
-}
-
-function resetProtocol() {
-  phaseChecked = [0, 0, 0, 0, 0];
-  currentPhase = 0;
-  for (let i = 0; i < 5; i++) {
-    const step = document.getElementById('step-' + i);
-    step.classList.remove('ps-active', 'ps-done');
-    const pn = document.getElementById('pn-' + i);
-    pn.className = 'proto-num ' + (i === 0 ? 'pn-active' : 'pn-idle');
-    pn.textContent = i + 1;
-    const body = document.getElementById('pb-' + i);
-    body.classList.toggle('open', i === 0);
-    body.querySelectorAll('.proto-item').forEach(function(item) {
-      item.classList.remove('checked');
-      item.querySelector('.proto-cb').textContent = '';
-    });
-    updatePhaseProgress(i);
-  }
-  document.getElementById('step-0').classList.add('ps-active');
-  document.getElementById('proto-complete').style.display = 'none';
-  updateOverall();
+function showTab(id) {
+  // Hide all panels
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  // Show selected
+  document.getElementById('tab-' + id).classList.add('active');
+  // Activate button
+  const btns = document.querySelectorAll('.tab-btn');
+  const map = ['protocole','qglobale','documents','verbes','structures','bloque','pieges'];
+  const idx = map.indexOf(id);
+  if (idx >= 0) btns[idx].classList.add('active');
+  // Scroll to top of page
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>
