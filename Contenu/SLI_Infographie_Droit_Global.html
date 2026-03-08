@@ -139,6 +139,11 @@ body{padding-top:64px!important}
     <div class="section-title">Quel est le rôle du contrat ?</div>
     <div class="section-q">Formation · Exécution · Protection du consommateur</div>
 
+    <div style="display:flex;gap:6px;margin-bottom:12px;">
+      <a href="SLI_Infographie_Droit_T5.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Thème 5</a>
+      <button onclick="openMemo('SLI_Infographie_Droit_T5.html#memo')" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a69a8;color:#fff;border:none;cursor:pointer;">🧠 Carte Mémo</button>
+    </div>
+
     <div class="sub-head sub-bleu">5.1 — Formation</div>
     <div class="nb nb-bleu"><i>📋</i><div><div class="nb-title">4 conditions cumulatives</div><div class="nb-desc">Consentement non vicié · Capacité juridique · Objet déterminé et licite · Contenu licite → si 1 manque : nullité</div></div></div>
     <div class="nb nb-bleu"><i>⚠️</i><div><div class="nb-title">3 vices du consentement</div><div class="nb-desc"><strong>Erreur</strong> — fausse représentation spontanée · <strong>Dol</strong> — manœuvres frauduleuses intentionnelles · <strong>Violence</strong> — contrainte physique ou morale → nullité relative (5 ans)</div></div></div>
@@ -159,6 +164,11 @@ body{padding-top:64px!important}
     <div class="section-label">Thème 6</div>
     <div class="section-title">Qu'est-ce qu'être responsable ?</div>
     <div class="section-q">Dommage · Régimes · Réparation</div>
+
+    <div style="display:flex;gap:6px;margin-bottom:12px;">
+      <a href="SLI_Infographie_Droit_T6.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a6a2a;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Thème 6</a>
+      <button onclick="openMemo('SLI_Infographie_Droit_T6.html#memo')" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#2a6a2a;color:#fff;border:none;cursor:pointer;">🧠 Carte Mémo</button>
+    </div>
 
     <div class="sub-head sub-vert">6.1 — Le dommage</div>
     <div class="nb nb-vert"><i>⚖️</i><div><div class="nb-title">Civile vs pénale</div><div class="nb-desc">Civile → réparer la victime · Pénale → sanctionner l'auteur. Objet, tribunal, sanction différents.</div></div></div>
@@ -184,6 +194,11 @@ body{padding-top:64px!important}
     <div class="section-label">Thème 7</div>
     <div class="section-title">Comment le droit encadre-t-il le travail salarié ?</div>
     <div class="section-q">Contrat de travail · Conditions · Libertés · Rupture</div>
+
+    <div style="display:flex;gap:6px;margin-bottom:12px;">
+      <a href="SLI_Infographie_Droit_T7.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#b5415a;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Thème 7</a>
+      <button onclick="openMemo('SLI_Infographie_Droit_T7.html#memo')" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#b5415a;color:#fff;border:none;cursor:pointer;">🧠 Carte Mémo</button>
+    </div>
 
     <div class="sub-head sub-rose">7.1 — Le contrat de travail</div>
     <div class="nb nb-rose"><i>🔑</i><div><div class="nb-title">Lien de subordination juridique</div><div class="nb-desc">Pouvoir de <strong>direction</strong> + <strong>contrôle</strong> + <strong>sanction</strong>. Critère clé — la réalité prime sur l'intitulé.</div></div></div>
@@ -213,6 +228,11 @@ body{padding-top:64px!important}
     <div class="section-label">Thème 8</div>
     <div class="section-title">Dans quel cadre et comment entreprendre ?</div>
     <div class="section-q">EI · Concurrence · Formes juridiques · Partenariat</div>
+
+    <div style="display:flex;gap:6px;margin-bottom:12px;">
+      <a href="SLI_Infographie_Droit_T8.html" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;text-decoration:none;display:inline-block;">📖 Cours Thème 8</a>
+      <button onclick="openMemo('SLI_Infographie_Droit_T8.html#memo')" style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:5px 13px;border-radius:7px;background:#946e00;color:#fff;border:none;cursor:pointer;">🧠 Carte Mémo</button>
+    </div>
 
     <div class="sub-head sub-jaune">8.1 — Entreprise individuelle</div>
     <div class="nb nb-jaune"><i>👤</i><div><div class="nb-title">EI — réforme 2022</div><div class="nb-desc"><strong>2 patrimoines</strong> depuis le 15/05/2022 : patrimoine professionnel (saisissable) + patrimoine personnel (protégé). Avant 2022 = patrimoine unique.</div></div></div>
@@ -246,5 +266,26 @@ body{padding-top:64px!important}
 </div>
 
 </div><!-- fin page -->
+
+<!-- Overlay Carte Mémo -->
+<div id="memo-overlay" onclick="if(event.target===this)closeMemo()" style="display:none;position:fixed;inset:0;background:rgba(30,28,24,.85);z-index:500;align-items:center;justify-content:center;padding:16px;">
+  <div style="position:relative;width:100%;max-width:1040px;height:88vh;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 16px 80px rgba(0,0,0,.4);">
+    <button onclick="closeMemo()" style="position:absolute;top:12px;right:12px;z-index:10;background:#1e1c18;color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;font-weight:900;display:flex;align-items:center;justify-content:center;">✕</button>
+    <iframe id="memo-iframe" src="" style="width:100%;height:100%;border:none;"></iframe>
+  </div>
+</div>
+<script>
+function openMemo(url) {
+  document.getElementById('memo-iframe').src = url;
+  document.getElementById('memo-overlay').style.display = 'flex';
+}
+function closeMemo() {
+  document.getElementById('memo-overlay').style.display = 'none';
+  document.getElementById('memo-iframe').src = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMemo();
+});
+</script>
 </body>
 </html>

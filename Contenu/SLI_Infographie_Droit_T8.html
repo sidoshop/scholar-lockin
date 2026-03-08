@@ -301,5 +301,13 @@ body { padding-top: 64px !important; }
   </div>
 </div>
 
+<script>
+if (window.location.hash === '#memo') {
+  document.addEventListener('DOMContentLoaded', function() {
+    var o = document.getElementById('memo-overlay');
+    if (o) o.style.display = 'flex';
+  });
+}
+</script>
 </body>
 </html>
