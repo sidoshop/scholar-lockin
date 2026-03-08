@@ -117,6 +117,9 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
 .fiche-btn { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; padding: 10px 16px; border-radius: 10px; border: 1.5px solid #2a69a8; background: #e8f3ff; color: #2a69a8; cursor: pointer; transition: all 0.13s; white-space: nowrap; }
 .fiche-btn:hover:not(:disabled) { background: #cce2f8; }
 .fiche-btn:disabled { opacity: 0.3; cursor: default; }
+.memo-btn { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; padding: 10px 16px; border-radius: 10px; border: 1.5px solid #b5415a; background: #fdeef2; color: #b5415a; cursor: pointer; transition: all 0.13s; white-space: nowrap; }
+.memo-btn:hover:not(:disabled) { background: #f9d0d9; }
+.memo-btn:disabled { opacity: 0.3; cursor: default; }
 
 /* MASTERY BUTTONS */
 .mastery-row { display: flex; gap: 10px; margin-bottom: 16px; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
@@ -213,7 +216,8 @@ body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; min-height: 
       <div id="counter-name" class="counter-name">Contrat</div>
     </div>
     <button id="flip-btn" class="flip-btn" onclick="flipCard()">👁 Voir la définition</button>
-    <button id="fiche-btn" class="fiche-btn" onclick="openFiche()">📖 Fiche du thème</button>
+    <button id="fiche-btn" class="fiche-btn" onclick="openFiche()">📖 Fiche du cours</button>
+    <button id="memo-btn" class="memo-btn" onclick="openMemo()">🧠 Carte Mémo</button>
     <button id="btn-next" class="nav-btn" onclick="next()">Suivante →</button>
   </div>
 
@@ -382,6 +386,12 @@ const CHAP_URL = {
   't7': 'SLI_Infographie_Droit_T7.html',
   't8': 'SLI_Infographie_Droit_T8.html',
 };
+const CHAP_MEMO_URL = {
+  't5': 'SLI_Infographie_Droit_T5.html#memo',
+  't6': 'SLI_Infographie_Droit_T6.html#memo',
+  't7': 'SLI_Infographie_Droit_T7.html#memo',
+  't8': 'SLI_Infographie_Droit_T8.html#memo',
+};
 
 function render() {
   const card = deck[idx];
@@ -420,8 +430,9 @@ function render() {
   // Flip button
   document.getElementById('flip-btn').textContent = flipped ? '↩ Cacher' : '👁 Voir la définition';
 
-  // Fiche button
+  // Fiche button + Mémo button
   document.getElementById('fiche-btn').disabled = !CHAP_URL[card.chap];
+  document.getElementById('memo-btn').disabled = !CHAP_MEMO_URL[card.chap];
 
   // Mastery row
   document.getElementById('mastery-row').className = 'mastery-row' + (flipped ? ' visible' : '');
@@ -469,6 +480,12 @@ document.addEventListener('keydown', e => {
 // ─── FICHE OVERLAY ───────────────────────────────────────────────────────────
 function openFiche() {
   const url = CHAP_URL[deck[idx].chap];
+  if(!url) return;
+  document.getElementById('fiche-iframe').src = url;
+  document.getElementById('fiche-overlay').style.display = 'flex';
+}
+function openMemo() {
+  const url = CHAP_MEMO_URL[deck[idx].chap];
   if(!url) return;
   document.getElementById('fiche-iframe').src = url;
   document.getElementById('fiche-overlay').style.display = 'flex';
