@@ -291,29 +291,42 @@ body { padding-top: 64px !important; }
 </div>
 
 <!-- Carte Mémo Overlay -->
-<div id="memo-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:2000; align-items:center; justify-content:center; padding:24px;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#b5415a; border-radius:20px; padding:32px; max-width:580px; width:100%; max-height:80vh; overflow-y:auto;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-      <div style="font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; color:#fff;">🧠 Carte Mémo — T7 Travail salarié</div>
-      <button onclick="document.getElementById('memo-overlay').style.display='none'" style="background:rgba(255,255,255,.1); border:none; color:#fff; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:18px;">×</button>
+<div id="memo-overlay" style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.8); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:2000; align-items:center; justify-content:center; padding:24px;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:linear-gradient(145deg,#b5415a 0%,#8a2a40 100%); border-radius:20px; max-width:600px; width:100%; max-height:82vh; overflow:hidden; box-shadow:0 24px 80px rgba(0,0,0,.5); display:flex; flex-direction:column;">
+    <div style="padding:22px 28px 18px; border-bottom:1px solid rgba(255,255,255,.2); display:flex; justify-content:space-between; align-items:flex-start; flex-shrink:0;">
+      <div>
+        <div style="font-family:'Inter',sans-serif; font-size:10.5px; font-weight:700; color:rgba(255,255,255,.55); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px;">Carte Mémo · Droit</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; color:#fff;">🧠 T7 — Le travail salarié</div>
+      </div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'" style="background:rgba(255,255,255,.18); border:none; color:#fff; border-radius:50%; width:36px; height:36px; cursor:pointer; font-size:18px; font-weight:900; flex-shrink:0; margin-top:4px; display:flex; align-items:center; justify-content:center;">×</button>
     </div>
-    <div style="font-family:'Nunito Sans',sans-serif; font-size:13px; color:rgba(255,255,255,.92); line-height:1.8;">
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin-bottom:6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">LIEN DE SUBORDINATION</div>
-      <div>3 pouvoirs : direction + contrôle + sanction</div>
-      <div>La réalité prime sur l'intitulé du contrat</div>
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin:14px 0 6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">PROCÉDURE LICENCIEMENT — 3 ÉTAPES</div>
-      <div>① Convocation LRAR ou main propre</div>
-      <div>② Entretien préalable ≥ 5 jours OUVRABLES</div>
-      <div>③ Notification LRAR ≥ 2 jours OUVRABLES après entretien</div>
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin:14px 0 6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">FAUTES</div>
-      <div>· Faute grave → pas de préavis ni indemnité, mais chômage OUI</div>
-      <div>· Faute lourde → idem</div>
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin:14px 0 6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">RUPTURE CONVENTIONNELLE</div>
-      <div>Commun accord · Rétractation 15j calendaires · Indemnité + ARE</div>
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin:14px 0 6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">PIÈGES</div>
-      <div>❌ Faute grave ≠ pas de chômage</div>
-      <div>❌ Rétractation RC = 15j calendaires (pas ouvrables)</div>
-      <div>❌ Analyser fond ET forme séparément</div>
+    <div style="padding:20px 28px 24px; overflow-y:auto; font-family:'Nunito Sans',sans-serif; font-size:13.5px; color:rgba(255,255,255,.92); line-height:1.75;">
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">Lien de subordination</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px; margin-bottom:16px;">
+        <div>3 pouvoirs : direction + contrôle + sanction</div>
+        <div>La réalité prime sur l'intitulé du contrat</div>
+      </div>
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">Procédure licenciement — 3 étapes</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px; margin-bottom:16px;">
+        <div>① Convocation LRAR ou main propre</div>
+        <div>② Entretien préalable ≥ 5 jours OUVRABLES</div>
+        <div>③ Notification LRAR ≥ 2 jours OUVRABLES après entretien</div>
+      </div>
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">Fautes</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px; margin-bottom:16px;">
+        <div>· Faute grave → pas de préavis ni indemnité, mais chômage OUI</div>
+        <div>· Faute lourde → idem</div>
+      </div>
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">Rupture conventionnelle</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px; margin-bottom:16px;">
+        <div>Commun accord · Rétractation 15j calendaires · Indemnité + ARE</div>
+      </div>
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">Pièges à éviter</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px;">
+        <div>❌ Faute grave ≠ pas de chômage</div>
+        <div>❌ Rétractation RC = 15j calendaires (pas ouvrables)</div>
+        <div>❌ Analyser fond ET forme séparément</div>
+      </div>
     </div>
   </div>
 </div>

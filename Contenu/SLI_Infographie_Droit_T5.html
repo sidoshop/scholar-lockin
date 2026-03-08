@@ -315,31 +315,42 @@ body { padding-top: 64px !important; }
 </div><!-- fin page -->
 
 <!-- Carte Mémo Overlay -->
-<div id="memo-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:2000; align-items:center; justify-content:center; padding:24px;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#2a69a8; border-radius:20px; padding:32px; max-width:600px; width:100%; max-height:80vh; overflow-y:auto;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-      <div style="font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; color:#fff;">🧠 Carte Mémo — T5 Le contrat</div>
-      <button onclick="document.getElementById('memo-overlay').style.display='none'" style="background:rgba(255,255,255,.1); border:none; color:#fff; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:18px;">×</button>
+<div id="memo-overlay" style="display:none; position:fixed; inset:0; background:rgba(30,28,24,.8); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:2000; align-items:center; justify-content:center; padding:24px;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:linear-gradient(145deg,#2a69a8 0%,#1a4878 100%); border-radius:20px; max-width:600px; width:100%; max-height:82vh; overflow:hidden; box-shadow:0 24px 80px rgba(0,0,0,.5); display:flex; flex-direction:column;">
+    <div style="padding:22px 28px 18px; border-bottom:1px solid rgba(255,255,255,.2); display:flex; justify-content:space-between; align-items:flex-start; flex-shrink:0;">
+      <div>
+        <div style="font-family:'Inter',sans-serif; font-size:10.5px; font-weight:700; color:rgba(255,255,255,.55); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px;">Carte Mémo · Droit</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; color:#fff;">🧠 T5 — Le contrat</div>
+      </div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'" style="background:rgba(255,255,255,.18); border:none; color:#fff; border-radius:50%; width:36px; height:36px; cursor:pointer; font-size:18px; font-weight:900; flex-shrink:0; margin-top:4px; display:flex; align-items:center; justify-content:center;">×</button>
     </div>
-    <div style="font-family:'Nunito Sans',sans-serif; font-size:13px; color:rgba(255,255,255,.92); line-height:1.8;">
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin-bottom:6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">4 CONDITIONS DE VALIDITÉ</div>
-      <div>① Consentement non vicié (erreur / dol / violence → nullité relative 5 ans)</div>
-      <div>② Capacité juridique (mineurs / majeurs protégés → nullité relative)</div>
-      <div>③ Objet déterminé et licite</div>
-      <div>④ Contenu licite (sinon nullité absolue)</div>
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin:14px 0 6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">SANCTIONS DE L'INEXÉCUTION</div>
-      <div>① Exécution forcée</div>
-      <div>② Exception d'inexécution (refuser d'exécuter tant que l'autre n'exécute pas)</div>
-      <div>③ Résolution (rétroactive) ≠ Résiliation (avenir seulement)</div>
-      <div>④ Dommages-intérêts (inexécution + préjudice + lien causalité)</div>
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin:14px 0 6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">PROTECTION CONSOMMATEUR</div>
-      <div>· Clauses abusives → réputées non écrites</div>
-      <div>· Droit rétractation 14j → contrats à distance SEULEMENT</div>
-      <div>· Garantie légale de conformité → 2 ans</div>
-      <div style="color:rgba(255,255,255,.7); font-weight:800; margin:14px 0 6px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;">PIÈGES À ÉVITER</div>
-      <div>❌ Dol ≠ Erreur (dol = intentionnel)</div>
-      <div>❌ Résolution ≠ Résiliation</div>
-      <div>❌ Rétractation 14j ≠ en boutique physique</div>
+    <div style="padding:20px 28px 24px; overflow-y:auto; font-family:'Nunito Sans',sans-serif; font-size:13.5px; color:rgba(255,255,255,.92); line-height:1.75;">
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">4 conditions de validité</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px; margin-bottom:16px;">
+        <div>① Consentement non vicié (erreur / dol / violence → nullité relative 5 ans)</div>
+        <div>② Capacité juridique (mineurs / majeurs protégés → nullité relative)</div>
+        <div>③ Objet déterminé et licite</div>
+        <div>④ Contenu licite (sinon nullité absolue)</div>
+      </div>
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">Sanctions de l'inexécution</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px; margin-bottom:16px;">
+        <div>① Exécution forcée</div>
+        <div>② Exception d'inexécution (refuser d'exécuter tant que l'autre n'exécute pas)</div>
+        <div>③ Résolution (rétroactive) ≠ Résiliation (avenir seulement)</div>
+        <div>④ Dommages-intérêts (inexécution + préjudice + lien causalité)</div>
+      </div>
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">Protection consommateur</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px; margin-bottom:16px;">
+        <div>· Clauses abusives → réputées non écrites</div>
+        <div>· Droit rétractation 14j → contrats à distance SEULEMENT</div>
+        <div>· Garantie légale de conformité → 2 ans</div>
+      </div>
+      <div style="background:rgba(255,255,255,.18); border-radius:8px; padding:4px 12px; display:inline-block; font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#fff; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px;">Pièges à éviter</div>
+      <div style="border-left:2px solid rgba(255,255,255,.3); padding-left:12px;">
+        <div>❌ Dol ≠ Erreur (dol = intentionnel)</div>
+        <div>❌ Résolution ≠ Résiliation</div>
+        <div>❌ Rétractation 14j ≠ en boutique physique</div>
+      </div>
     </div>
   </div>
 </div>
