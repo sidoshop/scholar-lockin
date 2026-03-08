@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>T8 — Entreprendre · Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: flex; justify-content: center; padding: 24px 16px; }
+.page { width: 980px; background: #fffdf8; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 36px rgba(0,0,0,.11); }
+.hd { padding: 20px 28px 16px; color: #fff; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+.hd-badge { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,.2); padding: 3px 11px; border-radius: 20px; display: inline-block; margin-bottom: 9px; }
+.hd h1 { font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 900; line-height: 1.25; margin-bottom: 5px; }
+.hd h1 em { font-style: normal; color: #fff3b0; }
+.hd-sub { font-size: 13px; color: rgba(255,255,255,.75); line-height: 1.55; font-weight: 600; max-width: 700px; }
+.body { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.08); }
+.col { padding: 20px 18px 16px; border-right: 1px solid rgba(0,0,0,.08); }
+.col:last-child { border-right: none; }
+.col-j  { background: #fef8e2; }
+.col-w  { background: #fffdf8; }
+.col-j2 { background: #fdf0b8; }
+.col-lbl { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 13px; padding-bottom: 8px; border-bottom: 2px solid #fde8a0; color: #946e00; }
+.sec-t { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; margin: 13px 0 8px; }
+.card { border-radius: 10px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; }
+.card:last-child { margin-bottom: 0; }
+.c-j  { background: #fde8a0; }
+.c-j2 { background: #f8d870; }
+.c-r  { background: #f9d0d9; }
+.c-g  { background: #bce8cd; }
+.c-b  { background: #cce2f8; }
+.c-w  { background: #f0f0f0; }
+.ci { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.cn { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1e1c18; margin-bottom: 3px; }
+.cd { font-size: 11.5px; color: #5a5448; line-height: 1.55; font-weight: 600; }
+.piege { background: #1e1c18; border-radius: 10px; padding: 10px 13px; display: flex; gap: 9px; align-items: flex-start; margin-top: 12px; }
+.piege-t { font-size: 11.5px; font-weight: 700; color: #fffdf8; line-height: 1.6; }
+.piege-t strong { color: #f5c842; }
+.tbl { width:100%; border-collapse:collapse; margin:8px 0; font-size:11px; }
+.tbl th { background:rgba(148,110,0,.1); padding:5px 8px; font-weight:800; text-align:left; color:#1e1c18; }
+.tbl td { padding:5px 8px; border-bottom:1px solid rgba(0,0,0,.06); color:#3a3530; font-weight:600; vertical-align:top; line-height:1.4; }
+.tbl tr:last-child td { border-bottom:none; }
+.bac-s { background: #2c2920; padding: 14px 20px; margin-top:12px; border-radius:9px; }
+.bac-h { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.bac-t { font-size: 11.5px; color: #e8e2d6; font-weight: 600; line-height: 1.6; }
+.ft { background: #f0ede6; padding: 9px 24px; display: flex; align-items: center; justify-content: space-between; }
+.ft-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 13px; color: #946e00; }
+.ft-note { font-size: 11px; color: #a09880; font-weight: 600; }
+body { padding-top: 64px !important; }
+.sli-nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(240,237,230,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; border-bottom:1px solid rgba(30,28,24,.1); }
+.sli-nav a { text-decoration:none; }
+.sli-nav-logo { font-family:'Inter',sans-serif; font-size:1.05rem; font-weight:900; color:#1e1c18; }
+.sli-nav-logo span { color:#b5415a; }
+.sli-nav-links { display:flex; gap:2px; }
+.sli-nl { font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:#7a6a58; padding:6px 14px; border-radius:20px; white-space:nowrap; text-decoration:none; }
+.sli-nl:hover { background:rgba(30,28,24,.08); color:#1e1c18; }
+.sli-nl.on { background:#1e1c18; color:#f5c842; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Droit_Global.html" class="sli-nl">Vue d'ensemble</a>
+    <a href="SLI_Infographie_Droit_T8.html" class="sli-nl on">Thèmes</a>
+    <a href="SLI_Flashcards_Droit.html" class="sli-nl">Flash cards</a>
+    <a href="SLI_Methode_Droit.html" class="sli-nl">Méthode</a>
+    <a href="SLI_Annales_Droit.html" class="sli-nl">Annales</a>
+  </div>
+  <a href="../droit.html" class="sli-nl">← Accueil</a>
+</nav>
+
+<div style="background:#f0ede6; padding:12px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #e0dbd2;">
+  <a href="SLI_Infographie_Droit_T7.html" style="font-family:'Nunito',sans-serif; font-size:13.5px; font-weight:800; color:#5a5448; text-decoration:none; padding:8px 16px; border-radius:8px; background:#fff; border:1.5px solid #ddd8cf;">← Thème 7</a>
+  <div style="display:flex; gap:8px; align-items:center;">
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 5"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 6"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 7"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#946e00; display:inline-block;" title="Thème 8"></span>
+  </div>
+  <a href="SLI_Infographie_Droit_Global.html" style="font-family:'Nunito',sans-serif; font-size:13.5px; font-weight:800; color:#5a5448; text-decoration:none; padding:8px 16px; border-radius:8px; background:#fff; border:1.5px solid #ddd8cf;">Vue d'ensemble →</a>
+</div>
+
+<div class="page">
+
+<div class="hd" style="background:#946e00;">
+  <div style="flex:1;">
+    <div class="hd-badge">Scholar Lock-In · Droit Terminale STMG · Thème 8</div>
+    <h1>Thème 8 — <em>Dans quel cadre et comment entreprendre ?</em></h1>
+    <div class="hd-sub">EI réforme 2022 · Concurrence déloyale · Pratiques anticoncurrentielles · Formes juridiques · Franchise · GIE</div>
+  </div>
+  <div style="flex-shrink:0; padding-top:4px;">
+    <button onclick="document.getElementById('memo-overlay').style.display='flex'" style="background:rgba(255,255,255,.22); color:#1e1c18; border:2px solid rgba(255,255,255,.6); border-radius:50px; padding:9px 20px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; cursor:pointer; display:inline-flex; align-items:center; gap:8px;">🧠 Carte Mémo</button>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- Colonne 1 : EI + Concurrence -->
+  <div class="col col-j">
+    <div class="col-lbl">8.1 — Entreprise individuelle</div>
+
+    <div class="card c-j">
+      <span class="ci">👤</span>
+      <div>
+        <div class="cn">EI — Réforme du 15 mai 2022</div>
+        <div class="cd"><strong>Avant</strong> : 1 seul patrimoine → biens perso engagés dans les dettes pro.<br><strong>Depuis 2022</strong> : 2 patrimoines distincts automatiquement :<br>• Patrimoine professionnel = saisissable par créanciers pro<br>• Patrimoine personnel = <strong>protégé</strong></div>
+      </div>
+    </div>
+
+    <div class="card c-j2">
+      <span class="ci">🛒</span>
+      <div>
+        <div class="cn">Micro-entrepreneur</div>
+        <div class="cd">Régime simplifié de l'EI. Plafonds de CA et régime social/fiscal allégé.</div>
+      </div>
+    </div>
+
+    <div class="col-lbl" style="margin-top:16px;">8.2 — Concurrence</div>
+
+    <div class="card c-j">
+      <span class="ci">🏁</span>
+      <div>
+        <div class="cn">Liberté du commerce</div>
+        <div class="cd">Toute personne est libre d'exercer l'activité de son choix et de concurrencer autrui. Limite : la loi et les usages loyaux.</div>
+      </div>
+    </div>
+
+    <div class="card c-r">
+      <span class="ci">😈</span>
+      <div>
+        <div class="cn">Concurrence déloyale — 3 formes</div>
+        <div class="cd">• <strong>Dénigrement</strong> — critiques injustifiées d'un concurrent<br>• <strong>Imitation/parasitisme</strong> — copier pour créer confusion<br>• <strong>Désorganisation</strong> — débauchage massif, détournement clientèle<br>→ fondé sur art. 1240 (resp. pour faute)</div>
+      </div>
+    </div>
+
+    <div class="card c-r">
+      <span class="ci">🚫</span>
+      <div>
+        <div class="cn">Pratiques anticoncurrentielles</div>
+        <div class="cd">• <strong>Ententes illicites</strong> — accords entre concurrents (prix, marchés)<br>• <strong>Abus de position dominante</strong> — imposer conditions désavantageuses<br>→ Autorité de la concurrence sanctionne</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-t">⚠️ <strong>Réforme 2022 :</strong> appliquer TOUJOURS la nouvelle règle (2 patrimoines, perso protégé). Citer l'ancienne règle (un seul patrimoine) = erreur.</div>
+    </div>
+  </div>
+
+  <!-- Colonne 2 : Formes juridiques -->
+  <div class="col col-w">
+    <div class="col-lbl" style="border-color:#e8c870; color:#7a5800;">8.3 — Formes juridiques</div>
+
+    <div class="card c-j">
+      <span class="ci">⚖️</span>
+      <div>
+        <div class="cn">Personnalité morale</div>
+        <div class="cd">La société est un sujet de droit <strong>distinct</strong> de ses membres. Elle peut contracter, posséder, agir en justice. Acquise à l'immatriculation au RCS.</div>
+      </div>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Forme</th><th>Associés</th><th>Responsabilité</th><th>Capital min.</th></tr>
+      <tr><td><strong>EURL</strong></td><td>1</td><td>Limitée</td><td>1 €</td></tr>
+      <tr><td><strong>SARL</strong></td><td>2 à 100</td><td>Limitée</td><td>1 €</td></tr>
+      <tr><td><strong>SASU</strong></td><td>1</td><td>Limitée</td><td>1 €</td></tr>
+      <tr><td><strong>SAS</strong></td><td>Libre</td><td>Limitée</td><td>1 €</td></tr>
+      <tr><td><strong>SA</strong></td><td>Min. 2</td><td>Limitée</td><td>37 000 €</td></tr>
+      <tr><td><strong>SNC</strong></td><td>Min. 2</td><td><strong>Illimitée</strong></td><td>Libre</td></tr>
+    </table>
+
+    <div class="card c-g" style="margin-top:8px;">
+      <span class="ci">🛡️</span>
+      <div>
+        <div class="cn">Responsabilité limitée aux apports</div>
+        <div class="cd">Dans SARL, SAS, SA : les associés ne peuvent perdre que leur mise. Patrimoine personnel protégé. ≠ SNC = illimitée et solidaire sur biens personnels.</div>
+      </div>
+    </div>
+
+    <div class="bac-s">
+      <div class="bac-h">📌 Question type T8</div>
+      <div class="bac-t">« Quelle forme juridique conseiller à X ? » → ① Lire les critères du sujet (associés, capital, resp.) ② Recommander avec arguments ③ Exclure les autres avec arguments. Ne pas juste lister — comparer et argumenter.</div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-t">⚠️ <strong>EI ≠ EURL :</strong> l'EI n'est pas une société (pas de personnalité morale). L'EURL est une SARL à associé unique (personnalité morale). Attention à ne pas les confondre.</div>
+    </div>
+  </div>
+
+  <!-- Colonne 3 : Partenariat -->
+  <div class="col col-j2">
+    <div class="col-lbl" style="border-color:#e0c050; color:#6a4e00;">8.4 — Partenariat</div>
+
+    <div class="card c-j">
+      <span class="ci">🏪</span>
+      <div>
+        <div class="cn">Franchise ★★★</div>
+        <div class="cd">Le franchiseur cède l'usage de sa <strong>marque + enseigne + savoir-faire</strong> contre redevance. Les parties restent <strong>indépendantes</strong>.</div>
+      </div>
+    </div>
+
+    <div class="card c-j2">
+      <span class="ci">🚗</span>
+      <div>
+        <div class="cn">Concession commerciale</div>
+        <div class="cd">Le concédant autorise le concessionnaire à vendre ses produits dans un <strong>territoire exclusif</strong>, sous sa marque. Ex : concessionnaire Renault. ≠ franchise (pas de savoir-faire)</div>
+      </div>
+    </div>
+
+    <div class="card c-j2">
+      <span class="ci">™️</span>
+      <div>
+        <div class="cn">Licence de marque</div>
+        <div class="cd">Usage de la <strong>marque seule</strong> contre redevance. Pas d'enseigne ni de savoir-faire transmis. ≠ franchise.</div>
+      </div>
+    </div>
+
+    <div class="card c-w">
+      <span class="ci">🔧</span>
+      <div>
+        <div class="cn">Sous-traitance</div>
+        <div class="cd">Donneur d'ordre confie une partie du contrat à un sous-traitant. Indépendance des parties.</div>
+      </div>
+    </div>
+
+    <div class="card c-b">
+      <span class="ci">🤝</span>
+      <div>
+        <div class="cn">GIE — Groupement d'Intérêt Économique</div>
+        <div class="cd">Coopération entre entreprises <strong>sans fusion</strong>. But : faciliter l'activité des membres (pas réaliser des bénéfices propres). Responsabilité des membres : <strong>illimitée et solidaire</strong>. Ex : Airbus (origine).</div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px; background:#fef8e2; border-radius:10px; padding:12px 14px;">
+      <div style="font-family:'Nunito',sans-serif; font-size:12px; font-weight:900; color:#946e00; margin-bottom:8px;">TABLEAU COMPARATIF PARTENARIAT</div>
+      <table class="tbl" style="margin:0;">
+        <tr><th>Contrat</th><th>Marque</th><th>Savoir-faire</th><th>Territoire</th></tr>
+        <tr><td>Franchise</td><td>✅</td><td>✅</td><td>—</td></tr>
+        <tr><td>Concession</td><td>✅</td><td>❌</td><td>✅ exclusif</td></tr>
+        <tr><td>Licence</td><td>✅</td><td>❌</td><td>—</td></tr>
+      </table>
+    </div>
+
+    <div class="piege">
+      <div class="piege-t">⚠️ <strong>Franchise ≠ Licence :</strong> la franchise transmet le savoir-faire + enseigne, la licence cède uniquement la marque. Différence à maîtriser absolument. Toujours préciser que les parties restent indépendantes.</div>
+    </div>
+
+    <div class="bac-s">
+      <div class="bac-h">📌 Questions types T8</div>
+      <div class="bac-t">« Qualifiez le contrat liant X à Y » → identifier marque + savoir-faire (franchise) ou territoire exclusif (concession) ou marque seule (licence) · « Les conséquences de la faillite sur le patrimoine de X ? » → réforme 2022 · Annales : Pasquier 2019</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ft">
+  <span class="ft-brand">Scholar Lock-In — Droit</span>
+  <span class="ft-note">Thème 8 — Entreprendre · Terminale STMG</span>
+</div>
+
+</div>
+
+<!-- Carte Mémo Overlay -->
+<div id="memo-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:2000; align-items:center; justify-content:center; padding:24px;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#1e1c18; border-radius:20px; padding:32px; max-width:580px; width:100%; max-height:80vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div style="font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; color:#f5c842;">🧠 Carte Mémo — T8 Entreprendre</div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'" style="background:rgba(255,255,255,.1); border:none; color:#fff; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:18px;">×</button>
+    </div>
+    <div style="font-family:'Nunito Sans',sans-serif; font-size:13px; color:#c0b090; line-height:1.8;">
+      <div style="color:#f5c842; font-weight:800; margin-bottom:6px; font-size:14px;">EI RÉFORME 2022</div>
+      <div>2 patrimoines : professionnel (saisissable) + personnel (protégé)</div>
+      <div>Avant 2022 = 1 seul patrimoine (règle obsolète)</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">FORMES JURIDIQUES</div>
+      <div>SARL/SAS/SA = responsabilité limitée aux apports</div>
+      <div>SNC = illimitée et solidaire (à éviter si protection souhaitée)</div>
+      <div>SA = capital minimum 37 000 €</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">PARTENARIAT</div>
+      <div>Franchise = marque + enseigne + savoir-faire</div>
+      <div>Concession = marque + territoire exclusif</div>
+      <div>Licence = marque seule</div>
+      <div>GIE = coopération sans fusion, resp. illimitée</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">PIÈGES</div>
+      <div>❌ Appliquer l'ancienne règle EI (patrimoine unique)</div>
+      <div>❌ Confondre franchise et licence</div>
+      <div>❌ Ne pas exclure les formes inadaptées dans T8</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

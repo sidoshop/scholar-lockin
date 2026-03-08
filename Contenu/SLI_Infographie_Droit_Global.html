@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Droit — Vue d'ensemble · Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: flex; justify-content: center; padding: 24px; }
+.page { width: 1100px; background: #fffdf8; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 32px rgba(0,0,0,0.10); }
+
+/* Header dark */
+.header { background: #1e1c18; color: #fffdf8; padding: 22px 32px 18px; }
+.header-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
+.badge { font-family:'Nunito',sans-serif; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; background:rgba(255,255,255,0.12); padding:4px 12px; border-radius:20px; color:#e8e2d6; display:inline-block; margin-bottom:8px; }
+.header h1 { font-family:'Nunito',sans-serif; font-size:30px; font-weight:900; line-height:1.15; }
+.header h1 span { color:#f5c842; }
+.header-sub { font-size:14px; color:#a09880; margin-top:4px; font-weight:600; }
+
+/* Legend bar */
+.legend-bar { display:flex; background:#2c2920; }
+.legend-item { flex:1; padding:9px 16px; display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#fffdf8; border-right:1px solid rgba(255,255,255,0.07); font-family:'Nunito',sans-serif; }
+.legend-item:last-child { border-right:none; }
+.legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+/* Grille 2x2 */
+.body { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid rgba(0,0,0,0.07); }
+.section { padding:20px 18px; border-right:1px solid rgba(0,0,0,0.07); border-bottom:1px solid rgba(0,0,0,0.07); }
+.section:nth-child(2n) { border-right:none; }
+.sec-bleu   { background:#e8f3ff; }
+.sec-vert   { background:#eef6ee; }
+.sec-rose   { background:#fdeef1; }
+.sec-jaune  { background:#fef8e2; }
+
+.section-label { font-size:11.5px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+.sec-bleu  .section-label { color:#2a69a8; }
+.sec-vert  .section-label { color:#2a6a2a; }
+.sec-rose  .section-label { color:#b5415a; }
+.sec-jaune .section-label { color:#946e00; }
+
+.section-title { font-family:'Nunito',sans-serif; font-size:18px; font-weight:900; color:#1e1c18; margin-bottom:13px; line-height:1.3; }
+.section-q { font-size:13px; font-weight:700; color:#5a5448; font-style:italic; margin-bottom:12px; }
+
+/* Notion boxes */
+.nb { border-radius:9px; padding:9px 11px; display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; }
+.nb:last-child { margin-bottom:0; }
+.nb-bleu  { background:#cce2f8; }
+.nb-vert  { background:#c2dfc2; }
+.nb-rose  { background:#f9d0d9; }
+.nb-jaune { background:#fde8a0; }
+.nb-grey  { background:#e8e3db; }
+.nb i { font-size:16px; flex-shrink:0; margin-top:1px; font-style:normal; }
+.nb-title { font-family:'Nunito',sans-serif; font-size:14px; font-weight:800; color:#1e1c18; margin-bottom:2px; line-height:1.2; }
+.nb-desc  { font-size:12.5px; color:#5a5448; line-height:1.5; font-weight:600; }
+
+/* Sous-section */
+.sub-head { font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#1e1c18; margin:12px 0 7px; border-left:3px solid currentColor; padding-left:8px; }
+.sub-bleu  { color:#2a69a8; }
+.sub-vert  { color:#2a6a2a; }
+.sub-rose  { color:#b5415a; }
+.sub-jaune { color:#946e00; }
+
+/* Piège box */
+.piege { background:#1e1c18; border-radius:9px; padding:9px 12px; margin-top:10px; }
+.piege-t { font-size:11.5px; font-weight:700; color:#fffdf8; line-height:1.6; }
+.piege-t strong { color:#f5c842; }
+
+/* Tableau compact */
+.tbl { width:100%; border-collapse:collapse; margin:8px 0; font-size:11px; }
+.tbl th { background:rgba(0,0,0,.06); padding:5px 8px; font-weight:800; text-align:left; color:#1e1c18; }
+.tbl td { padding:5px 8px; border-bottom:1px solid rgba(0,0,0,.06); color:#3a3530; font-weight:600; vertical-align:top; line-height:1.4; }
+.tbl tr:last-child td { border-bottom:none; }
+
+/* Bac encart */
+.bac { background:#2c2920; border-radius:9px; padding:9px 12px; margin-top:10px; }
+.bac-h { font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; color:#f5c842; letter-spacing:1px; text-transform:uppercase; margin-bottom:5px; }
+.bac-t { font-size:11.5px; color:#e8e2d6; font-weight:600; line-height:1.55; }
+
+/* Footer */
+.ft { background:#f0ede6; padding:9px 24px; display:flex; align-items:center; justify-content:space-between; }
+.ft-brand { font-family:'Nunito',sans-serif; font-weight:900; font-size:13px; color:#2a69a8; }
+.ft-note { font-size:11px; color:#a09880; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- Header -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="badge">Scholar Lock-In · Droit · Terminale STMG · Thèmes 5–8</div>
+      <h1>Vue d'ensemble — <span>Droit</span></h1>
+      <div class="header-sub">Le contrat · La responsabilité · Le travail salarié · Entreprendre · 80+ notions à maîtriser</div>
+    </div>
+    <a href="../droit.html" style="font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#f5c842;text-decoration:none;background:rgba(255,255,255,.1);padding:7px 16px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:4px;">← Retour</a>
+  </div>
+</div>
+
+<!-- Legend bar -->
+<div class="legend-bar">
+  <div class="legend-item"><span class="legend-dot" style="background:#2a69a8;"></span>T5 — Le contrat</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#2a6a2a;"></span>T6 — La responsabilité</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#b5415a;"></span>T7 — Le travail salarié</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#946e00;"></span>T8 — Entreprendre</div>
+</div>
+
+<!-- Body 2x2 -->
+<div class="body">
+
+  <!-- T5 — CONTRAT -->
+  <div class="section sec-bleu">
+    <div class="section-label">Thème 5</div>
+    <div class="section-title">Quel est le rôle du contrat ?</div>
+    <div class="section-q">Formation · Exécution · Protection du consommateur</div>
+
+    <div class="sub-head sub-bleu">5.1 — Formation</div>
+    <div class="nb nb-bleu"><i>📋</i><div><div class="nb-title">4 conditions cumulatives</div><div class="nb-desc">Consentement non vicié · Capacité juridique · Objet déterminé et licite · Contenu licite → si 1 manque : nullité</div></div></div>
+    <div class="nb nb-bleu"><i>⚠️</i><div><div class="nb-title">3 vices du consentement</div><div class="nb-desc"><strong>Erreur</strong> — fausse représentation spontanée · <strong>Dol</strong> — manœuvres frauduleuses intentionnelles · <strong>Violence</strong> — contrainte physique ou morale → nullité relative (5 ans)</div></div></div>
+    <div class="nb nb-grey"><i>⚖️</i><div><div class="nb-title">Nullité relative vs absolue</div><div class="nb-desc">Relative = seule la victime peut agir (vices, incapacité) · Absolue = tout intéressé (objet/contenu illicite)</div></div></div>
+
+    <div class="sub-head sub-bleu">5.2 — Exécution</div>
+    <div class="nb nb-bleu"><i>🔒</i><div><div class="nb-title">Force obligatoire</div><div class="nb-desc">Le contrat tient lieu de loi. Nul ne peut s'en affranchir unilatéralement.</div></div></div>
+    <div class="nb nb-bleu"><i>❌</i><div><div class="nb-title">Sanctions de l'inexécution</div><div class="nb-desc">Exécution forcée · Exception d'inexécution · <strong>Résolution</strong> (rétroactive) · Dommages-intérêts</div></div></div>
+
+    <div class="sub-head sub-bleu">5.3 — Consommateur</div>
+    <div class="nb nb-bleu"><i>🛒</i><div><div class="nb-title">Protections spécifiques</div><div class="nb-desc">Contrat d'adhésion · Clauses abusives (réputées non écrites) · Droit de rétractation <strong>14 jours</strong> (contrats à distance uniquement) · Garantie légale 2 ans</div></div></div>
+
+    <div class="piege"><div class="piege-t">⚠️ <strong>Pièges T5 :</strong> Résolution ≠ résiliation · Droit rétractation = distance seulement, jamais boutique · Dol = intention de tromper (≠ erreur spontanée)</div></div>
+  </div>
+
+  <!-- T6 — RESPONSABILITÉ -->
+  <div class="section sec-vert">
+    <div class="section-label">Thème 6</div>
+    <div class="section-title">Qu'est-ce qu'être responsable ?</div>
+    <div class="section-q">Dommage · Régimes · Réparation</div>
+
+    <div class="sub-head sub-vert">6.1 — Le dommage</div>
+    <div class="nb nb-vert"><i>⚖️</i><div><div class="nb-title">Civile vs pénale</div><div class="nb-desc">Civile → réparer la victime · Pénale → sanctionner l'auteur. Objet, tribunal, sanction différents.</div></div></div>
+    <div class="nb nb-vert"><i>📋</i><div><div class="nb-title">3 conditions cumulatives</div><div class="nb-desc"><strong>Fait générateur</strong> (faute / chose / autrui) + <strong>Dommage</strong> (personnel, certain, direct, légitime) + <strong>Lien de causalité</strong></div></div></div>
+
+    <div class="sub-head sub-vert">6.2 — Les régimes</div>
+    <div class="nb nb-vert"><i>👤</i><div><div class="nb-title">Resp. pour faute (art. 1240)</div><div class="nb-desc">Droit commun extracontractuel. La victime prouve la faute.</div></div></div>
+    <div class="nb nb-vert"><i>🪣</i><div><div class="nb-title">Fait des choses (art. 1242)</div><div class="nb-desc">Gardien = responsable. Sans faute à prouver.</div></div></div>
+    <div class="nb nb-vert"><i>👨‍👩‍👧</i><div><div class="nb-title">Fait d'autrui (art. 1242)</div><div class="nb-desc">Parents/enfants mineurs · Employeur/salarié en service</div></div></div>
+    <div class="nb nb-grey"><i>🔄</i><div><div class="nb-title">Non-cumul des responsabilités</div><div class="nb-desc">Si un contrat existe → contractuelle obligatoire, jamais délictuelle à la place.</div></div></div>
+
+    <div class="sub-head sub-vert">Exonérations</div>
+    <div class="nb nb-vert"><i>🛡️</i><div><div class="nb-title">3 moyens d'exonération</div><div class="nb-desc">Force majeure (totale) · Fait de la victime (partielle/totale) · Fait d'un tiers (totale si FMaj)</div></div></div>
+
+    <div class="sub-head sub-vert">6.3 — Réparation</div>
+    <div class="nb nb-vert"><i>💰</i><div><div class="nb-title">Réparation intégrale</div><div class="nb-desc">Replacer la victime dans sa situation antérieure — ni plus, ni moins.</div></div></div>
+
+    <div class="piege"><div class="piege-t">⚠️ <strong>Pièges T6 :</strong> Toujours vérifier le lien de causalité séparément · 3 exonérations (pas seulement la force majeure) · Resp. contractuelle si contrat = non-cumul</div></div>
+  </div>
+
+  <!-- T7 — TRAVAIL -->
+  <div class="section sec-rose">
+    <div class="section-label">Thème 7</div>
+    <div class="section-title">Comment le droit encadre-t-il le travail salarié ?</div>
+    <div class="section-q">Contrat de travail · Conditions · Libertés · Rupture</div>
+
+    <div class="sub-head sub-rose">7.1 — Le contrat de travail</div>
+    <div class="nb nb-rose"><i>🔑</i><div><div class="nb-title">Lien de subordination juridique</div><div class="nb-desc">Pouvoir de <strong>direction</strong> + <strong>contrôle</strong> + <strong>sanction</strong>. Critère clé — la réalité prime sur l'intitulé.</div></div></div>
+    <div class="nb nb-rose"><i>📄</i><div><div class="nb-title">CDI · CDD · CTT</div><div class="nb-desc">CDI = forme normale · CDD = motif précis + écrit obligatoire · CTT = 3 parties (ETT + salarié + entreprise utilisatrice)</div></div></div>
+    <div class="nb nb-grey"><i>🚫</i><div><div class="nb-title">Clause de non-concurrence</div><div class="nb-desc">Limitée en temps + espace + domaine + <strong>contrepartie financière obligatoire</strong> (sinon nulle)</div></div></div>
+
+    <div class="sub-head sub-rose">7.2 — Conditions de travail</div>
+    <div class="nb nb-rose"><i>⏰</i><div><div class="nb-title">Durée légale = 35h/semaine</div><div class="nb-desc">Heures sup : +25% (8 premières) · +50% (au-delà) · SMIC = minimum légal horaire</div></div></div>
+
+    <div class="sub-head sub-rose">7.4 — Rupture du CDI</div>
+    <div class="nb nb-rose"><i>📋</i><div><div class="nb-title">Procédure licenciement — 3 étapes</div><div class="nb-desc">1. Convocation LRAR → 2. Entretien préalable (≥ <strong>5 j ouvrables</strong> après convoc) → 3. Notification LRAR (≥ <strong>2 j ouvrables</strong> après entretien)</div></div></div>
+    <div class="nb nb-rose"><i>🤝</i><div><div class="nb-title">Rupture conventionnelle</div><div class="nb-desc">Commun accord · Indemnité spécifique + ARE · Rétractation <strong>15 jours calendaires</strong> · Homologation DREETS</div></div></div>
+
+    <table class="tbl">
+      <tr><th>Mode</th><th>Initiative</th><th>Préavis</th><th>Indemnité</th><th>Chômage</th></tr>
+      <tr><td>Démission</td><td>Salarié</td><td>Oui</td><td>Non</td><td>Non</td></tr>
+      <tr><td>Lic. faute simple</td><td>Employeur</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+      <tr><td>Lic. faute grave</td><td>Employeur</td><td>Non</td><td>Non</td><td>Oui ⚠️</td></tr>
+      <tr><td>Rupture conv.</td><td>Commun accord</td><td>Non</td><td>Oui</td><td>Oui</td></tr>
+    </table>
+
+    <div class="piege"><div class="piege-t">⚠️ <strong>Pièges T7 :</strong> Faute grave ≠ pas de chômage · Délai rétractation RC = 15j calendaires ≠ préavis · Toujours analyser fond ET forme du licenciement</div></div>
+  </div>
+
+  <!-- T8 — ENTREPRENDRE -->
+  <div class="section sec-jaune">
+    <div class="section-label">Thème 8</div>
+    <div class="section-title">Dans quel cadre et comment entreprendre ?</div>
+    <div class="section-q">EI · Concurrence · Formes juridiques · Partenariat</div>
+
+    <div class="sub-head sub-jaune">8.1 — Entreprise individuelle</div>
+    <div class="nb nb-jaune"><i>👤</i><div><div class="nb-title">EI — réforme 2022</div><div class="nb-desc"><strong>2 patrimoines</strong> depuis le 15/05/2022 : patrimoine professionnel (saisissable) + patrimoine personnel (protégé). Avant 2022 = patrimoine unique.</div></div></div>
+
+    <div class="sub-head sub-jaune">8.2 — Concurrence</div>
+    <div class="nb nb-jaune"><i>🏁</i><div><div class="nb-title">Concurrence déloyale</div><div class="nb-desc"><strong>Dénigrement</strong> · <strong>Imitation/parasitisme</strong> · <strong>Désorganisation</strong> → fondé sur art. 1240</div></div></div>
+    <div class="nb nb-jaune"><i>🚫</i><div><div class="nb-title">Pratiques anticoncurrentielles</div><div class="nb-desc"><strong>Ententes illicites</strong> (prix, marchés) · <strong>Abus de position dominante</strong> → Autorité de la concurrence</div></div></div>
+
+    <div class="sub-head sub-jaune">8.3 — Formes juridiques</div>
+    <table class="tbl">
+      <tr><th>Forme</th><th>Associés</th><th>Responsabilité</th><th>Capital</th></tr>
+      <tr><td>SARL/EURL</td><td>1 à 100</td><td>Limitée</td><td>1 €</td></tr>
+      <tr><td>SAS/SASU</td><td>Libre</td><td>Limitée</td><td>1 €</td></tr>
+      <tr><td>SA</td><td>Min. 2</td><td>Limitée</td><td>37 000 €</td></tr>
+      <tr><td>SNC</td><td>Min. 2</td><td><strong>Illimitée</strong></td><td>Libre</td></tr>
+    </table>
+
+    <div class="sub-head sub-jaune">8.4 — Partenariat</div>
+    <div class="nb nb-jaune"><i>🏪</i><div><div class="nb-title">Franchise vs Concession vs Licence</div><div class="nb-desc"><strong>Franchise</strong> = marque + enseigne + savoir-faire · <strong>Concession</strong> = marque + territoire exclusif · <strong>Licence</strong> = marque seule. Parties toujours indépendantes.</div></div></div>
+    <div class="nb nb-jaune"><i>🤝</i><div><div class="nb-title">GIE</div><div class="nb-desc">Coopération sans fusion · Responsabilité illimitée et solidaire · But : faciliter l'activité des membres</div></div></div>
+
+    <div class="piege"><div class="piege-t">⚠️ <strong>Pièges T8 :</strong> EI = 2 patrimoines depuis 2022 (pas l'ancienne règle) · Franchise ≠ licence (savoir-faire !) · SNC = responsabilité illimitée = à éviter si protection patrimoine souhaitée</div></div>
+  </div>
+
+</div><!-- fin body -->
+
+<!-- Footer -->
+<div class="ft">
+  <span class="ft-brand">Scholar Lock-In — Droit</span>
+  <span class="ft-note">Vue d'ensemble · Thèmes 5 à 8 · Terminale STMG</span>
+</div>
+
+</div><!-- fin page -->
+</body>
+</html>

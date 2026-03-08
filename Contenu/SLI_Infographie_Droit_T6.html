@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>T6 — La responsabilité · Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: flex; justify-content: center; padding: 24px 16px; }
+.page { width: 980px; background: #fffdf8; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 36px rgba(0,0,0,.11); }
+.hd { padding: 20px 28px 16px; color: #fff; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+.hd-badge { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,.2); padding: 3px 11px; border-radius: 20px; display: inline-block; margin-bottom: 9px; }
+.hd h1 { font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 900; line-height: 1.25; margin-bottom: 5px; }
+.hd h1 em { font-style: normal; color: #fde8a0; }
+.hd-sub { font-size: 13px; color: rgba(255,255,255,.75); line-height: 1.55; font-weight: 600; max-width: 700px; }
+.body { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.08); }
+.col { padding: 20px 18px 16px; border-right: 1px solid rgba(0,0,0,.08); }
+.col:last-child { border-right: none; }
+.col-g  { background: #eef6ee; }
+.col-w  { background: #fffdf8; }
+.col-g2 { background: #dff0df; }
+.col-lbl { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 13px; padding-bottom: 8px; border-bottom: 2px solid #c2dfc2; color: #2a6a2a; }
+.sec-t { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; margin: 13px 0 8px; }
+.card { border-radius: 10px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; }
+.card:last-child { margin-bottom: 0; }
+.c-g  { background: #c2dfc2; }
+.c-g2 { background: #a8d0a8; }
+.c-r  { background: #f9d0d9; }
+.c-j  { background: #fde8a0; }
+.c-b  { background: #cce2f8; }
+.c-w  { background: #f0f0f0; }
+.ci { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.cn { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1e1c18; margin-bottom: 3px; }
+.cd { font-size: 11.5px; color: #5a5448; line-height: 1.55; font-weight: 600; }
+.piege { background: #1e1c18; border-radius: 10px; padding: 10px 13px; display: flex; gap: 9px; align-items: flex-start; margin-top: 12px; }
+.piege-t { font-size: 11.5px; font-weight: 700; color: #fffdf8; line-height: 1.6; }
+.piege-t strong { color: #f5c842; }
+.tbl { width:100%; border-collapse:collapse; margin:8px 0; font-size:11px; }
+.tbl th { background:rgba(42,106,42,.1); padding:5px 8px; font-weight:800; text-align:left; color:#1e1c18; }
+.tbl td { padding:5px 8px; border-bottom:1px solid rgba(0,0,0,.06); color:#3a3530; font-weight:600; vertical-align:top; line-height:1.4; }
+.tbl tr:last-child td { border-bottom:none; }
+.bac-s { background: #2c2920; padding: 14px 20px; margin-top:12px; border-radius:9px; }
+.bac-h { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.bac-t { font-size: 11.5px; color: #e8e2d6; font-weight: 600; line-height: 1.6; }
+.ft { background: #f0ede6; padding: 9px 24px; display: flex; align-items: center; justify-content: space-between; }
+.ft-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 13px; color: #2a6a2a; }
+.ft-note { font-size: 11px; color: #a09880; font-weight: 600; }
+body { padding-top: 64px !important; }
+.sli-nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(240,237,230,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; border-bottom:1px solid rgba(30,28,24,.1); }
+.sli-nav a { text-decoration:none; }
+.sli-nav-logo { font-family:'Inter',sans-serif; font-size:1.05rem; font-weight:900; color:#1e1c18; }
+.sli-nav-logo span { color:#b5415a; }
+.sli-nav-links { display:flex; gap:2px; }
+.sli-nl { font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:#7a6a58; padding:6px 14px; border-radius:20px; white-space:nowrap; text-decoration:none; }
+.sli-nl:hover { background:rgba(30,28,24,.08); color:#1e1c18; }
+.sli-nl.on { background:#1e1c18; color:#f5c842; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Droit_Global.html" class="sli-nl">Vue d'ensemble</a>
+    <a href="SLI_Infographie_Droit_T6.html" class="sli-nl on">Thèmes</a>
+    <a href="SLI_Flashcards_Droit.html" class="sli-nl">Flash cards</a>
+    <a href="SLI_Methode_Droit.html" class="sli-nl">Méthode</a>
+    <a href="SLI_Annales_Droit.html" class="sli-nl">Annales</a>
+  </div>
+  <a href="../droit.html" class="sli-nl">← Accueil</a>
+</nav>
+
+<div style="background:#f0ede6; padding:12px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #e0dbd2;">
+  <a href="SLI_Infographie_Droit_T5.html" style="font-family:'Nunito',sans-serif; font-size:13.5px; font-weight:800; color:#5a5448; text-decoration:none; padding:8px 16px; border-radius:8px; background:#fff; border:1.5px solid #ddd8cf;">← Thème 5</a>
+  <div style="display:flex; gap:8px; align-items:center;">
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 5"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#2a6a2a; display:inline-block;" title="Thème 6"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 7"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 8"></span>
+  </div>
+  <a href="SLI_Infographie_Droit_T7.html" style="font-family:'Nunito',sans-serif; font-size:13.5px; font-weight:800; color:#5a5448; text-decoration:none; padding:8px 16px; border-radius:8px; background:#fff; border:1.5px solid #ddd8cf;">Thème 7 →</a>
+</div>
+
+<div class="page">
+
+<div class="hd" style="background:#2a6a2a;">
+  <div style="flex:1;">
+    <div class="hd-badge">Scholar Lock-In · Droit Terminale STMG · Thème 6</div>
+    <h1>Thème 6 — <em>Qu'est-ce qu'être responsable ?</em></h1>
+    <div class="hd-sub">Fait générateur · Dommage · Lien de causalité · Régimes · Exonérations · Réparation intégrale</div>
+  </div>
+  <div style="flex-shrink:0; padding-top:4px;">
+    <button onclick="document.getElementById('memo-overlay').style.display='flex'" style="background:rgba(255,255,255,.22); color:#fff; border:2px solid rgba(255,255,255,.4); border-radius:50px; padding:9px 20px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; cursor:pointer; display:inline-flex; align-items:center; gap:8px;">🧠 Carte Mémo</button>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- Colonne 1 : Dommage & conditions -->
+  <div class="col col-g">
+    <div class="col-lbl">6.1 — Le dommage</div>
+
+    <div class="card c-g">
+      <span class="ci">⚖️</span>
+      <div>
+        <div class="cn">Civile vs Pénale</div>
+        <div class="cd"><strong>Civile</strong> → réparer la victime (DI) · Tribunal judiciaire<br><strong>Pénale</strong> → sanctionner l'auteur (amende/prison) · Tribunal correctionnel</div>
+      </div>
+    </div>
+
+    <div class="card c-g">
+      <span class="ci">📋</span>
+      <div>
+        <div class="cn">3 conditions cumulatives</div>
+        <div class="cd"><strong>Fait générateur</strong> (faute / fait des choses / fait d'autrui)<br>+ <strong>Dommage</strong> (personnel, certain, direct, légitime)<br>+ <strong>Lien de causalité</strong></div>
+      </div>
+    </div>
+
+    <div class="sec-t">Types de dommages</div>
+    <div class="card c-g2">
+      <span class="ci">💼</span>
+      <div><div class="cn">Matériel</div><div class="cd">Atteinte au patrimoine. Ex : voiture endommagée.</div></div>
+    </div>
+    <div class="card c-g2">
+      <span class="ci">🩺</span>
+      <div><div class="cn">Corporel</div><div class="cd">Atteinte à l'intégrité physique. Ex : fracture.</div></div>
+    </div>
+    <div class="card c-g2">
+      <span class="ci">💔</span>
+      <div><div class="cn">Moral</div><div class="cd">Atteinte aux sentiments, à l'honneur. Ex : diffamation.</div></div>
+    </div>
+
+    <div class="card c-g" style="margin-top:8px;">
+      <span class="ci">🔗</span>
+      <div>
+        <div class="cn">Lien de causalité</div>
+        <div class="cd">Relation <strong>directe</strong> entre le fait générateur et le dommage. Sans lien de causalité prouvé → pas de responsabilité même si faute + dommage coexistent.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-t">⚠️ Le lien de causalité ne se déduit pas automatiquement. Il doit être démontré séparément. Erreur fréquente : vérifier seulement faute + dommage et oublier le lien.</div>
+    </div>
+  </div>
+
+  <!-- Colonne 2 : Régimes -->
+  <div class="col col-w">
+    <div class="col-lbl" style="border-color:#a0c8a0; color:#2a5a2a;">6.2 — Les régimes</div>
+
+    <div class="card c-g">
+      <span class="ci">👤</span>
+      <div>
+        <div class="cn">Resp. pour faute — art. 1240</div>
+        <div class="cd">Droit commun extracontractuel. La victime doit <strong>prouver la faute</strong>. Comportement contraire au devoir de prudence.</div>
+      </div>
+    </div>
+
+    <div class="card c-g">
+      <span class="ci">🪣</span>
+      <div>
+        <div class="cn">Fait des choses — art. 1242 al.1</div>
+        <div class="cd">Le <strong>gardien</strong> (usage + direction + contrôle) est responsable. Régime <strong>sans faute</strong> à prouver. Ex : chien qui mord, bouteille qui explose.</div>
+      </div>
+    </div>
+
+    <div class="card c-g">
+      <span class="ci">👨‍👩‍👧</span>
+      <div>
+        <div class="cn">Fait d'autrui — art. 1242</div>
+        <div class="cd">Parents / enfants mineurs · Commettant (employeur) / préposé (salarié) <strong>dans l'exercice de ses fonctions</strong></div>
+      </div>
+    </div>
+
+    <div class="card c-b" style="margin-top:4px;">
+      <span class="ci">📝</span>
+      <div>
+        <div class="cn">Resp. contractuelle</div>
+        <div class="cd">Si un contrat existe et qu'il est inexécuté → responsabilité contractuelle. <strong>Principe du non-cumul</strong> : on ne peut pas choisir la délictuelle à la place.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">Exonérations</div>
+    <table class="tbl">
+      <tr><th>Moyen</th><th>Définition</th><th>Effet</th></tr>
+      <tr><td>Force majeure</td><td>Imprévisible + irrésistible + extérieur</td><td>Totale</td></tr>
+      <tr><td>Fait de la victime</td><td>Victime a contribué</td><td>Partielle / totale</td></tr>
+      <tr><td>Fait d'un tiers</td><td>Tiers seul à l'origine</td><td>Totale si FMaj</td></tr>
+    </table>
+
+    <div class="bac-s">
+      <div class="bac-h">📌 Méthode T6</div>
+      <div class="bac-t">① Contrat existant ? → contractuelle · sinon extracontractuelle<br>② Qualifier le fait générateur<br>③ Vérifier les 3 conditions<br>④ Exonération possible ?<br>⑤ Conclure + réparation intégrale</div>
+    </div>
+  </div>
+
+  <!-- Colonne 3 : Réparation -->
+  <div class="col col-g2">
+    <div class="col-lbl" style="border-color:#90c090; color:#1a5a1a;">6.3 — La réparation</div>
+
+    <div class="card c-g">
+      <span class="ci">⚖️</span>
+      <div>
+        <div class="cn">Principe de réparation intégrale</div>
+        <div class="cd">La victime doit être replacée dans la situation où elle se serait trouvée <strong>si le dommage ne s'était pas produit</strong>. Ni plus, ni moins. On ne peut pas s'enrichir.</div>
+      </div>
+    </div>
+
+    <div class="card c-g2">
+      <span class="ci">💰</span>
+      <div>
+        <div class="cn">Dommages-intérêts</div>
+        <div class="cd">Somme d'argent versée par le responsable. Principal mode de réparation en droit civil.</div>
+      </div>
+    </div>
+
+    <div class="card c-g2">
+      <span class="ci">🔨</span>
+      <div>
+        <div class="cn">Réparation en nature</div>
+        <div class="cd">Remise en état ou remplacement. Possible si réalisable et souhaitée par la victime. Ex : remise en état d'une clôture.</div>
+      </div>
+    </div>
+
+    <div class="card c-w">
+      <span class="ci">🤝</span>
+      <div>
+        <div class="cn">Transaction</div>
+        <div class="cd">Accord amiable entre victime et responsable (ou assureur) sans passer par le tribunal.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; background:#eef6ee; border-radius:12px; padding:14px;">
+      <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#1e1c18; margin-bottom:10px;">Récap — Que retenir pour le bac ?</div>
+      <div style="font-size:12px; color:#3a5a3a; font-weight:700; line-height:1.8;">
+        ✅ Toujours les 3 conditions cumulatives<br>
+        ✅ Identifier le régime AVANT d'analyser<br>
+        ✅ Non-cumul si contrat existant<br>
+        ✅ 3 exonérations (pas seulement force majeure)<br>
+        ✅ Conclure sur la réparation intégrale
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-t">⚠️ <strong>Pièges T6 :</strong> oublier le lien de causalité · ne citer qu'une seule exonération sur 3 · confondre resp. civile (réparer) et pénale (sanctionner) · oublier le non-cumul</div>
+    </div>
+
+    <div class="bac-s">
+      <div class="bac-h">📌 Questions types T6</div>
+      <div class="bac-t">« Quel régime de responsabilité s'applique ? » · « La victime peut-elle obtenir réparation ? » · « Qui est responsable ? » Annales : Flunch 2021</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ft">
+  <span class="ft-brand">Scholar Lock-In — Droit</span>
+  <span class="ft-note">Thème 6 — La responsabilité · Terminale STMG</span>
+</div>
+
+</div>
+
+<!-- Carte Mémo Overlay -->
+<div id="memo-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:2000; align-items:center; justify-content:center; padding:24px;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#1e1c18; border-radius:20px; padding:32px; max-width:580px; width:100%; max-height:80vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div style="font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; color:#f5c842;">🧠 Carte Mémo — T6 Responsabilité</div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'" style="background:rgba(255,255,255,.1); border:none; color:#fff; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:18px;">×</button>
+    </div>
+    <div style="font-family:'Nunito Sans',sans-serif; font-size:13px; color:#c0b090; line-height:1.8;">
+      <div style="color:#f5c842; font-weight:800; margin-bottom:6px; font-size:14px;">3 CONDITIONS CUMULATIVES</div>
+      <div>① Fait générateur (faute / fait des choses / fait d'autrui)</div>
+      <div>② Dommage (personnel, certain, direct, légitime)</div>
+      <div>③ Lien de causalité (direct entre fait et dommage)</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">RÉGIMES</div>
+      <div>· Pour faute (art. 1240) → victime prouve la faute</div>
+      <div>· Fait des choses → gardien responsable, sans faute</div>
+      <div>· Fait d'autrui → parents/enfants, employeur/salarié</div>
+      <div>· Contractuelle → si contrat inexécuté (non-cumul !)</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">3 EXONÉRATIONS</div>
+      <div>· Force majeure → exonération totale</div>
+      <div>· Fait de la victime → partielle ou totale</div>
+      <div>· Fait d'un tiers → totale si caractères FMaj</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">RÉPARATION</div>
+      <div>· Principe intégral → replacer dans l'état antérieur</div>
+      <div>· DI en argent ou réparation en nature</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

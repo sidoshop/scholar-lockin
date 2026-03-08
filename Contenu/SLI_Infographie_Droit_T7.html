@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>T7 — Le travail salarié · Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', sans-serif; background: #f0ede6; display: flex; justify-content: center; padding: 24px 16px; }
+.page { width: 980px; background: #fffdf8; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 36px rgba(0,0,0,.11); }
+.hd { padding: 20px 28px 16px; color: #fff; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+.hd-badge { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,.2); padding: 3px 11px; border-radius: 20px; display: inline-block; margin-bottom: 9px; }
+.hd h1 { font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 900; line-height: 1.25; margin-bottom: 5px; }
+.hd h1 em { font-style: normal; color: #fde8a0; }
+.hd-sub { font-size: 13px; color: rgba(255,255,255,.75); line-height: 1.55; font-weight: 600; max-width: 700px; }
+.body { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.08); }
+.col { padding: 20px 18px 16px; border-right: 1px solid rgba(0,0,0,.08); }
+.col:last-child { border-right: none; }
+.col-r  { background: #fdeef2; }
+.col-w  { background: #fffdf8; }
+.col-r2 { background: #fbe4ea; }
+.col-lbl { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 13px; padding-bottom: 8px; border-bottom: 2px solid #f9d0d9; color: #b5415a; }
+.sec-t { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: #1e1c18; margin: 13px 0 8px; }
+.card { border-radius: 10px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; }
+.card:last-child { margin-bottom: 0; }
+.c-r  { background: #f9d0d9; }
+.c-r2 { background: #f0b8c6; }
+.c-j  { background: #fde8a0; }
+.c-g  { background: #bce8cd; }
+.c-b  { background: #cce2f8; }
+.c-w  { background: #f0f0f0; }
+.ci { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.cn { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; color: #1e1c18; margin-bottom: 3px; }
+.cd { font-size: 11.5px; color: #5a5448; line-height: 1.55; font-weight: 600; }
+.piege { background: #1e1c18; border-radius: 10px; padding: 10px 13px; display: flex; gap: 9px; align-items: flex-start; margin-top: 12px; }
+.piege-t { font-size: 11.5px; font-weight: 700; color: #fffdf8; line-height: 1.6; }
+.piege-t strong { color: #f5c842; }
+.tbl { width:100%; border-collapse:collapse; margin:8px 0; font-size:11px; }
+.tbl th { background:rgba(181,65,90,.1); padding:5px 8px; font-weight:800; text-align:left; color:#1e1c18; }
+.tbl td { padding:5px 8px; border-bottom:1px solid rgba(0,0,0,.06); color:#3a3530; font-weight:600; vertical-align:top; line-height:1.4; }
+.tbl tr:last-child td { border-bottom:none; }
+.step-box { background:#2c2920; border-radius:10px; padding:12px 14px; margin-bottom:7px; display:flex; align-items:flex-start; gap:10px; }
+.step-num { width:28px; height:28px; border-radius:50%; background:#b5415a; color:#fff; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.step-text { font-size:11.5px; color:#e8e2d6; font-weight:700; line-height:1.55; }
+.step-text strong { color:#f5c842; }
+.bac-s { background: #2c2920; padding: 14px 20px; margin-top:12px; border-radius:9px; }
+.bac-h { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.bac-t { font-size: 11.5px; color: #e8e2d6; font-weight: 600; line-height: 1.6; }
+.ft { background: #f0ede6; padding: 9px 24px; display: flex; align-items: center; justify-content: space-between; }
+.ft-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 13px; color: #b5415a; }
+.ft-note { font-size: 11px; color: #a09880; font-weight: 600; }
+body { padding-top: 64px !important; }
+.sli-nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(240,237,230,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; border-bottom:1px solid rgba(30,28,24,.1); }
+.sli-nav a { text-decoration:none; }
+.sli-nav-logo { font-family:'Inter',sans-serif; font-size:1.05rem; font-weight:900; color:#1e1c18; }
+.sli-nav-logo span { color:#b5415a; }
+.sli-nav-links { display:flex; gap:2px; }
+.sli-nl { font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:#7a6a58; padding:6px 14px; border-radius:20px; white-space:nowrap; text-decoration:none; }
+.sli-nl:hover { background:rgba(30,28,24,.08); color:#1e1c18; }
+.sli-nl.on { background:#1e1c18; color:#f5c842; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../index.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Infographie_Droit_Global.html" class="sli-nl">Vue d'ensemble</a>
+    <a href="SLI_Infographie_Droit_T7.html" class="sli-nl on">Thèmes</a>
+    <a href="SLI_Flashcards_Droit.html" class="sli-nl">Flash cards</a>
+    <a href="SLI_Methode_Droit.html" class="sli-nl">Méthode</a>
+    <a href="SLI_Annales_Droit.html" class="sli-nl">Annales</a>
+  </div>
+  <a href="../droit.html" class="sli-nl">← Accueil</a>
+</nav>
+
+<div style="background:#f0ede6; padding:12px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #e0dbd2;">
+  <a href="SLI_Infographie_Droit_T6.html" style="font-family:'Nunito',sans-serif; font-size:13.5px; font-weight:800; color:#5a5448; text-decoration:none; padding:8px 16px; border-radius:8px; background:#fff; border:1.5px solid #ddd8cf;">← Thème 6</a>
+  <div style="display:flex; gap:8px; align-items:center;">
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 5"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 6"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#b5415a; display:inline-block;" title="Thème 7"></span>
+    <span style="width:10px; height:10px; border-radius:50%; background:#ddd8cf; display:inline-block;" title="Thème 8"></span>
+  </div>
+  <a href="SLI_Infographie_Droit_T8.html" style="font-family:'Nunito',sans-serif; font-size:13.5px; font-weight:800; color:#5a5448; text-decoration:none; padding:8px 16px; border-radius:8px; background:#fff; border:1.5px solid #ddd8cf;">Thème 8 →</a>
+</div>
+
+<div class="page">
+
+<div class="hd" style="background:#b5415a;">
+  <div style="flex:1;">
+    <div class="hd-badge">Scholar Lock-In · Droit Terminale STMG · Thème 7</div>
+    <h1>Thème 7 — <em>Comment le droit encadre-t-il le travail salarié ?</em></h1>
+    <div class="hd-sub">Lien de subordination · CDI · CDD · CTT · Conditions de travail · Libertés · Rupture · Procédure de licenciement</div>
+  </div>
+  <div style="flex-shrink:0; padding-top:4px;">
+    <button onclick="document.getElementById('memo-overlay').style.display='flex'" style="background:rgba(255,255,255,.22); color:#fff; border:2px solid rgba(255,255,255,.4); border-radius:50px; padding:9px 20px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; cursor:pointer; display:inline-flex; align-items:center; gap:8px;">🧠 Carte Mémo</button>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- Colonne 1 : Contrat de travail -->
+  <div class="col col-r">
+    <div class="col-lbl">7.1 — Le contrat de travail</div>
+
+    <div class="card c-r">
+      <span class="ci">🔑</span>
+      <div>
+        <div class="cn">Lien de subordination juridique</div>
+        <div class="cd">Critère essentiel. L'employeur dispose d'un pouvoir de <strong>direction</strong> + <strong>contrôle</strong> + <strong>sanction</strong>. La réalité des faits prime sur l'intitulé du contrat.</div>
+      </div>
+    </div>
+
+    <div class="card c-r">
+      <span class="ci">♾️</span>
+      <div>
+        <div class="cn">CDI</div>
+        <div class="cd">Forme <strong>normale et générale</strong>. Pas de terme fixé. Fin = démission / licenciement / rupture conventionnelle.</div>
+      </div>
+    </div>
+
+    <div class="card c-r2">
+      <span class="ci">📅</span>
+      <div>
+        <div class="cn">CDD</div>
+        <div class="cd">Limité dans le temps pour un motif précis (remplacement absent, surcroît temporaire, saisonnier). Écrit obligatoire signé <strong>dans les 2 jours ouvrables</strong>. Ne peut pas pourvoir un emploi permanent.</div>
+      </div>
+    </div>
+
+    <div class="card c-r2">
+      <span class="ci">🏭</span>
+      <div>
+        <div class="cn">CTT — Intérim</div>
+        <div class="cd">3 parties : ETT + salarié + entreprise utilisatrice. 2 contrats : mission + mise à disposition.</div>
+      </div>
+    </div>
+
+    <div class="card c-j" style="margin-top:6px;">
+      <span class="ci">🚫</span>
+      <div>
+        <div class="cn">Clause de non-concurrence</div>
+        <div class="cd">Valide si : limitée en <strong>temps</strong> + <strong>espace</strong> + domaine d'activité + <strong>contrepartie financière obligatoire</strong>. Sans contrepartie = nulle.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">7.2 — Conditions de travail</div>
+    <div class="card c-r">
+      <span class="ci">⏰</span>
+      <div>
+        <div class="cn">35h/semaine + heures sup</div>
+        <div class="cd">Durée légale = référence (pas un maximum). Heures sup : <strong>+25%</strong> (8 premières) · <strong>+50%</strong> (au-delà). SMIC = minimum légal révisé au 1er janvier.</div>
+      </div>
+    </div>
+
+    <div class="sec-t">7.3 — Libertés individuelles</div>
+    <div class="card c-r2">
+      <span class="ci">🕊️</span>
+      <div>
+        <div class="cn">Double test des restrictions</div>
+        <div class="cd">Justifiée par la <strong>nature du poste</strong> ET <strong>proportionnée</strong> au but. Vie personnelle ≠ sanctionnable, sauf trouble objectif dans l'entreprise.</div>
+      </div>
+    </div>
+
+    <div class="piege">
+      <div class="piege-t">⚠️ <strong>Piège :</strong> la réalité de la relation de travail prime sur l'intitulé du contrat. Un "prestataire indépendant" peut être requalifié en salarié si les 3 pouvoirs sont prouvés.</div>
+    </div>
+  </div>
+
+  <!-- Colonne 2 : Procédure licenciement -->
+  <div class="col col-w">
+    <div class="col-lbl" style="border-color:#e8b0bc; color:#8a2030;">7.4 — Rupture du contrat</div>
+
+    <div class="sec-t" style="margin-top:0;">Licenciement pour motif personnel</div>
+
+    <div class="card c-r">
+      <span class="ci">📋</span>
+      <div>
+        <div class="cn">Fond — Cause réelle et sérieuse</div>
+        <div class="cd"><strong>Réelle</strong> = objective et vérifiable · <strong>Sérieuse</strong> = suffisamment grave pour justifier la rupture</div>
+      </div>
+    </div>
+
+    <div style="margin: 12px 0 8px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#b5415a;">Procédure — 3 étapes dans l'ordre</div>
+
+    <div class="step-box">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>Convocation</strong> à l'entretien préalable — lettre recommandée avec AR ou remise en main propre. Mention : objet, date, heure, lieu, droit d'assistance.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>Entretien préalable</strong> — au moins <strong>5 jours ouvrables</strong> après la présentation de la convocation.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>Notification</strong> du licenciement — au moins <strong>2 jours ouvrables</strong> après l'entretien. LRAR obligatoire avec motifs précis.</div>
+    </div>
+
+    <div class="sec-t">Niveaux de faute</div>
+    <table class="tbl">
+      <tr><th>Type</th><th>Préavis</th><th>Indemnité</th><th>Chômage</th></tr>
+      <tr><td>Faute simple</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+      <tr><td>Faute grave</td><td><strong>Non</strong></td><td><strong>Non</strong></td><td>Oui ⚠️</td></tr>
+      <tr><td>Faute lourde</td><td><strong>Non</strong></td><td><strong>Non</strong></td><td>Oui ⚠️</td></tr>
+    </table>
+
+    <div class="piege">
+      <div class="piege-t">⚠️ <strong>Piège crucial :</strong> faute grave et faute lourde ne privent PAS du droit au chômage (ARE). Elles suppriment seulement le préavis et l'indemnité de licenciement.</div>
+    </div>
+
+    <div class="bac-s">
+      <div class="bac-h">📌 LA question T7 au bac</div>
+      <div class="bac-t">« La procédure est-elle régulière ? » → toujours analyser FOND (cause R&S ?) ET FORME (3 étapes + délais exacts). Oublier l'un = perdre des points. Délais : 5j / 2j à connaître par cœur.</div>
+    </div>
+  </div>
+
+  <!-- Colonne 3 : Rupture conventionnelle + tableau -->
+  <div class="col col-r2">
+    <div class="col-lbl" style="border-color:#d890a0; color:#7a1828;">Rupture conventionnelle</div>
+
+    <div class="card c-r">
+      <span class="ci">🤝</span>
+      <div>
+        <div class="cn">Rupture conventionnelle</div>
+        <div class="cd">Mode de rupture du CDI <strong>d'un commun accord</strong>. Ne peut pas être imposée. Donne droit à l'indemnité spécifique (≥ légale) ET à l'ARE.</div>
+      </div>
+    </div>
+
+    <div style="margin: 12px 0 8px; font-family:'Nunito',sans-serif; font-size:13px; font-weight:900; color:#b5415a;">Procédure — 4 étapes</div>
+
+    <div class="step-box" style="margin-bottom:5px;">
+      <div class="step-num" style="background:#946e00;">1</div>
+      <div class="step-text">Un ou plusieurs <strong>entretiens</strong></div>
+    </div>
+    <div class="step-box" style="margin-bottom:5px;">
+      <div class="step-num" style="background:#946e00;">2</div>
+      <div class="step-text"><strong>Signature</strong> de la convention (date rupture + montant indemnité)</div>
+    </div>
+    <div class="step-box" style="margin-bottom:5px;">
+      <div class="step-num" style="background:#946e00;">3</div>
+      <div class="step-text">Délai de <strong>rétractation 15 jours calendaires</strong> (tous les jours, y compris weekends)</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num" style="background:#946e00;">4</div>
+      <div class="step-text"><strong>Homologation DREETS</strong> (15 jours ouvrables)</div>
+    </div>
+
+    <div class="sec-t">Comparatif des modes de rupture</div>
+    <table class="tbl">
+      <tr><th>Mode</th><th>Initiative</th><th>Préavis</th><th>DI</th><th>ARE</th></tr>
+      <tr><td>Démission</td><td>Salarié</td><td>Oui</td><td>Non</td><td>Non</td></tr>
+      <tr><td>Lic. faute simple</td><td>Employeur</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+      <tr><td>Lic. faute grave</td><td>Employeur</td><td>Non</td><td>Non</td><td>Oui</td></tr>
+      <tr><td>Lic. éco</td><td>Employeur</td><td>Oui</td><td>Oui+</td><td>Oui</td></tr>
+      <tr><td>Rupture conv.</td><td>Commun acc.</td><td>Non</td><td>Oui</td><td>Oui</td></tr>
+    </table>
+
+    <div class="piege">
+      <div class="piege-t">⚠️ <strong>Rétractation RC = 15 jours CALENDAIRES</strong> (pas ouvrables). ≠ préavis (inexistant dans la RC). Confondre les deux = erreur classique.</div>
+    </div>
+
+    <div class="bac-s">
+      <div class="bac-h">📌 Questions types T7</div>
+      <div class="bac-t">« Le contrat est-il un CDT ? » → chercher lien de subordination · « La procédure est-elle régulière ? » → 3 étapes + délais · « Comparer rupture conv. et démission » → tableau. Annales : Flunch 2021, Agesys 2022</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ft">
+  <span class="ft-brand">Scholar Lock-In — Droit</span>
+  <span class="ft-note">Thème 7 — Le travail salarié · Terminale STMG</span>
+</div>
+
+</div>
+
+<!-- Carte Mémo Overlay -->
+<div id="memo-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:2000; align-items:center; justify-content:center; padding:24px;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#1e1c18; border-radius:20px; padding:32px; max-width:580px; width:100%; max-height:80vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div style="font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; color:#f5c842;">🧠 Carte Mémo — T7 Travail salarié</div>
+      <button onclick="document.getElementById('memo-overlay').style.display='none'" style="background:rgba(255,255,255,.1); border:none; color:#fff; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:18px;">×</button>
+    </div>
+    <div style="font-family:'Nunito Sans',sans-serif; font-size:13px; color:#c0b090; line-height:1.8;">
+      <div style="color:#f5c842; font-weight:800; margin-bottom:6px; font-size:14px;">LIEN DE SUBORDINATION</div>
+      <div>3 pouvoirs : direction + contrôle + sanction</div>
+      <div>La réalité prime sur l'intitulé du contrat</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">PROCÉDURE LICENCIEMENT — 3 ÉTAPES</div>
+      <div>① Convocation LRAR ou main propre</div>
+      <div>② Entretien préalable ≥ 5 jours OUVRABLES</div>
+      <div>③ Notification LRAR ≥ 2 jours OUVRABLES après entretien</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">FAUTES</div>
+      <div>· Faute grave → pas de préavis ni indemnité, mais chômage OUI</div>
+      <div>· Faute lourde → idem</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">RUPTURE CONVENTIONNELLE</div>
+      <div>Commun accord · Rétractation 15j calendaires · Indemnité + ARE</div>
+      <div style="color:#f5c842; font-weight:800; margin:14px 0 6px; font-size:14px;">PIÈGES</div>
+      <div>❌ Faute grave ≠ pas de chômage</div>
+      <div>❌ Rétractation RC = 15j calendaires (pas ouvrables)</div>
+      <div>❌ Analyser fond ET forme séparément</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

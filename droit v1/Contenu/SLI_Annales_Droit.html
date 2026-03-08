@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annales Droit — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f0ede6; min-height: 100vh; padding-top: 64px; padding-bottom: 48px; color: #1e1c18; }
+
+/* NAV */
+.sli-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(240,237,230,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid rgba(30,28,24,.1);box-shadow:0 2px 16px rgba(0,0,0,.06) }
+.sli-nav a { text-decoration:none }
+.sli-nav-logo { font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:900;color:#1e1c18 }
+.sli-nav-logo span { color:#2a69a8 }
+.sli-nav-links { display:flex;gap:2px }
+.sli-nl { font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;color:#7a6a58;padding:6px 14px;border-radius:20px;white-space:nowrap;text-decoration:none }
+.sli-nl:hover { background:rgba(30,28,24,.08);color:#1e1c18 }
+.sli-nl.on { background:#1e1c18;color:#f5c842 }
+
+.page { max-width: 920px; margin: 0 auto; padding: 28px 20px; }
+
+/* HEADER */
+.hdr { text-align: center; margin-bottom: 24px; }
+.hdr-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #1e1c18; color: #f5c842; padding: 4px 16px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+.hdr-title { font-size: 32px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
+.hdr-title span { color: #2a7040; }
+.hdr-sub { font-size: 14px; color: #7a6a58; font-weight: 600; }
+
+/* STATS */
+.stats-bar { background: #fffdf8; border-radius: 14px; padding: 14px 20px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.stats-left { font-size: 14px; font-weight: 700; color: #1e1c18; }
+.stats-right { display: flex; gap: 10px; align-items: center; }
+.stat-chip { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+.stat-ok { background: #c2dfc2; color: #2a7040; }
+
+/* FILTER */
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.filt { font-size: 12px; font-weight: 700; padding: 6px 15px; border-radius: 20px; border: 2px solid transparent; cursor: pointer; transition: all 0.13s; background: #e0dbd2; color: #5a5448; }
+.filt:hover { opacity: 0.85; }
+.filt.active-all { background: #1e1c18; color: #fffdf8; border-color: #1e1c18; }
+.filt.active-t5 { background: #cce2f8; color: #2a69a8; border-color: #2a69a8; }
+.filt.active-t6 { background: #c2dfc2; color: #2a7040; border-color: #2a7040; }
+.filt.active-t7 { background: #f9d0d9; color: #b5415a; border-color: #b5415a; }
+.filt.active-t8 { background: #fde8a0; color: #946e00; border-color: #946e00; }
+
+/* TOPIC CARD */
+.topic { background: #fffdf8; border-radius: 16px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.07); border: 1.5px solid transparent; }
+.topic.done { border-color: #c2dfc2; box-shadow: 0 2px 10px rgba(42,112,64,.15); }
+.topic.hidden { display: none; }
+
+.topic-hd { padding: 16px 20px; display: flex; gap: 14px; align-items: center; cursor: pointer; }
+.topic-hd:hover { opacity: 0.9; }
+.topic-left { flex: 1; }
+.topic-type { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+.topic-name { font-size: 17px; font-weight: 900; color: #1e1c18; margin-bottom: 3px; }
+.topic-meta { font-size: 12px; font-weight: 600; color: #7a6a58; display: flex; align-items: center; gap: 10px; }
+.topic-freq { letter-spacing: 1px; }
+.topic-themes { display: flex; gap: 4px; }
+.th-chip { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
+.th-t5 { background: #cce2f8; color: #2a69a8; }
+.th-t6 { background: #c2dfc2; color: #2a7040; }
+.th-t7 { background: #f9d0d9; color: #b5415a; }
+.th-t8 { background: #fde8a0; color: #946e00; }
+
+.topic-right { display: flex; gap: 8px; align-items: center; }
+.topic-check { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #ddd8cf; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: all 0.15s; }
+.topic-check.done { background: #2a7040; border-color: #2a7040; color: #fff; }
+.topic-arrow { font-size: 14px; color: #a09880; transition: transform 0.2s; }
+.topic-arrow.open { transform: rotate(90deg); }
+
+.topic-body { display: none; border-top: 1px solid #f0ede6; }
+.topic-body.open { display: block; }
+
+/* INSIDE TOPIC */
+.tb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.tb-col { padding: 18px 20px; }
+.tb-col:first-child { border-right: 1px solid #f0ede6; }
+
+.tb-section-title { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: #a09880; }
+
+/* Notion clé */
+.notion-cle { background: #f8f6f2; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; border-left: 3px solid #e0dbd2; }
+.nc-label { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #a09880; margin-bottom: 5px; }
+.nc-text { font-size: 13px; font-weight: 600; color: #3a3530; line-height: 1.6; }
+.nc-diff { font-size: 12px; font-weight: 700; color: #7a6a58; margin-top: 5px; font-style: italic; }
+
+/* Question type */
+.sample-q { background: #1e1c18; border-radius: 10px; padding: 12px 16px; margin-bottom: 12px; }
+.sq-label { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; margin-bottom: 5px; }
+.sq-text { font-size: 13px; font-weight: 700; color: #fffdf8; line-height: 1.55; font-style: italic; }
+.sq-pts { font-size: 11px; color: #a09880; margin-top: 4px; font-weight: 600; }
+
+/* Étapes attendues */
+.fw-steps { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+.fw-step { display: flex; gap: 8px; align-items: flex-start; }
+.fw-n { font-size: 11px; font-weight: 900; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; margin-top: 1px; }
+.fw-n-t5 { background: #2a69a8; }
+.fw-n-t6 { background: #2a7040; }
+.fw-n-t7 { background: #b5415a; }
+.fw-n-t8 { background: #946e00; }
+.fw-txt { font-size: 13px; font-weight: 600; color: #1e1c18; line-height: 1.5; }
+.fw-sub { font-size: 11px; color: #7a6a58; display: block; margin-top: 2px; }
+
+/* Mots obligatoires */
+.mots-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.mot-chip { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; background: #1e1c18; color: #f5c842; }
+
+/* Template */
+.template { background: #f8f6f2; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+.tpl-label { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #a09880; margin-bottom: 8px; }
+.tpl-text { font-size: 12px; font-weight: 500; color: #3a3530; line-height: 1.7; white-space: pre-line; }
+
+/* Erreur classique */
+.piege-box { background: #fdeef2; border-radius: 10px; padding: 11px 14px; margin-bottom: 8px; }
+.piege-title { font-size: 12px; font-weight: 800; color: #b5415a; margin-bottom: 3px; }
+.piege-desc { font-size: 12px; font-weight: 600; color: #7a2038; line-height: 1.5; }
+
+/* Mark done */
+.mark-done-row { padding: 14px 20px; border-top: 1px solid #f0ede6; display: flex; justify-content: flex-end; gap: 10px; }
+.btn-mark { font-size: 13px; font-weight: 800; padding: 9px 22px; border-radius: 10px; border: none; cursor: pointer; transition: all 0.15s; }
+.btn-done { background: #2a7040; color: #fff; }
+.btn-done:hover { background: #22603a; }
+.btn-undo { background: #e0dbd2; color: #5a5448; }
+.btn-undo:hover { background: #d0cbc2; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../droit.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Cours_Droit.html" class="sli-nl">📚 Cours</a>
+    <a href="SLI_Flashcards_Droit.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Droit.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Droit.html" class="sli-nl on">🎯 Annales</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="hdr">
+    <div class="hdr-badge">Annales · Droit STMG · 8 types de questions</div>
+    <div class="hdr-title">Annales en <span>perspective</span></div>
+    <div class="hdr-sub">Clique sur un type de question pour voir le template, les mots du cours et les pièges</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-left">Questions travaillées : <span id="done-count">0</span> / 8</div>
+    <div class="stats-right">
+      <span class="stat-chip stat-ok" id="chip-done">0 validées</span>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <button class="filt active-all" onclick="filterTopics('all',this)">Tous (8)</button>
+    <button class="filt" onclick="filterTopics('t5',this)">T5 — Contrat</button>
+    <button class="filt" onclick="filterTopics('t6',this)">T6 — Responsabilité</button>
+    <button class="filt" onclick="filterTopics('t7',this)">T7 — Travail</button>
+    <button class="filt" onclick="filterTopics('t8',this)">T8 — Entreprendre</button>
+  </div>
+
+  <!-- TYPE 1 -->
+  <div class="topic" data-themes="t5" id="topic-1">
+    <div class="topic-hd" onclick="toggleTopic(1)">
+      <div class="topic-left">
+        <div class="topic-type" style="color:#2a69a8;">Type 1 — T5 Contrat</div>
+        <div class="topic-name">Qualification et validité du contrat</div>
+        <div class="topic-meta">
+          <span class="topic-freq">★★★★★</span>
+          <div class="topic-themes"><span class="th-chip th-t5">T5</span></div>
+          <span>Pasquier 2019 · Nature&amp;Découvertes 2023</span>
+        </div>
+      </div>
+      <div class="topic-right">
+        <div class="topic-check" id="check-1" onclick="toggleDone(event,1)"></div>
+        <div class="topic-arrow" id="arrow-1">›</div>
+      </div>
+    </div>
+    <div class="topic-body" id="body-1">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="tb-section-title">Notion clé</div>
+          <div class="notion-cle">
+            <div class="nc-label">Les 4 conditions de validité du contrat (art. 1128 C.civ.)</div>
+            <div class="nc-text">Consentement non vicié · Capacité des parties · Objet déterminé et licite · Contenu licite</div>
+            <div class="nc-diff">≠ modalités d'exécution du contrat (qui interviennent après la formation).</div>
+          </div>
+          <div class="sample-q">
+            <div class="sq-label">Question type</div>
+            <div class="sq-text">"En vous appuyant sur les documents, analysez la validité du contrat conclu entre [X] et [Y]."</div>
+            <div class="sq-pts">Longueur attendue : 8 à 12 lignes · 4 à 5 points</div>
+          </div>
+          <div class="tb-section-title">Mots du cours obligatoires</div>
+          <div class="mots-row">
+            <span class="mot-chip">consentement</span><span class="mot-chip">vice du consentement</span><span class="mot-chip">capacité juridique</span><span class="mot-chip">objet licite</span><span class="mot-chip">nullité relative</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title">Ce qu'on attend — étapes</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n fw-n-t5">1</div><div class="fw-txt">Identifier le type de contrat et les parties (1 phrase)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t5">2</div><div class="fw-txt">Vérifier chaque condition en citant les faits du document (4 vérifications)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t5">3</div><div class="fw-txt">Conclure : "Le contrat est/n'est pas valablement formé car [condition manquante]"</div></div>
+          </div>
+          <div class="tb-section-title">Template de réponse</div>
+          <div class="template">
+            <div class="tpl-label">Structure à suivre</div>
+            <div class="tpl-text">Le contrat conclu entre [X] et [Y] est un contrat [de vente / d'adhésion...].
+
+Pour être valablement formé, un contrat doit réunir quatre conditions : un consentement non vicié, la capacité des parties, un objet déterminé et licite, un contenu licite.
+
+En l'espèce :
+— Consentement de [X] : [libre / vicié par un dol car...] → [valide / nul]
+— Capacité de [Y] : [majeur / mineur → incapacité partielle]
+— Objet : [déterminé / illicite car...]
+— Contenu : [licite / contraire à...]
+
+En conclusion, le contrat [est valablement formé / est entaché de nullité relative car le consentement de [X] a été vicié par [dol/erreur/violence]. [X] peut donc demander l'annulation].</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">⚠️ Erreur classique</div>
+            <div class="piege-desc">Conclure "le contrat est nul" sans préciser de quelle nullité il s'agit (relative = protection de la victime, peut y renoncer) et sans désigner qui peut l'invoquer.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-undo" id="undo-1" onclick="toggleDone(event,1)" style="display:none;">Marquer comme à revoir</button>
+        <button class="btn-mark btn-done" id="btn-1" onclick="toggleDone(event,1)">✓ Validé</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 2 -->
+  <div class="topic" data-themes="t5" id="topic-2">
+    <div class="topic-hd" onclick="toggleTopic(2)">
+      <div class="topic-left">
+        <div class="topic-type" style="color:#2a69a8;">Type 2 — T5 Contrat</div>
+        <div class="topic-name">Identification d'un vice du consentement</div>
+        <div class="topic-meta">
+          <span class="topic-freq">★★★★☆</span>
+          <div class="topic-themes"><span class="th-chip th-t5">T5</span></div>
+          <span>Flunch 2021 · Pasquier 2019</span>
+        </div>
+      </div>
+      <div class="topic-right">
+        <div class="topic-check" id="check-2" onclick="toggleDone(event,2)"></div>
+        <div class="topic-arrow" id="arrow-2">›</div>
+      </div>
+    </div>
+    <div class="topic-body" id="body-2">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="tb-section-title">Notion clé</div>
+          <div class="notion-cle">
+            <div class="nc-label">Les 3 vices du consentement</div>
+            <div class="nc-text">Erreur (fausse représentation involontaire) · Dol (manœuvres frauduleuses intentionnelles) · Violence (contrainte physique ou morale)</div>
+            <div class="nc-diff">≠ une erreur de calcul ou un simple désaccord post-contractuel qui n'invalide pas le contrat.</div>
+          </div>
+          <div class="sample-q">
+            <div class="sq-label">Question type</div>
+            <div class="sq-text">"Le consentement de [X] a-t-il été vicié lors de la conclusion du contrat ? Justifiez."</div>
+            <div class="sq-pts">Longueur attendue : 6 à 10 lignes · 3 à 4 points</div>
+          </div>
+          <div class="tb-section-title">Mots du cours obligatoires</div>
+          <div class="mots-row">
+            <span class="mot-chip">nom exact du vice</span><span class="mot-chip">nullité relative</span><span class="mot-chip">la victime peut demander l'annulation</span><span class="mot-chip">5 ans</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title">Ce qu'on attend — étapes</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n fw-n-t5">1</div><div class="fw-txt">Qualifier le vice (erreur / dol / violence) en citant les faits</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t5">2</div><div class="fw-txt">Vérifier les conditions spécifiques du vice identifié</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t5">3</div><div class="fw-txt">Conclure : nullité relative, qui peut l'invoquer, dans quel délai (5 ans)</div></div>
+          </div>
+          <div class="tb-section-title">Template de réponse</div>
+          <div class="template">
+            <div class="tpl-label">Si dol</div>
+            <div class="tpl-text">En l'espèce, le consentement de [X] semble avoir été vicié par un dol.
+
+[Y] a utilisé des manœuvres frauduleuses [description] pour obtenir le consentement de [X]. Le dol suppose des manœuvres intentionnelles ayant déterminé le consentement. Ces conditions sont réunies car [argument tiré du document].
+
+Le consentement de [X] est donc vicié. Il pourra demander la nullité relative du contrat dans un délai de 5 ans à compter de la découverte du dol. Il peut également demander des dommages-intérêts.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">⚠️ Erreur classique</div>
+            <div class="piege-desc">Confondre dol et erreur : le dol suppose une tromperie intentionnelle de l'autre partie. L'erreur est spontanée. Un vendeur qui ment = dol. Un acheteur qui se trompe seul = erreur.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-undo" id="undo-2" onclick="toggleDone(event,2)" style="display:none;">Marquer comme à revoir</button>
+        <button class="btn-mark btn-done" id="btn-2" onclick="toggleDone(event,2)">✓ Validé</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 3 -->
+  <div class="topic" data-themes="t6" id="topic-3">
+    <div class="topic-hd" onclick="toggleTopic(3)">
+      <div class="topic-left">
+        <div class="topic-type" style="color:#2a7040;">Type 3 — T6 Responsabilité</div>
+        <div class="topic-name">Identification du régime de responsabilité et ses conditions</div>
+        <div class="topic-meta">
+          <span class="topic-freq">★★★★★</span>
+          <div class="topic-themes"><span class="th-chip th-t6">T6</span></div>
+          <span>Flunch 2021 · Agesys 2022</span>
+        </div>
+      </div>
+      <div class="topic-right">
+        <div class="topic-check" id="check-3" onclick="toggleDone(event,3)"></div>
+        <div class="topic-arrow" id="arrow-3">›</div>
+      </div>
+    </div>
+    <div class="topic-body" id="body-3">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="tb-section-title">Notion clé</div>
+          <div class="notion-cle">
+            <div class="nc-label">3 conditions cumulatives</div>
+            <div class="nc-text">Fait générateur (faute / fait des choses / fait d'autrui) + Dommage (personnel, certain, direct, légitime) + Lien de causalité entre les deux</div>
+            <div class="nc-diff">≠ responsabilité pénale (qui sanctionne, ne répare pas).</div>
+          </div>
+          <div class="sample-q">
+            <div class="sq-label">Question type</div>
+            <div class="sq-text">"La responsabilité de [X] peut-elle être engagée ? Dans quelles conditions ?"</div>
+            <div class="sq-pts">Longueur attendue : 10 à 15 lignes · 5 à 6 points</div>
+          </div>
+          <div class="tb-section-title">Mots du cours obligatoires</div>
+          <div class="mots-row">
+            <span class="mot-chip">fait générateur</span><span class="mot-chip">lien de causalité</span><span class="mot-chip">dommage personnel, certain, direct et légitime</span><span class="mot-chip">nom exact du régime</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title">Ce qu'on attend — étapes</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n fw-n-t6">1</div><div class="fw-txt">Identifier si un contrat lie les parties → contractuelle ou extracontractuelle</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t6">2</div><div class="fw-txt">Si extracontractuelle : identifier le fait générateur (faute / fait d'une chose / fait d'autrui)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t6">3</div><div class="fw-txt">Vérifier les 3 conditions : fait générateur prouvé + dommage caractérisé + lien de causalité</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t6">4</div><div class="fw-txt">Vérifier si un moyen d'exonération est possible (force majeure, fait de la victime, fait d'un tiers)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t6">5</div><div class="fw-txt">Conclure : "La responsabilité de X est/n'est pas engagée"</div></div>
+          </div>
+          <div class="template">
+            <div class="tpl-label">Structure de réponse</div>
+            <div class="tpl-text">En l'espèce, [X] et [Y] sont/ne sont pas liés par un contrat. La responsabilité applicable est donc [contractuelle / extracontractuelle].
+
+Le fait générateur est ici [une faute / le fait d'une chose / le fait d'autrui car...].
+
+Les 3 conditions sont [réunies / non réunies] :
+— Fait générateur : [oui / non]
+— Dommage : [type : matériel / corporel / moral], personnel, certain et direct
+— Lien de causalité : [le dommage est une conséquence directe de...]
+
+En conclusion, la responsabilité de [X] [est / n'est pas] engagée.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">⚠️ Erreur classique</div>
+            <div class="piege-desc">Oublier de vérifier le lien de causalité et conclure qu'il y a responsabilité dès qu'une faute et un dommage sont présents. Le lien de causalité doit être démontré séparément.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-undo" id="undo-3" onclick="toggleDone(event,3)" style="display:none;">Marquer comme à revoir</button>
+        <button class="btn-mark btn-done" id="btn-3" onclick="toggleDone(event,3)">✓ Validé</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 4 -->
+  <div class="topic" data-themes="t7" id="topic-4">
+    <div class="topic-hd" onclick="toggleTopic(4)">
+      <div class="topic-left">
+        <div class="topic-type" style="color:#b5415a;">Type 4 — T7 Travail</div>
+        <div class="topic-name">Qualification et validité du licenciement</div>
+        <div class="topic-meta">
+          <span class="topic-freq">★★★★★</span>
+          <div class="topic-themes"><span class="th-chip th-t7">T7</span></div>
+          <span>Agesys 2022 · Flunch 2021 · Quasi tous les sujets T7</span>
+        </div>
+      </div>
+      <div class="topic-right">
+        <div class="topic-check" id="check-4" onclick="toggleDone(event,4)"></div>
+        <div class="topic-arrow" id="arrow-4">›</div>
+      </div>
+    </div>
+    <div class="topic-body" id="body-4">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="tb-section-title">Notion clé</div>
+          <div class="notion-cle">
+            <div class="nc-label">Le licenciement pour motif personnel</div>
+            <div class="nc-text">Rupture du CDI à l'initiative de l'employeur. Doit reposer sur une cause réelle et sérieuse. Procédure en 3 étapes : convocation → entretien préalable → notification.</div>
+            <div class="nc-diff">≠ rupture conventionnelle (commun accord) ≠ démission (à l'initiative du salarié).</div>
+          </div>
+          <div class="sample-q">
+            <div class="sq-label">Question type</div>
+            <div class="sq-text">"La procédure de licenciement engagée par [employeur] est-elle régulière ?" ou "Le licenciement de [salarié] est-il justifié ?"</div>
+            <div class="sq-pts">Longueur attendue : 12 à 18 lignes · 5 à 7 points</div>
+          </div>
+          <div class="tb-section-title">Mots du cours obligatoires</div>
+          <div class="mots-row">
+            <span class="mot-chip">cause réelle et sérieuse</span><span class="mot-chip">entretien préalable</span><span class="mot-chip">lettre recommandée avec AR</span><span class="mot-chip">5 jours ouvrables</span><span class="mot-chip">2 jours ouvrables</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title">Ce qu'on attend — étapes</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n fw-n-t7">1</div><div class="fw-txt">Qualifier le type de licenciement (motif personnel / économique)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t7">2</div><div class="fw-txt">Vérifier le FOND : cause réelle (objective, vérifiable) et sérieuse (suffisamment grave) ?</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t7">3</div><div class="fw-txt">Vérifier la FORME — 3 étapes dans l'ordre :<br>→ Convocation (lettre recommandée ou main propre)<br>→ Entretien préalable (min. 5 jours ouvrables après convocation)<br>→ Notification (lettre recommandée AR, min. 2 jours ouvrables après entretien)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t7">4</div><div class="fw-txt">Conclure : procédure régulière ou irrégulière + conséquences</div></div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">⚠️ Erreur classique</div>
+            <div class="piege-desc">Ne vérifier que le fond (le motif) sans vérifier la procédure, ou l'inverse. Le correcteur attend les deux volets ET les délais chiffrés (5 jours / 2 jours). Une procédure irrégulière peut rendre un licenciement valide sur le fond mais sanctionnable sur la forme.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-undo" id="undo-4" onclick="toggleDone(event,4)" style="display:none;">Marquer comme à revoir</button>
+        <button class="btn-mark btn-done" id="btn-4" onclick="toggleDone(event,4)">✓ Validé</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 5 -->
+  <div class="topic" data-themes="t7" id="topic-5">
+    <div class="topic-hd" onclick="toggleTopic(5)">
+      <div class="topic-left">
+        <div class="topic-type" style="color:#b5415a;">Type 5 — T7 Travail</div>
+        <div class="topic-name">Qualification du contrat de travail et requalification</div>
+        <div class="topic-meta">
+          <span class="topic-freq">★★★★★</span>
+          <div class="topic-themes"><span class="th-chip th-t7">T7</span></div>
+          <span>Agesys 2022 · Pasquier 2019</span>
+        </div>
+      </div>
+      <div class="topic-right">
+        <div class="topic-check" id="check-5" onclick="toggleDone(event,5)"></div>
+        <div class="topic-arrow" id="arrow-5">›</div>
+      </div>
+    </div>
+    <div class="topic-body" id="body-5">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="tb-section-title">Notion clé</div>
+          <div class="notion-cle">
+            <div class="nc-label">Le lien de subordination juridique</div>
+            <div class="nc-text">Le salarié est placé sous l'autorité de l'employeur qui lui donne des instructions (direction), en contrôle l'exécution (contrôle) et peut le sanctionner (sanction). C'est ce critère qui permet de requalifier un contrat.</div>
+            <div class="nc-diff">≠ simple partenariat commercial entre deux indépendants.</div>
+          </div>
+          <div class="sample-q">
+            <div class="sq-label">Question type</div>
+            <div class="sq-text">"Le contrat liant [X] à [l'entreprise] est-il un contrat de travail ? Justifiez." ou "Le contrat de [X] peut-il être requalifié en CDI ?"</div>
+            <div class="sq-pts">Longueur attendue : 8 à 12 lignes · 4 à 5 points</div>
+          </div>
+          <div class="tb-section-title">Mots du cours obligatoires</div>
+          <div class="mots-row">
+            <span class="mot-chip">lien de subordination juridique</span><span class="mot-chip">pouvoir de direction</span><span class="mot-chip">pouvoir de contrôle</span><span class="mot-chip">pouvoir de sanction</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title">Ce qu'on attend — étapes</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n fw-n-t7">1</div><div class="fw-txt">Rappeler la définition du lien de subordination (1 phrase avec les 3 pouvoirs)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t7">2</div><div class="fw-txt">Rechercher et citer les indices dans les faits pour chacun des 3 pouvoirs</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t7">3</div><div class="fw-txt">Conclure sur la qualification + mentionner les conséquences si requalification</div></div>
+          </div>
+          <div class="template">
+            <div class="tpl-label">Exemple BAC 2022 — Agesys</div>
+            <div class="tpl-text">Un développeur travaille pour Agesys en tant qu'auto-entrepreneur. Mais il travaille exclusivement depuis leurs locaux, avec leur matériel, sous les directives quotidiennes d'un chef de projet.
+→ Lien de subordination caractérisé sur les 3 critères.
+→ Requalification en CDI possible.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">⚠️ Erreur classique</div>
+            <div class="piege-desc">Se fier au nom du contrat ("contrat de prestation de services") plutôt qu'aux faits. La qualification juridique est déterminée par la réalité de la relation, pas par ce qui est écrit dans le contrat.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-undo" id="undo-5" onclick="toggleDone(event,5)" style="display:none;">Marquer comme à revoir</button>
+        <button class="btn-mark btn-done" id="btn-5" onclick="toggleDone(event,5)">✓ Validé</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 6 -->
+  <div class="topic" data-themes="t7" id="topic-6">
+    <div class="topic-hd" onclick="toggleTopic(6)">
+      <div class="topic-left">
+        <div class="topic-type" style="color:#b5415a;">Type 6 — T7 Travail</div>
+        <div class="topic-name">Rupture conventionnelle et comparaison des modes de rupture</div>
+        <div class="topic-meta">
+          <span class="topic-freq">★★★★☆</span>
+          <div class="topic-themes"><span class="th-chip th-t7">T7</span></div>
+          <span>Agesys 2022 · Flunch 2021</span>
+        </div>
+      </div>
+      <div class="topic-right">
+        <div class="topic-check" id="check-6" onclick="toggleDone(event,6)"></div>
+        <div class="topic-arrow" id="arrow-6">›</div>
+      </div>
+    </div>
+    <div class="topic-body" id="body-6">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="tb-section-title">Notion clé</div>
+          <div class="notion-cle">
+            <div class="nc-label">La rupture conventionnelle</div>
+            <div class="nc-text">Mode de rupture du CDI à l'initiative conjointe de l'employeur et du salarié. Donne droit aux indemnités de rupture ET à l'allocation chômage. Procédure : entretien(s) → convention signée → rétractation 15 jours → homologation DREETS.</div>
+            <div class="nc-diff">≠ démission (pas droit au chômage) ≠ licenciement (unilatéral).</div>
+          </div>
+          <div class="sample-q">
+            <div class="sq-label">Question type</div>
+            <div class="sq-text">"Quelles sont les conséquences de la rupture conventionnelle pour [salarié] ?" ou "Comparez les différents modes de rupture du CDI."</div>
+            <div class="sq-pts">Longueur attendue : 10 à 15 lignes · 5 points</div>
+          </div>
+          <div class="tb-section-title">Mots du cours obligatoires</div>
+          <div class="mots-row">
+            <span class="mot-chip">commun accord</span><span class="mot-chip">homologation DREETS</span><span class="mot-chip">15 jours calendaires</span><span class="mot-chip">indemnité spécifique de rupture conventionnelle</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title">Ce qu'on attend — étapes</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n fw-n-t7">1</div><div class="fw-txt">Rappeler la nature de la rupture conventionnelle (commun accord, CDI uniquement)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t7">2</div><div class="fw-txt">Décrire les 4 étapes dans l'ordre : entretien(s) → convention signée → rétractation 15 jours calendaires → homologation DREETS (15 jours ouvrables)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t7">3</div><div class="fw-txt">Lister les conséquences : indemnité spécifique + droit au chômage (ARE) + pas de préavis obligatoire</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t7">4</div><div class="fw-txt">Si comparaison demandée : tableau démission / licenciement / rupture conventionnelle</div></div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">⚠️ Erreur classique</div>
+            <div class="piege-desc">Confondre le délai de rétractation (15 jours calendaires — tous les jours comptent) avec le préavis. Il n'y a pas de préavis dans la rupture conventionnelle — c'est la date définie dans la convention qui fait foi.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-undo" id="undo-6" onclick="toggleDone(event,6)" style="display:none;">Marquer comme à revoir</button>
+        <button class="btn-mark btn-done" id="btn-6" onclick="toggleDone(event,6)">✓ Validé</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 7 -->
+  <div class="topic" data-themes="t8" id="topic-7">
+    <div class="topic-hd" onclick="toggleTopic(7)">
+      <div class="topic-left">
+        <div class="topic-type" style="color:#946e00;">Type 7 — T8 Entreprendre</div>
+        <div class="topic-name">Conseil sur le choix de la forme juridique</div>
+        <div class="topic-meta">
+          <span class="topic-freq">★★★★☆</span>
+          <div class="topic-themes"><span class="th-chip th-t8">T8</span></div>
+          <span>Pasquier 2019 · Construits depuis BO</span>
+        </div>
+      </div>
+      <div class="topic-right">
+        <div class="topic-check" id="check-7" onclick="toggleDone(event,7)"></div>
+        <div class="topic-arrow" id="arrow-7">›</div>
+      </div>
+    </div>
+    <div class="topic-body" id="body-7">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="tb-section-title">Notion clé</div>
+          <div class="notion-cle">
+            <div class="nc-label">Critères de choix</div>
+            <div class="nc-text">Nombre d'associés · Souhait de limiter la responsabilité · Capital disponible · Mode de gouvernance souhaité</div>
+            <div class="nc-diff">≠ EI (entrepreneur seul sans société) ≠ EURL (société à 1 associé, même si souvent confondus).</div>
+          </div>
+          <div class="sample-q">
+            <div class="sq-label">Question type</div>
+            <div class="sq-text">"Quelle forme juridique conseillez-vous à [X] pour son projet ? Justifiez."</div>
+            <div class="sq-pts">Longueur attendue : 8 à 12 lignes · 4 points</div>
+          </div>
+          <div class="tb-section-title">Mots du cours obligatoires</div>
+          <div class="mots-row">
+            <span class="mot-chip">personnalité morale</span><span class="mot-chip">responsabilité limitée aux apports</span><span class="mot-chip">noms exacts des formes</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title">Ce qu'on attend — étapes</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n fw-n-t8">1</div><div class="fw-txt">Identifier les critères du sujet (nombre d'associés, capital, souhait de protection, mode de direction)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t8">2</div><div class="fw-txt">Présenter 1 à 2 formes pertinentes avec les arguments correspondant aux critères</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t8">3</div><div class="fw-txt">Recommander la forme la plus adaptée ET expliquer pourquoi les autres sont moins adaptées</div></div>
+          </div>
+          <div class="template">
+            <div class="tpl-label">Structure de réponse</div>
+            <div class="tpl-text">[X] souhaite créer une entreprise avec [N associés]. Il dispose d'un capital de [montant] et souhaite [protéger son patrimoine / gestion souple].
+
+Je lui conseille de constituer une [SARL / SAS / SA...] car :
+— [Argument 1 : nombre d'associés]
+— [Argument 2 : "responsabilité limitée aux apports, son patrimoine personnel est protégé"]
+— [Argument 3 : capital ou souplesse]
+
+En revanche, la SNC ne serait pas adaptée car la responsabilité des associés est illimitée et solidaire.</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">⚠️ Erreur classique</div>
+            <div class="piege-desc">Ne citer que les avantages de la forme recommandée sans expliquer pourquoi les autres formes sont inadaptées. Le correcteur attend une comparaison argumentée, pas un simple descriptif.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-undo" id="undo-7" onclick="toggleDone(event,7)" style="display:none;">Marquer comme à revoir</button>
+        <button class="btn-mark btn-done" id="btn-7" onclick="toggleDone(event,7)">✓ Validé</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 8 -->
+  <div class="topic" data-themes="t8" id="topic-8">
+    <div class="topic-hd" onclick="toggleTopic(8)">
+      <div class="topic-left">
+        <div class="topic-type" style="color:#946e00;">Type 8 — T8 Entreprendre</div>
+        <div class="topic-name">Qualification d'un contrat de partenariat</div>
+        <div class="topic-meta">
+          <span class="topic-freq">★★★☆☆</span>
+          <div class="topic-themes"><span class="th-chip th-t8">T8</span></div>
+          <span>Pasquier 2019 · Construits depuis BO</span>
+        </div>
+      </div>
+      <div class="topic-right">
+        <div class="topic-check" id="check-8" onclick="toggleDone(event,8)"></div>
+        <div class="topic-arrow" id="arrow-8">›</div>
+      </div>
+    </div>
+    <div class="topic-body" id="body-8">
+      <div class="tb-grid">
+        <div class="tb-col">
+          <div class="tb-section-title">Notion clé</div>
+          <div class="notion-cle">
+            <div class="nc-label">Les 5 contrats de partenariat</div>
+            <div class="nc-text">Franchise (marque + savoir-faire + enseigne) · Concession (marque + exclusivité territoriale) · Licence de marque (marque seule) · Sous-traitance (exécution d'une tâche déléguée) · GIE (mise en commun de moyens)</div>
+            <div class="nc-diff">Les parties restent TOUJOURS indépendantes dans tous ces contrats ≠ filiale ou fusion.</div>
+          </div>
+          <div class="sample-q">
+            <div class="sq-label">Question type</div>
+            <div class="sq-text">"Qualifiez le contrat liant [X] à [Y]. Justifiez votre qualification."</div>
+            <div class="sq-pts">Longueur attendue : 6 à 8 lignes · 3 à 4 points</div>
+          </div>
+          <div class="tb-section-title">Mots du cours obligatoires</div>
+          <div class="mots-row">
+            <span class="mot-chip">nom exact du contrat</span><span class="mot-chip">éléments distinctifs</span><span class="mot-chip">indépendance des parties</span>
+          </div>
+        </div>
+        <div class="tb-col">
+          <div class="tb-section-title">Ce qu'on attend — étapes</div>
+          <div class="fw-steps">
+            <div class="fw-step"><div class="fw-n fw-n-t8">1</div><div class="fw-txt">Rappeler les éléments distinctifs de la qualification pressentie (1 phrase)</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t8">2</div><div class="fw-txt">Appliquer aux faits : citer les éléments du document qui correspondent à ces critères</div></div>
+            <div class="fw-step"><div class="fw-n fw-n-t8">3</div><div class="fw-txt">Conclure sur la qualification + mentionner que les parties restent indépendantes</div></div>
+          </div>
+          <div class="template">
+            <div class="tpl-label">Tableau de distinction des partenariats</div>
+            <div class="tpl-text">Franchise → marque + savoir-faire + enseigne + redevance
+Concession → marque + exclusivité territoriale
+Licence → marque seule + redevance
+Sous-traitance → délégation d'exécution d'un contrat
+GIE → mise en commun de moyens (pas de bénéfices propres)</div>
+          </div>
+          <div class="piege-box">
+            <div class="piege-title">⚠️ Erreur classique</div>
+            <div class="piege-desc">Confondre franchise et concession : dans la franchise, le franchiseur transmet un savoir-faire et une méthode commerciale. Dans la concession, il accorde principalement un droit de vente exclusif sur un territoire, sans nécessairement transmettre un savoir-faire.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mark-done-row">
+        <button class="btn-mark btn-undo" id="undo-8" onclick="toggleDone(event,8)" style="display:none;">Marquer comme à revoir</button>
+        <button class="btn-mark btn-done" id="btn-8" onclick="toggleDone(event,8)">✓ Validé</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page -->
+
+<script>
+let doneCount = 0;
+
+function toggleTopic(n) {
+  const body = document.getElementById('body-' + n);
+  const arrow = document.getElementById('arrow-' + n);
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.topic-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.topic-arrow').forEach(a => a.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+function toggleDone(e, n) {
+  e.stopPropagation();
+  const topic = document.getElementById('topic-' + n);
+  const check = document.getElementById('check-' + n);
+  const btn = document.getElementById('btn-' + n);
+  const undo = document.getElementById('undo-' + n);
+  const isDone = topic.classList.contains('done');
+  if (isDone) {
+    topic.classList.remove('done');
+    check.classList.remove('done');
+    check.textContent = '';
+    btn.style.display = '';
+    undo.style.display = 'none';
+    doneCount--;
+  } else {
+    topic.classList.add('done');
+    check.classList.add('done');
+    check.textContent = '✓';
+    btn.style.display = 'none';
+    undo.style.display = '';
+    doneCount++;
+  }
+  document.getElementById('done-count').textContent = doneCount;
+  document.getElementById('chip-done').textContent = doneCount + ' validées';
+}
+
+function filterTopics(theme, btn) {
+  document.querySelectorAll('.filt').forEach(f => f.className = 'filt');
+  btn.classList.add('active-' + theme);
+  document.querySelectorAll('.topic').forEach(t => {
+    const themes = t.dataset.themes || '';
+    const match = theme === 'all' || themes.includes(theme);
+    t.classList.toggle('hidden', !match);
+  });
+}
+</script>
+</body>
+</html>
