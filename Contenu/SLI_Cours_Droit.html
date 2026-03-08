@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cours Droit — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f0ede6; min-height: 100vh; padding-top: 64px; padding-bottom: 48px; color: #1e1c18; }
+
+/* NAV */
+.sli-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(240,237,230,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid rgba(30,28,24,.1);box-shadow:0 2px 16px rgba(0,0,0,.06) }
+.sli-nav a { text-decoration:none }
+.sli-nav-logo { font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:900;color:#1e1c18 }
+.sli-nav-logo span { color:#2a69a8 }
+.sli-nav-links { display:flex;gap:2px }
+.sli-nl { font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;color:#7a6a58;padding:6px 14px;border-radius:20px;white-space:nowrap;text-decoration:none }
+.sli-nl:hover { background:rgba(30,28,24,.08);color:#1e1c18 }
+.sli-nl.on { background:#1e1c18;color:#f5c842 }
+
+.page { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
+
+/* HEADER */
+.hdr { text-align: center; margin-bottom: 32px; }
+.hdr-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #1e1c18; color: #f5c842; padding: 4px 16px; border-radius: 20px; display: inline-block; margin-bottom: 14px; }
+.hdr-title { font-size: 36px; font-weight: 900; color: #1e1c18; margin-bottom: 8px; }
+.hdr-title span { color: #2a69a8; }
+.hdr-sub { font-size: 15px; color: #7a6a58; font-weight: 600; }
+
+/* TABS */
+.tabs { display: flex; gap: 4px; background: #fffdf8; border-radius: 14px; padding: 6px; margin-bottom: 28px; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.tab-btn {
+  flex: 1; padding: 10px 16px; border: none; border-radius: 10px; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #7a6a58;
+  background: transparent; transition: all 0.2s;
+}
+.tab-btn:hover { background: rgba(30,28,24,.06); color: #1e1c18; }
+.tab-btn.active-t5 { background: #2a69a8; color: #fff; }
+.tab-btn.active-t6 { background: #2a7040; color: #fff; }
+.tab-btn.active-t7 { background: #b5415a; color: #fff; }
+.tab-btn.active-t8 { background: #946e00; color: #fff; }
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* THEME HEADER */
+.theme-hdr { border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; }
+.theme-hdr-t5 { background: #e8f3ff; border: 1.5px solid #cce2f8; }
+.theme-hdr-t6 { background: #eef6ee; border: 1.5px solid #c2dfc2; }
+.theme-hdr-t7 { background: #fdeef2; border: 1.5px solid #f9d0d9; }
+.theme-hdr-t8 { background: #fef8e2; border: 1.5px solid #fde8a0; }
+.theme-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.t5 .theme-num, .t5c { color: #2a69a8; }
+.t6 .theme-num, .t6c { color: #2a7040; }
+.t7 .theme-num, .t7c { color: #b5415a; }
+.t8 .theme-num, .t8c { color: #946e00; }
+.theme-question { font-size: 22px; font-weight: 900; color: #1e1c18; margin-bottom: 10px; }
+.theme-desc { font-size: 14px; font-weight: 600; color: #5a5448; line-height: 1.6; }
+
+/* SECTION */
+.section-block { background: #fffdf8; border-radius: 14px; padding: 22px 24px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.section-title { font-size: 16px; font-weight: 900; color: #1e1c18; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #f0ede6; }
+.section-subtitle { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #a09880; margin-bottom: 12px; margin-top: 18px; }
+
+/* NOTIONS */
+.notion { margin-bottom: 14px; padding: 14px 16px; border-radius: 10px; background: #f8f6f2; border-left: 3px solid #e0dbd2; }
+.notion.t5b { border-left-color: #2a69a8; }
+.notion.t6b { border-left-color: #2a7040; }
+.notion.t7b { border-left-color: #b5415a; }
+.notion.t8b { border-left-color: #946e00; }
+.notion-term { font-size: 15px; font-weight: 800; color: #1e1c18; margin-bottom: 5px; }
+.notion-def { font-size: 13px; font-weight: 500; color: #3a3530; line-height: 1.65; }
+.notion-ex { font-size: 12px; font-weight: 600; color: #7a6a58; margin-top: 5px; font-style: italic; }
+.notion-diff { font-size: 12px; font-weight: 700; color: #a09880; margin-top: 4px; }
+
+/* TABLEAU */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; margin: 14px 0; border-radius: 10px; overflow: hidden; }
+.tbl thead tr { background: #1e1c18; color: #fffdf8; }
+.tbl th { padding: 10px 14px; font-weight: 700; text-align: left; }
+.tbl td { padding: 9px 14px; font-weight: 500; color: #3a3530; border-bottom: 1px solid #f0ede6; }
+.tbl tbody tr:nth-child(even) { background: #f8f6f2; }
+.tbl tbody tr:last-child td { border-bottom: none; }
+
+/* ALERTE BAC */
+.bac-alert { background: #1e1c18; border-radius: 10px; padding: 14px 18px; margin-top: 16px; }
+.bac-label { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; margin-bottom: 6px; }
+.bac-text { font-size: 13px; font-weight: 600; color: #fffdf8; line-height: 1.6; }
+
+/* PUCE LISTE */
+.notion-list { list-style: none; padding: 0; margin-top: 6px; }
+.notion-list li { font-size: 13px; font-weight: 500; color: #3a3530; padding: 4px 0 4px 18px; position: relative; line-height: 1.55; }
+.notion-list li::before { content: "—"; position: absolute; left: 0; color: #a09880; }
+.notion-list li strong { font-weight: 800; color: #1e1c18; }
+
+/* LIEN INTER-THÈME */
+.link-block { background: rgba(30,28,24,.05); border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: 12px; font-weight: 600; color: #5a5448; line-height: 1.6; }
+.link-block span { font-weight: 800; color: #1e1c18; }
+
+/* ERREURS FRÉQUENTES */
+.errors-block { background: #fdeef2; border-radius: 12px; padding: 18px 20px; margin-top: 16px; }
+.errors-title { font-size: 13px; font-weight: 800; color: #b5415a; margin-bottom: 12px; }
+.error-row { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
+.error-bad { font-size: 12px; font-weight: 600; color: #7a2038; flex: 1; line-height: 1.5; }
+.error-good { font-size: 12px; font-weight: 700; color: #1a7a3c; flex: 1; line-height: 1.5; }
+.error-arrow { font-size: 14px; color: #a09880; flex-shrink: 0; margin-top: 1px; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../droit.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Cours_Droit.html" class="sli-nl on">📚 Cours</a>
+    <a href="SLI_Flashcards_Droit.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Droit.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Droit.html" class="sli-nl">🎯 Annales</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="hdr">
+    <div class="hdr-badge">Droit · Terminale STMG · Thèmes 5 à 8</div>
+    <div class="hdr-title">Cours <span>Droit</span></div>
+    <div class="hdr-sub">Contrat · Responsabilité · Travail salarié · Entreprendre</div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active-t5" onclick="showTab('t5',this,'active-t5')">📄 T5 — Le contrat</button>
+    <button class="tab-btn" onclick="showTab('t6',this,'active-t6')">⚖️ T6 — Responsabilité</button>
+    <button class="tab-btn" onclick="showTab('t7',this,'active-t7')">👔 T7 — Travail salarié</button>
+    <button class="tab-btn" onclick="showTab('t8',this,'active-t8')">🏢 T8 — Entreprendre</button>
+  </div>
+
+  <!-- ===== THÈME 5 ===== -->
+  <div id="tab-t5" class="tab-pane active" id="t5">
+    <div class="theme-hdr theme-hdr-t5 t5">
+      <div class="theme-num">Thème 5</div>
+      <div class="theme-question">Quel est le rôle du contrat ?</div>
+      <div class="theme-desc">3 sous-thèmes : formation du contrat · exécution · particularités du contrat de consommation</div>
+    </div>
+
+    <!-- 5.1 -->
+    <div class="section-block" id="t5">
+      <div class="section-title t5c">5.1 — La formation du contrat</div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Contrat</div>
+        <div class="notion-def">Accord de volontés entre deux ou plusieurs personnes destiné à créer des obligations juridiques.</div>
+        <div class="notion-diff">≠ simple promesse non juridiquement contraignante.</div>
+        <div class="notion-ex">Ex : contrat de vente entre Décathlon et un client.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Offre (pollicitation)</div>
+        <div class="notion-def">Proposition ferme et précise de conclure un contrat, adressée à une personne déterminée ou au public. Elle engage son auteur si elle est acceptée.</div>
+        <div class="notion-diff">≠ invitation à entrer en négociation.</div>
+        <div class="notion-ex">Ex : affichage d'un prix en vitrine.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Acceptation</div>
+        <div class="notion-def">Manifestation de volonté par laquelle le destinataire de l'offre signifie son accord pur et simple. Le contrat se forme au moment de la rencontre de l'offre et de l'acceptation.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Consentement</div>
+        <div class="notion-def">Accord libre et éclairé des parties. Pour être valable, il ne doit pas être vicié.</div>
+      </div>
+
+      <div class="section-subtitle">Vices du consentement (3 à connaître)</div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Erreur</div>
+        <div class="notion-def">Fausse représentation de la réalité portant sur les qualités essentielles de la prestation. Conséquence : nullité relative du contrat.</div>
+        <div class="notion-ex">Ex : acheter un faux tableau de maître en croyant à son authenticité.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Dol</div>
+        <div class="notion-def">Manœuvres frauduleuses (mensonges, tromperies) d'une partie pour obtenir le consentement de l'autre. Le dol est intentionnel.</div>
+        <div class="notion-diff">≠ erreur (l'erreur est spontanée, le dol est provoqué).</div>
+        <div class="notion-ex">Ex : dissimuler un vice caché lors d'une vente.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Violence</div>
+        <div class="notion-def">Contrainte exercée sur une personne pour l'amener à contracter (physique ou morale). Conséquence : nullité relative.</div>
+        <div class="notion-ex">Ex : signature d'un contrat sous menace.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Capacité juridique</div>
+        <div class="notion-def">Aptitude d'une personne à contracter. Les mineurs non émancipés et les majeurs sous tutelle ont une capacité limitée. Un contrat conclu par un incapable est susceptible d'annulation.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Objet du contrat</div>
+        <div class="notion-def">Prestation que chaque partie s'engage à exécuter. L'objet doit être déterminé ou déterminable, possible et licite.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Contenu licite et certain</div>
+        <div class="notion-def">Le contrat ne peut pas avoir un objet contraire à la loi ou aux bonnes mœurs. Un tel contrat est nul.</div>
+        <div class="notion-ex">Ex : contrat portant sur une activité illégale est nul.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Contrat synallagmatique</div>
+        <div class="notion-def">Contrat qui crée des obligations réciproques pour les deux parties (chacun est à la fois créancier et débiteur).</div>
+        <div class="notion-diff">≠ contrat unilatéral (seule une partie s'oblige).</div>
+        <div class="notion-ex">Synallagmatique : contrat de vente. Unilatéral : donation.</div>
+      </div>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">Toujours citer les 4 conditions (consentement + capacité + objet + contenu licite) même si la question ne porte que sur une. "Le consentement de X est-il vicié ?" → identifier le vice + citer la conséquence (nullité relative).</div>
+      </div>
+    </div>
+
+    <!-- 5.2 -->
+    <div class="section-block">
+      <div class="section-title t5c">5.2 — L'exécution du contrat</div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Force obligatoire du contrat</div>
+        <div class="notion-def">Le contrat légalement formé tient lieu de loi à ceux qui l'ont fait (art. 1103 Code civil). Les parties sont tenues de l'exécuter de bonne foi.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Exécution en nature</div>
+        <div class="notion-def">Le débiteur exécute lui-même ce à quoi il s'est engagé. C'est le principe : on ne peut pas choisir de payer des dommages-intérêts plutôt que d'exécuter.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Exception d'inexécution</div>
+        <div class="notion-def">Droit pour une partie de refuser d'exécuter son obligation tant que l'autre partie n'a pas exécuté la sienne.</div>
+        <div class="notion-ex">Ex : un client peut refuser de payer si la marchandise n'est pas livrée.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Résolution du contrat</div>
+        <div class="notion-def">Anéantissement rétroactif du contrat en cas d'inexécution grave. Les parties sont remises dans l'état initial.</div>
+        <div class="notion-diff">≠ résiliation (fin pour l'avenir seulement, sans rétroactivité).</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Dommages-intérêts contractuels</div>
+        <div class="notion-def">Somme versée par le débiteur fautif pour réparer le préjudice causé par l'inexécution. Conditions : inexécution + préjudice + lien de causalité.</div>
+      </div>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">3 sanctions de l'inexécution à connaître : exécution forcée / exception d'inexécution / résolution + dommages-intérêts. Ne pas confondre résolution (rétroactive) et résiliation (pour l'avenir).</div>
+      </div>
+    </div>
+
+    <!-- 5.3 -->
+    <div class="section-block">
+      <div class="section-title t5c">5.3 — Les particularités du contrat de consommation</div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Consommateur</div>
+        <div class="notion-def">Personne physique qui agit à des fins qui n'entrent pas dans le cadre de son activité professionnelle.</div>
+        <div class="notion-diff">≠ professionnel (agissant dans le cadre de son activité commerciale, industrielle, artisanale ou libérale).</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Contrat d'adhésion</div>
+        <div class="notion-def">Contrat dont les clauses sont fixées unilatéralement par le professionnel, sans possibilité de négociation pour le consommateur.</div>
+        <div class="notion-diff">≠ contrat de gré à gré (négocié librement).</div>
+        <div class="notion-ex">Ex : abonnement téléphonique, contrat d'assurance standard.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Clauses abusives</div>
+        <div class="notion-def">Clauses créant un déséquilibre significatif entre les droits et obligations des parties au détriment du consommateur. Elles sont réputées non écrites (nullité partielle).</div>
+        <div class="notion-ex">Ex : clause limitant la garantie ou imposant des pénalités excessives au consommateur.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Droit de rétractation</div>
+        <div class="notion-def">Droit reconnu au consommateur de revenir sur son consentement dans un délai de 14 jours, sans motif ni pénalité, pour les contrats conclus à distance ou hors établissement.</div>
+        <div class="notion-diff">Ne s'applique PAS aux achats en boutique physique.</div>
+      </div>
+
+      <div class="notion t5b">
+        <div class="notion-term">Garantie légale de conformité</div>
+        <div class="notion-def">Obligation du vendeur professionnel de livrer un bien conforme au contrat. En cas de défaut, le consommateur peut demander réparation, remplacement, résolution ou réduction du prix. Délai : 2 ans.</div>
+      </div>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">Fréquent dans les sujets avec entreprise e-commerce. "Le consommateur peut-il se rétracter ?" → vérifier si contrat à distance (oui 14j) ou en boutique physique (non). "Cette clause est-elle abusive ?" → déséquilibre significatif au détriment du consommateur ?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== THÈME 6 ===== -->
+  <div id="tab-t6" class="tab-pane">
+    <div class="theme-hdr theme-hdr-t6 t6">
+      <div class="theme-num">Thème 6</div>
+      <div class="theme-question">Qu'est-ce qu'être responsable ?</div>
+      <div class="theme-desc">3 sous-thèmes : responsabilité en droit · régimes de responsabilité · réparation du dommage</div>
+    </div>
+
+    <!-- 6.1 -->
+    <div class="section-block" id="t6">
+      <div class="section-title t6c">6.1 — La responsabilité en droit et le dommage</div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Responsabilité civile</div>
+        <div class="notion-def">Obligation de réparer le préjudice causé à autrui. Elle peut être contractuelle (inexécution d'un contrat) ou extracontractuelle/délictuelle (hors contrat). Elle vise à indemniser la victime.</div>
+        <div class="notion-diff">≠ responsabilité pénale (sanctionner l'auteur).</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Responsabilité pénale</div>
+        <div class="notion-def">Obligation de répondre d'une infraction devant la justice pénale (tribunal correctionnel, cour d'assises). Elle vise à sanctionner le coupable (amende, emprisonnement).</div>
+      </div>
+
+      <table class="tbl">
+        <thead>
+          <tr><th></th><th>Responsabilité civile</th><th>Responsabilité pénale</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Objet</strong></td><td>Réparer le préjudice</td><td>Sanctionner l'auteur</td></tr>
+          <tr><td><strong>Tribunal</strong></td><td>Tribunal judiciaire</td><td>Tribunal correctionnel / Cour d'assises</td></tr>
+          <tr><td><strong>Qui agit</strong></td><td>La victime</td><td>Le procureur (au nom de la société)</td></tr>
+          <tr><td><strong>Sanction</strong></td><td>Dommages-intérêts</td><td>Amende, emprisonnement</td></tr>
+        </tbody>
+      </table>
+
+      <div class="notion t6b">
+        <div class="notion-term">Fait générateur</div>
+        <div class="notion-def">Notion-mère qui désigne l'événement à l'origine de la responsabilité extracontractuelle. Il peut être : une faute, le fait d'une chose, ou le fait d'autrui. Chaque type correspond à un régime de responsabilité différent.</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Dommage</div>
+        <div class="notion-def">Préjudice subi par la victime. Pour ouvrir droit à réparation, il doit être personnel, certain, direct et légitime.</div>
+        <ul class="notion-list">
+          <li><strong>Dommage matériel</strong> — atteinte au patrimoine (perte financière, destruction d'un bien).</li>
+          <li><strong>Dommage corporel</strong> — atteinte à l'intégrité physique.</li>
+          <li><strong>Dommage moral</strong> — atteinte aux sentiments, à l'honneur, à la réputation.</li>
+        </ul>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Lien de causalité</div>
+        <div class="notion-def">Relation directe entre le fait générateur et le dommage. Sans lien de causalité, pas de responsabilité.</div>
+      </div>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">"Le dommage subi par X ouvre-t-il droit à réparation ?" → vérifier les 4 caractères (personnel, certain, direct, légitime) + identifier le type (matériel / corporel / moral).</div>
+      </div>
+    </div>
+
+    <!-- 6.2 -->
+    <div class="section-block">
+      <div class="section-title t6c">6.2 — Les différents régimes de responsabilité extracontractuelle</div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Responsabilité pour faute (art. 1240 C.civ.)</div>
+        <div class="notion-def">Régime de droit commun. Conditions : une faute (comportement fautif volontaire ou non) + un dommage + un lien de causalité.</div>
+        <div class="notion-ex">Ex : un conducteur ivre qui blesse un piéton.</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Responsabilité du fait des choses (art. 1242 al. 1)</div>
+        <div class="notion-def">On est responsable des choses que l'on a sous sa garde (usage, direction, contrôle). Régime sans faute : la victime n'a pas à prouver que le gardien a commis une faute.</div>
+        <div class="notion-ex">Ex : un chien qui mord (gardien = propriétaire). Une bouteille de gaz qui explose.</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Responsabilité du fait d'autrui (art. 1242)</div>
+        <div class="notion-def">On peut être responsable des dommages causés par des personnes dont on répond. Cas principaux : parents pour leurs enfants mineurs ; employeur (commettant) pour son salarié (préposé).</div>
+        <div class="notion-ex">Ex : un employeur est responsable d'un accident causé par son salarié pendant l'exercice de ses fonctions.</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Responsabilité du fait des produits défectueux</div>
+        <div class="notion-def">Le producteur est responsable des dommages causés par un défaut de son produit, que la victime soit contractante ou non.</div>
+        <div class="notion-diff">≠ garantie légale de conformité (qui n'existe qu'entre le vendeur et l'acheteur).</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Responsabilité contractuelle</div>
+        <div class="notion-def">Régime applicable quand le dommage résulte de l'inexécution d'un contrat. Conditions : inexécution + dommage + lien de causalité.</div>
+        <div class="notion-diff">Principe du non-cumul : on ne peut pas choisir le régime délictuel quand un contrat existe.</div>
+      </div>
+
+      <div class="section-subtitle">Moyens d'exonération</div>
+      <ul class="notion-list" style="padding-left:4px;">
+        <li><strong>Cas de force majeure</strong> — événement imprévisible, irrésistible et extérieur. Exonération totale.</li>
+        <li><strong>Fait de la victime</strong> — si la victime a contribué au dommage. Exonération totale ou partielle.</li>
+        <li><strong>Fait d'un tiers</strong> — si un tiers est seul à l'origine du dommage. Exonération totale si le fait présente les caractères de la force majeure.</li>
+      </ul>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">"Quel régime de responsabilité s'applique ici ?" → identifier d'abord s'il y a un contrat (contractuelle) ou non (extracontractuelle) → puis identifier le fait générateur → vérifier les 3 conditions cumulatives → vérifier une éventuelle exonération.</div>
+      </div>
+    </div>
+
+    <!-- 6.3 -->
+    <div class="section-block">
+      <div class="section-title t6c">6.3 — La réparation du dommage</div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Principe de réparation intégrale</div>
+        <div class="notion-def">La victime doit être replacée dans la situation où elle se serait trouvée si le dommage ne s'était pas produit. Ni plus, ni moins. On ne peut pas s'enrichir grâce à la réparation.</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Dommages-intérêts</div>
+        <div class="notion-def">Somme d'argent versée par le responsable à la victime pour compenser le préjudice. Principal mode de réparation en droit civil.</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Réparation en nature</div>
+        <div class="notion-def">Remise en état, remplacement du bien endommagé. Possible quand elle est réalisable et souhaitée par la victime.</div>
+        <div class="notion-ex">Ex : remise en état d'une voiture endommagée.</div>
+      </div>
+
+      <div class="notion t6b">
+        <div class="notion-term">Transaction</div>
+        <div class="notion-def">Accord amiable entre la victime et le responsable (ou son assureur) pour fixer le montant de la réparation, évitant le recours au tribunal. Valable si la victime donne un consentement libre et éclairé.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== THÈME 7 ===== -->
+  <div id="tab-t7" class="tab-pane">
+    <div class="theme-hdr theme-hdr-t7 t7">
+      <div class="theme-num">Thème 7</div>
+      <div class="theme-question">Comment le droit encadre-t-il le travail salarié ?</div>
+      <div class="theme-desc">4 sous-thèmes : contrat de travail · conditions de travail · libertés · rupture du CDI</div>
+    </div>
+
+    <!-- 7.1 -->
+    <div class="section-block" id="t7">
+      <div class="section-title t7c">7.1 — Le contrat de travail</div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Lien de subordination juridique</div>
+        <div class="notion-def">Critère essentiel du contrat de travail : le salarié est placé sous l'autorité de l'employeur qui a sur lui un pouvoir de direction, de contrôle et de sanction. C'est ce critère qui distingue le salarié du travailleur indépendant. Le juge peut requalifier une relation en contrat de travail si la subordination est prouvée.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">CDI — Contrat à durée indéterminée</div>
+        <div class="notion-def">Forme normale et générale de la relation de travail. Pas de terme fixé à l'avance. Seule une rupture (démission, licenciement, rupture conventionnelle) y met fin.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">CDD — Contrat à durée déterminée</div>
+        <div class="notion-def">Contrat conclu pour une durée limitée et pour un motif précis (remplacement, surcroît temporaire d'activité, emploi saisonnier). Ne peut pas pourvoir durablement un emploi lié à l'activité normale de l'entreprise. Doit être écrit et signé dans les 2 jours ouvrables.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">CTT — Contrat de travail temporaire (intérim)</div>
+        <div class="notion-def">3 parties / 2 contrats : contrat de mission (entre l'ETT et le salarié) + contrat de mise à disposition (entre l'ETT et l'entreprise utilisatrice).</div>
+      </div>
+
+      <table class="tbl">
+        <thead>
+          <tr><th></th><th>CDI</th><th>CDD</th><th>CTT</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Durée</strong></td><td>Indéterminée</td><td>Déterminée</td><td>Déterminée (mission)</td></tr>
+          <tr><td><strong>Forme écrite</strong></td><td>Recommandée</td><td>Obligatoire</td><td>Obligatoire</td></tr>
+          <tr><td><strong>Cas d'usage</strong></td><td>Emploi permanent</td><td>Surcroît, remplacement</td><td>Surcroît, remplacement</td></tr>
+          <tr><td><strong>Fin</strong></td><td>Rupture</td><td>Terme échu</td><td>Fin de mission</td></tr>
+          <tr><td><strong>Indemnité de fin</strong></td><td>Néant</td><td>10% de précarité</td><td>10% de précarité</td></tr>
+        </tbody>
+      </table>
+
+      <div class="notion t7b">
+        <div class="notion-term">Période d'essai</div>
+        <div class="notion-def">Période initiale pendant laquelle l'employeur ou le salarié peuvent rompre le contrat librement. Durée fixée par la loi et les conventions collectives.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Clause de non-concurrence</div>
+        <div class="notion-def">Interdit au salarié de travailler pour un concurrent après la rupture. Valide si : limitée dans le temps, l'espace et le domaine d'activité + contrepartie financière obligatoire. Sans contrepartie financière → clause nulle.</div>
+      </div>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">"Le contrat de X peut-il être requalifié en CDI ?" → chercher les 3 indices du lien de subordination (direction / contrôle / sanction). "Le CDD est-il valablement formé ?" → vérifier : motif légal + forme écrite dans les 2 jours ouvrables.</div>
+      </div>
+    </div>
+
+    <!-- 7.2 -->
+    <div class="section-block">
+      <div class="section-title t7c">7.2 — Les conditions de travail</div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Durée légale du travail</div>
+        <div class="notion-def">35 heures par semaine. Ce n'est pas un maximum mais la référence à partir de laquelle les heures supplémentaires sont calculées.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Heures supplémentaires</div>
+        <div class="notion-def">Heures effectuées au-delà de 35h/semaine à la demande de l'employeur. Majoration obligatoire : +25% pour les 8 premières heures supplémentaires (heures 36 à 43), +50% au-delà.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">SMIC</div>
+        <div class="notion-def">Salaire Minimum Interprofessionnel de Croissance — salaire horaire minimum légal, revu au 1er janvier chaque année. Aucun salarié ne peut être payé en dessous.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Repos</div>
+        <div class="notion-def">Minimum 11h de repos consécutif entre deux journées de travail et au moins 24h de repos hebdomadaire (dimanche en principe).</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Congés payés</div>
+        <div class="notion-def">Droit à 2,5 jours ouvrables par mois de travail effectif, soit 5 semaines par an.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Santé et sécurité au travail</div>
+        <div class="notion-def">L'employeur a une obligation de sécurité de résultat : il doit prendre toutes les mesures nécessaires pour protéger la santé physique et mentale des salariés (prévention des risques, équipements, formation).</div>
+      </div>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">"Les heures supplémentaires ont-elles été correctement rémunérées ?" → appliquer les taux : +25% (h.36 à 43) puis +50% (h.44 et au-delà). Le commentaire est aussi obligatoire que le calcul.</div>
+      </div>
+    </div>
+
+    <!-- 7.3 -->
+    <div class="section-block">
+      <div class="section-title t7c">7.3 — Les libertés individuelles et collectives des salariés</div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Libertés individuelles au travail</div>
+        <div class="notion-def">Les droits fondamentaux (liberté d'expression, vie privée, liberté religieuse, liberté d'opinion) s'appliquent sur le lieu de travail. Les restrictions imposées par l'employeur doivent être justifiées par la nature de la tâche et proportionnées au but recherché.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Vie personnelle du salarié</div>
+        <div class="notion-def">L'employeur ne peut pas sanctionner un salarié pour des faits relevant de sa vie personnelle, sauf si ceux-ci ont des conséquences directes sur l'entreprise (trouble objectif caractérisé).</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">CSE — Comité Social et Économique</div>
+        <div class="notion-def">Instance représentative du personnel (IRP) obligatoire dans les entreprises de 11 salariés et plus. Fusionne les anciens CE, DP et CHSCT. Représente les salariés, est consulté sur les décisions importantes.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Droit de grève</div>
+        <div class="notion-def">Droit constitutionnel pour tout salarié de cesser le travail collectivement pour défendre des revendications professionnelles. La grève ne rompt pas le contrat de travail.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Convention collective</div>
+        <div class="notion-def">Accord écrit conclu entre une ou plusieurs organisations d'employeurs et une ou plusieurs organisations syndicales représentatives. Elle fixe les conditions de travail d'une branche ou d'une entreprise. Elle s'applique à tous les salariés de l'entreprise.</div>
+      </div>
+    </div>
+
+    <!-- 7.4 -->
+    <div class="section-block">
+      <div class="section-title t7c">7.4 — La rupture du contrat de travail à durée indéterminée</div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Démission</div>
+        <div class="notion-def">Rupture du CDI à l'initiative du salarié. Elle doit être claire et non équivoque. Le salarié doit respecter un préavis. Pas droit au chômage en principe (sauf démission légitime).</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Licenciement pour motif personnel</div>
+        <div class="notion-def">Rupture à l'initiative de l'employeur, fondée sur un comportement ou une insuffisance professionnelle du salarié. Doit reposer sur une cause réelle et sérieuse.</div>
+        <ul class="notion-list">
+          <li><strong>Faute simple</strong> → droit aux indemnités légales + préavis</li>
+          <li><strong>Faute grave</strong> → pas d'indemnité de licenciement, pas de préavis</li>
+          <li><strong>Faute lourde</strong> → pas d'indemnité, pas de préavis + dommages-intérêts possibles à charge du salarié</li>
+        </ul>
+        <div class="notion-diff">La faute grave et la faute lourde ne privent PAS du droit au chômage (ARE).</div>
+      </div>
+
+      <div class="section-subtitle">Procédure de licenciement personnel (3 étapes dans l'ordre)</div>
+      <ul class="notion-list" style="padding-left:4px;">
+        <li>1. Convocation à un entretien préalable (lettre remise en main propre ou recommandée)</li>
+        <li>2. Entretien préalable (délai minimum <strong>5 jours ouvrables</strong> après convocation)</li>
+        <li>3. Notification du licenciement (lettre recommandée avec AR, au plus tôt <strong>2 jours ouvrables</strong> après l'entretien)</li>
+      </ul>
+
+      <div class="notion t7b" style="margin-top:14px;">
+        <div class="notion-term">Licenciement pour motif économique</div>
+        <div class="notion-def">Rupture à l'initiative de l'employeur fondée sur des difficultés économiques, mutations technologiques, réorganisation nécessaire à la sauvegarde de la compétitivité, ou cessation d'activité.</div>
+      </div>
+
+      <div class="notion t7b">
+        <div class="notion-term">Rupture conventionnelle</div>
+        <div class="notion-def">Mode de rupture d'un commun accord entre l'employeur et le salarié. Donne droit aux indemnités de rupture et à l'allocation chômage. Procédure : entretien(s) → convention signée → délai de rétractation <strong>15 jours calendaires</strong> → homologation par la DREETS.</div>
+      </div>
+
+      <table class="tbl" style="margin-top:16px;">
+        <thead>
+          <tr><th>Mode</th><th>Initiative</th><th>Préavis</th><th>Indemnités</th><th>Chômage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Démission</strong></td><td>Salarié</td><td>Oui</td><td>Non</td><td>Non (principe)</td></tr>
+          <tr><td><strong>Licenc. faute simple</strong></td><td>Employeur</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+          <tr><td><strong>Licenc. faute grave</strong></td><td>Employeur</td><td>Non</td><td>Non</td><td>Oui</td></tr>
+          <tr><td><strong>Licenc. économique</strong></td><td>Employeur</td><td>Oui</td><td>Oui (spécif.)</td><td>Oui</td></tr>
+          <tr><td><strong>Rupture conventionnelle</strong></td><td>Commun accord</td><td>Non</td><td>Oui</td><td>Oui</td></tr>
+        </tbody>
+      </table>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">"La procédure de licenciement est-elle respectée ?" → vérifier les 3 étapes dans l'ordre avec les délais précis (5 jours / 2 jours). Toujours analyser FOND (cause réelle et sérieuse ?) ET FORME (procédure ?) séparément.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== THÈME 8 ===== -->
+  <div id="tab-t8" class="tab-pane">
+    <div class="theme-hdr theme-hdr-t8 t8">
+      <div class="theme-num">Thème 8</div>
+      <div class="theme-question">Dans quel cadre et comment entreprendre ?</div>
+      <div class="theme-desc">4 sous-thèmes : entreprise individuelle · concurrence · formes juridiques · partenariat</div>
+    </div>
+
+    <!-- 8.1 -->
+    <div class="section-block" id="t8">
+      <div class="section-title t8c">8.1 — L'entreprise individuelle</div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Entrepreneur individuel (EI)</div>
+        <div class="notion-def">Personne physique qui exerce une activité professionnelle en son nom propre, sans créer de société. Depuis la réforme du 15 mai 2022, son patrimoine est automatiquement divisé en deux parties distinctes.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Patrimoine professionnel</div>
+        <div class="notion-def">Biens utilisés pour l'activité professionnelle. Seuls ces biens peuvent être saisis par les créanciers professionnels.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Patrimoine personnel</div>
+        <div class="notion-def">Biens n'entrant pas dans le patrimoine professionnel. Protégé des créanciers professionnels par défaut depuis la réforme 2022.</div>
+        <div class="notion-diff">Avant 2022 : un seul patrimoine. Les biens personnels étaient engagés dans les dettes professionnelles. L'EIRL est désormais supprimée pour les nouvelles créations.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Micro-entrepreneur (autoentrepreneur)</div>
+        <div class="notion-def">Régime simplifié de l'EI, avec un régime fiscal et social allégé. Plafonds de chiffre d'affaires à respecter.</div>
+      </div>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">"Quelles sont les conséquences de la faillite de X sur son patrimoine personnel ?" → appliquer la réforme 2022 : seul le patrimoine professionnel est engagé. Préciser que c'est la règle depuis 2022.</div>
+      </div>
+    </div>
+
+    <!-- 8.2 -->
+    <div class="section-block">
+      <div class="section-title t8c">8.2 — Liberté du commerce et concurrence</div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Liberté du commerce et de l'industrie</div>
+        <div class="notion-def">Principe fondamental selon lequel toute personne est libre d'exercer l'activité commerciale de son choix, de s'installer et de faire concurrence à autrui. Elle s'exerce dans les limites de la loi.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Concurrence déloyale</div>
+        <div class="notion-def">Comportement d'une entreprise qui utilise des procédés contraires aux usages du commerce causant un préjudice à un concurrent. Fondée sur la responsabilité pour faute (art. 1240 C.civ.).</div>
+        <ul class="notion-list">
+          <li><strong>Dénigrement</strong> — critiques injustifiées des produits ou de la réputation d'un concurrent.</li>
+          <li><strong>Imitation / parasitisme</strong> — copier les éléments distinctifs d'un concurrent pour créer une confusion.</li>
+          <li><strong>Désorganisation</strong> — débauchage massif de salariés, détournement de clientèle.</li>
+        </ul>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Ententes illicites</div>
+        <div class="notion-def">Accords entre entreprises concurrentes pour fixer les prix, se partager les marchés, ou exclure des concurrents. Interdites par le droit européen et national.</div>
+        <div class="notion-ex">Ex : cartel des constructeurs automobiles sur les prix.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Abus de position dominante</div>
+        <div class="notion-def">Comportement d'une entreprise en position de force sur son marché qui nuit à la concurrence.</div>
+        <div class="notion-ex">Ex : prix prédateurs pour éliminer un concurrent.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Autorité de la concurrence</div>
+        <div class="notion-def">Autorité administrative indépendante française qui contrôle les pratiques anticoncurrentielles et les concentrations d'entreprises. Elle peut infliger de lourdes sanctions.</div>
+      </div>
+    </div>
+
+    <!-- 8.3 -->
+    <div class="section-block">
+      <div class="section-title t8c">8.3 — Les formes juridiques de l'entreprise</div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Personnalité morale</div>
+        <div class="notion-def">Reconnaissance juridique d'une société comme sujet de droit, distinct des associés qui la composent. La société peut contracter, posséder des biens, agir en justice. Acquise à l'immatriculation au RCS.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Capital social</div>
+        <div class="notion-def">Ensemble des apports effectués par les associés lors de la constitution de la société. Il représente les ressources initiales et constitue le gage des créanciers.</div>
+      </div>
+
+      <table class="tbl">
+        <thead>
+          <tr><th>Forme</th><th>Associés</th><th>Resp. des associés</th><th>Direction</th><th>Capital min.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>SARL</strong></td><td>1 à 100</td><td>Limitée aux apports</td><td>Gérant</td><td>1 €</td></tr>
+          <tr><td><strong>EURL</strong></td><td>1 seul</td><td>Limitée aux apports</td><td>Gérant</td><td>1 €</td></tr>
+          <tr><td><strong>SA</strong></td><td>Min. 2 (7 si cotée)</td><td>Limitée aux apports</td><td>CA + PDG ou DG</td><td>37 000 €</td></tr>
+          <tr><td><strong>SAS / SASU</strong></td><td>Libre</td><td>Limitée aux apports</td><td>Président</td><td>1 €</td></tr>
+          <tr><td><strong>SNC</strong></td><td>Min. 2</td><td>Illimitée et solidaire</td><td>Gérant associé</td><td>Libre</td></tr>
+        </tbody>
+      </table>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">"Quelle forme juridique conseiller à X ?" → mobiliser les contraintes du sujet : nombre d'associés, souhait de limiter la responsabilité, capital disponible, mode de direction souhaité. Toujours exclure les formes inadaptées et expliquer pourquoi.</div>
+      </div>
+    </div>
+
+    <!-- 8.4 -->
+    <div class="section-block">
+      <div class="section-title t8c">8.4 — Le partenariat</div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Franchise</div>
+        <div class="notion-def">Contrat par lequel un franchiseur concède à un franchisé le droit d'utiliser son enseigne, sa marque et son savoir-faire, en contrepartie d'une redevance (royalties). Les parties restent indépendantes.</div>
+        <div class="notion-diff">≠ concession (marque + exclusivité territoriale, sans savoir-faire obligatoire). ≠ licence de marque (marque seule).</div>
+        <div class="notion-ex">Ex : McDonald's, Yves Rocher.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Concession commerciale</div>
+        <div class="notion-def">Contrat par lequel un concédant autorise un concessionnaire à vendre ses produits dans un territoire exclusif, sous sa marque.</div>
+        <div class="notion-ex">Ex : concessionnaire automobile Renault.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Licence de marque</div>
+        <div class="notion-def">Contrat par lequel le titulaire d'une marque (cédant) autorise une autre entreprise (licencié) à utiliser sa marque moyennant redevance. Pas nécessairement de savoir-faire transmis.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">Sous-traitance</div>
+        <div class="notion-def">Contrat par lequel une entreprise (donneur d'ordre) confie à une autre (sous-traitant) tout ou partie de l'exécution d'un contrat principal. Les sous-traitants restent indépendants.</div>
+      </div>
+
+      <div class="notion t8b">
+        <div class="notion-term">GIE — Groupement d'Intérêt Économique</div>
+        <div class="notion-def">Structure juridique permettant à plusieurs entreprises de mettre en commun certaines activités (achats, recherche, publicité) tout en restant indépendantes. Les membres sont responsables indéfiniment et solidairement des dettes du GIE. Le but est de faciliter l'activité des membres, non de réaliser des bénéfices propres.</div>
+        <div class="notion-diff">≠ société car le GIE ne cherche pas à faire des bénéfices pour lui-même.</div>
+        <div class="notion-ex">Ex : Airbus est né d'un GIE entre constructeurs européens.</div>
+      </div>
+
+      <div class="bac-alert">
+        <div class="bac-label">Vigilance bac</div>
+        <div class="bac-text">"Qualifier le contrat liant X à Y." → Franchise = marque + savoir-faire + enseigne. Concession = marque + exclusivité territoriale. Licence = marque seule. Le GIE doit être cité si la question porte sur "d'autres formes de coopération sans fusion".</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page -->
+
+<script>
+function showTab(id, btn, activeClass) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.className = 'tab-btn');
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add(activeClass);
+  // anchor scroll if needed
+  const anchor = document.getElementById(id);
+  if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Handle hash on load
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#','');
+  if (['t5','t6','t7','t8'].includes(hash)) {
+    const classMap = { t5: 'active-t5', t6: 'active-t6', t7: 'active-t7', t8: 'active-t8' };
+    const btn = document.querySelector('[onclick*="showTab(\'' + hash + '\'"]');
+    if (btn) { btn.click(); }
+  }
+});
+</script>
+</body>
+</html>

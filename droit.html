@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scholar Lock-In — SDGM · Thème 1</title>
+<title>Scholar Lock-In — Droit · Thèmes 5 à 8</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -46,7 +46,7 @@ body { background: #f0ede6; color: #1e1c18; }
 
 /* Hero */
 h1 { font-size: 3.5rem; font-weight: 900; color: #1e1c18; line-height: 1.05; }
-h1 .accent { color: #b5415a; }
+h1 .accent { color: #2a69a8; }
 h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
 
 .hero-badge {
@@ -64,6 +64,16 @@ h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
   line-height: 1.5;
 }
 .hero-sub { font-size: 1rem; line-height: 1.7; color: #7a6a58; font-weight: 500; }
+
+/* Theme pills */
+.theme-pills { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+.theme-pill {
+  font-size: 0.72rem; font-weight: 700; padding: 5px 14px; border-radius: 20px;
+}
+.pill-t5 { background: #cce2f8; color: #2a69a8; }
+.pill-t6 { background: #c2dfc2; color: #2a7040; }
+.pill-t7 { background: #f9d0d9; color: #b5415a; }
+.pill-t8 { background: #fde8a0; color: #946e00; }
 
 /* Section heading */
 .section-heading {
@@ -102,9 +112,9 @@ h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
 .tile-overview .card-title { color: #fffdf8; }
 .tile-overview .card-desc { color: #a09880; }
 
-/* Tuile Chapitres (gradient tri-couleur) */
+/* Tuile Thèmes (gradient 4 couleurs droit) */
 .tile-chap {
-  background: linear-gradient(135deg, #fdeef2 0%, #e8f3ff 55%, #fef8e2 100%);
+  background: linear-gradient(135deg, #e8f3ff 0%, #eef6ee 40%, #fdeef2 70%, #fef8e2 100%);
   border: 1.5px solid #e0dbd2;
   cursor: default;
 }
@@ -113,7 +123,7 @@ h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
 .tile-chap .card-title { color: #1e1c18; }
 .tile-chap .card-desc { color: #5a5448; }
 
-/* Liste chapitres */
+/* Liste thèmes */
 .chap-list { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; }
 .chap-item {
   display: flex; align-items: center; gap: 12px;
@@ -128,43 +138,43 @@ h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
 }
 .chap-label { font-size: 0.9rem; font-weight: 600; line-height: 1.35; }
 
-/* Rose — Marketing */
-.chap-r { background: #f9d0d9; }
-.chap-r .chap-num { color: #b5415a; }
-.chap-r .chap-label { color: #7a2038; }
-
-/* Bleu — Production */
+/* Bleu — T5 Contrat */
 .chap-b { background: #cce2f8; }
 .chap-b .chap-num { color: #2a69a8; }
 .chap-b .chap-label { color: #1a4f82; }
 
-/* Jaune — RH */
+/* Vert — T6 Responsabilité */
+.chap-g { background: #c2dfc2; }
+.chap-g .chap-num { color: #2a7040; }
+.chap-g .chap-label { color: #1a5030; }
+
+/* Rose — T7 Travail */
+.chap-r { background: #f9d0d9; }
+.chap-r .chap-num { color: #b5415a; }
+.chap-r .chap-label { color: #7a2038; }
+
+/* Jaune — T8 Entreprendre */
 .chap-j { background: #fde8a0; }
 .chap-j .chap-num { color: #946e00; }
 .chap-j .chap-label { color: #7a5800; }
 
-/* Violet — Finance */
-.chap-v { background: #ead8f5; }
-.chap-v .chap-num { color: #7030a0; }
-.chap-v .chap-label { color: #4a1a7a; }
+/* Tuile Flash cards — bleu pâle (T5) */
+.tile-flash { background: #e8f3ff; border: 1.5px solid #cce2f8; }
+.tile-flash .card-tag { background: rgba(42,105,168,.15); color: #2a69a8; }
+.tile-flash .card-title { color: #2a69a8; }
+.tile-flash .card-desc { color: #1a4f82; }
 
-/* Tuile Flash cards — rose pale (Marketing) */
-.tile-flash { background: #fdeef2; border: 1.5px solid #f9d0d9; }
-.tile-flash .card-tag { background: rgba(181,65,90,.15); color: #b5415a; }
-.tile-flash .card-title { color: #b5415a; }
-.tile-flash .card-desc { color: #7a2038; }
-
-/* Tuile Méthode — jaune pale (RH) */
+/* Tuile Méthode — jaune pâle (T8) */
 .tile-methode { background: #fef8e2; border: 1.5px solid #fde8a0; }
 .tile-methode .card-tag { background: rgba(148,110,0,.15); color: #946e00; }
 .tile-methode .card-title { color: #946e00; }
 .tile-methode .card-desc { color: #7a5800; }
 
-/* Tuile Annales — bleu pale (Production) */
-.tile-annales { background: #e8f3ff; border: 1.5px solid #cce2f8; }
-.tile-annales .card-tag { background: rgba(42,105,168,.15); color: #2a69a8; }
-.tile-annales .card-title { color: #2a69a8; }
-.tile-annales .card-desc { color: #1a4f82; }
+/* Tuile Annales — vert pâle (T6) */
+.tile-annales { background: #eef6ee; border: 1.5px solid #c2dfc2; }
+.tile-annales .card-tag { background: rgba(42,112,64,.15); color: #2a7040; }
+.tile-annales .card-title { color: #2a7040; }
+.tile-annales .card-desc { color: #1a5030; }
 
 /* Footer */
 .footer { font-size: 0.75rem; font-weight: 600; color: #a09880; text-align: center; }
@@ -176,10 +186,10 @@ h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
 <nav class="navbar fixed top-0 left-0 right-0 z-50">
   <div class="max-w-6xl mx-auto px-10 flex items-center justify-between" style="height:64px;">
     <a href="index.html" class="nav-logo">Scholar <span class="accent">Lock-In</span></a>
-    <div class="flex items-center gap-8">
+    <div class="flex items-center gap-4">
       <a href="index.html" class="nav-back">← Accueil</a>
-      <a href="sdgm.html" class="nav-chip">SDGM</a>
-      <a href="droit.html" class="nav-chip-secondary">Droit</a>
+      <a href="sdgm.html" class="nav-chip-secondary">SDGM</a>
+      <a href="droit.html" class="nav-chip">Droit</a>
       <span class="nav-muted">Éco (bientôt)</span>
     </div>
   </div>
@@ -191,10 +201,15 @@ h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
 
     <!-- Hero -->
     <div class="text-center" style="margin-bottom:72px; padding-top:64px;">
-      <div class="hero-badge">SDGM · Terminale STMG · Thème 1</div>
+      <div class="hero-badge">Droit · Terminale STMG · Thèmes 5 à 8</div>
       <h1>Scholar <span class="accent">Lock-In</span></h1>
-      <div class="hero-theme">Thème 1 — Les organisations et l'activité de production de biens et de services</div>
-      <p class="hero-sub">Ton kit de révision de dernière minute · 5 outils · 68 notions</p>
+      <div class="theme-pills" style="margin-top:16px;">
+        <span class="theme-pill pill-t5">T5 — Le contrat</span>
+        <span class="theme-pill pill-t6">T6 — La responsabilité</span>
+        <span class="theme-pill pill-t7">T7 — Le travail salarié</span>
+        <span class="theme-pill pill-t8">T8 — Entreprendre</span>
+      </div>
+      <p class="hero-sub" style="margin-top:12px;">Ton kit de révision de dernière minute · 5 outils · 57 notions</p>
     </div>
 
     <!-- Section label -->
@@ -203,46 +218,38 @@ h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
     <!-- Rangée haute : 2 grandes tuiles -->
     <div class="grid grid-cols-2 gap-5" style="margin-bottom:20px;">
 
-      <!-- Outil 1 — Vue d'ensemble -->
-      <a href="Contenu/SLI_Infographie_Theme1_Global.html" class="card tile-overview">
-        <div class="card-tag">Vue globale</div>
-        <span class="card-icon">🗺️</span>
-        <div class="card-title">Vue d'ensemble Thème 1</div>
+      <!-- Outil 1 — Cours complet -->
+      <a href="Contenu/SLI_Cours_Droit.html" class="card tile-overview">
+        <div class="card-tag">Cours complet</div>
+        <span class="card-icon">📚</span>
+        <div class="card-title">Cours Droit — Thèmes 5 à 8</div>
         <div style="font-size:0.85rem; font-weight:600; font-style:italic; color:#a09880; margin-bottom:12px; line-height:1.4;">
-          Les organisations et l'activité de production de biens et de services
+          Contrat · Responsabilité · Travail salarié · Entreprendre
         </div>
-        <div class="card-desc">Tous les chapitres en un coup d'œil — démarche marketing, bilan fonctionnel, processus, RSE, numérique, organisation. La carte globale pour réviser vite.</div>
+        <div class="card-desc">Les 4 thèmes du programme complets. Toutes les notions définies, les tableaux comparatifs, les liens entre thèmes et les alertes bac — zéro lacune.</div>
       </a>
 
-      <!-- Outil 2 — Chapitres -->
+      <!-- Outil 2 — Par thème -->
       <div class="card tile-chap">
-        <div class="card-tag">Par chapitre</div>
-        <span class="card-icon">📖</span>
-        <div class="card-title">Réviser par chapitre</div>
+        <div class="card-tag">Par thème</div>
+        <span class="card-icon">🏛️</span>
+        <div class="card-title">Accès par thème</div>
         <div class="chap-list">
-          <a href="Contenu/SLI_Infographie_Chap1.html" class="chap-item chap-r">
-            <span class="chap-num">🩷 Chapitre 1</span>
-            <span class="chap-label">Quels produits ou services pour quels besoins ?</span>
+          <a href="Contenu/SLI_Cours_Droit.html#t5" class="chap-item chap-b">
+            <span class="chap-num">Thème 5</span>
+            <span class="chap-label">Quel est le rôle du contrat ?</span>
           </a>
-          <a href="Contenu/SLI_Infographie_Chap2.html" class="chap-item chap-j">
-            <span class="chap-num">🟡 Chapitre 2 RH</span>
-            <span class="chap-label">Quelles ressources pour produire ? — partie RH</span>
+          <a href="Contenu/SLI_Cours_Droit.html#t6" class="chap-item chap-g">
+            <span class="chap-num">Thème 6</span>
+            <span class="chap-label">Qu'est-ce qu'être responsable ?</span>
           </a>
-          <a href="Contenu/SLI_Infographie_Chap2.html" class="chap-item chap-v">
-            <span class="chap-num">🟣 Chapitre 2 Finance</span>
-            <span class="chap-label">Quelles ressources pour produire ? — partie financière</span>
+          <a href="Contenu/SLI_Cours_Droit.html#t7" class="chap-item chap-r">
+            <span class="chap-num">Thème 7</span>
+            <span class="chap-label">Comment le droit encadre-t-il le travail salarié ?</span>
           </a>
-          <a href="Contenu/SLI_Infographie_Chap3et4.html" class="chap-item chap-b">
-            <span class="chap-num">🔵 Chapitres 3 &amp; 4</span>
-            <span class="chap-label">Organisation de la production, flux, qualité, coûts</span>
-          </a>
-          <a href="Contenu/SLI_Infographie_Chap5.html" class="chap-item chap-b">
-            <span class="chap-num">🔵 Chapitre 5</span>
-            <span class="chap-label">Les transformations numériques</span>
-          </a>
-          <a href="Contenu/SLI_Infographie_Chap6.html" class="chap-item chap-j">
-            <span class="chap-num">🟡 Chapitre 6</span>
-            <span class="chap-label">Fonctionnement cohérent des organisations</span>
+          <a href="Contenu/SLI_Cours_Droit.html#t8" class="chap-item chap-j">
+            <span class="chap-num">Thème 8</span>
+            <span class="chap-label">Dans quel cadre et comment entreprendre ?</span>
           </a>
         </div>
       </div>
@@ -252,34 +259,34 @@ h2 { font-size: 2rem; font-weight: 800; color: #1e1c18; line-height: 1.15; }
     <!-- Rangée basse : 3 petites tuiles -->
     <div class="grid grid-cols-3 gap-5" style="margin-bottom:72px;">
 
-      <!-- Outil 3 — Flash cards (rose pâle — Marketing) -->
-      <a href="Contenu/SLI_Flashcards_Theme1.html" class="card tile-flash">
+      <!-- Outil 3 — Flash cards (bleu — T5) -->
+      <a href="Contenu/SLI_Flashcards_Droit.html" class="card tile-flash">
         <div class="card-tag">Flash cards</div>
         <span class="card-icon">🃏</span>
         <div class="card-title">Flash cards</div>
-        <div class="card-desc">68 notions + 7 formules. Flip au clic, filtre par chapitre, mode aléatoire, compteur de maîtrise.</div>
+        <div class="card-desc">57 notions clés des 4 thèmes. Flip au clic, filtre par thème, mode aléatoire, compteur de maîtrise.</div>
       </a>
 
-      <!-- Outil 4 — Méthode (jaune pâle — RH) -->
-      <a href="Contenu/SLI_Methode_Jday.html" class="card tile-methode">
+      <!-- Outil 4 — Méthode (jaune — T8) -->
+      <a href="Contenu/SLI_Methode_Droit.html" class="card tile-methode">
         <div class="card-tag">Méthode</div>
         <span class="card-icon">✅</span>
         <div class="card-title">Méthode J-Day</div>
-        <div class="card-desc">Protocole 5 phases, verbes directeurs décortiqués, règles pour trouver le bon document, structures de réponse et pièges à déjouer.</div>
+        <div class="card-desc">Protocole d'entrée dans le sujet, verbes d'action décortiqués, règles documents, structures invariables et pièges à déjouer.</div>
       </a>
 
-      <!-- Outil 5 — Annales (bleu pâle — Production) -->
-      <a href="Contenu/SLI_Annales_Perspective.html" class="card tile-annales">
+      <!-- Outil 5 — Annales (vert — T6) -->
+      <a href="Contenu/SLI_Annales_Droit.html" class="card tile-annales">
         <div class="card-tag">Annales</div>
         <span class="card-icon">🎯</span>
         <div class="card-title">Annales en perspective</div>
-        <div class="card-desc">11 types de questions récurrents au bac. Ce qui tombe, les notions à mobiliser, la structure de réponse, les pièges à éviter.</div>
+        <div class="card-desc">8 types de questions récurrents au bac. Template de réponse, mots du cours obligatoires, erreurs classiques à éviter.</div>
       </a>
 
     </div>
 
     <!-- Footer -->
-    <div class="footer">Scholar Lock-In · SDGM Terminale STMG · Thème 1 · Les organisations et l'activité de production</div>
+    <div class="footer">Scholar Lock-In · Droit · Terminale STMG · Thèmes 5 à 8 — Contrat · Responsabilité · Travail · Entreprendre</div>
 
   </div>
 </div>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Méthode Droit — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f0ede6; min-height: 100vh; padding-top: 64px; padding-bottom: 48px; color: #1e1c18; }
+
+/* NAV */
+.sli-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(240,237,230,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid rgba(30,28,24,.1);box-shadow:0 2px 16px rgba(0,0,0,.06) }
+.sli-nav a { text-decoration:none }
+.sli-nav-logo { font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:900;color:#1e1c18 }
+.sli-nav-logo span { color:#2a69a8 }
+.sli-nav-links { display:flex;gap:2px }
+.sli-nl { font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;color:#7a6a58;padding:6px 14px;border-radius:20px;white-space:nowrap;text-decoration:none }
+.sli-nl:hover { background:rgba(30,28,24,.08);color:#1e1c18 }
+.sli-nl.on { background:#1e1c18;color:#f5c842 }
+
+.page { max-width: 920px; margin: 0 auto; padding: 28px 20px; }
+
+/* HEADER */
+.hdr { text-align: center; margin-bottom: 24px; }
+.hdr-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #1e1c18; color: #f5c842; padding: 4px 16px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+.hdr-title { font-size: 32px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
+.hdr-title span { color: #946e00; }
+.hdr-sub { font-size: 14px; color: #7a6a58; font-weight: 600; }
+
+/* TABS */
+.tabs { display: flex; gap: 4px; background: #fffdf8; border-radius: 14px; padding: 6px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.07); overflow-x: auto; }
+.tab-btn {
+  flex-shrink: 0; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #7a6a58;
+  background: transparent; transition: all 0.2s;
+}
+.tab-btn:hover { background: rgba(30,28,24,.06); color: #1e1c18; }
+.tab-btn.active { background: #946e00; color: #fff; }
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* BLOC HEADER */
+.bloc-hdr { background: #fef8e2; border: 1.5px solid #fde8a0; border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; }
+.bloc-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #946e00; margin-bottom: 6px; }
+.bloc-title { font-size: 20px; font-weight: 900; color: #1e1c18; margin-bottom: 6px; }
+.bloc-sub { font-size: 14px; font-weight: 600; color: #7a5800; }
+
+/* SECTION */
+.section { background: #fffdf8; border-radius: 14px; padding: 20px 22px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.section-title { font-size: 15px; font-weight: 800; color: #1e1c18; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #f0ede6; }
+
+/* STEPS TIMELINE */
+.steps { display: flex; flex-direction: column; gap: 12px; }
+.step { display: flex; gap: 14px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; border-radius: 50%; background: #946e00; color: #fff; font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.step-body { flex: 1; }
+.step-action { font-size: 15px; font-weight: 800; color: #1e1c18; margin-bottom: 4px; }
+.step-detail { font-size: 13px; font-weight: 600; color: #5a5448; line-height: 1.6; }
+.step-note { font-size: 12px; font-weight: 700; color: #946e00; margin-top: 4px; font-style: italic; }
+.step-time { font-size: 11px; font-weight: 800; background: #fde8a0; color: #946e00; padding: 2px 8px; border-radius: 20px; display: inline-block; margin-top: 4px; }
+
+/* INTERDICTIONS */
+.interdits { display: flex; flex-direction: column; gap: 8px; }
+.interdit { display: flex; gap: 10px; align-items: flex-start; background: #fdeef2; border-radius: 10px; padding: 10px 14px; }
+.interdit-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.interdit-txt { font-size: 13px; font-weight: 700; color: #7a2038; line-height: 1.5; }
+
+/* TABLE */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; border-radius: 10px; overflow: hidden; }
+.tbl thead tr { background: #1e1c18; color: #fffdf8; }
+.tbl th { padding: 10px 14px; font-weight: 700; text-align: left; }
+.tbl td { padding: 9px 14px; font-weight: 500; color: #3a3530; border-bottom: 1px solid #f0ede6; line-height: 1.55; }
+.tbl tbody tr:nth-child(even) { background: #f8f6f2; }
+.tbl tbody tr:last-child td { border-bottom: none; }
+.tbl td:first-child { font-weight: 800; color: #1e1c18; }
+
+/* REGLE */
+.regle { border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; border-left: 3px solid #946e00; background: #fffdf8; }
+.regle-titre { font-size: 14px; font-weight: 800; color: #946e00; margin-bottom: 6px; }
+.regle-txt { font-size: 13px; font-weight: 600; color: #3a3530; line-height: 1.6; }
+
+/* SITUATIONS */
+.situation { background: #f0ede6; border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; }
+.sit-label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #b5415a; margin-bottom: 8px; }
+.sit-title { font-size: 15px; font-weight: 800; color: #1e1c18; margin-bottom: 10px; }
+.sol-steps { display: flex; flex-direction: column; gap: 6px; }
+.sol-step { display: flex; gap: 8px; }
+.sol-n { font-size: 12px; font-weight: 900; color: #fff; background: #946e00; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.sol-txt { font-size: 13px; font-weight: 600; color: #3a3530; line-height: 1.55; }
+
+/* MÉMO */
+.memo-box { background: #1e1c18; border-radius: 14px; padding: 24px 28px; }
+.memo-title { font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #f5c842; margin-bottom: 20px; }
+.memo-rules { display: flex; flex-direction: column; gap: 2px; }
+.memo-rule { border-bottom: 1px solid rgba(255,255,255,.08); padding: 14px 0; }
+.memo-rule:last-child { border-bottom: none; }
+.memo-rule-num { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #f5c842; margin-bottom: 5px; }
+.memo-rule-title { font-size: 16px; font-weight: 900; color: #fffdf8; margin-bottom: 4px; }
+.memo-rule-detail { font-size: 13px; font-weight: 600; color: #a09880; line-height: 1.6; }
+
+/* STRUCTS INVARIABLES */
+.struct { background: #e8f3ff; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; border-left: 3px solid #2a69a8; }
+.struct-q { font-size: 13px; font-weight: 800; color: #2a69a8; margin-bottom: 6px; }
+.struct-rep { font-size: 13px; font-weight: 600; color: #1a4f82; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../droit.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Cours_Droit.html" class="sli-nl">📚 Cours</a>
+    <a href="SLI_Flashcards_Droit.html" class="sli-nl">🃏 Flash cards</a>
+    <a href="SLI_Methode_Droit.html" class="sli-nl on">✅ Méthode</a>
+    <a href="SLI_Annales_Droit.html" class="sli-nl">🎯 Annales</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="hdr">
+    <div class="hdr-badge">Méthode · Droit · Terminale STMG</div>
+    <div class="hdr-title">Méthode <span>J-Day</span></div>
+    <div class="hdr-sub">Zéro cours. Chaque règle est formulée en "Tu fais X" ou "Si X alors Y".</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab(1,this)">1 — Entrer dans le sujet</button>
+    <button class="tab-btn" onclick="showTab(2,this)">2 — Comprendre la question</button>
+    <button class="tab-btn" onclick="showTab(3,this)">3 — Lier aux documents</button>
+    <button class="tab-btn" onclick="showTab(4,this)">4 — Si je bloque</button>
+    <button class="tab-btn" onclick="showTab(5,this)">Mémo final</button>
+  </div>
+
+  <!-- BLOC 1 -->
+  <div id="tab-1" class="tab-pane active">
+    <div class="bloc-hdr">
+      <div class="bloc-num">Bloc 1</div>
+      <div class="bloc-title">Les 15 premières minutes : protocole d'entrée dans le sujet</div>
+      <div class="bloc-sub">Ordre des actions — minute par minute</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Les 5 étapes</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-action">Tu lis le titre du sujet et la présentation de l'entreprise</div>
+            <div class="step-detail">Sur brouillon : secteur d'activité + problématique principale</div>
+            <span class="step-time">2 min</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-action">Tu lis TOUTES les questions des 2 dossiers — sans lire les documents</div>
+            <div class="step-detail">Sur brouillon : pour chaque question → thème pressenti (T5/T6/T7/T8) + verbe de la question</div>
+            <span class="step-time">5 min</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-action">Tu repères le barème affiché pour chaque question</div>
+            <div class="step-detail">Sur brouillon : barème par question → tu calibres la longueur de réponse à l'avance</div>
+            <span class="step-time">1 min</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-action">Tu lis les documents — en cherchant uniquement ce dont tu as besoin</div>
+            <div class="step-detail">Sur chaque document : tu coches les infos utiles en marge, tu entoures les dates/chiffres/faits clés</div>
+            <span class="step-time">7 min</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <div class="step-action">Tu commences à rédiger</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Ce que tu NE fais PAS dans les 15 premières minutes</div>
+      <div class="interdits">
+        <div class="interdit">
+          <div class="interdit-icon">❌</div>
+          <div class="interdit-txt">Tu ne lis pas les documents en premier — c'est l'erreur la plus fréquente et la plus coûteuse.</div>
+        </div>
+        <div class="interdit">
+          <div class="interdit-icon">❌</div>
+          <div class="interdit-txt">Tu ne paniques pas si tu ne reconnais pas immédiatement une notion — tu identifies d'abord le thème (T5/T6/T7/T8), la réponse vient ensuite.</div>
+        </div>
+        <div class="interdit">
+          <div class="interdit-icon">❌</div>
+          <div class="interdit-txt">Tu ne passes pas plus de 7 minutes sur la lecture des documents — si tu n'as pas trouvé, tu passes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Règle des 4 thèmes</div>
+      <div style="background: #1e1c18; border-radius: 10px; padding: 16px 18px; margin-bottom: 10px;">
+        <div style="font-size: 12px; font-weight: 700; color: #f5c842; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase;">Si tu es bloquée sur l'identification : pose-toi la question en 4 secondes</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <span style="background: #cce2f8; color: #2a69a8; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; white-space: nowrap;">T5</span>
+            <span style="font-size: 13px; font-weight: 600; color: #fffdf8;">"Est-ce que ça parle d'un contrat (formation, exécution) ?"</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <span style="background: #c2dfc2; color: #2a7040; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; white-space: nowrap;">T6</span>
+            <span style="font-size: 13px; font-weight: 600; color: #fffdf8;">"Est-ce que ça parle de quelqu'un qui a causé un dommage à quelqu'un ?"</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <span style="background: #f9d0d9; color: #b5415a; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; white-space: nowrap;">T7</span>
+            <span style="font-size: 13px; font-weight: 600; color: #fffdf8;">"Est-ce que ça parle d'un salarié / employeur / licenciement ?"</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <span style="background: #fde8a0; color: #946e00; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; white-space: nowrap;">T8</span>
+            <span style="font-size: 13px; font-weight: 600; color: #fffdf8;">"Est-ce que ça parle de créer ou organiser une entreprise ?"</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOC 2 -->
+  <div id="tab-2" class="tab-pane">
+    <div class="bloc-hdr">
+      <div class="bloc-num">Bloc 2</div>
+      <div class="bloc-title">Comprendre ce que la question demande vraiment</div>
+      <div class="bloc-sub">Toujours lire la question deux fois</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Règle clé — lire deux fois</div>
+      <div style="display: flex; gap: 16px; margin-bottom: 10px;">
+        <div style="flex: 1; background: #e8f3ff; border-radius: 10px; padding: 14px 16px;">
+          <div style="font-size: 12px; font-weight: 800; color: #2a69a8; margin-bottom: 6px;">1ère lecture → le VERBE</div>
+          <div style="font-size: 13px; font-weight: 600; color: #1a4f82;">Qu'est-ce que je dois faire ?</div>
+        </div>
+        <div style="flex: 1; background: #eef6ee; border-radius: 10px; padding: 14px 16px;">
+          <div style="font-size: 12px; font-weight: 800; color: #2a7040; margin-bottom: 6px;">2ème lecture → le COMPLÉMENT</div>
+          <div style="font-size: 13px; font-weight: 600; color: #1a5030;">Sur quoi je dois le faire ?</div>
+        </div>
+      </div>
+      <div style="background: #f8f6f2; border-radius: 10px; padding: 12px 14px; font-size: 13px; font-weight: 600; color: #5a5448; font-style: italic; line-height: 1.6;">
+        Exemple : "Analysez la validité du contrat conclu entre X et Y à partir des documents."<br>
+        → 1ère lecture : "analyser" = vérifier des conditions et conclure<br>
+        → 2ème lecture : "validité du contrat" = les 4 conditions de formation du contrat + conclusion
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Tableau des verbes d'action</div>
+      <table class="tbl">
+        <thead>
+          <tr><th>Verbe</th><th>Ce qu'il teste vraiment</th><th>Piège fréquent</th><th>Points habituels</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Analyser</td><td>Appliquer des critères/conditions aux faits et conclure</td><td>Analyser sans conclure</td><td>4–6 pts</td></tr>
+          <tr><td>Qualifier</td><td>Donner le nom juridique exact + justifier avec les critères</td><td>Qualifier sans justifier les critères</td><td>3–4 pts</td></tr>
+          <tr><td>Identifier</td><td>Trouver et nommer l'élément demandé dans les documents</td><td>Trouver mais ne pas nommer avec le vocabulaire du cours</td><td>2–3 pts</td></tr>
+          <tr><td>Caractériser</td><td>Montrer les traits distinctifs d'une notion dans les faits</td><td>Décrire les faits sans les rattacher aux critères juridiques</td><td>3–4 pts</td></tr>
+          <tr><td>Justifier</td><td>Donner les raisons juridiques d'une affirmation</td><td>Justifier avec des arguments moraux plutôt que juridiques</td><td>2–3 pts</td></tr>
+          <tr><td>Expliquer</td><td>Rendre compréhensible un mécanisme en l'appliquant aux faits</td><td>Expliquer sans lien avec les faits du sujet</td><td>3–4 pts</td></tr>
+          <tr><td>Apprécier</td><td>Porter un jugement argumenté sur la légalité d'une situation</td><td>Apprécier sans structure (pour/contre)</td><td>4–5 pts</td></tr>
+          <tr><td>Calculer</td><td>Appliquer une formule ET commenter le résultat</td><td>Oublier le commentaire — il vaut autant que le calcul</td><td>3–4 pts</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Formulations pièges à connaître</div>
+      <table class="tbl">
+        <thead>
+          <tr><th>Ce que la question dit</th><th>Ce qu'elle demande vraiment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"Quel est le régime de responsabilité applicable ?"</td><td>Identifier + vérifier les 3 conditions + conclure si la victime peut obtenir réparation</td></tr>
+          <tr><td>"Le consentement de X est-il valable ?"</td><td>Chercher un vice du consentement dans les faits + conséquence juridique</td></tr>
+          <tr><td>"La situation de X est-elle conforme au droit ?"</td><td>Vérifier condition par condition si les règles légales sont respectées + conclure</td></tr>
+          <tr><td>"Conseillez X sur le choix d'une forme juridique"</td><td>Utiliser les contraintes du sujet pour argumenter un choix — pas un cours sur toutes les formes</td></tr>
+          <tr><td>"Quelles sont les options de X ?"</td><td>Identifier toutes les voies juridiques possibles, les comparer, recommander</td></tr>
+          <tr><td>"En vous appuyant sur les documents..."</td><td>Tu dois obligatoirement citer des éléments précis des documents dans ta réponse</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BLOC 3 -->
+  <div id="tab-3" class="tab-pane">
+    <div class="bloc-hdr">
+      <div class="bloc-num">Bloc 3</div>
+      <div class="bloc-title">Lier les questions aux documents</div>
+      <div class="bloc-sub">2 règles de base + code des titres de documents</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Règles de base</div>
+      <div class="regle">
+        <div class="regle-titre">Règle 1 — Lis la question → cherche le document, pas l'inverse</div>
+        <div class="regle-txt">Tu ne lis pas tous les documents d'abord. Tu lis la question, tu identifies ce qu'il te faut, puis tu vas chercher dans les documents.</div>
+      </div>
+      <div class="regle">
+        <div class="regle-titre">Règle 2 — Chaque document correspond généralement à 1 ou 2 questions</div>
+        <div class="regle-txt">Le sujet est construit pour que les documents alimentent les questions. Si tu ne trouves pas d'infos utiles dans un document pour une question, c'est probablement qu'il est fait pour une autre question.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Code des titres de documents</div>
+      <table class="tbl">
+        <thead>
+          <tr><th>Le titre du document contient...</th><th>Contenu probable</th><th>Thème probable</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"Contrat de travail"</td><td>Clauses, CDI/CDD, période d'essai</td><td style="color:#b5415a;font-weight:800;">T7</td></tr>
+          <tr><td>"Convention collective"</td><td>Règles spécifiques à la branche sur salaires, durée du travail</td><td style="color:#b5415a;font-weight:800;">T7</td></tr>
+          <tr><td>"Lettre de convocation"</td><td>Entretien préalable → procédure de licenciement</td><td style="color:#b5415a;font-weight:800;">T7</td></tr>
+          <tr><td>"Contrat de vente / prestation"</td><td>Formation, objet, prix</td><td style="color:#2a69a8;font-weight:800;">T5</td></tr>
+          <tr><td>"Conditions générales de vente"</td><td>Clauses, contrat de consommation, clauses abusives</td><td style="color:#2a69a8;font-weight:800;">T5</td></tr>
+          <tr><td>"Extrait du Code civil / Code du travail"</td><td>Définition légale d'une notion à appliquer</td><td style="font-weight:800;">T5-T6-T7-T8</td></tr>
+          <tr><td>"Jurisprudence / arrêt"</td><td>Raisonnement que le juge applique — à reproduire dans la réponse</td><td style="color:#2a7040;font-weight:800;">T6</td></tr>
+          <tr><td>"Statuts de société"</td><td>Forme juridique, capital, associés</td><td style="color:#946e00;font-weight:800;">T8</td></tr>
+          <tr><td>"Article de presse / communiqué"</td><td>Contexte factuel — indices pour qualifier une situation</td><td style="font-weight:800;">Tous</td></tr>
+          <tr><td>"Témoignage / email interne"</td><td>Faits à qualifier juridiquement</td><td style="font-weight:800;">Tous</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Situations particulières</div>
+      <div class="regle">
+        <div class="regle-titre">Si aucun document ne correspond à une question</div>
+        <div class="regle-txt">Tu réponds depuis ton cours. Certaines questions ne nécessitent pas de document (ex : "Rappelez les conditions de validité d'un contrat"). Ne cherche pas à tout prix un document.</div>
+      </div>
+      <div class="regle">
+        <div class="regle-titre">Si plusieurs documents semblent correspondre à la même question</div>
+        <div class="regle-txt">Tu les utilises tous. Citer plusieurs documents dans une même réponse est valorisé. Formule : "Selon le document 1..." / "Le document 3 précise en outre que..."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOC 4 -->
+  <div id="tab-4" class="tab-pane">
+    <div class="bloc-hdr">
+      <div class="bloc-num">Bloc 4</div>
+      <div class="bloc-title">Si je bloque</div>
+      <div class="bloc-sub">3 situations, 3 protocoles immédiats</div>
+    </div>
+
+    <div class="situation">
+      <div class="sit-label">Situation 1</div>
+      <div class="sit-title">Je ne reconnais pas la notion demandée</div>
+      <div class="sol-steps">
+        <div class="sol-step">
+          <div class="sol-n">1</div>
+          <div class="sol-txt">Relis la question en cherchant le thème (T5/T6/T7/T8) — pas la notion précise.</div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-n">2</div>
+          <div class="sol-txt">Dans le document, entoure les mots juridiques présents (contrat, responsabilité, salarié, licenciement, société...).</div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-n">3</div>
+          <div class="sol-txt">Commence à écrire ce que tu sais sur le thème identifié — souvent la notion précise revient pendant la rédaction.</div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-n">4</div>
+          <div class="sol-txt">Si toujours bloquée : définis les termes de la question mot par mot — souvent, la réponse est dans la définition.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="situation">
+      <div class="sit-label">Situation 2</div>
+      <div class="sit-title">Je n'ai pas assez d'éléments dans les documents pour répondre</div>
+      <div class="sol-steps">
+        <div class="sol-step">
+          <div class="sol-n">1</div>
+          <div class="sol-txt">Vérifie que tu as bien lu TOUS les documents — parfois l'élément est dans un document que tu as survolé.</div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-n">2</div>
+          <div class="sol-txt">Rappelle-toi : certaines questions se répondent depuis le cours, pas depuis les documents.</div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-n">3</div>
+          <div class="sol-txt">Si manque réel d'information : dis-le explicitement dans ta réponse ("Les documents ne précisent pas si X a été convoqué par lettre recommandée, or cette condition est requise par le Code du travail..."). Un correcteur valorise le raisonnement même quand les données manquent.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="situation">
+      <div class="sit-label">Situation 3</div>
+      <div class="sit-title">Je n'ai plus le temps pour une question</div>
+      <div class="sol-steps">
+        <div class="sol-step">
+          <div class="sol-n">1</div>
+          <div class="sol-txt">Écris d'abord la qualification et la conclusion (les 2 éléments les plus importants).</div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-n">2</div>
+          <div class="sol-txt">Ajoute ensuite les éléments de justification dans le temps restant.</div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-n">3</div>
+          <div class="sol-txt">Ne laisse jamais une question entièrement vide — 2 phrases bien construites valent toujours quelques points.</div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-n">4</div>
+          <div class="sol-txt">Ne reviens jamais sur une question déjà traitée pour l'améliorer — les points non encore gagnés sur une question vierge sont plus rentables.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÉMO -->
+  <div id="tab-5" class="tab-pane">
+    <div class="bloc-hdr">
+      <div class="bloc-num">Mémo final</div>
+      <div class="bloc-title">Les 6 règles d'or + 5 structures invariables</div>
+      <div class="bloc-sub">À connaître par cœur le jour J</div>
+    </div>
+
+    <div class="memo-box" style="margin-bottom: 20px;">
+      <div class="memo-title">Droit STMG — Mémo Jour J</div>
+      <div class="memo-rules">
+        <div class="memo-rule">
+          <div class="memo-rule-num">Règle 1</div>
+          <div class="memo-rule-title">Lis les questions AVANT les documents</div>
+          <div class="memo-rule-detail">Questions d'abord. Toujours. Sans exception.</div>
+        </div>
+        <div class="memo-rule">
+          <div class="memo-rule-num">Règle 2</div>
+          <div class="memo-rule-title">Verbe = ce que tu dois faire</div>
+          <div class="memo-rule-detail">Analyser → vérifier + conclure · Qualifier → nommer + justifier · Calculer → chiffre + commentaire</div>
+        </div>
+        <div class="memo-rule">
+          <div class="memo-rule-num">Règle 3</div>
+          <div class="memo-rule-title">Structure = Qualifier → Conditions → Conclure</div>
+          <div class="memo-rule-detail">Toujours dans cet ordre. Sans exception.</div>
+        </div>
+        <div class="memo-rule">
+          <div class="memo-rule-num">Règle 4</div>
+          <div class="memo-rule-title">Mots du cours = points garantis</div>
+          <div class="memo-rule-detail">"Lien de subordination" · "Cause réelle et sérieuse" · "Fait générateur" · "Lien de causalité" · "Nullité relative" · "Réparation intégrale"</div>
+        </div>
+        <div class="memo-rule">
+          <div class="memo-rule-num">Règle 5</div>
+          <div class="memo-rule-title">Cite les documents dans ta réponse</div>
+          <div class="memo-rule-detail">"Selon le document 2..." / "Le contrat précise que..." — une réponse sans référence aux docs = réponse de cours</div>
+        </div>
+        <div class="memo-rule">
+          <div class="memo-rule-num">Règle 6</div>
+          <div class="memo-rule-title">Conclus toujours</div>
+          <div class="memo-rule-detail">"En conclusion, [X] est / n'est pas responsable..." · "En conclusion, la procédure est / n'est pas régulière" — sans conclusion = réponse inachevée</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Les 5 structures invariables à connaître par cœur</div>
+
+      <div class="struct">
+        <div class="struct-q">Validité d'un contrat</div>
+        <div class="struct-rep">4 conditions → application aux faits → conclusion (nul ou valide)</div>
+      </div>
+
+      <div class="struct">
+        <div class="struct-q">Responsabilité civile</div>
+        <div class="struct-rep">Régime (contractuel / délictuel) → fait générateur + dommage + lien de causalité → exonération ? → conclusion</div>
+      </div>
+
+      <div class="struct">
+        <div class="struct-q">Licenciement</div>
+        <div class="struct-rep">Fond : motif (cause réelle et sérieuse ?) + Forme : procédure (3 étapes dans l'ordre avec délais) → conclusion</div>
+      </div>
+
+      <div class="struct">
+        <div class="struct-q">Qualification contrat de travail</div>
+        <div class="struct-rep">Lien de subordination (définition) → indices dans les faits (direction / contrôle / sanction) → conclusion + conséquences si requalification</div>
+      </div>
+
+      <div class="struct">
+        <div class="struct-q">Choix forme juridique</div>
+        <div class="struct-rep">Critères du sujet (associés, capital, responsabilité souhaitée) → forme adaptée (arguments) → formes exclues (pourquoi) → recommandation</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page -->
+
+<script>
+function showTab(n, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + n).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

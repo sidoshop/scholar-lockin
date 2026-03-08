@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flash cards Droit — Scholar Lock-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f0ede6; min-height: 100vh; padding-top: 64px; padding-bottom: 48px; color: #1e1c18; }
+
+/* NAV */
+.sli-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(240,237,230,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid rgba(30,28,24,.1);box-shadow:0 2px 16px rgba(0,0,0,.06) }
+.sli-nav a { text-decoration:none }
+.sli-nav-logo { font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:900;color:#1e1c18 }
+.sli-nav-logo span { color:#2a69a8 }
+.sli-nav-links { display:flex;gap:2px }
+.sli-nl { font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;color:#7a6a58;padding:6px 14px;border-radius:20px;white-space:nowrap;text-decoration:none }
+.sli-nl:hover { background:rgba(30,28,24,.08);color:#1e1c18 }
+.sli-nl.on { background:#1e1c18;color:#f5c842 }
+
+.page { max-width: 940px; margin: 0 auto; padding: 28px 20px; }
+
+/* HEADER */
+.hdr { text-align: center; margin-bottom: 24px; }
+.hdr-badge { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #1e1c18; color: #f5c842; padding: 4px 16px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+.hdr-title { font-size: 32px; font-weight: 900; color: #1e1c18; margin-bottom: 4px; }
+.hdr-title span { color: #2a69a8; }
+.hdr-sub { font-size: 14px; color: #7a6a58; font-weight: 600; }
+
+/* STATS BAR */
+.stats-bar { background: #fffdf8; border-radius: 14px; padding: 14px 20px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.stats-left { font-size: 14px; font-weight: 700; color: #1e1c18; }
+.stats-right { display: flex; gap: 12px; align-items: center; }
+.stat-chip { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+.stat-total { background: #e0dbd2; color: #5a5448; }
+.stat-ok { background: #c2dfc2; color: #2a7040; }
+.stat-nok { background: #f9d0d9; color: #b5415a; }
+.btn-shuffle { font-size: 13px; font-weight: 800; padding: 8px 18px; border-radius: 10px; border: none; cursor: pointer; background: #1e1c18; color: #f5c842; transition: opacity 0.15s; }
+.btn-shuffle:hover { opacity: 0.85; }
+
+/* FILTER */
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.filt { font-size: 12px; font-weight: 700; padding: 6px 15px; border-radius: 20px; border: 2px solid transparent; cursor: pointer; transition: all 0.13s; background: #e0dbd2; color: #5a5448; }
+.filt:hover { opacity: 0.85; }
+.filt.active-all { background: #1e1c18; color: #fffdf8; border-color: #1e1c18; }
+.filt.active-t5 { background: #cce2f8; color: #2a69a8; border-color: #2a69a8; }
+.filt.active-t6 { background: #c2dfc2; color: #2a7040; border-color: #2a7040; }
+.filt.active-t7 { background: #f9d0d9; color: #b5415a; border-color: #b5415a; }
+.filt.active-t8 { background: #fde8a0; color: #946e00; border-color: #946e00; }
+
+/* GRID */
+.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+/* FLIP CARD */
+.fc-outer { perspective: 1000px; height: 190px; cursor: pointer; }
+.fc-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s ease; border-radius: 14px; }
+.fc-outer.flipped .fc-inner { transform: rotateY(180deg); }
+
+.fc-front, .fc-back {
+  position: absolute; width: 100%; height: 100%;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 14px; padding: 18px 16px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.fc-back { transform: rotateY(180deg); }
+
+/* Thème colors */
+.fc-t5 .fc-front { background: #e8f3ff; border: 1.5px solid #cce2f8; }
+.fc-t5 .fc-back  { background: #2a69a8; }
+.fc-t6 .fc-front { background: #eef6ee; border: 1.5px solid #c2dfc2; }
+.fc-t6 .fc-back  { background: #2a7040; }
+.fc-t7 .fc-front { background: #fdeef2; border: 1.5px solid #f9d0d9; }
+.fc-t7 .fc-back  { background: #b5415a; }
+.fc-t8 .fc-front { background: #fef8e2; border: 1.5px solid #fde8a0; }
+.fc-t8 .fc-back  { background: #946e00; }
+
+.fc-theme-tag { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.7; margin-bottom: 8px; }
+.fc-t5 .fc-front .fc-theme-tag { color: #2a69a8; }
+.fc-t6 .fc-front .fc-theme-tag { color: #2a7040; }
+.fc-t7 .fc-front .fc-theme-tag { color: #b5415a; }
+.fc-t8 .fc-front .fc-theme-tag { color: #946e00; }
+.fc-back .fc-theme-tag { color: rgba(255,255,255,.6); }
+
+.fc-notion { font-size: 16px; font-weight: 900; color: #1e1c18; line-height: 1.3; flex: 1; display: flex; align-items: center; }
+.fc-hint { font-size: 10px; font-weight: 700; color: #a09880; text-align: right; }
+
+.fc-back .fc-def { font-size: 12px; font-weight: 600; color: #fff; line-height: 1.6; flex: 1; }
+.fc-back .fc-diff { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.7); margin-top: 6px; }
+.fc-back .fc-hint { color: rgba(255,255,255,.5); }
+
+/* MASTERY ROW */
+.fc-master-row { display: flex; gap: 6px; margin-top: 6px; }
+.btn-ok, .btn-nok {
+  flex: 1; padding: 5px 0; border: none; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; transition: opacity 0.15s;
+}
+.btn-ok { background: rgba(255,255,255,.25); color: #fff; }
+.btn-nok { background: rgba(0,0,0,.18); color: #fff; }
+.btn-ok:hover { background: rgba(255,255,255,.38); }
+.btn-nok:hover { background: rgba(0,0,0,.28); }
+
+/* hidden */
+.fc-outer.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<nav class="sli-nav">
+  <a href="../droit.html" class="sli-nav-logo">Scholar <span>Lock-In</span></a>
+  <div class="sli-nav-links">
+    <a href="SLI_Cours_Droit.html" class="sli-nl">📚 Cours</a>
+    <a href="SLI_Flashcards_Droit.html" class="sli-nl on">🃏 Flash cards</a>
+    <a href="SLI_Methode_Droit.html" class="sli-nl">✅ Méthode</a>
+    <a href="SLI_Annales_Droit.html" class="sli-nl">🎯 Annales</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="hdr">
+    <div class="hdr-badge">Droit · Terminale STMG · 57 notions</div>
+    <div class="hdr-title">Flash cards <span>Droit</span></div>
+    <div class="hdr-sub">Clique sur une carte pour retourner · Filtre par thème · Compteur de maîtrise</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-left">Progression : <span id="stat-ok-n">0</span> / <span id="stat-total-n">57</span> notions maîtrisées</div>
+    <div class="stats-right">
+      <span class="stat-chip stat-ok" id="chip-ok">✓ 0 ok</span>
+      <span class="stat-chip stat-nok" id="chip-nok">✗ 0 à revoir</span>
+      <button class="btn-shuffle" onclick="shuffle()">Mélanger</button>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <button class="filt active-all" onclick="filterCards('all',this)">Tout (57)</button>
+    <button class="filt" onclick="filterCards('t5',this)">T5 — Contrat (16)</button>
+    <button class="filt" onclick="filterCards('t6',this)">T6 — Responsabilité (12)</button>
+    <button class="filt" onclick="filterCards('t7',this)">T7 — Travail (15)</button>
+    <button class="filt" onclick="filterCards('t8',this)">T8 — Entreprendre (14)</button>
+  </div>
+
+  <div class="cards-grid" id="grid">
+    <!-- T5 — Contrat -->
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Contrat</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Accord de volontés entre deux ou plusieurs personnes destiné à créer des obligations juridiques. ≠ simple promesse non juridiquement contraignante.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Offre (pollicitation)</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Proposition ferme et précise de conclure un contrat. Elle engage son auteur si acceptée. ≠ invitation à entrer en négociation. Ex : affichage d'un prix en vitrine.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Acceptation</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Manifestation de volonté par laquelle on accepte l'offre purement et simplement. Le contrat se forme au moment de la rencontre de l'offre et de l'acceptation.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Erreur (vice du consentement)</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Fausse représentation de la réalité portant sur les qualités essentielles de la prestation. Spontanée. Conséquence : nullité relative. Ex : acheter un faux tableau de maître.</div><div class="fc-diff">≠ dol (provoqué intentionnellement par l'autre partie)</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Dol (vice du consentement)</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Manœuvres frauduleuses intentionnelles d'une partie pour obtenir le consentement de l'autre. Conséquence : nullité relative. Ex : dissimuler un vice caché lors d'une vente.</div><div class="fc-diff">≠ erreur (l'erreur est spontanée, le dol est intentionnel)</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Violence (vice du consentement)</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Contrainte physique ou morale exercée sur une personne pour l'amener à contracter. Conséquence : nullité relative. Ex : signature d'un contrat sous menace.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Capacité juridique</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Aptitude d'une personne à contracter. Les mineurs non émancipés et les majeurs sous tutelle ont une capacité limitée. Un contrat conclu par un incapable est susceptible d'annulation.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Contrat synallagmatique</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Contrat créant des obligations réciproques pour les deux parties (chacun est à la fois créancier et débiteur). Ex : contrat de vente. ≠ contrat unilatéral (seule une partie s'oblige, ex : donation).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Force obligatoire du contrat</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Le contrat légalement formé tient lieu de loi à ceux qui l'ont fait (art. 1103 Code civil). Les parties sont tenues de l'exécuter de bonne foi.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Exception d'inexécution</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Droit pour une partie de refuser d'exécuter son obligation tant que l'autre partie n'a pas exécuté la sienne. Ex : un client peut refuser de payer si la marchandise n'est pas livrée.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Résolution du contrat</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Anéantissement rétroactif du contrat en cas d'inexécution grave. Les parties sont remises dans l'état initial. ≠ résiliation (fin pour l'avenir seulement, sans rétroactivité).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Contrat d'adhésion</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Contrat dont les clauses sont fixées unilatéralement par le professionnel, sans possibilité de négociation pour le consommateur. ≠ contrat de gré à gré (négocié librement). Ex : abonnement téléphonique.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Clauses abusives</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Clauses créant un déséquilibre significatif entre les droits et obligations des parties au détriment du consommateur. Elles sont réputées non écrites (nullité partielle).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Droit de rétractation</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Droit du consommateur de revenir sur son consentement dans un délai de 14 jours, sans motif ni pénalité, pour les contrats conclus à distance ou hors établissement. Ne s'applique PAS aux achats en boutique physique.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Garantie légale de conformité</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Obligation du vendeur professionnel de livrer un bien conforme au contrat. En cas de défaut : réparation, remplacement, résolution ou réduction du prix. Délai : 2 ans.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t5" data-theme="t5" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-notion">Nullité relative</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T5 — Contrat</div><div class="fc-def">Sanction qui protège la victime d'un vice du consentement. Seule la victime peut invoquer la nullité (dans un délai de 5 ans). Elle peut aussi y renoncer. ≠ nullité absolue (ordre public, invoquée par tous).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+
+    <!-- T6 — Responsabilité -->
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Responsabilité civile</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Obligation de réparer le préjudice causé à autrui. Peut être contractuelle (inexécution d'un contrat) ou extracontractuelle (hors contrat). But : indemniser la victime. ≠ responsabilité pénale (sanctionner).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Fait générateur</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Événement à l'origine de la responsabilité extracontractuelle. 3 types : une faute / le fait d'une chose / le fait d'autrui. Chaque type = un régime de responsabilité distinct.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Dommage (conditions)</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Préjudice subi par la victime. Pour ouvrir droit à réparation, il doit être : personnel, certain, direct et légitime. 3 types : matériel (patrimoine) / corporel (intégrité physique) / moral (honneur, réputation).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Lien de causalité</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Relation directe entre le fait générateur et le dommage. Sans lien de causalité, pas de responsabilité. Doit toujours être démontré séparément, même si une faute et un dommage sont présents.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Resp. pour faute (art. 1240)</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Régime de droit commun de la responsabilité extracontractuelle. Conditions : une faute (volontaire ou non) + un dommage + un lien de causalité. Ex : un conducteur ivre qui blesse un piéton.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Resp. du fait des choses</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Le gardien d'une chose (usage, direction, contrôle) est responsable des dommages qu'elle cause. Régime sans faute : la victime n'a pas à prouver que le gardien a failli (art. 1242 al.1). Ex : chien qui mord.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Resp. du fait d'autrui</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Responsabilité pour les dommages causés par des personnes dont on répond. Cas : parents pour enfants mineurs ; employeur (commettant) pour son salarié (préposé) en exercice de fonctions.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Force majeure</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Événement imprévisible, irrésistible et extérieur qui rend l'exécution impossible. Exonère totalement le responsable. C'est l'un des trois moyens d'exonération.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Principe de réparation intégrale</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">La victime doit être replacée dans la situation où elle se serait trouvée si le dommage ne s'était pas produit. Ni plus, ni moins. On ne peut pas s'enrichir grâce à la réparation.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Transaction</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Accord amiable entre la victime et le responsable (ou son assureur) pour fixer le montant de la réparation, évitant le recours au tribunal. Valable si consentement libre et éclairé de la victime.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Responsabilité contractuelle</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Régime applicable quand le dommage résulte de l'inexécution d'un contrat. Principe du non-cumul : quand un contrat existe, on ne peut pas choisir le régime délictuel à la place.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t6" data-theme="t6" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-notion">Resp. fait des produits défectueux</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T6 — Responsabilité</div><div class="fc-def">Le producteur est responsable des dommages causés par un défaut de son produit, que la victime soit contractante ou non. Régime spécial. ≠ garantie légale de conformité (entre vendeur et acheteur seulement).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+
+    <!-- T7 — Travail -->
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Lien de subordination juridique</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Critère essentiel du contrat de travail : le salarié est sous l'autorité de l'employeur qui a un pouvoir de direction, de contrôle et de sanction. C'est ce critère qui distingue salarié et travailleur indépendant.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">CDI</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Contrat à Durée Indéterminée — forme normale et générale du travail. Pas de terme fixé. Seule une rupture (démission, licenciement, rupture conventionnelle) y met fin. Indemnité de fin : néant.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">CDD</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Contrat à Durée Déterminée — conclu pour un motif précis (remplacement, surcroît, saisonnier). Ne peut pas pourvoir durablement un emploi permanent. Doit être écrit et signé dans les 2 jours ouvrables. Indemnité de fin : 10% de précarité.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">CTT (intérim)</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Contrat de Travail Temporaire — 3 parties / 2 contrats : contrat de mission (ETT + salarié) + contrat de mise à disposition (ETT + entreprise utilisatrice). Indemnité de fin de mission : 10% de précarité.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Clause de non-concurrence</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Interdit au salarié de travailler pour un concurrent après la rupture. Valide si : limitée dans le temps + dans l'espace + dans le domaine + contrepartie financière obligatoire. Sans contrepartie → clause nulle.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Durée légale du travail</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">35 heures par semaine. Ce n'est pas un maximum mais la référence pour calculer les heures supplémentaires. Majoration : +25% pour les heures 36 à 43 / +50% à partir de la 44e heure.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">SMIC</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Salaire Minimum Interprofessionnel de Croissance — salaire horaire minimum légal, revu au 1er janvier chaque année. Aucun salarié ne peut être payé en dessous. La convention collective peut prévoir des minima supérieurs.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">CSE</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Comité Social et Économique — instance représentative du personnel, obligatoire dans les entreprises de 11 salariés et plus. Fusionne les anciens CE, DP et CHSCT. Représente les salariés, consulté sur les décisions importantes.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Démission</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Rupture du CDI à l'initiative du salarié. Doit être claire et non équivoque. Préavis obligatoire. Pas droit au chômage en principe (sauf démission légitime reconnue par Pôle Emploi). Pas d'indemnité de licenciement.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Faute grave (licenciement)</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Faute rendant impossible le maintien du salarié dans l'entreprise, même temporairement. Conséquences : pas d'indemnité de licenciement, pas de préavis. Mais le salarié conserve ses droits au chômage (ARE).</div><div class="fc-diff">≠ faute lourde (intention de nuire — ne donne pas droit non plus aux indemnités ni au préavis)</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Procédure de licenciement</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">3 étapes obligatoires : 1) Convocation (lettre remise en main propre ou recommandée) → 2) Entretien préalable (min. 5 jours ouvrables après convocation) → 3) Notification (lettre recommandée AR, min. 2 jours ouvrables après entretien).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Rupture conventionnelle</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Rupture du CDI d'un commun accord. Ne peut pas être imposée unilatéralement. Procédure : entretien(s) → convention signée → rétractation 15 jours calendaires → homologation DREETS. Droit aux indemnités + allocation chômage.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Convention collective</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Accord entre organisations d'employeurs et syndicats représentatifs. Fixe les conditions de travail (salaires, temps de travail, classification) d'une branche ou d'une entreprise. S'applique à tous les salariés de l'entreprise.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t7" data-theme="t7" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-notion">Cause réelle et sérieuse</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T7 — Travail</div><div class="fc-def">Condition de fond du licenciement personnel. La cause est réelle (objective, vérifiable) et sérieuse (suffisamment grave pour justifier la rupture). Sans cause réelle et sérieuse → licenciement injustifié → Conseil de prud'hommes.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+
+    <!-- T8 — Entreprendre -->
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">EI — Entrepreneur individuel</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Personne physique exerçant en son nom propre sans créer de société. Depuis la réforme du 15 mai 2022 : 2 patrimoines distincts (professionnel / personnel). Le patrimoine personnel est protégé des créanciers professionnels.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">Concurrence déloyale</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Procédés contraires aux usages commerciaux causant un préjudice à un concurrent. 3 formes : dénigrement (critiques injustifiées) / imitation-parasitisme (copie pour créer confusion) / désorganisation (débauchage massif). Fondée sur l'art. 1240 C.civ.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">Ententes illicites</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Accords entre entreprises concurrentes pour fixer les prix, se partager les marchés ou exclure des concurrents. Interdites par le droit européen et national. Ex : cartel des constructeurs automobiles.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">Personnalité morale</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Reconnaissance d'une société comme sujet de droit, distinct des associés. La société peut contracter, posséder des biens, agir en justice. Acquise à l'immatriculation au RCS.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">SARL</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Société à Responsabilité Limitée — 1 à 100 associés, responsabilité limitée aux apports, dirigée par un gérant, capital minimum 1 €. L'EURL est la SARL à associé unique.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">SA</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Société Anonyme — minimum 2 associés (7 si cotée), responsabilité limitée aux apports, capital minimum 37 000 €, direction par Conseil d'Administration + PDG ou Directoire + Conseil de surveillance.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">SAS / SASU</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Société par Actions Simplifiée — très souple, responsabilité limitée aux apports, pas de capital minimum, dirigée par un Président. SASU = SAS à associé unique. Forme prisée pour la flexibilité.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">SNC</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Société en Nom Collectif — minimum 2 associés, responsabilité illimitée et solidaire sur les biens personnels. Les associés répondent de toutes les dettes de la société. ≠ SARL/SAS/SA (resp. limitée aux apports).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">Franchise</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Contrat par lequel le franchiseur concède au franchisé l'usage de sa marque, son enseigne ET son savoir-faire, contre redevance. Les parties restent indépendantes. Ex : McDonald's. ≠ concession (marque + territoire, sans savoir-faire obligatoire).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">Concession commerciale</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Contrat par lequel un concédant autorise un concessionnaire à vendre ses produits dans un territoire exclusif, sous sa marque. Ex : concessionnaire automobile Renault. ≠ franchise (pas de savoir-faire obligatoire).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">Licence de marque</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Contrat autorisant l'utilisation d'une marque moyennant redevance. Pas nécessairement de savoir-faire transmis. ≠ franchise (marque + savoir-faire + enseigne). ≠ concession (exclusivité territoriale).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">GIE</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Groupement d'Intérêt Économique — plusieurs entreprises mettent en commun certaines activités (achats, recherche, pub) tout en restant indépendantes. Membres responsables indéfiniment et solidairement. But : faciliter l'activité des membres, pas faire des bénéfices. Ex : Airbus.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">Sous-traitance</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Contrat par lequel un donneur d'ordre confie à un sous-traitant l'exécution de tout ou partie d'un contrat principal. Les sous-traitants restent indépendants. ≠ salarié (pas de lien de subordination).</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+    <div class="fc-outer fc-t8" data-theme="t8" onclick="flip(this)">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-notion">Autorité de la concurrence</div><div class="fc-hint">Clique pour retourner</div></div>
+        <div class="fc-back"><div class="fc-theme-tag">T8 — Entreprendre</div><div class="fc-def">Autorité administrative indépendante française qui contrôle les pratiques anticoncurrentielles (ententes, abus de position dominante) et les concentrations d'entreprises. Peut infliger de lourdes sanctions.</div><div class="fc-master-row"><button class="btn-ok" onclick="mark(event,this,'ok')">✓ Maîtrisé</button><button class="btn-nok" onclick="mark(event,this,'nok')">✗ À revoir</button></div></div>
+      </div>
+    </div>
+
+  </div><!-- end grid -->
+
+</div><!-- end page -->
+
+<script>
+let okCount = 0, nokCount = 0;
+
+function flip(el) { el.classList.toggle('flipped'); }
+
+function mark(e, btn, type) {
+  e.stopPropagation();
+  const card = btn.closest('.fc-outer');
+  const wasOk = card.dataset.status === 'ok';
+  const wasNok = card.dataset.status === 'nok';
+  if (wasOk) okCount--;
+  if (wasNok) nokCount--;
+  if (card.dataset.status === type) {
+    card.dataset.status = '';
+  } else {
+    card.dataset.status = type;
+    if (type === 'ok') okCount++;
+    else nokCount++;
+  }
+  updateStats();
+}
+
+function updateStats() {
+  const visible = document.querySelectorAll('.fc-outer:not(.hidden)').length;
+  document.getElementById('stat-ok-n').textContent = okCount;
+  document.getElementById('stat-total-n').textContent = visible;
+  document.getElementById('chip-ok').textContent = '✓ ' + okCount + ' ok';
+  document.getElementById('chip-nok').textContent = '✗ ' + nokCount + ' à revoir';
+}
+
+function filterCards(theme, btn) {
+  document.querySelectorAll('.filt').forEach(f => f.className = 'filt');
+  btn.classList.add('active-' + theme);
+  okCount = 0; nokCount = 0;
+  document.querySelectorAll('.fc-outer').forEach(c => {
+    const match = theme === 'all' || c.dataset.theme === theme;
+    c.classList.toggle('hidden', !match);
+    c.classList.remove('flipped');
+    delete c.dataset.status;
+  });
+  updateStats();
+}
+
+function shuffle() {
+  const grid = document.getElementById('grid');
+  const cards = [...grid.querySelectorAll('.fc-outer:not(.hidden)')];
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    grid.insertBefore(cards[j], cards[i].nextSibling);
+  }
+  cards.forEach(c => { c.classList.remove('flipped'); delete c.dataset.status; });
+  okCount = 0; nokCount = 0;
+  updateStats();
+}
+
+updateStats();
+</script>
+</body>
+</html>
